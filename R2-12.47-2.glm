@@ -17,22 +17,41 @@ module powerflow{
 }; 
 
 //********************************************* 
-object regulator:1615 { 
+
+
+object regulator:1 { 
      name R2-12-47-2_reg_1; 
      from R2-12-47-2_node_253; 
      to R2-12-47-2_meter_9; 
      phases ABCN; 
-     configuration regulator_configuration:1616; 
-     object recorder { 
-          property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
-          limit 1440; 
-          interval 60; 
-          file "R2-12.27-2_reg_output.csv"; 
-     }; 
+     configuration feeder_reg_cfg; 
+} 
+
+object regulator:2 { 
+     name R2-12-47-2_reg_2; 
+     from R2-12-47-2_node_146_2; 
+     to R2-12-47-2_node_90; 
+     phases ABCN; 
+     configuration voltage_reg_cfg; 
 } 
 
 object regulator_configuration:1616 { 
      name feeder_reg_cfg; 
+     Control OUTPUT_VOLTAGE; 
+     band_center 7500.0; 
+     band_width 120; 
+     connect_type WYE_WYE; 
+     time_delay 30; 
+     raise_taps 16; 
+     lower_taps 16; 
+     regulation 0.10; 
+     tap_pos_A 0; 
+     tap_pos_B 0; 
+     tap_pos_C 0; 
+} 
+
+object regulator_configuration:9994 { 
+     name voltage_reg_cfg; 
      Control OUTPUT_VOLTAGE; 
      band_center 7500.0; 
      band_width 120; 
@@ -63,12 +82,6 @@ object capacitor:1610 {
      dwell_time 30.0; 
      cap_nominal_voltage 7200; 
      nominal_voltage 7200; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R2-12.47-2_capacitor1.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object capacitor:1611 { 
@@ -88,12 +101,6 @@ object capacitor:1611 {
      dwell_time 30.0; 
      cap_nominal_voltage 7200; 
      nominal_voltage 7200; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R2-12.47-2_capacitor2.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object capacitor:1612 { 
@@ -113,12 +120,6 @@ object capacitor:1612 {
      dwell_time 30.0; 
      cap_nominal_voltage 7200; 
      nominal_voltage 7200; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R2-12.47-2_capacitor3.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object capacitor:1613 { 
@@ -138,12 +139,6 @@ object capacitor:1613 {
      dwell_time 30.0; 
      cap_nominal_voltage 7200; 
      nominal_voltage 7200; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R2-12.47-2_capacitor4.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object fuse:1547 { 
@@ -2246,6 +2241,15 @@ object node:210 {
      nominal_voltage 7200; 
 } 
 
+object node:9999 { 
+     name R2-12-47-2_node_146_2; 
+     phases ABCN; 
+     voltage_A 7200+0.0j; 
+     voltage_B -3600-6235j; 
+     voltage_C -3600+6235j; 
+     nominal_voltage 7200; 
+} 
+
 object node:211 { 
      name R2-12-47-2_node_147; 
      phases CN; 
@@ -4022,7 +4026,7 @@ object overhead_line:1475 {
      name R2-12-47-2_ol_110; 
      phases ABCN; 
      from R2-12-47-2_node_146; 
-     to R2-12-47-2_node_90; 
+     to R2-12-47-2_node_146_2; 
      length 457.500; 
      configuration line_configuration:45; 
 } 
@@ -14572,3 +14576,52 @@ object underground_line_conductor:13 {
      shield_resistance 0.00; 
 } 
 
+// Recorders
+
+object recorder { 
+	parent R2-12-47-2_reg_1; 
+    property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
+    limit 1440; 
+    interval 60; 
+    file "R2-12.27-2_reg_output.csv"; 
+}; 
+	 
+object recorder { 
+	parent R2-12-47-2_reg_2; 
+    property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
+    limit 1440; 
+    interval 60; 
+    file "R2-12.27-2_reg2_output.csv"; 
+}; 
+
+object recorder { 
+	parent R2-12-47-2_cap_1;
+    property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
+    file R2-12.47-2_capacitor1.csv; 
+    interval 60; 
+    limit 1440; 
+}; 
+
+object recorder { 
+	parent R2-12-47-2_cap_2;
+    property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
+    file R2-12.47-2_capacitor2.csv; 
+    interval 60; 
+    limit 1440; 
+}; 
+
+object recorder { 
+	parent R2-12-47-2_cap_3;
+    property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
+    file R2-12.47-2_capacitor3.csv; 
+    interval 60; 
+    limit 1440; 
+}; 
+
+object recorder { 
+	parent R2-12-47-2_cap_4;
+    property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
+    file R2-12.47-2_capacitor4.csv; 
+    interval 60; 
+    limit 1440; 
+}; 

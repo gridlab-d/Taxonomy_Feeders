@@ -22,13 +22,7 @@ object regulator:4240 {
      from R2-12-47-3_node_832; 
      to R2-12-47-3_meter_12; 
      phases ABCN; 
-     configuration regulator_configuration:4241; 
-     object recorder { 
-          property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
-          limit 1440; 
-          interval 60; 
-          file "R2-12.27-3_reg_output.csv"; 
-     }; 
+     configuration feeder_reg_cfg; 
 } 
 
 object regulator_configuration:4241 { 
@@ -37715,4 +37709,14 @@ object underground_line_conductor:10 {
      shield_gmr 0.00; 
      shield_resistance 0.00; 
 } 
+
+// Recorders
+
+object recorder { 
+    parent R2-12-47-3_reg_1;
+    property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
+    limit 1440; 
+    interval 60; 
+    file "R2-12.27-3_reg_output.csv"; 
+}; 
 

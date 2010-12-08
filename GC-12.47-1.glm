@@ -22,14 +22,10 @@ object regulator:74 {
      from GC-12-47-1_node_28; 
      to GC-12-47-1_meter_4; 
      phases ABCN; 
-     configuration regulator_configuration:75; 
-     object recorder { 
-          property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
-          limit 1440; 
-          interval 60; 
-          file "GC-12.27-1_reg_output.csv"; 
-     }; 
+     configuration feeder_reg_cfg; 
 } 
+
+
 
 object regulator_configuration:75 { 
      name feeder_reg_cfg; 
@@ -63,12 +59,6 @@ object capacitor:72 {
      dwell_time 30.0; 
      cap_nominal_voltage 7200; 
      nominal_voltage 7200; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file GC-12.47-1_capacitor1.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object fuse:64 { 
@@ -763,3 +753,20 @@ object underground_line_conductor:4 {
      shield_resistance 0.00; 
 } 
 
+// Recorders
+
+object recorder { 
+	parent GC-12-47-1_reg_1;
+    property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
+    limit 1440; 
+    interval 60; 
+    file "GC-12.27-1_reg_output.csv"; 
+}; 
+
+object recorder { 
+	parent GC-12-47-1_cap_1;
+    property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
+    file GC-12.47-1_capacitor1.csv; 
+    interval 60; 
+    limit 1440; 
+}; 

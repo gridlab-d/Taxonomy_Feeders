@@ -17,22 +17,40 @@ module powerflow{
 }; 
 
 //********************************************* 
-object regulator:1167 { 
+
+object regulator:1 { 
      name R1-25-00-1_reg_1; 
      from R1-25-00-1_node_324; 
      to R1-25-00-1_meter_91; 
      phases ABCN; 
-     configuration regulator_configuration:1168; 
-     object recorder { 
-          property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
-          limit 1440; 
-          interval 60; 
-          file "R1-25.00-1_reg_output.csv"; 
-     }; 
+     configuration feeder_reg_cfg; 
+} 
+
+object regulator:2 { 
+     name R1-25-00-1_reg_2; 
+     from R1-25-00-1_node_72_2; 
+     to R1-25-00-1_node_73; 
+     phases ABCN; 
+     configuration votlage_reg_cfg; 
 } 
 
 object regulator_configuration:1168 { 
      name feeder_reg_cfg; 
+     Control OUTPUT_VOLTAGE; 
+     band_center 14975.0; 
+     band_width 240; 
+     connect_type WYE_WYE; 
+     time_delay 30; 
+     raise_taps 16; 
+     lower_taps 16; 
+     regulation 0.10; 
+     tap_pos_A 0; 
+     tap_pos_B 0; 
+     tap_pos_C 0; 
+} 
+
+object regulator_configuration:9997 { 
+     name votlage_reg_cfg; 
      Control OUTPUT_VOLTAGE; 
      band_center 14975.0; 
      band_width 240; 
@@ -63,12 +81,6 @@ object capacitor:1165 {
      dwell_time 30.0; 
      cap_nominal_voltage 14380; 
      nominal_voltage 14376.02; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R1-25.00-1_capacitor1.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object fuse:1145 { 
@@ -2709,6 +2721,16 @@ object node:130 {
      nominal_voltage 14376.02; 
 } 
 
+object node:9999 { 
+     name R1-25-00-1_node_72_2; 
+     phases ABCN; 
+     voltage_A 14376.02+0.0j; 
+     voltage_B -7188.01-12450j; 
+     voltage_C -7188.01+12450j; 
+     nominal_voltage 14376.02; 
+} 
+
+
 object node:131 { 
      name R1-25-00-1_node_73; 
      phases ABCN; 
@@ -5150,7 +5172,7 @@ object overhead_line:931 {
      name R1-25-00-1_ol_62; 
      phases ABCN; 
      from R1-25-00-1_node_72; 
-     to R1-25-00-1_node_73; 
+     to R1-25-00-1_node_72_2; 
      length 3299.314; 
      configuration line_configuration:27; 
 } 
@@ -10186,3 +10208,28 @@ object underground_line_conductor:6 {
      shield_resistance 0.00; 
 } 
 
+// Recorders
+
+object recorder { 
+    parent R1-25-00-1_reg_1;
+    property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
+    limit 1440; 
+    interval 60; 
+    file "R1-25.00-1_reg1_output.csv"; 
+}; 
+
+object recorder { 
+    parent R1-25-00-1_reg_2;
+    property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
+    limit 1440; 
+    interval 60; 
+    file "R1-25.00-1_reg2_output.csv"; 
+}; 
+
+object recorder { 
+	parent R1-25-00-1_cap_1;
+    property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
+    file R1-25.00-1_capacitor1.csv; 
+    interval 60; 
+    limit 1440; 
+};
