@@ -23,9 +23,7 @@ object regulator:74 {
      to GC-12-47-1_meter_4; 
      phases ABCN; 
      configuration feeder_reg_cfg; 
-} 
-
-
+}  
 
 object regulator_configuration:75 { 
      name feeder_reg_cfg; 
@@ -760,7 +758,7 @@ object recorder {
     property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
     limit 1440; 
     interval 60; 
-    file "GC-12.27-1_reg_output.csv"; 
+    file "GC-12.47-1_reg1_output.csv"; 
 }; 
 
 object recorder { 

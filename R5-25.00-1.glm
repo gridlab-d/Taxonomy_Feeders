@@ -27189,7 +27189,7 @@ object triplex_node:1401 {
      name R5-25-00-1_tn_371; 
      phases AS; 
      parent R5-25-00-1_tm_1; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27200,7 +27200,7 @@ object triplex_node:1402 {
      name R5-25-00-1_tn_372; 
      phases BS; 
      parent R5-25-00-1_tm_2; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27211,7 +27211,7 @@ object triplex_node:1403 {
      name R5-25-00-1_tn_373; 
      phases CS; 
      parent R5-25-00-1_tm_3; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27222,7 +27222,7 @@ object triplex_node:1404 {
      name R5-25-00-1_tn_374; 
      phases AS; 
      parent R5-25-00-1_tm_4; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27233,7 +27233,7 @@ object triplex_node:1405 {
      name R5-25-00-1_tn_375; 
      phases BS; 
      parent R5-25-00-1_tm_5; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27244,7 +27244,7 @@ object triplex_node:1406 {
      name R5-25-00-1_tn_376; 
      phases CS; 
      parent R5-25-00-1_tm_6; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27255,7 +27255,7 @@ object triplex_node:1407 {
      name R5-25-00-1_tn_377; 
      phases BS; 
      parent R5-25-00-1_tm_7; 
-     power_1 50000+25000j; 
+     power_12 50000+25000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27266,7 +27266,7 @@ object triplex_node:1408 {
      name R5-25-00-1_tn_378; 
      phases CS; 
      parent R5-25-00-1_tm_8; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27277,7 +27277,7 @@ object triplex_node:1409 {
      name R5-25-00-1_tn_379; 
      phases CS; 
      parent R5-25-00-1_tm_9; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27288,7 +27288,7 @@ object triplex_node:1410 {
      name R5-25-00-1_tn_380; 
      phases CS; 
      parent R5-25-00-1_tm_10; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27299,7 +27299,7 @@ object triplex_node:1411 {
      name R5-25-00-1_tn_381; 
      phases BS; 
      parent R5-25-00-1_tm_11; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27310,7 +27310,7 @@ object triplex_node:1412 {
      name R5-25-00-1_tn_382; 
      phases CS; 
      parent R5-25-00-1_tm_12; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27321,7 +27321,7 @@ object triplex_node:1413 {
      name R5-25-00-1_tn_383; 
      phases CS; 
      parent R5-25-00-1_tm_13; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27332,7 +27332,7 @@ object triplex_node:1414 {
      name R5-25-00-1_tn_384; 
      phases AS; 
      parent R5-25-00-1_tm_14; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27343,7 +27343,7 @@ object triplex_node:1415 {
      name R5-25-00-1_tn_385; 
      phases CS; 
      parent R5-25-00-1_tm_15; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27354,7 +27354,7 @@ object triplex_node:1416 {
      name R5-25-00-1_tn_386; 
      phases AS; 
      parent R5-25-00-1_tm_16; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27365,7 +27365,7 @@ object triplex_node:1417 {
      name R5-25-00-1_tn_387; 
      phases BS; 
      parent R5-25-00-1_tm_17; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27376,7 +27376,7 @@ object triplex_node:1418 {
      name R5-25-00-1_tn_388; 
      phases CS; 
      parent R5-25-00-1_tm_18; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27387,7 +27387,7 @@ object triplex_node:1419 {
      name R5-25-00-1_tn_389; 
      phases AS; 
      parent R5-25-00-1_tm_19; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27398,7 +27398,7 @@ object triplex_node:1420 {
      name R5-25-00-1_tn_390; 
      phases BS; 
      parent R5-25-00-1_tm_20; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27409,7 +27409,7 @@ object triplex_node:1421 {
      name R5-25-00-1_tn_391; 
      phases CS; 
      parent R5-25-00-1_tm_21; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27420,7 +27420,7 @@ object triplex_node:1422 {
      name R5-25-00-1_tn_392; 
      phases BS; 
      parent R5-25-00-1_tm_22; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27431,7 +27431,7 @@ object triplex_node:1423 {
      name R5-25-00-1_tn_393; 
      phases CS; 
      parent R5-25-00-1_tm_23; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27442,7 +27442,7 @@ object triplex_node:1424 {
      name R5-25-00-1_tn_394; 
      phases BS; 
      parent R5-25-00-1_tm_24; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27453,7 +27453,7 @@ object triplex_node:1425 {
      name R5-25-00-1_tn_395; 
      phases CS; 
      parent R5-25-00-1_tm_25; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27464,7 +27464,7 @@ object triplex_node:1426 {
      name R5-25-00-1_tn_396; 
      phases CS; 
      parent R5-25-00-1_tm_26; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27475,7 +27475,7 @@ object triplex_node:1427 {
      name R5-25-00-1_tn_397; 
      phases CS; 
      parent R5-25-00-1_tm_27; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27486,7 +27486,7 @@ object triplex_node:1428 {
      name R5-25-00-1_tn_398; 
      phases CS; 
      parent R5-25-00-1_tm_28; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27497,7 +27497,7 @@ object triplex_node:1429 {
      name R5-25-00-1_tn_399; 
      phases BS; 
      parent R5-25-00-1_tm_29; 
-     power_1 35000+17500j; 
+     power_12 35000+17500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27508,7 +27508,7 @@ object triplex_node:1430 {
      name R5-25-00-1_tn_400; 
      phases CS; 
      parent R5-25-00-1_tm_30; 
-     power_1 25000+12500j; 
+     power_12 25000+12500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27519,7 +27519,7 @@ object triplex_node:1431 {
      name R5-25-00-1_tn_401; 
      phases CS; 
      parent R5-25-00-1_tm_31; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27530,7 +27530,7 @@ object triplex_node:1432 {
      name R5-25-00-1_tn_402; 
      phases CS; 
      parent R5-25-00-1_tm_32; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27541,7 +27541,7 @@ object triplex_node:1433 {
      name R5-25-00-1_tn_403; 
      phases CS; 
      parent R5-25-00-1_tm_33; 
-     power_1 35000+17500j; 
+     power_12 35000+17500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27552,7 +27552,7 @@ object triplex_node:1434 {
      name R5-25-00-1_tn_404; 
      phases CS; 
      parent R5-25-00-1_tm_34; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27563,7 +27563,7 @@ object triplex_node:1435 {
      name R5-25-00-1_tn_405; 
      phases CS; 
      parent R5-25-00-1_tm_35; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27574,7 +27574,7 @@ object triplex_node:1436 {
      name R5-25-00-1_tn_406; 
      phases CS; 
      parent R5-25-00-1_tm_36; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27585,7 +27585,7 @@ object triplex_node:1437 {
      name R5-25-00-1_tn_407; 
      phases CS; 
      parent R5-25-00-1_tm_37; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27596,7 +27596,7 @@ object triplex_node:1438 {
      name R5-25-00-1_tn_408; 
      phases CS; 
      parent R5-25-00-1_tm_38; 
-     power_1 35000+17500j; 
+     power_12 35000+17500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27607,7 +27607,7 @@ object triplex_node:1439 {
      name R5-25-00-1_tn_409; 
      phases CS; 
      parent R5-25-00-1_tm_39; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27618,7 +27618,7 @@ object triplex_node:1440 {
      name R5-25-00-1_tn_410; 
      phases CS; 
      parent R5-25-00-1_tm_40; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27629,7 +27629,7 @@ object triplex_node:1441 {
      name R5-25-00-1_tn_411; 
      phases BS; 
      parent R5-25-00-1_tm_41; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27640,7 +27640,7 @@ object triplex_node:1442 {
      name R5-25-00-1_tn_412; 
      phases CS; 
      parent R5-25-00-1_tm_42; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27651,7 +27651,7 @@ object triplex_node:1443 {
      name R5-25-00-1_tn_413; 
      phases CS; 
      parent R5-25-00-1_tm_43; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27662,7 +27662,7 @@ object triplex_node:1444 {
      name R5-25-00-1_tn_414; 
      phases CS; 
      parent R5-25-00-1_tm_44; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27673,7 +27673,7 @@ object triplex_node:1445 {
      name R5-25-00-1_tn_415; 
      phases CS; 
      parent R5-25-00-1_tm_45; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27684,7 +27684,7 @@ object triplex_node:1446 {
      name R5-25-00-1_tn_416; 
      phases CS; 
      parent R5-25-00-1_tm_46; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27695,7 +27695,7 @@ object triplex_node:1447 {
      name R5-25-00-1_tn_417; 
      phases CS; 
      parent R5-25-00-1_tm_47; 
-     power_1 25000+12500j; 
+     power_12 25000+12500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27706,7 +27706,7 @@ object triplex_node:1448 {
      name R5-25-00-1_tn_418; 
      phases CS; 
      parent R5-25-00-1_tm_48; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27717,7 +27717,7 @@ object triplex_node:1449 {
      name R5-25-00-1_tn_419; 
      phases CS; 
      parent R5-25-00-1_tm_49; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27728,7 +27728,7 @@ object triplex_node:1450 {
      name R5-25-00-1_tn_420; 
      phases CS; 
      parent R5-25-00-1_tm_50; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27739,7 +27739,7 @@ object triplex_node:1451 {
      name R5-25-00-1_tn_421; 
      phases AS; 
      parent R5-25-00-1_tm_51; 
-     power_1 50000+25000j; 
+     power_12 50000+25000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27750,7 +27750,7 @@ object triplex_node:1452 {
      name R5-25-00-1_tn_422; 
      phases AS; 
      parent R5-25-00-1_tm_52; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27761,7 +27761,7 @@ object triplex_node:1453 {
      name R5-25-00-1_tn_423; 
      phases CS; 
      parent R5-25-00-1_tm_53; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27772,7 +27772,7 @@ object triplex_node:1454 {
      name R5-25-00-1_tn_424; 
      phases CS; 
      parent R5-25-00-1_tm_54; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27783,7 +27783,7 @@ object triplex_node:1455 {
      name R5-25-00-1_tn_425; 
      phases AS; 
      parent R5-25-00-1_tm_55; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27794,7 +27794,7 @@ object triplex_node:1456 {
      name R5-25-00-1_tn_426; 
      phases AS; 
      parent R5-25-00-1_tm_56; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -27805,7 +27805,7 @@ object triplex_node:1457 {
      name R5-25-00-1_tn_427; 
      phases BS; 
      parent R5-25-00-1_tm_57; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27816,7 +27816,7 @@ object triplex_node:1458 {
      name R5-25-00-1_tn_428; 
      phases CS; 
      parent R5-25-00-1_tm_58; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27827,7 +27827,7 @@ object triplex_node:1459 {
      name R5-25-00-1_tn_429; 
      phases CS; 
      parent R5-25-00-1_tm_59; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27838,7 +27838,7 @@ object triplex_node:1460 {
      name R5-25-00-1_tn_430; 
      phases CS; 
      parent R5-25-00-1_tm_60; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -27849,7 +27849,7 @@ object triplex_node:1461 {
      name R5-25-00-1_tn_431; 
      phases BS; 
      parent R5-25-00-1_tm_61; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27860,7 +27860,7 @@ object triplex_node:1462 {
      name R5-25-00-1_tn_432; 
      phases BS; 
      parent R5-25-00-1_tm_62; 
-     power_1 35000+17500j; 
+     power_12 35000+17500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27871,7 +27871,7 @@ object triplex_node:1463 {
      name R5-25-00-1_tn_433; 
      phases BS; 
      parent R5-25-00-1_tm_63; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27882,7 +27882,7 @@ object triplex_node:1464 {
      name R5-25-00-1_tn_434; 
      phases BS; 
      parent R5-25-00-1_tm_64; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27893,7 +27893,7 @@ object triplex_node:1465 {
      name R5-25-00-1_tn_435; 
      phases BS; 
      parent R5-25-00-1_tm_65; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27904,7 +27904,7 @@ object triplex_node:1466 {
      name R5-25-00-1_tn_436; 
      phases BS; 
      parent R5-25-00-1_tm_66; 
-     power_1 25000+12500j; 
+     power_12 25000+12500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27915,7 +27915,7 @@ object triplex_node:1467 {
      name R5-25-00-1_tn_437; 
      phases BS; 
      parent R5-25-00-1_tm_67; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27926,7 +27926,7 @@ object triplex_node:1468 {
      name R5-25-00-1_tn_438; 
      phases BS; 
      parent R5-25-00-1_tm_68; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27937,7 +27937,7 @@ object triplex_node:1469 {
      name R5-25-00-1_tn_439; 
      phases BS; 
      parent R5-25-00-1_tm_69; 
-     power_1 35000+17500j; 
+     power_12 35000+17500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27948,7 +27948,7 @@ object triplex_node:1470 {
      name R5-25-00-1_tn_440; 
      phases BS; 
      parent R5-25-00-1_tm_70; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27959,7 +27959,7 @@ object triplex_node:1471 {
      name R5-25-00-1_tn_441; 
      phases BS; 
      parent R5-25-00-1_tm_71; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27970,7 +27970,7 @@ object triplex_node:1472 {
      name R5-25-00-1_tn_442; 
      phases BS; 
      parent R5-25-00-1_tm_72; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27981,7 +27981,7 @@ object triplex_node:1473 {
      name R5-25-00-1_tn_443; 
      phases BS; 
      parent R5-25-00-1_tm_73; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -27992,7 +27992,7 @@ object triplex_node:1474 {
      name R5-25-00-1_tn_444; 
      phases BS; 
      parent R5-25-00-1_tm_74; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28003,7 +28003,7 @@ object triplex_node:1475 {
      name R5-25-00-1_tn_445; 
      phases BS; 
      parent R5-25-00-1_tm_75; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28014,7 +28014,7 @@ object triplex_node:1476 {
      name R5-25-00-1_tn_446; 
      phases BS; 
      parent R5-25-00-1_tm_76; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28025,7 +28025,7 @@ object triplex_node:1477 {
      name R5-25-00-1_tn_447; 
      phases AS; 
      parent R5-25-00-1_tm_77; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28036,7 +28036,7 @@ object triplex_node:1478 {
      name R5-25-00-1_tn_448; 
      phases BS; 
      parent R5-25-00-1_tm_78; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28047,7 +28047,7 @@ object triplex_node:1479 {
      name R5-25-00-1_tn_449; 
      phases CS; 
      parent R5-25-00-1_tm_79; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28058,7 +28058,7 @@ object triplex_node:1480 {
      name R5-25-00-1_tn_450; 
      phases AS; 
      parent R5-25-00-1_tm_80; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28069,7 +28069,7 @@ object triplex_node:1481 {
      name R5-25-00-1_tn_451; 
      phases BS; 
      parent R5-25-00-1_tm_81; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28080,7 +28080,7 @@ object triplex_node:1482 {
      name R5-25-00-1_tn_452; 
      phases CS; 
      parent R5-25-00-1_tm_82; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28091,7 +28091,7 @@ object triplex_node:1483 {
      name R5-25-00-1_tn_453; 
      phases AS; 
      parent R5-25-00-1_tm_83; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28102,7 +28102,7 @@ object triplex_node:1484 {
      name R5-25-00-1_tn_454; 
      phases BS; 
      parent R5-25-00-1_tm_84; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28113,7 +28113,7 @@ object triplex_node:1485 {
      name R5-25-00-1_tn_455; 
      phases CS; 
      parent R5-25-00-1_tm_85; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28124,7 +28124,7 @@ object triplex_node:1486 {
      name R5-25-00-1_tn_456; 
      phases AS; 
      parent R5-25-00-1_tm_86; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28135,7 +28135,7 @@ object triplex_node:1487 {
      name R5-25-00-1_tn_457; 
      phases BS; 
      parent R5-25-00-1_tm_87; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28146,7 +28146,7 @@ object triplex_node:1488 {
      name R5-25-00-1_tn_458; 
      phases CS; 
      parent R5-25-00-1_tm_88; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28157,7 +28157,7 @@ object triplex_node:1489 {
      name R5-25-00-1_tn_459; 
      phases CS; 
      parent R5-25-00-1_tm_89; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28168,7 +28168,7 @@ object triplex_node:1490 {
      name R5-25-00-1_tn_460; 
      phases AS; 
      parent R5-25-00-1_tm_90; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28179,7 +28179,7 @@ object triplex_node:1491 {
      name R5-25-00-1_tn_461; 
      phases BS; 
      parent R5-25-00-1_tm_91; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28190,7 +28190,7 @@ object triplex_node:1492 {
      name R5-25-00-1_tn_462; 
      phases CS; 
      parent R5-25-00-1_tm_92; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28201,7 +28201,7 @@ object triplex_node:1493 {
      name R5-25-00-1_tn_463; 
      phases AS; 
      parent R5-25-00-1_tm_93; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28212,7 +28212,7 @@ object triplex_node:1494 {
      name R5-25-00-1_tn_464; 
      phases BS; 
      parent R5-25-00-1_tm_94; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28223,7 +28223,7 @@ object triplex_node:1495 {
      name R5-25-00-1_tn_465; 
      phases CS; 
      parent R5-25-00-1_tm_95; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28234,7 +28234,7 @@ object triplex_node:1496 {
      name R5-25-00-1_tn_466; 
      phases AS; 
      parent R5-25-00-1_tm_96; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28245,7 +28245,7 @@ object triplex_node:1497 {
      name R5-25-00-1_tn_467; 
      phases BS; 
      parent R5-25-00-1_tm_97; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28256,7 +28256,7 @@ object triplex_node:1498 {
      name R5-25-00-1_tn_468; 
      phases CS; 
      parent R5-25-00-1_tm_98; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28267,7 +28267,7 @@ object triplex_node:1499 {
      name R5-25-00-1_tn_469; 
      phases AS; 
      parent R5-25-00-1_tm_99; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28278,7 +28278,7 @@ object triplex_node:1500 {
      name R5-25-00-1_tn_470; 
      phases BS; 
      parent R5-25-00-1_tm_100; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28289,7 +28289,7 @@ object triplex_node:1501 {
      name R5-25-00-1_tn_471; 
      phases CS; 
      parent R5-25-00-1_tm_101; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28300,7 +28300,7 @@ object triplex_node:1502 {
      name R5-25-00-1_tn_472; 
      phases AS; 
      parent R5-25-00-1_tm_102; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28311,7 +28311,7 @@ object triplex_node:1503 {
      name R5-25-00-1_tn_473; 
      phases BS; 
      parent R5-25-00-1_tm_103; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28322,7 +28322,7 @@ object triplex_node:1504 {
      name R5-25-00-1_tn_474; 
      phases CS; 
      parent R5-25-00-1_tm_104; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28333,7 +28333,7 @@ object triplex_node:1505 {
      name R5-25-00-1_tn_475; 
      phases AS; 
      parent R5-25-00-1_tm_105; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28344,7 +28344,7 @@ object triplex_node:1506 {
      name R5-25-00-1_tn_476; 
      phases BS; 
      parent R5-25-00-1_tm_106; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28355,7 +28355,7 @@ object triplex_node:1507 {
      name R5-25-00-1_tn_477; 
      phases CS; 
      parent R5-25-00-1_tm_107; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28366,7 +28366,7 @@ object triplex_node:1508 {
      name R5-25-00-1_tn_478; 
      phases AS; 
      parent R5-25-00-1_tm_108; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28377,7 +28377,7 @@ object triplex_node:1509 {
      name R5-25-00-1_tn_479; 
      phases BS; 
      parent R5-25-00-1_tm_109; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28388,7 +28388,7 @@ object triplex_node:1510 {
      name R5-25-00-1_tn_480; 
      phases CS; 
      parent R5-25-00-1_tm_110; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28399,7 +28399,7 @@ object triplex_node:1511 {
      name R5-25-00-1_tn_481; 
      phases AS; 
      parent R5-25-00-1_tm_111; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28410,7 +28410,7 @@ object triplex_node:1512 {
      name R5-25-00-1_tn_482; 
      phases BS; 
      parent R5-25-00-1_tm_112; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28421,7 +28421,7 @@ object triplex_node:1513 {
      name R5-25-00-1_tn_483; 
      phases CS; 
      parent R5-25-00-1_tm_113; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28432,7 +28432,7 @@ object triplex_node:1514 {
      name R5-25-00-1_tn_484; 
      phases AS; 
      parent R5-25-00-1_tm_114; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28443,7 +28443,7 @@ object triplex_node:1515 {
      name R5-25-00-1_tn_485; 
      phases BS; 
      parent R5-25-00-1_tm_115; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28454,7 +28454,7 @@ object triplex_node:1516 {
      name R5-25-00-1_tn_486; 
      phases CS; 
      parent R5-25-00-1_tm_116; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28465,7 +28465,7 @@ object triplex_node:1517 {
      name R5-25-00-1_tn_487; 
      phases AS; 
      parent R5-25-00-1_tm_117; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28476,7 +28476,7 @@ object triplex_node:1518 {
      name R5-25-00-1_tn_488; 
      phases BS; 
      parent R5-25-00-1_tm_118; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28487,7 +28487,7 @@ object triplex_node:1519 {
      name R5-25-00-1_tn_489; 
      phases CS; 
      parent R5-25-00-1_tm_119; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28498,7 +28498,7 @@ object triplex_node:1520 {
      name R5-25-00-1_tn_490; 
      phases AS; 
      parent R5-25-00-1_tm_120; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28509,7 +28509,7 @@ object triplex_node:1521 {
      name R5-25-00-1_tn_491; 
      phases BS; 
      parent R5-25-00-1_tm_121; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28520,7 +28520,7 @@ object triplex_node:1522 {
      name R5-25-00-1_tn_492; 
      phases CS; 
      parent R5-25-00-1_tm_122; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28531,7 +28531,7 @@ object triplex_node:1523 {
      name R5-25-00-1_tn_493; 
      phases AS; 
      parent R5-25-00-1_tm_123; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28542,7 +28542,7 @@ object triplex_node:1524 {
      name R5-25-00-1_tn_494; 
      phases BS; 
      parent R5-25-00-1_tm_124; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28553,7 +28553,7 @@ object triplex_node:1525 {
      name R5-25-00-1_tn_495; 
      phases CS; 
      parent R5-25-00-1_tm_125; 
-     power_1 4000+2000j; 
+     power_12 4000+2000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28564,7 +28564,7 @@ object triplex_node:1526 {
      name R5-25-00-1_tn_496; 
      phases AS; 
      parent R5-25-00-1_tm_126; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28575,7 +28575,7 @@ object triplex_node:1527 {
      name R5-25-00-1_tn_497; 
      phases BS; 
      parent R5-25-00-1_tm_127; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28586,7 +28586,7 @@ object triplex_node:1528 {
      name R5-25-00-1_tn_498; 
      phases CS; 
      parent R5-25-00-1_tm_128; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28597,7 +28597,7 @@ object triplex_node:1529 {
      name R5-25-00-1_tn_499; 
      phases AS; 
      parent R5-25-00-1_tm_129; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28608,7 +28608,7 @@ object triplex_node:1530 {
      name R5-25-00-1_tn_500; 
      phases BS; 
      parent R5-25-00-1_tm_130; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28619,7 +28619,7 @@ object triplex_node:1531 {
      name R5-25-00-1_tn_501; 
      phases CS; 
      parent R5-25-00-1_tm_131; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28630,7 +28630,7 @@ object triplex_node:1532 {
      name R5-25-00-1_tn_502; 
      phases AS; 
      parent R5-25-00-1_tm_132; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28641,7 +28641,7 @@ object triplex_node:1533 {
      name R5-25-00-1_tn_503; 
      phases BS; 
      parent R5-25-00-1_tm_133; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28652,7 +28652,7 @@ object triplex_node:1534 {
      name R5-25-00-1_tn_504; 
      phases CS; 
      parent R5-25-00-1_tm_134; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28663,7 +28663,7 @@ object triplex_node:1535 {
      name R5-25-00-1_tn_505; 
      phases AS; 
      parent R5-25-00-1_tm_135; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28674,7 +28674,7 @@ object triplex_node:1536 {
      name R5-25-00-1_tn_506; 
      phases BS; 
      parent R5-25-00-1_tm_136; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28685,7 +28685,7 @@ object triplex_node:1537 {
      name R5-25-00-1_tn_507; 
      phases CS; 
      parent R5-25-00-1_tm_137; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28696,7 +28696,7 @@ object triplex_node:1538 {
      name R5-25-00-1_tn_508; 
      phases AS; 
      parent R5-25-00-1_tm_138; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28707,7 +28707,7 @@ object triplex_node:1539 {
      name R5-25-00-1_tn_509; 
      phases BS; 
      parent R5-25-00-1_tm_139; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28718,7 +28718,7 @@ object triplex_node:1540 {
      name R5-25-00-1_tn_510; 
      phases CS; 
      parent R5-25-00-1_tm_140; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28729,7 +28729,7 @@ object triplex_node:1541 {
      name R5-25-00-1_tn_511; 
      phases AS; 
      parent R5-25-00-1_tm_141; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28740,7 +28740,7 @@ object triplex_node:1542 {
      name R5-25-00-1_tn_512; 
      phases BS; 
      parent R5-25-00-1_tm_142; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28751,7 +28751,7 @@ object triplex_node:1543 {
      name R5-25-00-1_tn_513; 
      phases CS; 
      parent R5-25-00-1_tm_143; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28762,7 +28762,7 @@ object triplex_node:1544 {
      name R5-25-00-1_tn_514; 
      phases AS; 
      parent R5-25-00-1_tm_144; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28773,7 +28773,7 @@ object triplex_node:1545 {
      name R5-25-00-1_tn_515; 
      phases BS; 
      parent R5-25-00-1_tm_145; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28784,7 +28784,7 @@ object triplex_node:1546 {
      name R5-25-00-1_tn_516; 
      phases CS; 
      parent R5-25-00-1_tm_146; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28795,7 +28795,7 @@ object triplex_node:1547 {
      name R5-25-00-1_tn_517; 
      phases AS; 
      parent R5-25-00-1_tm_147; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28806,7 +28806,7 @@ object triplex_node:1548 {
      name R5-25-00-1_tn_518; 
      phases BS; 
      parent R5-25-00-1_tm_148; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28817,7 +28817,7 @@ object triplex_node:1549 {
      name R5-25-00-1_tn_519; 
      phases CS; 
      parent R5-25-00-1_tm_149; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28828,7 +28828,7 @@ object triplex_node:1550 {
      name R5-25-00-1_tn_520; 
      phases AS; 
      parent R5-25-00-1_tm_150; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28839,7 +28839,7 @@ object triplex_node:1551 {
      name R5-25-00-1_tn_521; 
      phases BS; 
      parent R5-25-00-1_tm_151; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28850,7 +28850,7 @@ object triplex_node:1552 {
      name R5-25-00-1_tn_522; 
      phases CS; 
      parent R5-25-00-1_tm_152; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28861,7 +28861,7 @@ object triplex_node:1553 {
      name R5-25-00-1_tn_523; 
      phases AS; 
      parent R5-25-00-1_tm_153; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28872,7 +28872,7 @@ object triplex_node:1554 {
      name R5-25-00-1_tn_524; 
      phases BS; 
      parent R5-25-00-1_tm_154; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28883,7 +28883,7 @@ object triplex_node:1555 {
      name R5-25-00-1_tn_525; 
      phases CS; 
      parent R5-25-00-1_tm_155; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28894,7 +28894,7 @@ object triplex_node:1556 {
      name R5-25-00-1_tn_526; 
      phases AS; 
      parent R5-25-00-1_tm_156; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28905,7 +28905,7 @@ object triplex_node:1557 {
      name R5-25-00-1_tn_527; 
      phases BS; 
      parent R5-25-00-1_tm_157; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28916,7 +28916,7 @@ object triplex_node:1558 {
      name R5-25-00-1_tn_528; 
      phases CS; 
      parent R5-25-00-1_tm_158; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28927,7 +28927,7 @@ object triplex_node:1559 {
      name R5-25-00-1_tn_529; 
      phases AS; 
      parent R5-25-00-1_tm_159; 
-     power_1 25000+12500j; 
+     power_12 25000+12500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28938,7 +28938,7 @@ object triplex_node:1560 {
      name R5-25-00-1_tn_530; 
      phases BS; 
      parent R5-25-00-1_tm_160; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28949,7 +28949,7 @@ object triplex_node:1561 {
      name R5-25-00-1_tn_531; 
      phases CS; 
      parent R5-25-00-1_tm_161; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28960,7 +28960,7 @@ object triplex_node:1562 {
      name R5-25-00-1_tn_532; 
      phases AS; 
      parent R5-25-00-1_tm_162; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -28971,7 +28971,7 @@ object triplex_node:1563 {
      name R5-25-00-1_tn_533; 
      phases BS; 
      parent R5-25-00-1_tm_163; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -28982,7 +28982,7 @@ object triplex_node:1564 {
      name R5-25-00-1_tn_534; 
      phases CS; 
      parent R5-25-00-1_tm_164; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -28993,7 +28993,7 @@ object triplex_node:1565 {
      name R5-25-00-1_tn_535; 
      phases AS; 
      parent R5-25-00-1_tm_165; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29004,7 +29004,7 @@ object triplex_node:1566 {
      name R5-25-00-1_tn_536; 
      phases BS; 
      parent R5-25-00-1_tm_166; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29015,7 +29015,7 @@ object triplex_node:1567 {
      name R5-25-00-1_tn_537; 
      phases CS; 
      parent R5-25-00-1_tm_167; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29026,7 +29026,7 @@ object triplex_node:1568 {
      name R5-25-00-1_tn_538; 
      phases AS; 
      parent R5-25-00-1_tm_168; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29037,7 +29037,7 @@ object triplex_node:1569 {
      name R5-25-00-1_tn_539; 
      phases BS; 
      parent R5-25-00-1_tm_169; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29048,7 +29048,7 @@ object triplex_node:1570 {
      name R5-25-00-1_tn_540; 
      phases CS; 
      parent R5-25-00-1_tm_170; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29059,7 +29059,7 @@ object triplex_node:1571 {
      name R5-25-00-1_tn_541; 
      phases AS; 
      parent R5-25-00-1_tm_171; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29070,7 +29070,7 @@ object triplex_node:1572 {
      name R5-25-00-1_tn_542; 
      phases BS; 
      parent R5-25-00-1_tm_172; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29081,7 +29081,7 @@ object triplex_node:1573 {
      name R5-25-00-1_tn_543; 
      phases CS; 
      parent R5-25-00-1_tm_173; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29092,7 +29092,7 @@ object triplex_node:1574 {
      name R5-25-00-1_tn_544; 
      phases AS; 
      parent R5-25-00-1_tm_174; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29103,7 +29103,7 @@ object triplex_node:1575 {
      name R5-25-00-1_tn_545; 
      phases BS; 
      parent R5-25-00-1_tm_175; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29114,7 +29114,7 @@ object triplex_node:1576 {
      name R5-25-00-1_tn_546; 
      phases CS; 
      parent R5-25-00-1_tm_176; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29125,7 +29125,7 @@ object triplex_node:1577 {
      name R5-25-00-1_tn_547; 
      phases AS; 
      parent R5-25-00-1_tm_177; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29136,7 +29136,7 @@ object triplex_node:1578 {
      name R5-25-00-1_tn_548; 
      phases BS; 
      parent R5-25-00-1_tm_178; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29147,7 +29147,7 @@ object triplex_node:1579 {
      name R5-25-00-1_tn_549; 
      phases CS; 
      parent R5-25-00-1_tm_179; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29158,7 +29158,7 @@ object triplex_node:1580 {
      name R5-25-00-1_tn_550; 
      phases AS; 
      parent R5-25-00-1_tm_180; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29169,7 +29169,7 @@ object triplex_node:1581 {
      name R5-25-00-1_tn_551; 
      phases BS; 
      parent R5-25-00-1_tm_181; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29180,7 +29180,7 @@ object triplex_node:1582 {
      name R5-25-00-1_tn_552; 
      phases CS; 
      parent R5-25-00-1_tm_182; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29191,7 +29191,7 @@ object triplex_node:1583 {
      name R5-25-00-1_tn_553; 
      phases AS; 
      parent R5-25-00-1_tm_183; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29202,7 +29202,7 @@ object triplex_node:1584 {
      name R5-25-00-1_tn_554; 
      phases BS; 
      parent R5-25-00-1_tm_184; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29213,7 +29213,7 @@ object triplex_node:1585 {
      name R5-25-00-1_tn_555; 
      phases CS; 
      parent R5-25-00-1_tm_185; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29224,7 +29224,7 @@ object triplex_node:1586 {
      name R5-25-00-1_tn_556; 
      phases AS; 
      parent R5-25-00-1_tm_186; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29235,7 +29235,7 @@ object triplex_node:1587 {
      name R5-25-00-1_tn_557; 
      phases BS; 
      parent R5-25-00-1_tm_187; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29246,7 +29246,7 @@ object triplex_node:1588 {
      name R5-25-00-1_tn_558; 
      phases CS; 
      parent R5-25-00-1_tm_188; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29257,7 +29257,7 @@ object triplex_node:1589 {
      name R5-25-00-1_tn_559; 
      phases AS; 
      parent R5-25-00-1_tm_189; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29268,7 +29268,7 @@ object triplex_node:1590 {
      name R5-25-00-1_tn_560; 
      phases BS; 
      parent R5-25-00-1_tm_190; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29279,7 +29279,7 @@ object triplex_node:1591 {
      name R5-25-00-1_tn_561; 
      phases CS; 
      parent R5-25-00-1_tm_191; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29290,7 +29290,7 @@ object triplex_node:1592 {
      name R5-25-00-1_tn_562; 
      phases AS; 
      parent R5-25-00-1_tm_192; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29301,7 +29301,7 @@ object triplex_node:1593 {
      name R5-25-00-1_tn_563; 
      phases BS; 
      parent R5-25-00-1_tm_193; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29312,7 +29312,7 @@ object triplex_node:1594 {
      name R5-25-00-1_tn_564; 
      phases CS; 
      parent R5-25-00-1_tm_194; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29323,7 +29323,7 @@ object triplex_node:1595 {
      name R5-25-00-1_tn_565; 
      phases AS; 
      parent R5-25-00-1_tm_195; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29334,7 +29334,7 @@ object triplex_node:1596 {
      name R5-25-00-1_tn_566; 
      phases BS; 
      parent R5-25-00-1_tm_196; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29345,7 +29345,7 @@ object triplex_node:1597 {
      name R5-25-00-1_tn_567; 
      phases CS; 
      parent R5-25-00-1_tm_197; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29356,7 +29356,7 @@ object triplex_node:1598 {
      name R5-25-00-1_tn_568; 
      phases AS; 
      parent R5-25-00-1_tm_198; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29367,7 +29367,7 @@ object triplex_node:1599 {
      name R5-25-00-1_tn_569; 
      phases BS; 
      parent R5-25-00-1_tm_199; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29378,7 +29378,7 @@ object triplex_node:1600 {
      name R5-25-00-1_tn_570; 
      phases CS; 
      parent R5-25-00-1_tm_200; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29389,7 +29389,7 @@ object triplex_node:1601 {
      name R5-25-00-1_tn_571; 
      phases AS; 
      parent R5-25-00-1_tm_201; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29400,7 +29400,7 @@ object triplex_node:1602 {
      name R5-25-00-1_tn_572; 
      phases BS; 
      parent R5-25-00-1_tm_202; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29411,7 +29411,7 @@ object triplex_node:1603 {
      name R5-25-00-1_tn_573; 
      phases CS; 
      parent R5-25-00-1_tm_203; 
-     power_1 2300+1200j; 
+     power_12 2300+1200j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29422,7 +29422,7 @@ object triplex_node:1604 {
      name R5-25-00-1_tn_574; 
      phases CS; 
      parent R5-25-00-1_tm_204; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29433,7 +29433,7 @@ object triplex_node:1605 {
      name R5-25-00-1_tn_575; 
      phases CS; 
      parent R5-25-00-1_tm_205; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29444,7 +29444,7 @@ object triplex_node:1606 {
      name R5-25-00-1_tn_576; 
      phases AS; 
      parent R5-25-00-1_tm_206; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29455,7 +29455,7 @@ object triplex_node:1607 {
      name R5-25-00-1_tn_577; 
      phases CS; 
      parent R5-25-00-1_tm_207; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29466,7 +29466,7 @@ object triplex_node:1608 {
      name R5-25-00-1_tn_578; 
      phases AS; 
      parent R5-25-00-1_tm_208; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29477,7 +29477,7 @@ object triplex_node:1609 {
      name R5-25-00-1_tn_579; 
      phases BS; 
      parent R5-25-00-1_tm_209; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29488,7 +29488,7 @@ object triplex_node:1610 {
      name R5-25-00-1_tn_580; 
      phases CS; 
      parent R5-25-00-1_tm_210; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29499,7 +29499,7 @@ object triplex_node:1611 {
      name R5-25-00-1_tn_581; 
      phases AS; 
      parent R5-25-00-1_tm_211; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29510,7 +29510,7 @@ object triplex_node:1612 {
      name R5-25-00-1_tn_582; 
      phases CS; 
      parent R5-25-00-1_tm_212; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29521,7 +29521,7 @@ object triplex_node:1613 {
      name R5-25-00-1_tn_583; 
      phases CS; 
      parent R5-25-00-1_tm_213; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29532,7 +29532,7 @@ object triplex_node:1614 {
      name R5-25-00-1_tn_584; 
      phases AS; 
      parent R5-25-00-1_tm_214; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29543,7 +29543,7 @@ object triplex_node:1615 {
      name R5-25-00-1_tn_585; 
      phases AS; 
      parent R5-25-00-1_tm_215; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29554,7 +29554,7 @@ object triplex_node:1616 {
      name R5-25-00-1_tn_586; 
      phases AS; 
      parent R5-25-00-1_tm_216; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29565,7 +29565,7 @@ object triplex_node:1617 {
      name R5-25-00-1_tn_587; 
      phases AS; 
      parent R5-25-00-1_tm_217; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29576,7 +29576,7 @@ object triplex_node:1618 {
      name R5-25-00-1_tn_588; 
      phases BS; 
      parent R5-25-00-1_tm_218; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29587,7 +29587,7 @@ object triplex_node:1619 {
      name R5-25-00-1_tn_589; 
      phases BS; 
      parent R5-25-00-1_tm_219; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29598,7 +29598,7 @@ object triplex_node:1620 {
      name R5-25-00-1_tn_590; 
      phases CS; 
      parent R5-25-00-1_tm_220; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29609,7 +29609,7 @@ object triplex_node:1621 {
      name R5-25-00-1_tn_591; 
      phases CS; 
      parent R5-25-00-1_tm_221; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29620,7 +29620,7 @@ object triplex_node:1622 {
      name R5-25-00-1_tn_592; 
      phases CS; 
      parent R5-25-00-1_tm_222; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29631,7 +29631,7 @@ object triplex_node:1623 {
      name R5-25-00-1_tn_593; 
      phases CS; 
      parent R5-25-00-1_tm_223; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29642,7 +29642,7 @@ object triplex_node:1624 {
      name R5-25-00-1_tn_594; 
      phases AS; 
      parent R5-25-00-1_tm_224; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29653,7 +29653,7 @@ object triplex_node:1625 {
      name R5-25-00-1_tn_595; 
      phases AS; 
      parent R5-25-00-1_tm_225; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29664,7 +29664,7 @@ object triplex_node:1626 {
      name R5-25-00-1_tn_596; 
      phases AS; 
      parent R5-25-00-1_tm_226; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29675,7 +29675,7 @@ object triplex_node:1627 {
      name R5-25-00-1_tn_597; 
      phases AS; 
      parent R5-25-00-1_tm_227; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29686,7 +29686,7 @@ object triplex_node:1628 {
      name R5-25-00-1_tn_598; 
      phases CS; 
      parent R5-25-00-1_tm_228; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29697,7 +29697,7 @@ object triplex_node:1629 {
      name R5-25-00-1_tn_599; 
      phases CS; 
      parent R5-25-00-1_tm_229; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29708,7 +29708,7 @@ object triplex_node:1630 {
      name R5-25-00-1_tn_600; 
      phases CS; 
      parent R5-25-00-1_tm_230; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29719,7 +29719,7 @@ object triplex_node:1631 {
      name R5-25-00-1_tn_601; 
      phases CS; 
      parent R5-25-00-1_tm_231; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29730,7 +29730,7 @@ object triplex_node:1632 {
      name R5-25-00-1_tn_602; 
      phases CS; 
      parent R5-25-00-1_tm_232; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29741,7 +29741,7 @@ object triplex_node:1633 {
      name R5-25-00-1_tn_603; 
      phases CS; 
      parent R5-25-00-1_tm_233; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29752,7 +29752,7 @@ object triplex_node:1634 {
      name R5-25-00-1_tn_604; 
      phases CS; 
      parent R5-25-00-1_tm_234; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29763,7 +29763,7 @@ object triplex_node:1635 {
      name R5-25-00-1_tn_605; 
      phases CS; 
      parent R5-25-00-1_tm_235; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29774,7 +29774,7 @@ object triplex_node:1636 {
      name R5-25-00-1_tn_606; 
      phases AS; 
      parent R5-25-00-1_tm_236; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29785,7 +29785,7 @@ object triplex_node:1637 {
      name R5-25-00-1_tn_607; 
      phases AS; 
      parent R5-25-00-1_tm_237; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -29796,7 +29796,7 @@ object triplex_node:1638 {
      name R5-25-00-1_tn_608; 
      phases CS; 
      parent R5-25-00-1_tm_238; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29807,7 +29807,7 @@ object triplex_node:1639 {
      name R5-25-00-1_tn_609; 
      phases CS; 
      parent R5-25-00-1_tm_239; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29818,7 +29818,7 @@ object triplex_node:1640 {
      name R5-25-00-1_tn_610; 
      phases CS; 
      parent R5-25-00-1_tm_240; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29829,7 +29829,7 @@ object triplex_node:1641 {
      name R5-25-00-1_tn_611; 
      phases CS; 
      parent R5-25-00-1_tm_241; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29840,7 +29840,7 @@ object triplex_node:1642 {
      name R5-25-00-1_tn_612; 
      phases CS; 
      parent R5-25-00-1_tm_242; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29851,7 +29851,7 @@ object triplex_node:1643 {
      name R5-25-00-1_tn_613; 
      phases CS; 
      parent R5-25-00-1_tm_243; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29862,7 +29862,7 @@ object triplex_node:1644 {
      name R5-25-00-1_tn_614; 
      phases CS; 
      parent R5-25-00-1_tm_244; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29873,7 +29873,7 @@ object triplex_node:1645 {
      name R5-25-00-1_tn_615; 
      phases CS; 
      parent R5-25-00-1_tm_245; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29884,7 +29884,7 @@ object triplex_node:1646 {
      name R5-25-00-1_tn_616; 
      phases CS; 
      parent R5-25-00-1_tm_246; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29895,7 +29895,7 @@ object triplex_node:1647 {
      name R5-25-00-1_tn_617; 
      phases CS; 
      parent R5-25-00-1_tm_247; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29906,7 +29906,7 @@ object triplex_node:1648 {
      name R5-25-00-1_tn_618; 
      phases CS; 
      parent R5-25-00-1_tm_248; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29917,7 +29917,7 @@ object triplex_node:1649 {
      name R5-25-00-1_tn_619; 
      phases CS; 
      parent R5-25-00-1_tm_249; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -29928,7 +29928,7 @@ object triplex_node:1650 {
      name R5-25-00-1_tn_620; 
      phases BS; 
      parent R5-25-00-1_tm_250; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29939,7 +29939,7 @@ object triplex_node:1651 {
      name R5-25-00-1_tn_621; 
      phases BS; 
      parent R5-25-00-1_tm_251; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29950,7 +29950,7 @@ object triplex_node:1652 {
      name R5-25-00-1_tn_622; 
      phases BS; 
      parent R5-25-00-1_tm_252; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29961,7 +29961,7 @@ object triplex_node:1653 {
      name R5-25-00-1_tn_623; 
      phases BS; 
      parent R5-25-00-1_tm_253; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29972,7 +29972,7 @@ object triplex_node:1654 {
      name R5-25-00-1_tn_624; 
      phases BS; 
      parent R5-25-00-1_tm_254; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29983,7 +29983,7 @@ object triplex_node:1655 {
      name R5-25-00-1_tn_625; 
      phases BS; 
      parent R5-25-00-1_tm_255; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -29994,7 +29994,7 @@ object triplex_node:1656 {
      name R5-25-00-1_tn_626; 
      phases AS; 
      parent R5-25-00-1_tm_256; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30005,7 +30005,7 @@ object triplex_node:1657 {
      name R5-25-00-1_tn_627; 
      phases AS; 
      parent R5-25-00-1_tm_257; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30016,7 +30016,7 @@ object triplex_node:1658 {
      name R5-25-00-1_tn_628; 
      phases AS; 
      parent R5-25-00-1_tm_258; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30027,7 +30027,7 @@ object triplex_node:1659 {
      name R5-25-00-1_tn_629; 
      phases CS; 
      parent R5-25-00-1_tm_259; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30038,7 +30038,7 @@ object triplex_node:1660 {
      name R5-25-00-1_tn_630; 
      phases CS; 
      parent R5-25-00-1_tm_260; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30049,7 +30049,7 @@ object triplex_node:1661 {
      name R5-25-00-1_tn_631; 
      phases AS; 
      parent R5-25-00-1_tm_261; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30060,7 +30060,7 @@ object triplex_node:1662 {
      name R5-25-00-1_tn_632; 
      phases AS; 
      parent R5-25-00-1_tm_262; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30071,7 +30071,7 @@ object triplex_node:1663 {
      name R5-25-00-1_tn_633; 
      phases AS; 
      parent R5-25-00-1_tm_263; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30082,7 +30082,7 @@ object triplex_node:1664 {
      name R5-25-00-1_tn_634; 
      phases AS; 
      parent R5-25-00-1_tm_264; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30093,7 +30093,7 @@ object triplex_node:1665 {
      name R5-25-00-1_tn_635; 
      phases AS; 
      parent R5-25-00-1_tm_265; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30104,7 +30104,7 @@ object triplex_node:1666 {
      name R5-25-00-1_tn_636; 
      phases AS; 
      parent R5-25-00-1_tm_266; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30115,7 +30115,7 @@ object triplex_node:1667 {
      name R5-25-00-1_tn_637; 
      phases AS; 
      parent R5-25-00-1_tm_267; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30126,7 +30126,7 @@ object triplex_node:1668 {
      name R5-25-00-1_tn_638; 
      phases AS; 
      parent R5-25-00-1_tm_268; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30137,7 +30137,7 @@ object triplex_node:1669 {
      name R5-25-00-1_tn_639; 
      phases AS; 
      parent R5-25-00-1_tm_269; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30148,7 +30148,7 @@ object triplex_node:1670 {
      name R5-25-00-1_tn_640; 
      phases AS; 
      parent R5-25-00-1_tm_270; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30159,7 +30159,7 @@ object triplex_node:1671 {
      name R5-25-00-1_tn_641; 
      phases AS; 
      parent R5-25-00-1_tm_271; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30170,7 +30170,7 @@ object triplex_node:1672 {
      name R5-25-00-1_tn_642; 
      phases AS; 
      parent R5-25-00-1_tm_272; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30181,7 +30181,7 @@ object triplex_node:1673 {
      name R5-25-00-1_tn_643; 
      phases AS; 
      parent R5-25-00-1_tm_273; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30192,7 +30192,7 @@ object triplex_node:1674 {
      name R5-25-00-1_tn_644; 
      phases AS; 
      parent R5-25-00-1_tm_274; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30203,7 +30203,7 @@ object triplex_node:1675 {
      name R5-25-00-1_tn_645; 
      phases AS; 
      parent R5-25-00-1_tm_275; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30214,7 +30214,7 @@ object triplex_node:1676 {
      name R5-25-00-1_tn_646; 
      phases AS; 
      parent R5-25-00-1_tm_276; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30225,7 +30225,7 @@ object triplex_node:1677 {
      name R5-25-00-1_tn_647; 
      phases AS; 
      parent R5-25-00-1_tm_277; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30236,7 +30236,7 @@ object triplex_node:1678 {
      name R5-25-00-1_tn_648; 
      phases BS; 
      parent R5-25-00-1_tm_278; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30247,7 +30247,7 @@ object triplex_node:1679 {
      name R5-25-00-1_tn_649; 
      phases CS; 
      parent R5-25-00-1_tm_279; 
-     power_1 6000+3000j; 
+     power_12 6000+3000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30258,7 +30258,7 @@ object triplex_node:1680 {
      name R5-25-00-1_tn_650; 
      phases BS; 
      parent R5-25-00-1_tm_280; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30269,7 +30269,7 @@ object triplex_node:1681 {
      name R5-25-00-1_tn_651; 
      phases BS; 
      parent R5-25-00-1_tm_281; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30280,7 +30280,7 @@ object triplex_node:1682 {
      name R5-25-00-1_tn_652; 
      phases BS; 
      parent R5-25-00-1_tm_282; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30291,7 +30291,7 @@ object triplex_node:1683 {
      name R5-25-00-1_tn_653; 
      phases BS; 
      parent R5-25-00-1_tm_283; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30302,7 +30302,7 @@ object triplex_node:1684 {
      name R5-25-00-1_tn_654; 
      phases BS; 
      parent R5-25-00-1_tm_284; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30313,7 +30313,7 @@ object triplex_node:1685 {
      name R5-25-00-1_tn_655; 
      phases BS; 
      parent R5-25-00-1_tm_285; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30324,7 +30324,7 @@ object triplex_node:1686 {
      name R5-25-00-1_tn_656; 
      phases BS; 
      parent R5-25-00-1_tm_286; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30335,7 +30335,7 @@ object triplex_node:1687 {
      name R5-25-00-1_tn_657; 
      phases BS; 
      parent R5-25-00-1_tm_287; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30346,7 +30346,7 @@ object triplex_node:1688 {
      name R5-25-00-1_tn_658; 
      phases BS; 
      parent R5-25-00-1_tm_288; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30357,7 +30357,7 @@ object triplex_node:1689 {
      name R5-25-00-1_tn_659; 
      phases BS; 
      parent R5-25-00-1_tm_289; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30368,7 +30368,7 @@ object triplex_node:1690 {
      name R5-25-00-1_tn_660; 
      phases BS; 
      parent R5-25-00-1_tm_290; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30379,7 +30379,7 @@ object triplex_node:1691 {
      name R5-25-00-1_tn_661; 
      phases BS; 
      parent R5-25-00-1_tm_291; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30390,7 +30390,7 @@ object triplex_node:1692 {
      name R5-25-00-1_tn_662; 
      phases CS; 
      parent R5-25-00-1_tm_292; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30401,7 +30401,7 @@ object triplex_node:1693 {
      name R5-25-00-1_tn_663; 
      phases CS; 
      parent R5-25-00-1_tm_293; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30412,7 +30412,7 @@ object triplex_node:1694 {
      name R5-25-00-1_tn_664; 
      phases CS; 
      parent R5-25-00-1_tm_294; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30423,7 +30423,7 @@ object triplex_node:1695 {
      name R5-25-00-1_tn_665; 
      phases CS; 
      parent R5-25-00-1_tm_295; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30434,7 +30434,7 @@ object triplex_node:1696 {
      name R5-25-00-1_tn_666; 
      phases CS; 
      parent R5-25-00-1_tm_296; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30445,7 +30445,7 @@ object triplex_node:1697 {
      name R5-25-00-1_tn_667; 
      phases CS; 
      parent R5-25-00-1_tm_297; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30456,7 +30456,7 @@ object triplex_node:1698 {
      name R5-25-00-1_tn_668; 
      phases CS; 
      parent R5-25-00-1_tm_298; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30467,7 +30467,7 @@ object triplex_node:1699 {
      name R5-25-00-1_tn_669; 
      phases AS; 
      parent R5-25-00-1_tm_299; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30478,7 +30478,7 @@ object triplex_node:1700 {
      name R5-25-00-1_tn_670; 
      phases BS; 
      parent R5-25-00-1_tm_300; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30489,7 +30489,7 @@ object triplex_node:1701 {
      name R5-25-00-1_tn_671; 
      phases CS; 
      parent R5-25-00-1_tm_301; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30500,7 +30500,7 @@ object triplex_node:1702 {
      name R5-25-00-1_tn_672; 
      phases AS; 
      parent R5-25-00-1_tm_302; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30511,7 +30511,7 @@ object triplex_node:1703 {
      name R5-25-00-1_tn_673; 
      phases BS; 
      parent R5-25-00-1_tm_303; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30522,7 +30522,7 @@ object triplex_node:1704 {
      name R5-25-00-1_tn_674; 
      phases CS; 
      parent R5-25-00-1_tm_304; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30533,7 +30533,7 @@ object triplex_node:1705 {
      name R5-25-00-1_tn_675; 
      phases AS; 
      parent R5-25-00-1_tm_305; 
-     power_1 40000+20000j; 
+     power_12 40000+20000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30544,7 +30544,7 @@ object triplex_node:1706 {
      name R5-25-00-1_tn_676; 
      phases AS; 
      parent R5-25-00-1_tm_306; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30555,7 +30555,7 @@ object triplex_node:1707 {
      name R5-25-00-1_tn_677; 
      phases AS; 
      parent R5-25-00-1_tm_307; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30566,7 +30566,7 @@ object triplex_node:1708 {
      name R5-25-00-1_tn_678; 
      phases AS; 
      parent R5-25-00-1_tm_308; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30577,7 +30577,7 @@ object triplex_node:1709 {
      name R5-25-00-1_tn_679; 
      phases AS; 
      parent R5-25-00-1_tm_309; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30588,7 +30588,7 @@ object triplex_node:1710 {
      name R5-25-00-1_tn_680; 
      phases AS; 
      parent R5-25-00-1_tm_310; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30599,7 +30599,7 @@ object triplex_node:1711 {
      name R5-25-00-1_tn_681; 
      phases AS; 
      parent R5-25-00-1_tm_311; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30610,7 +30610,7 @@ object triplex_node:1712 {
      name R5-25-00-1_tn_682; 
      phases AS; 
      parent R5-25-00-1_tm_312; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30621,7 +30621,7 @@ object triplex_node:1713 {
      name R5-25-00-1_tn_683; 
      phases AS; 
      parent R5-25-00-1_tm_313; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30632,7 +30632,7 @@ object triplex_node:1714 {
      name R5-25-00-1_tn_684; 
      phases AS; 
      parent R5-25-00-1_tm_314; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30643,7 +30643,7 @@ object triplex_node:1715 {
      name R5-25-00-1_tn_685; 
      phases BS; 
      parent R5-25-00-1_tm_315; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30654,7 +30654,7 @@ object triplex_node:1716 {
      name R5-25-00-1_tn_686; 
      phases BS; 
      parent R5-25-00-1_tm_316; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30665,7 +30665,7 @@ object triplex_node:1717 {
      name R5-25-00-1_tn_687; 
      phases BS; 
      parent R5-25-00-1_tm_317; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30676,7 +30676,7 @@ object triplex_node:1718 {
      name R5-25-00-1_tn_688; 
      phases BS; 
      parent R5-25-00-1_tm_318; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30687,7 +30687,7 @@ object triplex_node:1719 {
      name R5-25-00-1_tn_689; 
      phases AS; 
      parent R5-25-00-1_tm_319; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30698,7 +30698,7 @@ object triplex_node:1720 {
      name R5-25-00-1_tn_690; 
      phases AS; 
      parent R5-25-00-1_tm_320; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30709,7 +30709,7 @@ object triplex_node:1721 {
      name R5-25-00-1_tn_691; 
      phases AS; 
      parent R5-25-00-1_tm_321; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30720,7 +30720,7 @@ object triplex_node:1722 {
      name R5-25-00-1_tn_692; 
      phases AS; 
      parent R5-25-00-1_tm_322; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30731,7 +30731,7 @@ object triplex_node:1723 {
      name R5-25-00-1_tn_693; 
      phases BS; 
      parent R5-25-00-1_tm_323; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30742,7 +30742,7 @@ object triplex_node:1724 {
      name R5-25-00-1_tn_694; 
      phases BS; 
      parent R5-25-00-1_tm_324; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30753,7 +30753,7 @@ object triplex_node:1725 {
      name R5-25-00-1_tn_695; 
      phases AS; 
      parent R5-25-00-1_tm_325; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30764,7 +30764,7 @@ object triplex_node:1726 {
      name R5-25-00-1_tn_696; 
      phases AS; 
      parent R5-25-00-1_tm_326; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30775,7 +30775,7 @@ object triplex_node:1727 {
      name R5-25-00-1_tn_697; 
      phases AS; 
      parent R5-25-00-1_tm_327; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30786,7 +30786,7 @@ object triplex_node:1728 {
      name R5-25-00-1_tn_698; 
      phases AS; 
      parent R5-25-00-1_tm_328; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30797,7 +30797,7 @@ object triplex_node:1729 {
      name R5-25-00-1_tn_699; 
      phases AS; 
      parent R5-25-00-1_tm_329; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30808,7 +30808,7 @@ object triplex_node:1730 {
      name R5-25-00-1_tn_700; 
      phases AS; 
      parent R5-25-00-1_tm_330; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30819,7 +30819,7 @@ object triplex_node:1731 {
      name R5-25-00-1_tn_701; 
      phases AS; 
      parent R5-25-00-1_tm_331; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30830,7 +30830,7 @@ object triplex_node:1732 {
      name R5-25-00-1_tn_702; 
      phases AS; 
      parent R5-25-00-1_tm_332; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30841,7 +30841,7 @@ object triplex_node:1733 {
      name R5-25-00-1_tn_703; 
      phases AS; 
      parent R5-25-00-1_tm_333; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30852,7 +30852,7 @@ object triplex_node:1734 {
      name R5-25-00-1_tn_704; 
      phases AS; 
      parent R5-25-00-1_tm_334; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30863,7 +30863,7 @@ object triplex_node:1735 {
      name R5-25-00-1_tn_705; 
      phases AS; 
      parent R5-25-00-1_tm_335; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30874,7 +30874,7 @@ object triplex_node:1736 {
      name R5-25-00-1_tn_706; 
      phases AS; 
      parent R5-25-00-1_tm_336; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30885,7 +30885,7 @@ object triplex_node:1737 {
      name R5-25-00-1_tn_707; 
      phases BS; 
      parent R5-25-00-1_tm_337; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30896,7 +30896,7 @@ object triplex_node:1738 {
      name R5-25-00-1_tn_708; 
      phases BS; 
      parent R5-25-00-1_tm_338; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30907,7 +30907,7 @@ object triplex_node:1739 {
      name R5-25-00-1_tn_709; 
      phases AS; 
      parent R5-25-00-1_tm_339; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30918,7 +30918,7 @@ object triplex_node:1740 {
      name R5-25-00-1_tn_710; 
      phases BS; 
      parent R5-25-00-1_tm_340; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -30929,7 +30929,7 @@ object triplex_node:1741 {
      name R5-25-00-1_tn_711; 
      phases CS; 
      parent R5-25-00-1_tm_341; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -30940,7 +30940,7 @@ object triplex_node:1742 {
      name R5-25-00-1_tn_712; 
      phases AS; 
      parent R5-25-00-1_tm_342; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30951,7 +30951,7 @@ object triplex_node:1743 {
      name R5-25-00-1_tn_713; 
      phases AS; 
      parent R5-25-00-1_tm_343; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30962,7 +30962,7 @@ object triplex_node:1744 {
      name R5-25-00-1_tn_714; 
      phases AS; 
      parent R5-25-00-1_tm_344; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30973,7 +30973,7 @@ object triplex_node:1745 {
      name R5-25-00-1_tn_715; 
      phases AS; 
      parent R5-25-00-1_tm_345; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30984,7 +30984,7 @@ object triplex_node:1746 {
      name R5-25-00-1_tn_716; 
      phases AS; 
      parent R5-25-00-1_tm_346; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -30995,7 +30995,7 @@ object triplex_node:1747 {
      name R5-25-00-1_tn_717; 
      phases BS; 
      parent R5-25-00-1_tm_347; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31006,7 +31006,7 @@ object triplex_node:1748 {
      name R5-25-00-1_tn_718; 
      phases CS; 
      parent R5-25-00-1_tm_348; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31017,7 +31017,7 @@ object triplex_node:1749 {
      name R5-25-00-1_tn_719; 
      phases BS; 
      parent R5-25-00-1_tm_349; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31028,7 +31028,7 @@ object triplex_node:1750 {
      name R5-25-00-1_tn_720; 
      phases BS; 
      parent R5-25-00-1_tm_350; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31039,7 +31039,7 @@ object triplex_node:1751 {
      name R5-25-00-1_tn_721; 
      phases BS; 
      parent R5-25-00-1_tm_351; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31050,7 +31050,7 @@ object triplex_node:1752 {
      name R5-25-00-1_tn_722; 
      phases CS; 
      parent R5-25-00-1_tm_352; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31061,7 +31061,7 @@ object triplex_node:1753 {
      name R5-25-00-1_tn_723; 
      phases CS; 
      parent R5-25-00-1_tm_353; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31072,7 +31072,7 @@ object triplex_node:1754 {
      name R5-25-00-1_tn_724; 
      phases CS; 
      parent R5-25-00-1_tm_354; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31083,7 +31083,7 @@ object triplex_node:1755 {
      name R5-25-00-1_tn_725; 
      phases BS; 
      parent R5-25-00-1_tm_355; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31094,7 +31094,7 @@ object triplex_node:1756 {
      name R5-25-00-1_tn_726; 
      phases CS; 
      parent R5-25-00-1_tm_356; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31105,7 +31105,7 @@ object triplex_node:1757 {
      name R5-25-00-1_tn_727; 
      phases CS; 
      parent R5-25-00-1_tm_357; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31116,7 +31116,7 @@ object triplex_node:1758 {
      name R5-25-00-1_tn_728; 
      phases BS; 
      parent R5-25-00-1_tm_358; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31127,7 +31127,7 @@ object triplex_node:1759 {
      name R5-25-00-1_tn_729; 
      phases CS; 
      parent R5-25-00-1_tm_359; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31138,7 +31138,7 @@ object triplex_node:1760 {
      name R5-25-00-1_tn_730; 
      phases CS; 
      parent R5-25-00-1_tm_360; 
-     power_1 15000+7500j; 
+     power_12 15000+7500j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31149,7 +31149,7 @@ object triplex_node:1761 {
      name R5-25-00-1_tn_731; 
      phases CS; 
      parent R5-25-00-1_tm_361; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31160,7 +31160,7 @@ object triplex_node:1762 {
      name R5-25-00-1_tn_732; 
      phases CS; 
      parent R5-25-00-1_tm_362; 
-     power_1 10000+5000j; 
+     power_12 10000+5000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31171,7 +31171,7 @@ object triplex_node:1763 {
      name R5-25-00-1_tn_733; 
      phases BS; 
      parent R5-25-00-1_tm_363; 
-     power_1 30000+15000j; 
+     power_12 30000+15000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31182,7 +31182,7 @@ object triplex_node:1764 {
      name R5-25-00-1_tn_734; 
      phases BS; 
      parent R5-25-00-1_tm_364; 
-     power_1 70000+35000j; 
+     power_12 70000+35000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31193,7 +31193,7 @@ object triplex_node:1765 {
      name R5-25-00-1_tn_735; 
      phases AS; 
      parent R5-25-00-1_tm_365; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -31204,7 +31204,7 @@ object triplex_node:1766 {
      name R5-25-00-1_tn_736; 
      phases BS; 
      parent R5-25-00-1_tm_366; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31215,7 +31215,7 @@ object triplex_node:1767 {
      name R5-25-00-1_tn_737; 
      phases CS; 
      parent R5-25-00-1_tm_367; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60+103.92j; 
      voltage_2 -60+103.92j; 
      voltage_N 0; 
@@ -31226,7 +31226,7 @@ object triplex_node:1768 {
      name R5-25-00-1_tn_738; 
      phases BS; 
      parent R5-25-00-1_tm_368; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -31237,7 +31237,7 @@ object triplex_node:1769 {
      name R5-25-00-1_tn_739; 
      phases AS; 
      parent R5-25-00-1_tm_369; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -31248,7 +31248,7 @@ object triplex_node:1770 {
      name R5-25-00-1_tn_740; 
      phases AS; 
      parent R5-25-00-1_tm_370; 
-     power_1 20000+10000j; 
+     power_12 20000+10000j; 
      voltage_1 120; 
      voltage_2 120; 
      voltage_N 0; 
@@ -34592,7 +34592,7 @@ object recorder {
     property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
     limit 1440; 
     interval 60; 
-    file "R5-25.00-1_reg_output.csv"; 
+    file "R5-25.00-1_reg1_output.csv"; 
 }; 
 
 object recorder { 

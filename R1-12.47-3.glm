@@ -23,7 +23,7 @@ object regulator:222 {
      to R1-12-47-3_meter_22; 
      phases ABCN; 
      configuration feeder_reg_cfg; 
-} 
+}  
 
 object regulator_configuration:223 { 
      name feeder_reg_cfg; 
@@ -1914,7 +1914,7 @@ object triplex_node:108 {
      name R1-12-47-3_tn_2; 
      phases BS; 
      parent R1-12-47-3_tm_1; 
-     power_1 175181.0364+5512.8881j; 
+     power_12 175181.0364+5512.8881j; 
      voltage_1 -60-103.92j; 
      voltage_2 -60-103.92j; 
      voltage_N 0; 
@@ -2030,5 +2030,5 @@ object recorder {
     property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag; 
     limit 1440; 
     interval 60; 
-    file "R1-12.27-3_reg_output.csv"; 
+    file "R1-12.47-3_reg1_output.csv"; 
 }; 
