@@ -46,7 +46,7 @@ object capacitor {
      pt_phase C; 
      parent R5-35-00-1_node_334; 
      phases_connected C; 
-     control MANUAL; 
+     control VOLT; 
      capacitor_A 0.5 MVAr; 
      capacitor_B 0.5 MVAr; 
      capacitor_C 0.5 MVAr; 
@@ -55,9 +55,6 @@ object capacitor {
      dwell_time 30.0; 
      cap_nominal_voltage 19918.58; 
      nominal_voltage 19918.58;
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
 }
 
 object fuse:1789 { 

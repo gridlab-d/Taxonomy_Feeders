@@ -76,12 +76,7 @@ object capacitor:3916 {
      dwell_time 30.0; 
      cap_nominal_voltage 13230; 
      nominal_voltage 13221.32; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R5-25.00-1_capacitor2.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
+
 } 
 
 object capacitor:3917 { 
@@ -101,12 +96,6 @@ object capacitor:3917 {
      dwell_time 30.0; 
      cap_nominal_voltage 13230; 
      nominal_voltage 13221.32; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R5-25.00-1_capacitor3.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object capacitor:3918 { 
@@ -126,12 +115,6 @@ object capacitor:3918 {
      dwell_time 30.0; 
      cap_nominal_voltage 13230; 
      nominal_voltage 13221.32; 
-     object recorder { 
-          property "switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag"; 
-          file R5-25.00-1_capacitor4.csv; 
-          interval 60; 
-          limit 1440; 
-     }; 
 } 
 
 object fuse:3808 { 

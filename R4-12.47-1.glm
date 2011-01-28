@@ -46,7 +46,10 @@ object capacitor:3883 {
      pt_phase B; 
      parent R4-12-47-1_node_532; 
      phases_connected ABC; 
-     control VOLT; 
+     control MANUAL; 
+	 switchA CLOSED;
+     switchB CLOSED;
+     switchC CLOSED;
      voltage_set_high 7300; 
      voltage_set_low 7100; 
      capacitor_A 0.1 MVAr; 

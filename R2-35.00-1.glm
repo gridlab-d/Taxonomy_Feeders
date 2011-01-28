@@ -199,6 +199,9 @@ object capacitor {
      parent R2-35-00-1_node_679; 
      phases_connected C; 
      control MANUAL; 
+	 switchA CLOSED;
+     switchB CLOSED;
+     switchC CLOSED;
      capacitor_A 0.05 MVAr; 
      capacitor_B 0.05 MVAr; 
      capacitor_C 0.05 MVAr; 
@@ -207,9 +210,6 @@ object capacitor {
      dwell_time 30.0; 
      cap_nominal_voltage 19920; 
      nominal_voltage 19918.58; 
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
 }
 
 object capacitor { 
@@ -219,6 +219,9 @@ object capacitor {
      parent R2-35-00-1_node_489; 
      phases_connected C; 
      control MANUAL; 
+	 switchA CLOSED;
+     switchB CLOSED;
+     switchC CLOSED;
      capacitor_A 0.1 MVAr; 
      capacitor_B 0.1 MVAr; 
      capacitor_C 0.1 MVAr; 
@@ -227,9 +230,6 @@ object capacitor {
      dwell_time 30.0; 
      cap_nominal_voltage 19920; 
      nominal_voltage 19918.58; 
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
 }
 
 object capacitor { 
@@ -238,7 +238,7 @@ object capacitor {
      pt_phase C; 
      parent R2-35-00-1_node_765; 
      phases_connected C; 
-     control MANUAL; 
+     control VOLT; 
      capacitor_A 0.75 MVAr; 
      capacitor_B 0.75 MVAr; 
      capacitor_C 0.75 MVAr; 
@@ -247,9 +247,6 @@ object capacitor {
      dwell_time 30.0; 
      cap_nominal_voltage 19920; 
      nominal_voltage 19918.58; 
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
 }
 
 object capacitor { 
@@ -259,6 +256,9 @@ object capacitor {
      parent R2-35-00-1_node_807; 
      phases_connected C; 
      control MANUAL; 
+	 switchA CLOSED;
+     switchB CLOSED;
+     switchC CLOSED; 
      capacitor_A 0.15 MVAr; 
      capacitor_B 0.15 MVAr; 
      capacitor_C 0.15 MVAr; 
@@ -267,9 +267,7 @@ object capacitor {
      dwell_time 30.0; 
      cap_nominal_voltage 19920; 
      nominal_voltage 19918.58; 
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
+
 }
 
 object capacitor { 
@@ -278,7 +276,7 @@ object capacitor {
      pt_phase A; 
      parent R2-35-00-1_node_970; 
      phases_connected A; 
-     control MANUAL; 
+     control VOLT; 
      capacitor_A 0.5 MVAr; 
      capacitor_B 0.5 MVAr; 
      capacitor_C 0.5 MVAr; 
@@ -287,9 +285,6 @@ object capacitor {
      dwell_time 30.0; 
      cap_nominal_voltage 19920; 
      nominal_voltage 19918.58; 
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
 }
 
 object fuse:4328 { 

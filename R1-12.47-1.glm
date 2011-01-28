@@ -52,7 +52,10 @@ object capacitor:4380 {
      capacitor_A 0.15 MVAr; 
      capacitor_B 0.15 MVAr; 
      capacitor_C 0.15 MVAr; 
-     control_level INDIVIDUAL; 
+     control_level MANUAL; 
+	 switchA CLOSED;
+     switchB CLOSED;
+     switchC CLOSED;
      time_delay 30.0; 
      dwell_time 30.0; 
      cap_nominal_voltage 7220; 
@@ -88,14 +91,15 @@ object capacitor {
      capacitor_A 0.15 MVAr; 
      capacitor_B 0.15 MVAr; 
      capacitor_C 0.15 MVAr; 
-     control_level INDIVIDUAL; 
+     control_level MANUAL; 
+	 switchA CLOSED;
+     switchB CLOSED;
+     switchC CLOSED;
      time_delay 30.0; 
      dwell_time 30.0; 
      cap_nominal_voltage 7216.88; 
      nominal_voltage 7216.88;
-     switchA CLOSED;
-     switchB CLOSED;
-     switchC CLOSED;
+
 }
 
 object fuse:4249 { 

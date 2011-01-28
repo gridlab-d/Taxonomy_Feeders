@@ -10,3 +10,6 @@ This Document is meant to describe the current status of the Taxonomy Feeders.
            regulators were added to R5-12.47-3.  This was done to address some of the low voltage conditions
            that were discovered in the taxonomy feeders during the CVR work for 2010.
 
+1/27/2011: Addressed issue of taxonomy feeders placing all load on L1.  This was changed to represent an even load 
+           balance across L12, i.e. 240V load.  Added additonal capacitors, primarly fixed, to finish correction of 
+           low voltag levels. 
