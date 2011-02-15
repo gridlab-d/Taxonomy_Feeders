@@ -13,7 +13,7 @@ clock{
 module tape; 
 module powerflow{ 
      solver_method NR; 
-      default_maximum_voltage_error 1e-6;
+     default_maximum_voltage_error 1e-6;
 }; 
 
 //********************************************* 
@@ -531,17 +531,17 @@ object transformer_configuration:42 {
 } 
 
 object triplex_line_conductor: { 
-     name triplex_1/0 AA; 
-     resistance 0.97; 
-     geometric_mean_radius 0.0111; 
+     name triplex_4/0 AA; 
+     resistance 0.48; 
+     geometric_mean_radius 0.0158; 
 } 
 
 object triplex_line_configuration:1 { 
-     conductor_1 triplex_1/0 AA; 
-     conductor_2 triplex_1/0 AA; 
-     conductor_N triplex_1/0 AA; 
+     conductor_1 triplex_4/0 AA; 
+     conductor_2 triplex_4/0 AA; 
+     conductor_N triplex_4/0 AA; 
      insulation_thickness 0.08; 
-     diameter 0.368; 
+     diameter 0.522; 
 } 
 
 object underground_line:46 { 

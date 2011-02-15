@@ -19981,6 +19981,20 @@ object transformer_configuration:3046 {
       shunt_impedance 391.760+369.417j;
 } 
 
+object triplex_line_conductor: { 
+     name triplex_4/0 AA; 
+     resistance 0.48; 
+     geometric_mean_radius 0.0158; 
+} 
+
+object triplex_line_configuration:1 { 
+     conductor_1 triplex_4/0 AA; 
+     conductor_2 triplex_4/0 AA; 
+     conductor_N triplex_4/0 AA; 
+     insulation_thickness 0.08; 
+     diameter 0.522; 
+} 
+
 object triplex_line:2271 { 
      name R5-12-47-5_tl_1; 
      phases AS; 
@@ -23147,20 +23161,6 @@ object triplex_line:2622 {
      to R5-12-47-5_tm_352; 
      length 30; 
      configuration triplex_line_configuration:1; 
-} 
-
-object triplex_line_conductor: { 
-     name TLC 1/0 AA triplex; 
-     resistance 0.97; 
-     geometric_mean_radius 0.0111; 
-} 
-
-object triplex_line_configuration:1 { 
-     conductor_1 TLC 1/0 AA triplex; 
-     conductor_2 TLC 1/0 AA triplex; 
-     conductor_N TLC 1/0 AA triplex; 
-     insulation_thickness 0.08; 
-     diameter 0.368; 
 } 
 
 object triplex_meter:1891 { 

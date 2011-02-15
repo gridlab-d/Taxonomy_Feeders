@@ -13,3 +13,5 @@ This Document is meant to describe the current status of the Taxonomy Feeders.
 1/27/2011: Addressed issue of taxonomy feeders placing all load on L1.  This was changed to represent an even load 
            balance across L12, i.e. 240V load.  Added additonal capacitors, primarly fixed, to finish correction of 
            low voltag levels. 
+2/15/2011: Changed all triplex lines from 1/0 to 4/0.  This is a more accruate representation for service drops.
+           1/0 is suggested for 120A drops while 4/0 is recommended for 200A drops.
