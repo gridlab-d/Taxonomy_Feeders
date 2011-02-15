@@ -52,7 +52,7 @@ object capacitor:4380 {
      capacitor_A 0.15 MVAr; 
      capacitor_B 0.15 MVAr; 
      capacitor_C 0.15 MVAr; 
-     control_level MANUAL; 
+     control_level INDIVIDUAL; 
 	 switchA CLOSED;
      switchB CLOSED;
      switchC CLOSED;
