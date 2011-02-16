@@ -44,9 +44,9 @@ thermal_percentage{3} = [   0.0448,0.0252,0.0883,0.0843,0.1185,0.1315,0.2411;
 thermal_percentage{4} = [   0.0526,0.0337,0.0806,0.0827,0.1081,0.1249,0.2539;
                             0.0217,0.1091,0.0502,0.0000,0.0000,0.0000,0.0000;
                             0.0000,0.0491,0.0333,0.0000,0.0000,0.0000,0.0000];
-thermal_percentage{5} = [   0.0614,0.0393,0.0942,0.0966,0.1263,0.1459,0.2965;
-                            0.0149,0.0653,0.0289,0.0000,0.0000,0.0000,0.0000;
-                            0.0000,0.0198,0.0110,0.0000,0.0000,0.0000,0.0000];
+thermal_percentage{5} = [   0.0526,0.0337,0.0806,0.0827,0.1081,0.1249,0.2539;
+                            0.0217,0.1091,0.0502,0.0000,0.0000,0.0000,0.0000;
+                            0.0000,0.0491,0.0333,0.0000,0.0000,0.0000,0.0000];
                         
 for jjj=1:5
     check_total = sum(sum(thermal_percentage{jjj}));
@@ -77,39 +77,95 @@ thermal_properties{3,3} =  [24.1, 11.7, 18.1, 2, 2, 1, 2,   3, 1.5, 3.5, 2.2];
 %   Average floor areas for each type and region
 floor_area{1} = [2209,820,1054];
 floor_area{2} = [2951,798,1035];
-floor_area{3} = [2655,901,1069];
+floor_area{3} = [2370,764,1093];
 floor_area{4} = [2655,901,1069];
-floor_area{5} = [2370,764,1093];
+floor_area{5} = [2655,901,1069];
 
-% Breakdown of gas vs. heat pump vs. resistance
-% TODO
-perc_gas = [0.3,0.3,0.3,0.3,0.3];
-perc_pump = [0.7,0.7,0.7,0.7,0.7];
+
+% Average heating and cooling setpoints
+%  by thermal integrity type {1=SF, 2=apt, 3=mh}
+%  [daytime percentage, nighttime average difference (+ indicates nightime
+%  is cooler), high bin value, low bin value]
+cooling_setpoint{1} = [ 0.066,0.96,69,65;
+                        0.109,0.96,70,70;
+                        0.150,0.96,73,71;
+                        0.300,0.96,76,74;
+                        0.229,0.96,79,77;
+                        0.146,0.96,85,80];
+                    
+cooling_setpoint{2} = [ 0.145,0.49,69,65;
+                        0.200,0.49,70,70;
+                        0.100,0.49,73,71;
+                        0.273,0.49,76,74;
+                        0.164,0.49,79,77;
+                        0.118,0.49,85,80];
+                    
+cooling_setpoint{3} = [ 0.089,0.97,69,65;
+                        0.125,0.97,70,70;
+                        0.143,0.97,73,71;
+                        0.321,0.97,76,74;
+                        0.214,0.97,79,77;
+                        0.107,0.97,85,80];
+                    
+heating_setpoint{1} = [ 0.118,0.80,59,63;
+                        0.134,0.80,64,66;
+                        0.232,0.80,67,69;
+                        0.184,0.80,70,70;
+                        0.162,0.80,73,71;
+                        0.169,0.80,74,79];
+
+heating_setpoint{2} = [ 0.095,0.20,59,63;
+                        0.107,0.20,64,66;
+                        0.130,0.20,67,69;
+                        0.296,0.20,70,70;
+                        0.099,0.20,73,71;
+                        0.273,0.20,74,79];
+                    
+heating_setpoint{3} = [ 0.101,0.88,59,63;
+                        0.118,0.88,64,66;
+                        0.185,0.88,67,69;
+                        0.252,0.88,70,70;
+                        0.118,0.88,73,71;
+                        0.227,0.88,74,79];
+                    
+% Breakdown of gas vs. heat pump vs. resistance - by region
+perc_gas = [0.7051;0.8927;0.6723;0.4425;0.4425];
+perc_pump = [0.0321;0.0177;0.0559;0.1983;0.1983];
 perc_res = 1 - perc_pump - perc_gas;
 
-% of AC - all heat pumps have AC, this perc. applies to those with gas/elec
-% TODO
-perc_AC = [0.8,0.8,0.8,0.8,0.8];
-
-% Average cooling and heating setpoints
-% TODO
-
+% of AC 
+perc_AC = [0.4348;0.7528;0.5259;0.9673;0.9673];
             
 % pool pumps
-% TODO
-perc_poolpumps = [0,0,0,0,0];
+perc_poolpumps = [0.0904;0.0591;0.0818;0.0657;0.0657];
+
+% water heaters
+% Breakdown by fuel vs. electric
+wh_electric = [0.7455;0.7485;0.6520;0.3572;0.3572];
+
+% size of units - [<30, 31-49, >50] - by region
+wh_size = [ 0.0000,0.3333,0.6667;
+            0.1459,0.5836,0.2706;
+            0.2072,0.5135,0.2793;
+            0.2259,0.5267,0.2475;
+            0.2259,0.5267,0.2475];
 
 
 data.thermal_properties = thermal_properties;
 data.thermal_percentages = thermal_percentage{region};
 data.weather = weather{region};
 data.timezone = timezone{region};
+data.cooling_setpoint = cooling_setpoint;
+data.heating_setpoint = heating_setpoint;
 data.perc_gas = perc_gas(region);
 data.perc_pump = perc_pump(region);
 data.perc_res = perc_res(region);
 data.perc_AC = perc_AC(region);
 data.perc_poolpumps = perc_poolpumps(region);
 data.floor_area = floor_area{region};
+data.perc_poolpumps = perc_poolpumps(region);
+data.wh_electric = wh_electric(region);
+data.wh_size = wh_size(region,:);
 end
 
 

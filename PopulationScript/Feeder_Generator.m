@@ -12,7 +12,7 @@ clc;
 
 %% File to extract
 taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
-file_to_extract = 'R1-12.47-1.glm';
+file_to_extract = 'GC-12.47-1.glm';
 extraction_file = [taxonomy_directory,file_to_extract];
 
 % Select where you want the file written to: 
@@ -21,9 +21,15 @@ extraction_file = [taxonomy_directory,file_to_extract];
 output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
 
 %% Get the region - this will only work with the taxonomy feeders
+region_count = 0; % for commercial feeders
 token = strtok(file_to_extract,'-');
 token2 = strrep(token,'R','');
-region = str2double(token2);
+if (strcmp(token2,'GC') ~= 0) %commercial
+    region_count = region_count + 1;
+    region = region_count;
+else
+    region = str2double(token2);
+end
 
 % Load in the regional information
 regional_data = regionalization(region);
@@ -1184,6 +1190,13 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 skew_value = tech_data.residential_skew_max;
             end
             
+            wh_skew_value = 4*tech_data.residential_skew_std*randn(1);
+            if (wh_skew_value < -4*tech_data.residential_skew_max)
+                wh_skew_value = -4*tech_data.residential_skew_max;
+            elseif (wh_skew_value > 4*tech_data.residential_skew_max)
+                wh_skew_value = 4*tech_data.residential_skew_max;
+            end
+            
             fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
                 
                 % Choose what type of building we are going to use
@@ -1383,7 +1396,7 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 end
             end
             
-            %TODO: seperate ZIPload into responsize/unresponsive
+            %TODO: seperate ZIPload into responsize/unresponsive/pool pump
             fprintf(write_file,'     object ZIPload {\n');
             
                 % These are estimates for load / sqft
@@ -1399,27 +1412,37 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
             fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
             fprintf(write_file,'     };\n');
 
-                heat_element = 4.5 + 0.25*randn(1);
+                heat_element = 3.5 + 2*rand(1);
                 tank_set = 120 + 16*rand(1);
-                therm_dead = 2 + 4*rand(1);
+                therm_dead = 4 + 4*rand(1);
                 tank_UA = 2 + 2*rand(1);
                 water_sch = ceil(10*rand(1));
                 water_var = 0.95 + rand(1) * 0.1; % +/-5% variability
+                wh_size_test = rand(1);
+                wh_size_rand = rand(1);
                 
-            if (heat_type > regional_data.perc_gas && tech_data.use_wh == 1)
+            if (heat_type > (1 - regional_data.wh_electric) && tech_data.use_wh == 1)
                 fprintf(write_file,'     object waterheater {\n');        
-                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                fprintf(write_file,'          tank_volume 50;\n');                  
-                fprintf(write_file,'          heating_element_capacity %.1f kW;\n',heat_element);                    
+                fprintf(write_file,'          schedule_skew %.0f;\n',wh_skew_value);   
+                fprintf(write_file,'          heating_element_capacity %.1f kW;\n',heat_element);
                 fprintf(write_file,'          tank_setpoint %.1f;\n',tank_set);
-                fprintf(write_file,'          temperature 135;\n');                   
+                fprintf(write_file,'          temperature 132;\n');                   
                 fprintf(write_file,'          thermostat_deadband %.1f;\n',therm_dead);
                 fprintf(write_file,'          location INSIDE;\n');                    
                 fprintf(write_file,'          tank_UA %.1f;\n',tank_UA);
-                if (floor_area > 2000)
-                    fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
-                else
+                if (wh_size_test < regional_data.wh_size(1))
                     fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
+                    fprintf(write_file,'          tank_volume %.0f;\n',20 + 10*wh_size_rand);
+                elseif (wh_size_test < (regional_data.wh_size(1) + regional_data.wh_size(2)))
+                    if(wh_size_rand < 0.5)
+                        fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
+                    else
+                        fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
+                    end
+                    fprintf(write_file,'          tank_volume %.0f;\n',31 + 18*wh_size_rand);
+                else
+                    fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
+                    fprintf(write_file,'          tank_volume %.0f;\n',50 + 20*wh_size_rand);
                 end
                 fprintf(write_file,'     };\n\n');
             end
@@ -1444,19 +1467,19 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
     fprintf(write_file,'object triplex_line_configuration {\n');
     fprintf(write_file,'      name commercial_line_config;\n');
     fprintf(write_file,'      conductor_1 object triplex_line_conductor {\n');
-    fprintf(write_file,'            resistance 0.97;\n');
-    fprintf(write_file,'            geometric_mean_radius 0.01111;\n');
+    fprintf(write_file,'            resistance 0.48;\n');
+    fprintf(write_file,'            geometric_mean_radius 0.0158;\n');
     fprintf(write_file,'            };\n');
     fprintf(write_file,'      conductor_2 object triplex_line_conductor {\n');
-    fprintf(write_file,'            resistance 0.97;\n');
-    fprintf(write_file,'            geometric_mean_radius 0.01111;\n');
+    fprintf(write_file,'            resistance 0.48;\n');
+    fprintf(write_file,'            geometric_mean_radius 0.0158;\n');
     fprintf(write_file,'            };\n');
     fprintf(write_file,'      conductor_N object triplex_line_conductor {\n');
-    fprintf(write_file,'            resistance 0.97;\n');
-    fprintf(write_file,'            geometric_mean_radius 0.01111;\n');
+    fprintf(write_file,'            resistance 0.48;\n');
+    fprintf(write_file,'            geometric_mean_radius 0.0158;\n');
     fprintf(write_file,'            };\n');
     fprintf(write_file,'      insulation_thickness 0.08;\n');
-    fprintf(write_file,'      diameter 0.368;\n');
+    fprintf(write_file,'      diameter 0.522;\n');
     fprintf(write_file,'}\n\n');
     
     fprintf(write_file,'object line_spacing {\n');     
@@ -1471,10 +1494,10 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
 
     fprintf(write_file,'object overhead_line_conductor {\n');     
     fprintf(write_file,'      name overhead_line_conductor_comm;\n');     
-    fprintf(write_file,'      //name 1/0 AAAC;\n');    
-    fprintf(write_file,'      rating.summer.continuous 266.0;\n');     
-    fprintf(write_file,'      geometric_mean_radius 0.01142 ft;\n');    
-    fprintf(write_file,'      resistance 0.95300;\n');     
+    fprintf(write_file,'      //name 336.4;\n');    
+    fprintf(write_file,'      rating.summer.continuous 443.0;\n');     
+    fprintf(write_file,'      geometric_mean_radius 0.02270 ft;\n');    
+    fprintf(write_file,'      resistance 0.05230;\n');     
     fprintf(write_file,'}\n\n');
 
     fprintf(write_file,'object line_configuration {\n');     
@@ -1590,7 +1613,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
             fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
             fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
             fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-            fprintf(write_file,'     powerA_rating %.0f kVA;\n',25);
+            fprintf(write_file,'     powerA_rating %.0f kVA;\n',50);
             fprintf(write_file,'};\n');
             
             fprintf(write_file,'object transformer_configuration {\n');
@@ -1601,7 +1624,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
             fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
             fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
             fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-            fprintf(write_file,'     powerB_rating %.0f kVA;\n',25);
+            fprintf(write_file,'     powerB_rating %.0f kVA;\n',50);
             fprintf(write_file,'};\n');
             
             fprintf(write_file,'object transformer_configuration {\n');
@@ -1612,7 +1635,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
             fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
             fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
             fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-            fprintf(write_file,'     powerC_rating %.0f kVA;\n',25);
+            fprintf(write_file,'     powerC_rating %.0f kVA;\n',50);
             fprintf(write_file,'};\n');
             
             for jjj = 1:no_of_offices
@@ -2101,6 +2124,8 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
             
             my_name = strrep(load_houses{1,4}{iii},';','');
             
+            strip_per_phase = ceil(no_of_strip / no_of_phases);
+            
             if (has_phase_A == 1)
                 fprintf(write_file,'object transformer_configuration {\n');
                 fprintf(write_file,'     name CTTF_config_A_%s;\n',my_name);
@@ -2110,7 +2135,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                 fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
                 fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                 fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                fprintf(write_file,'     powerA_rating %.0f kVA;\n',25);
+                fprintf(write_file,'     powerA_rating %.0f kVA;\n',10*strip_per_phase);
                 fprintf(write_file,'};\n');
             end
 
@@ -2123,7 +2148,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                 fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
                 fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                 fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                fprintf(write_file,'     powerB_rating %.0f kVA;\n',25);
+                fprintf(write_file,'     powerB_rating %.0f kVA;\n',10*strip_per_phase);
                 fprintf(write_file,'};\n');
             end
 
@@ -2136,7 +2161,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                 fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
                 fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                 fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                fprintf(write_file,'     powerC_rating %.0f kVA;\n',25);
+                fprintf(write_file,'     powerC_rating %.0f kVA;\n',10*strip_per_phase);
                 fprintf(write_file,'};\n');
             end
             
@@ -2154,7 +2179,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
             fprintf(write_file,'     nominal_voltage %f;\n',taxonomy_data.nom_volt2);
             fprintf(write_file,'}\n\n');
             
-            strip_per_phase = ceil(no_of_strip / no_of_phases);
+            
             for phind=1:3
                 % skip outta the for-loop if the phase is missing
                 if (phind==1 && has_phase_A == 0)
