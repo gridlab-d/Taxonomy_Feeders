@@ -18,7 +18,7 @@ weather{5} = 'FL-Miami';
 %% Timezone data
 timezone{1} = 'PST+8PDT';
 timezone{2} = 'CST+6CDT';
-timezone{3} = 'MST'; % Do we want to be this accurate?
+timezone{3} = 'MST7'; % Do we want to be this accurate?
 timezone{4} = 'CST+6CDT';
 timezone{5} = 'EST+5EDT';
 
@@ -84,49 +84,49 @@ floor_area{5} = [2655,901,1069];
 
 % Average heating and cooling setpoints
 %  by thermal integrity type {1=SF, 2=apt, 3=mh}
-%  [daytime percentage, nighttime average difference (+ indicates nightime
+%  [nighttime percentage, nighttime average difference (+ indicates nightime
 %  is cooler), high bin value, low bin value]
-cooling_setpoint{1} = [ 0.066,0.96,69,65;
-                        0.109,0.96,70,70;
-                        0.150,0.96,73,71;
-                        0.300,0.96,76,74;
-                        0.229,0.96,79,77;
-                        0.146,0.96,85,80];
+cooling_setpoint{1} = [ 0.098,0.96,69,65;
+                        0.140,0.96,70,70;
+                        0.166,0.96,73,71;
+                        0.306,0.96,76,74;
+                        0.206,0.96,79,77;
+                        0.084,0.96,85,80];
                     
-cooling_setpoint{2} = [ 0.145,0.49,69,65;
-                        0.200,0.49,70,70;
-                        0.100,0.49,73,71;
-                        0.273,0.49,76,74;
-                        0.164,0.49,79,77;
-                        0.118,0.49,85,80];
+cooling_setpoint{2} = [ 0.155,0.49,69,65;
+                        0.207,0.49,70,70;
+                        0.103,0.49,73,71;
+                        0.310,0.49,76,74;
+                        0.155,0.49,79,77;
+                        0.069,0.49,85,80];
                     
-cooling_setpoint{3} = [ 0.089,0.97,69,65;
-                        0.125,0.97,70,70;
-                        0.143,0.97,73,71;
-                        0.321,0.97,76,74;
-                        0.214,0.97,79,77;
-                        0.107,0.97,85,80];
+cooling_setpoint{3} = [ 0.138,0.97,69,65;
+                        0.172,0.97,70,70;
+                        0.172,0.97,73,71;
+                        0.276,0.97,76,74;
+                        0.138,0.97,79,77;
+                        0.103,0.97,85,80];
                     
-heating_setpoint{1} = [ 0.118,0.80,59,63;
-                        0.134,0.80,64,66;
-                        0.232,0.80,67,69;
-                        0.184,0.80,70,70;
-                        0.162,0.80,73,71;
-                        0.169,0.80,74,79];
+heating_setpoint{1} = [ 0.141,0.80,63,59;
+                        0.204,0.80,66,64;
+                        0.231,0.80,69,67;
+                        0.163,0.80,70,70;
+                        0.120,0.80,73,71;
+                        0.141,0.80,79,74];
 
-heating_setpoint{2} = [ 0.095,0.20,59,63;
-                        0.107,0.20,64,66;
-                        0.130,0.20,67,69;
-                        0.296,0.20,70,70;
-                        0.099,0.20,73,71;
-                        0.273,0.20,74,79];
+heating_setpoint{2} = [ 0.085,0.20,63,59;
+                        0.132,0.20,66,64;
+                        0.147,0.20,69,67;
+                        0.279,0.20,70,70;
+                        0.109,0.20,73,71;
+                        0.248,0.20,79,74];
                     
-heating_setpoint{3} = [ 0.101,0.88,59,63;
-                        0.118,0.88,64,66;
-                        0.185,0.88,67,69;
-                        0.252,0.88,70,70;
-                        0.118,0.88,73,71;
-                        0.227,0.88,74,79];
+heating_setpoint{3} = [ 0.129,0.88,63,59;
+                        0.177,0.88,66,64;
+                        0.161,0.88,69,67;
+                        0.274,0.88,70,70;
+                        0.081,0.88,73,71;
+                        0.177,0.88,79,74];
                     
 % Breakdown of gas vs. heat pump vs. resistance - by region
 perc_gas = [0.7051;0.8927;0.6723;0.4425;0.4425];
@@ -166,6 +166,8 @@ data.floor_area = floor_area{region};
 data.perc_poolpumps = perc_poolpumps(region);
 data.wh_electric = wh_electric(region);
 data.wh_size = wh_size(region,:);
+data.no_cool_sch = 9;
+data.no_heat_sch = 9;
 end
 
 

@@ -1,23 +1,14 @@
 clear;
 clc;
 
-%%%%%%%%%%%%%%%%%
-
-% What to do with "commercial" loads - right now there are 12470:480 in the
-% taxonomy feeder followed by 7200:120 residential transformers (houses)
-% Which way to go?
-
-%%%%%%%%%%%%%%%%%
-
-
 %% File to extract
 taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
-file_to_extract = 'GC-12.47-1.glm';
+file_to_extract = 'R4-25.00-1.glm';
 extraction_file = [taxonomy_directory,file_to_extract];
 
 % Select where you want the file written to: 
 %   can be left as '' to write in the working directory 
-%   make sure and end the line with a '\' if pointingto a directory
+%   make sure and end the line with a '\' if pointing to a directory
 output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
 
 %% Get the region - this will only work with the taxonomy feeders
@@ -56,15 +47,14 @@ use_flags.use_market = 0; % 0 = NONE, 1 = BIDDING, 2 = PASSIVE (NON-BIDDING)
                 % NOTE: using passive overrides statistics in market_info
                 % and defaults to 24 hour statistics
 
-% Commercial Buildings? - NOT FINISHED
-% these may be used to represent large 3-ph loads as ziploads (0) or
-% buildings (1)
-use_flags.use_commercial = 0;  % 1 populates with 12.47:480 followed by 7200:120 right now
+% Commercial Buildings - FINISHED
+% these may be used to represent large 3-ph loads as ziploads (0) or buildings (1)
+use_flags.use_commercial = 0; 
 
 % VVC? - NOT FINISHED
 use_flags.use_vvc = 0; % 0 = NONE, 1 = TRUE
 
-% Customer Billing? - FINISHED
+% Customer Billing? - NOT FINISHED
 use_flags.use_billing = 0; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
 
 % Solar? - NOT FINISHED
@@ -1169,6 +1159,13 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
       % Ceiling function will create a few extra houses in histogram, but its needed
     thermal_integrity = ceil(regional_data.thermal_percentages * total_houses);
     
+    total_houses_by_type = sum(thermal_integrity');
+    
+    for typeind=1:3
+        cool_sp(:,typeind) = ceil(regional_data.cooling_setpoint{typeind}(:,1) * total_houses_by_type(typeind));
+        heat_sp(:,typeind) = ceil(regional_data.heating_setpoint{typeind}(:,1) * total_houses_by_type(typeind));
+    end
+    
     for jj=1:aS
         parent = char(phase_S_houses(jj,2));
         no_houses = str2num(char(phase_S_houses(jj,1)));
@@ -1269,6 +1266,7 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 fprintf(write_file,'     heating_system_type HEAT_PUMP;\n');                   
                 fprintf(write_file,'     heating_COP %.1f;\n',h_COP);
                 fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                %TODO Add in AUX here
             else
                 fprintf(write_file,'     heating_system_type RESISTANCE;\n');
                 if (cool_type <= regional_data.perc_AC)
@@ -1276,14 +1274,55 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 end
             end
    
-            %TODO heating and cooling setpoints
-            cooling_set = ceil(8*rand(1));           
-            heating_set = ceil(8*rand(1));
+                % choose a cooling & heating schedule
+                cooling_set = ceil(regional_data.no_cool_sch*rand(1));           
+                heating_set = ceil(regional_data.no_heat_sch*rand(1));
             
-            %TODO not sure if ramp/ranges are right
+                % choose a cooling bin
+                coolsp = regional_data.cooling_setpoint{row_ti};
+                [no_cool_bins,junk] = size(coolsp);
+                
+                % see if we have that bin left
+                cool_bin = randi(no_cool_bins);
+                while (cool_sp(cool_bin,row_ti) < 1)
+                    cool_bin = randi(no_cool_bins);
+                end
+                cool_sp(cool_bin,row_ti) = cool_sp(cool_bin,row_ti) - 1;
+                
+                % choose a heating bin
+                heatsp = regional_data.heating_setpoint{row_ti};
+                [no_heat_bins,junk] = size(heatsp);
+                
+                heat_bin = randi(no_heat_bins);
+                heat_count = 1;
+                
+                % see if we have that bin left, then check to make sure
+                % upper limit of chosen bin is not greater than lower limit
+                % of cooling bin
+                while (heat_sp(heat_bin,row_ti) < 1 || (heatsp(heat_bin,3) > coolsp(cool_bin,4)))
+                    heat_bin = randi(no_heat_bins);
+                    
+                    % if we tried a few times, give up and take an extra
+                    % draw from the lowest bin
+                    if (heat_count > 20)
+                        heat_bin = 1;
+                        break;
+                    end
+                    
+                    heat_count = heat_count + 1;
+                end
+                heat_sp(heat_bin,row_ti) = heat_sp(heat_bin,row_ti) - 1;
+                
+                cool_night = (coolsp(cool_bin,3) - coolsp(cool_bin,4))*rand(1) + coolsp(cool_bin,4);
+                heat_night = (heatsp(heat_bin,3) - heatsp(heat_bin,4))*rand(1) + heatsp(heat_bin,4);
+            
+                cool_night_diff = coolsp(cool_bin,2) * 2 * rand(1);
+                heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
+                
+            %TODO Pull out market "stuff" and put in an outside loop
             if (use_flags.use_market == 0)
-                fprintf(write_file,'     cooling_setpoint cooling%d*1;\n',cooling_set);
-                fprintf(write_file,'     heating_setpoint heating%d*1;\n',heating_set);
+                fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
+                fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
             elseif (use_flags.use_market == 1)
                 if (heat_type <= (regional_data.perc_gas + regional_data.perc_pump) && heat_type > regional_data.perc_gas)
                     fprintf(write_file,'\n     object controller {\n');   
