@@ -1,5 +1,5 @@
 function [data,use_flags] = TechnologyParameters(use_flags)
-% Tech flags
+%% Tech flags
 % each tech turns on certain flags
 data.tech_flag = 0;
 
@@ -10,11 +10,14 @@ if data.tech_flag == 0
     use_flags.use_billing = 0;
     data.measure_losses = 0; 
     data.dump_bills = 0; 
+    data.dump_voltage = 0;
     data.collect_house_states = 0;
     data.collect_setpoints = 0;
     data.measure_capacitors = 0;
     data.measure_regulators = 0;
-    
+    data.include_stats = 1;
+    data.measure_market = 0;
+   
 % CVR
 elseif data.tech_flag == 1
     
@@ -62,7 +65,7 @@ elseif data.tech_flag == 15
     
 end
 
-% Use flags structure
+%% Use flags structure
 % 1. Use homes
 % 2. Use battery storage
 % 3. Use markets
@@ -73,10 +76,9 @@ end
 % 8. Use PHEV
 % 9. Use distribution automation
 %10. Use wind
-% Recorder flags
-% Other parameters
+%11. Other parameters
 
-% Home parameters
+%% Home parameters
 if (use_flags.use_homes == 1)
     % ZIP fractions and their power factors - Residential
     data.z_pf = 1;
@@ -92,7 +94,7 @@ if (use_flags.use_homes == 1)
     data.use_wh = 1; 
 end
 
-% Battery Parameters
+%% Battery Parameters
 if (use_flags.use_batt == 2 || use_flags.use_batt == 1)
     data.battery_energy = 1000000; % 10 MWh
     data.battery_power = 250000; % 1.5 MW
@@ -101,7 +103,7 @@ if (use_flags.use_batt == 2 || use_flags.use_batt == 1)
     data.parasitic_draw = 10; %Watts
 end
 
-% Market Parameters -- TODO
+%% Market Parameters -- TODO
 % 1 - Active Control
 % 2 - Transactive Control
 % 3 - DLC
@@ -126,7 +128,7 @@ if (use_flags.use_market == 1)
                         1.0};
 end
 
-% Commercial building parameters
+%% Commercial building parameters
 if (use_flags.use_commercial == 0)
     % zip loads
     data.c_z_pf = 1;
@@ -138,14 +140,20 @@ if (use_flags.use_commercial == 0)
 elseif (use_flags.use_commercial == 1)
     % buildings -- needs work
     data.cooling_COP = 3;
+    data.c_z_pf = 1;
+    data.c_i_pf = 1;
+    data.c_p_pf = 1;
+    data.c_zfrac = 0.3;
+    data.c_ifrac = 0.3;
+    data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
 end
 
-% VVC parameters
+%% VVC parameters
 if (use_flags.use_vvc == 1)
     data.output_volt = 2401;  % voltage to regulate to - 2401::120
 end
 
-% Customer billing parameters
+%% Customer billing parameters
 if (use_flags.use_billing == 1) %FLAT RATE
     data.monthly_fee = 10; % $
     % Average rate by region from, merged using Viraj spreadsheet
@@ -161,37 +169,27 @@ elseif(use_flags.use_billing == 3) %RTP/TOU RATE - market must be activated
     data.flat_price = 0.1; % $ / kWh
 end
 
-% Solar parameters
+%% Solar parameters
 if (use_flags.use_solar == 1)
     
 end
 
-% PHEV parameters
+%% PHEV parameters
 if (use_flags.use_phev == 1)
     
 end
 
-% DA parameters
+%% DA parameters
 if (use_flags.use_da == 1)
 
 end
 
-% Wind parameters
+%% Wind parameters
 if (use_flags.use_wind == 1)
     
 end
 
-% Recorder parameters
-    data.measure_losses = 0; % 1 = yes, 0 = no
-    data.dump_bills = 0; % 1 = yes, 0 = no
-    data.dump_voltage = 0; % 1 = yes, 0 = no
-    data.measure_market = 0;
-    data.collect_house_states = 0;
-    data.collect_setpoints = 0;
-    data.measure_capacitors = 0;
-    data.measure_regulators = 0;
-    
-% Other parameters    
+%% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
     data.start_date = '2009-01-01 00:00:00';
     data.end_date = '2010-01-02 00:00:00';
@@ -208,5 +206,5 @@ end
     data.commercial_skew_std = 1800; %These are in 30 minute blocks
     data.commercial_skew_max = 5400;
     
-data.tech_number = data.tech_flag;
+    data.tech_number = data.tech_flag;
 end
