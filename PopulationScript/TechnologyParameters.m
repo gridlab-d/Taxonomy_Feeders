@@ -86,6 +86,8 @@ if (use_flags.use_homes == 1)
     data.ifrac = 0.3;
     data.pfrac = 1 - data.zfrac - data.ifrac;
 
+    data.heat_fraction = 0.9;
+    
     % Determines how many houses to populate (bigger avg_house = less houses)
     data.avg_house = 50000;
 

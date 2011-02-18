@@ -1161,6 +1161,9 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
     
     total_houses_by_type = sum(thermal_integrity');
     
+    %only allow pool pumps on single family homes
+    no_pool_pumps = total_houses_by_type(1);
+    
     for typeind=1:3
         cool_sp(:,typeind) = ceil(regional_data.cooling_setpoint{typeind}(:,1) * total_houses_by_type(typeind));
         heat_sp(:,typeind) = ceil(regional_data.heating_setpoint{typeind}(:,1) * total_houses_by_type(typeind));
@@ -1194,6 +1197,14 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 wh_skew_value = 4*tech_data.residential_skew_max;
             end
             
+            % scale this skew up to weeks
+            pp_skew_value = 128*tech_data.residential_skew_std*randn(1);
+            if (pp_skew_value < -128*tech_data.residential_skew_max)
+                pp_skew_value = -128*tech_data.residential_skew_max;
+            elseif (pp_skew_value > 128*tech_data.residential_skew_max)
+                pp_skew_value = 128*tech_data.residential_skew_max;
+            end
+            
             fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
                 
                 % Choose what type of building we are going to use
@@ -1221,7 +1232,8 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
             fprintf(write_file,'     floor_area %.0f;\n',floor_area);
             
                 %TODO do I want to handle apartment walls differently?
-            fprintf(write_file,'     //Thermal integrity={%.0f,%.0f}\n',row_ti,col_ti);
+                building_type = {'Single Family';'Apartment';'Mobile Home'};
+            fprintf(write_file,'     //Thermal integrity -> %s %.0f\n',building_type{row_ti},col_ti);
                
                 rroof = thermal_temp{1}(1)*(0.8 + 0.4*rand(1));
             fprintf(write_file,'     Rroof %.2f;\n',rroof);
@@ -1266,12 +1278,21 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 fprintf(write_file,'     heating_system_type HEAT_PUMP;\n');                   
                 fprintf(write_file,'     heating_COP %.1f;\n',h_COP);
                 fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
-                %TODO Add in AUX here
+                fprintf(write_file,'     auxiliary_strategy DEADBAND;\n');
+                fprintf(write_file,'     auxiliary_system_type ELECTRIC;\n');
+                fprintf(write_file,'     motor_model BASIC;\n');
+                fprintf(write_file,'     motor_efficiency AVERAGE;\n');
             else
                 fprintf(write_file,'     heating_system_type RESISTANCE;\n');
                 if (cool_type <= regional_data.perc_AC)
                     fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                    fprintf(write_file,'     motor_model BASIC;\n');
+                    fprintf(write_file,'     motor_efficiency GOOD;\n');
                 end
+            end
+            
+            if (floor_area > 2500)
+                fprintf(write_file,'     breaker_amps 1000;\n');
             end
    
                 % choose a cooling & heating schedule
@@ -1320,6 +1341,7 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
                 
             %TODO Pull out market "stuff" and put in an outside loop
+              % will need to store the set points for later use in market
             if (use_flags.use_market == 0)
                 fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
                 fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
@@ -1435,14 +1457,31 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 end
             end
             
-            %TODO: seperate ZIPload into responsize/unresponsive/pool pump
-            fprintf(write_file,'     object ZIPload {\n');
+            % scale all of the end-use loads
+            scalar1 = 324.9/8907 * floor_area^0.442;
+            scalar2 = 0.8 + 0.4 * rand(1);
+            scalar3 = 0.8 + 0.4 * rand(1);
+            resp_scalar = scalar1 * scalar2;
+            unresp_scalar = scalar1 * scalar3;
             
-                % These are estimates for load / sqft
-                load_magnitude = floor_area/1.8/1000 + 0.2*randn(1);            
+            % average size is 1.36 kW
+            % Energy Savings through Automatic Seasonal Run-Time Adjustment of Pool Filter Pumps 
+            % Stephen D Allen, B.S. Electrical Engineering
+            pool_pump_power = 1.36 + .36*rand(1);
+            pool_pump_perc = rand(1);
+            %TODO create pool pump model
+            % average 4-12 hours / day -> 1/6-1/2 duty cycle
+            % typically run for 2 - 4 hours at a time
+            pp_dutycycle = 1/6 + (1/2 - 1/6)*rand(1);
+            pp_period = 4 + 4*rand(1);
+            pp_init_phase = rand(1);
+            
+            fprintf(write_file,'     object ZIPload {\n');
+            fprintf(write_file,'           name house%d_resp_%s\n',kk,parent);
+            fprintf(write_file,'           // Responsive load\n');           
             fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-            fprintf(write_file,'           base_power LIGHTS*%.2f;\n',load_magnitude);
-            fprintf(write_file,'           heatgain_fraction 0.9;\n');
+            fprintf(write_file,'           base_power responsive_loads*%.2f;\n',resp_scalar);
+            fprintf(write_file,'           heatgain_fraction %.3f;\n',tech_data.heat_fraction);
             fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
             fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
             fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
@@ -1451,6 +1490,42 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
             fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
             fprintf(write_file,'     };\n');
 
+            fprintf(write_file,'     object ZIPload {\n');
+            fprintf(write_file,'           // Unresponsive load\n');           
+            fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+            fprintf(write_file,'           base_power unresponsive_loads*%.2f;\n',unresp_scalar);
+            fprintf(write_file,'           heatgain_fraction %.3f;\n',tech_data.heat_fraction);
+            fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
+            fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
+            fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
+            fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
+            fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
+            fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
+            fprintf(write_file,'     };\n');
+            
+            % pool pumps only on single-family homes
+            if (pool_pump_perc < 2*regional_data.perc_poolpumps && no_pool_pumps >= 1 && row_ti == 1)
+                fprintf(write_file,'     object ZIPload {\n');
+                fprintf(write_file,'           name house%d_ppump_%s\n',kk,parent);
+                fprintf(write_file,'           // Pool Pump\n');           
+                fprintf(write_file,'           schedule_skew %.0f;\n',pp_skew_value);
+                fprintf(write_file,'           base_power pool_pump_season*%.2f;\n',pool_pump_power);
+                fprintf(write_file,'           duty_cycle %.2f;\n',pp_dutycycle);
+                fprintf(write_file,'           phase %.2f;\n',pp_init_phase);
+                fprintf(write_file,'           period %.2f;\n',pp_period);
+                fprintf(write_file,'           heatgain_fraction 0.0;\n');
+                fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
+                fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
+                fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
+                fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
+                fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
+                fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
+                fprintf(write_file,'           is_240 TRUE;\n');
+                fprintf(write_file,'     };\n');
+                
+                no_pool_pumps = no_pool_pumps - 1;
+            end
+            
                 heat_element = 3.5 + 2*rand(1);
                 tank_set = 120 + 16*rand(1);
                 therm_dead = 4 + 4*rand(1);
@@ -1496,7 +1571,7 @@ end
 % (s1-s6)
 RandStream.setDefaultStream(s3);
 
-% TODO Phase ABC - convert to "commercial buildings" 
+% Phase ABC - convert to "commercial buildings" 
 %  if number of "houses" > 15, then create a large office
 %  if number of "houses" < 15 but > 6, create a big box commercial
 %  else, create a residential strip mall
@@ -1779,6 +1854,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                         fprintf(write_file,'object house {\n');
                         fprintf(write_file,'     name office%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                         fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'     groupid Commercial;\n');
                         fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                         fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
                         fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
@@ -1805,7 +1881,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                         fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
                         
-                        %TODO
+                        %TODO - add variation?
                             COP_A = tech_data.cooling_COP;
                         fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
@@ -2044,6 +2120,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                         
                         fprintf(write_file,'object house {\n');
                         fprintf(write_file,'     name bigbox%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                        fprintf(write_file,'     groupid Commercial;\n');
                         fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                         fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
@@ -2302,6 +2379,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                     
                     fprintf(write_file,'object house {\n');
                     fprintf(write_file,'     name stripmall%s_%s%.0f;\n',my_name,my_phases{phind},jjj);
+                    fprintf(write_file,'     groupid Commercial;\n');
                     fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                     fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                     fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
@@ -2532,7 +2610,6 @@ if (tech_data.measure_losses == 1)
 end
 
 if (tech_data.collect_setpoints == 1)
-    %TODO: add groupid to homes
     fprintf(write_file,'object collector {\n');
     fprintf(write_file,'     group "class=house AND groupid=Residential";\n');
     fprintf(write_file,'     property average(cooling_setpoint),average(heating_setpoint);\n');
