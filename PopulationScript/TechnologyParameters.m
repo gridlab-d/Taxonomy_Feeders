@@ -87,9 +87,6 @@ if (use_flags.use_homes == 1)
     data.pfrac = 1 - data.zfrac - data.ifrac;
 
     data.heat_fraction = 0.9;
-    
-    % Determines how many houses to populate (bigger avg_house = less houses)
-    data.avg_house = 50000;
 
     % waterheaters 1 = yes, 0 = no
     data.use_wh = 1; 
@@ -140,7 +137,6 @@ if (use_flags.use_commercial == 0)
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
 elseif (use_flags.use_commercial == 1)
     % buildings -- needs work
-    data.avg_commercial = 50000;
     data.cooling_COP = 3;
 end
 

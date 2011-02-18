@@ -81,6 +81,8 @@ floor_area{3} = [2370,764,1093];
 floor_area{4} = [2655,901,1069];
 floor_area{5} = [2655,901,1069];
 
+% Percentage of one-story homes
+one_story = [.6887;.5210;.7745;.7043;.7043];
 
 % Average heating and cooling setpoints
 %  by thermal integrity type {1=SF, 2=apt, 3=mh}
@@ -168,6 +170,7 @@ data.wh_electric = wh_electric(region);
 data.wh_size = wh_size(region,:);
 data.no_cool_sch = 9;
 data.no_heat_sch = 9;
+data.one_story = one_story;
 end
 
 

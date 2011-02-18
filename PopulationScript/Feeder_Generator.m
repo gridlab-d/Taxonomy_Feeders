@@ -925,59 +925,59 @@ for j=1:(nn-1)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
-                    no_houses_A = no_houses_A + ceil(sqrt(bb_real^2 + bb_imag^2) / tech_data.avg_commercial);
+                    no_houses_A = no_houses_A + ceil(sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_power_B') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
-                    no_houses_B = no_houses_B + ceil(sqrt(bb_real^2 + bb_imag^2) / tech_data.avg_commercial);
+                    no_houses_B = no_houses_B + ceil(sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_power_C') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
-                    no_houses_C = no_houses_C + ceil(sqrt(bb_real^2 + bb_imag^2) / tech_data.avg_commercial);
+                    no_houses_C = no_houses_C + ceil(sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_A') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
                     S_A = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
 
-                    no_houses_A = no_houses_A + ceil(S_A / tech_data.avg_commercial);
+                    no_houses_A = no_houses_A + ceil(S_A / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_B') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
                     S_B = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
 
-                    no_houses_B = no_houses_B + ceil(S_B / tech_data.avg_commercial);
+                    no_houses_B = no_houses_B + ceil(S_B / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_C') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
                     S_C = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
 
-                    no_houses_C = no_houses_C + ceil(S_C / tech_data.avg_commercial);
+                    no_houses_C = no_houses_C + ceil(S_C / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_current_A') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
                     S_A = abs(taxonomy_data.nom_volt2 * (bb_real * 1i*bb_imag));
 
-                    no_houses_A = no_houses_A + ceil(S_A / tech_data.avg_commercial);
+                    no_houses_A = no_houses_A + ceil(S_A / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_current_B') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
                     S_B = abs(taxonomy_data.nom_volt2 * (bb_real * 1i*bb_imag));
 
-                    no_houses_B = no_houses_B + ceil(S_B / tech_data.avg_commercial);
+                    no_houses_B = no_houses_B + ceil(S_B / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'constant_current_C') ~= 0)
                     bb_real = real(str2num(glm_final{3}{m}));
                     bb_imag = imag(str2num(glm_final{3}{m}));
 
                     S_C = abs(taxonomy_data.nom_volt2 * (bb_real * 1i*bb_imag));
 
-                    no_houses_C = no_houses_C + ceil(S_C / tech_data.avg_commercial);
+                    no_houses_C = no_houses_C + ceil(S_C / taxonomy_data.avg_commercial);
                 elseif (strcmp(char(glm_final{2}{m}),'name') ~= 0)
                     parent_name = char(glm_final{3}{m});
                     fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{m}),char(glm_final{2}{m}),char(glm_final{3}{m}),char(glm_final{4}{m}),char(glm_final{5}{m}),char(glm_final{6}{m}),char(glm_final{7}{m}),char(glm_final{8}{m}));
@@ -1119,7 +1119,7 @@ for j=1:(nn-1)
             bb_imag = imag(str2num(glm_final{3}{j}));
 
             bb = sqrt(bb_real^2 + bb_imag^2);
-            no_of_houses = ceil(bb/tech_data.avg_house);
+            no_of_houses = ceil(bb/taxonomy_data.avg_house);
 
             if (no_of_houses > 0)
                 parent = named_object;
@@ -1180,8 +1180,7 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
             fprintf(write_file,'     name house%d_%s\n',kk,parent);
             fprintf(write_file,'     groupid Residential;\n');
              
-            %TODO - aspect ratio?, window wall ratio?, ceiling height?,
-            %number of stories?
+            %TODO - aspect ratio?, window wall ratio?
             
             skew_value = tech_data.residential_skew_std*randn(1);
             if (skew_value < -tech_data.residential_skew_max)
@@ -1227,9 +1226,29 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 thermal_temp = regional_data.thermal_properties(row_ti,col_ti);
                 
                 %TODO check this variance on the floor area
+                % As it is now, this will shift mean of low integrity
+                % single family homes to a smaller square footage and vice
+                % versa for high integrity homes-is NOT mathematically correct
                 f_area = regional_data.floor_area(row_ti);
-                floor_area = f_area *(0.6 + 0.8*rand(1));
+                story_rand = rand(1);
+                height_rand = randi(8);
+                if (col_ti == 1) % SF homes
+                    floor_area = f_area + (f_area/2) * rand(1) * (row_ti - 4)/3;
+                    if (story_rand < regional_data.one_story(region))
+                        stories = 1;
+                    else
+                        stories = 2;
+                    end
+                    
+                else
+                    floor_area = f_area + (f_area/2) * (0.5 - rand(1)); %+/- 50%
+                    stories = 1;
+                    height_rand = 0;
+                end
             fprintf(write_file,'     floor_area %.0f;\n',floor_area);
+            fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
+                ceiling_height = 8 + height_rand;
+            fprintf(write_file,'     ceiling_height %.0f;\n',ceiling_height);
             
                 %TODO do I want to handle apartment walls differently?
                 building_type = {'Single Family';'Apartment';'Mobile Home'};
@@ -1282,6 +1301,11 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
                 fprintf(write_file,'     auxiliary_system_type ELECTRIC;\n');
                 fprintf(write_file,'     motor_model BASIC;\n');
                 fprintf(write_file,'     motor_efficiency AVERAGE;\n');
+            elseif (floor_area*ceiling_height > 20000 ) % No resistive homes over with large volumes
+                fprintf(write_file,'     heating_system_type GAS;\n');
+                if (cool_type <= regional_data.perc_AC)
+                    fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                end
             else
                 fprintf(write_file,'     heating_system_type RESISTANCE;\n');
                 if (cool_type <= regional_data.perc_AC)
@@ -1469,7 +1493,7 @@ if (use_flags.use_homes == 1 && total_houses ~= 0)
             % Stephen D Allen, B.S. Electrical Engineering
             pool_pump_power = 1.36 + .36*rand(1);
             pool_pump_perc = rand(1);
-            %TODO create pool pump model
+
             % average 4-12 hours / day -> 1/6-1/2 duty cycle
             % typically run for 2 - 4 hours at a time
             pp_dutycycle = 1/6 + (1/2 - 1/6)*rand(1);
@@ -1880,9 +1904,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                         fprintf(write_file,'     fan_type %s;\n',fan_type);
                         fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
-                        
-                        %TODO - add variation?
-                            COP_A = tech_data.cooling_COP;
+                            COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                         fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
                         if (use_flags.use_market == 0)
@@ -2147,8 +2169,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                         fprintf(write_file,'     fan_type %s;\n',fan_type);
                         fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
                         
-                        %TODO
-                            COP_A = tech_data.cooling_COP;
+                            COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                         fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
                         if (use_flags.use_market == 0)
@@ -2406,8 +2427,7 @@ if (no_loads ~= 0 && use_flags.use_commercial == 1)
                     fprintf(write_file,'     fan_type %s;\n',fan_type);
                     fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
-                    %TODO
-                        COP_A = tech_data.cooling_COP;
+                        COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                     fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
                     if (use_flags.use_market == 0)
