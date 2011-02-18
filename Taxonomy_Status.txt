@@ -6,12 +6,14 @@ This Document is meant to describe the current status of the Taxonomy Feeders.
           Currently these regulators will work in a time-series simulation with the following 
           control methods: MANUAL, OUTPUT_VOLTAGE, and REMOTE_NODE.  
 
-12/8/2010: Added downstream votlage regulators to feeders R1-25.00-1, R2-12.47-2, R2-12.47-3, and R5-12.47-3.  Two 
+12/8/2010: Added downstream votlage regulators to feeders R1-25.00-1, R2-12.47-2, and R5-12.47-3.  Two 
            regulators were added to R5-12.47-3.  This was done to address some of the low voltage conditions
            that were discovered in the taxonomy feeders during the CVR work for 2010.
 
 1/27/2011: Addressed issue of taxonomy feeders placing all load on L1.  This was changed to represent an even load 
            balance across L12, i.e. 240V load.  Added additonal capacitors, primarly fixed, to finish correction of 
            low voltag levels. 
+2/1/2011 : Multiple small sized fixed capacitors added to various feeders.
+
 2/15/2011: Changed all triplex lines from 1/0 to 4/0.  This is a more accruate representation for service drops.
            1/0 is suggested for 120A drops while 4/0 is recommended for 200A drops.
