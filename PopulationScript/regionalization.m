@@ -137,7 +137,10 @@ perc_res = 1 - perc_pump - perc_gas;
 
 % of AC 
 perc_AC = [0.4348;0.7528;0.5259;0.9673;0.9673];
-            
+
+% Over sizing factor of the AC units
+over_sizing_factor = [0.2;0.4;0.4;0.6;0.6];
+
 % pool pumps
 perc_poolpumps = [0.0904;0.0591;0.0818;0.0657;0.0657];
 
@@ -171,6 +174,7 @@ data.wh_size = wh_size(region,:);
 data.no_cool_sch = 9;
 data.no_heat_sch = 9;
 data.one_story = one_story;
+data.over_sizing_factor = over_sizing_factor(region);
 end
 
 

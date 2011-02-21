@@ -1276,6 +1276,8 @@ for tax_ind=1:no_of_tax
                 fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
                     ceiling_height = 8 + height_rand;
                 fprintf(write_file,'     ceiling_height %.0f;\n',ceiling_height);
+                    os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
 
                     %TODO do I want to handle apartment walls differently?
                     building_type = {'Single Family';'Apartment';'Mobile Home'};
@@ -1938,6 +1940,9 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
                             fprintf(write_file,'     fan_type %s;\n',fan_type);
                             fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
+                                
+                                os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                            fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
 
                                 COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                             fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
@@ -2216,7 +2221,10 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
                             fprintf(write_file,'     fan_type %s;\n',fan_type);
                             fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
-
+                            
+                                os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                            fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
+                            
                                 COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                             fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
@@ -2499,6 +2507,9 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     fan_type %s;\n',fan_type);
                         fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
+                            os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                        fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
+                        
                             COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                         fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
