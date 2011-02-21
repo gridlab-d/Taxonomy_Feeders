@@ -1,15 +1,15 @@
 clear;
 clc;
 
-% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
 %taxonomy_files = {'R1-12.47-2.glm'};
 
-taxonomy_files = {'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';'R3-12.47-2.glm';'R4-25.00-1.glm';'R5-12.47-2.glm'};
+%taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
@@ -2822,21 +2822,21 @@ for tax_ind=1:no_of_tax
 
             fprintf(write_file,'object billdump {\n');
             fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_billdump_res%.0f.csv;\n',tech_file,my_month);
+            fprintf(write_file,'     filename %s_bill_res%.0f.csv;\n',tech_file,my_month);
             fprintf(write_file,'     group Residential_Meter;\n');
             fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
             fprintf(write_file,'}\n\n');
             
             fprintf(write_file,'object billdump {\n');
             fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_billdump_commSP%.0f.csv;\n',tech_file,my_month);
+            fprintf(write_file,'     filename %s_bill_commSP%.0f.csv;\n',tech_file,my_month);
             fprintf(write_file,'     group Commercial_Meter;\n');
             fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
             fprintf(write_file,'}\n\n');
             
             fprintf(write_file,'object billdump {\n');
             fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_billdump_comm3p%.0f.csv;\n',tech_file,my_month);
+            fprintf(write_file,'     filename %s_bill_comm3p%.0f.csv;\n',tech_file,my_month);
             fprintf(write_file,'     group Commercial_Meter;\n');
             fprintf(write_file,'     meter_type METER;\n');
             fprintf(write_file,'}\n\n');
