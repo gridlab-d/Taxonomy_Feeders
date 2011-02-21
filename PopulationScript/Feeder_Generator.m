@@ -8,7 +8,6 @@ taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1
     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
 %taxonomy_files = {'R1-12.47-2.glm'};
-
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -116,6 +115,7 @@ for tax_ind=1:no_of_tax
     % arrays
     for i=1:a
         %TODO: add in catches for new objects (relays, etc.)
+        % -- Definitely reclosers
 
         % Fill in the last line, cuz the array isn't almost never the same size 
         if (i == a)
@@ -148,6 +148,8 @@ for tax_ind=1:no_of_tax
             test{2}{i} = 'node';
         elseif (strfind(char(test{2}{i}),'switch:') ~= 0)
             test{2}{i} = 'switch';
+        elseif (strfind(char(test{2}{i}),'recloser:') ~= 0)
+            test{2}{i} = 'recloser';
         elseif (strfind(char(test{2}{i}),'overhead_line:') ~= 0)
             test{2}{i} = 'overhead_line';
         elseif (strfind(char(test{2}{i}),'regulator:') ~= 0)
