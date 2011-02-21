@@ -2450,7 +2450,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     name %s_CTTF_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'     phases %sS;\n',my_phases{phind});
                         fprintf(write_file,'     from %s_strip_node;\n',my_name);
-                        fprintf(write_file,'     to %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'     to %s_tn_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
                         fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
                         fprintf(write_file,'}\n\n');
