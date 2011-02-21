@@ -7,9 +7,10 @@ data.tech_flag = 0;
 if data.tech_flag == 0
     use_flags.use_homes = 1;
     use_flags.use_commercial = 1;
-    use_flags.use_billing = 0;
+    use_flags.use_billing = 1;
     data.measure_losses = 0; 
-    data.dump_bills = 0; 
+    data.dump_bills = 1;
+    data.collect_bills = 0;
     data.dump_voltage = 0;
     data.collect_house_states = 0;
     data.collect_setpoints = 0;
@@ -156,9 +157,11 @@ end
 %% Customer billing parameters
 if (use_flags.use_billing == 1) %FLAT RATE
     data.monthly_fee = 10; % $
+    data.comm_monthly_fee = 25;
     % Average rate by region from, merged using Viraj spreadsheet
     % EIA: http://www.eia.doe.gov/electricity/epm/table5_6_b.html
-    data.flat_price = [0.1262,0.1308,0.1066,0.1044,0.1044]; % $ / kWh
+    data.flat_price = [0.1243,0.1294,0.1012,0.1064,0.1064]; % $ / kWh
+    data.comm_flat_price = [0.1142,0.1112,0.0843,0.0923,0.0923];
 elseif(use_flags.use_billing == 2) %TIERED RATE
     data.monthly_fee = 10; % $
     data.flat_price = 0.1; % $ / kWh - first tier price
@@ -195,7 +198,7 @@ end
     data.end_date = '2010-01-02 00:00:00';
 
     % How often do you want to measure?
-    data.meas_interval = 60;  %applies to everything
+    data.meas_interval = 900;  %applies to everything
     meas = datenum(data.end_date) - datenum(data.start_date); %days between start and end
     meas2 = meas*24*60*60;  %seconds between start and end dates
     data.meas_limit = 20*ceil(meas2/data.meas_interval);

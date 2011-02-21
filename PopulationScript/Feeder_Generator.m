@@ -1,27 +1,29 @@
 clear;
 clc;
 
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
 %taxonomy_files = {'R1-12.47-2.glm'};
+
+taxonomy_files = {'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';'R3-12.47-2.glm';'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\';
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = '';
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1150,7 +1152,14 @@ for tax_ind=1:no_of_tax
 
                     total_houses = total_houses + no_of_houses;
                     fprintf(write_file,'     groupid Residential_Meter;\n');
-                    %TODO add billing
+                    if (use_flags.use_billing == 1) %Fixed price
+                        fprintf(write_file,'     bill_mode UNIFORM;\n');
+                        fprintf(write_file,'     price %.5f;\n',tech_data.flat_price(region));
+                        fprintf(write_file,'     monthly_fee %.2f;\n',tech_data.monthly_fee);
+                        fprintf(write_file,'     bill_day 1;\n');
+                    elseif (use_flags.use_billing == 3) % TOU or RTP
+                        %TODO
+                    end
                 end
             else
                 fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
@@ -1819,7 +1828,14 @@ for tax_ind=1:no_of_tax
                     fprintf(write_file,'     name %s_office_meter%.0f;\n',my_name,jjj);
                     fprintf(write_file,'     groupid Commercial_Meter;\n');
                     fprintf(write_file,'     nominal_voltage %f;\n',taxonomy_data.nom_volt2);
-                    %TODO Commercial billing
+                    if (use_flags.use_billing == 1)
+                        fprintf(write_file,'     bill_mode UNIFORM;\n');
+                        fprintf(write_file,'     price %.5f;\n',tech_data.comm_flat_price(region));
+                        fprintf(write_file,'     monthly_fee %.2f;\n',tech_data.comm_monthly_fee);
+                        fprintf(write_file,'     bill_day 1;\n');
+                    elseif (use_flags.use_billing == 3)
+                        %TODO
+                    end
                     fprintf(write_file,'}\n\n');
 
                     for phind = 1:3                  
@@ -1895,6 +1911,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     name office%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                             fprintf(write_file,'     groupid Commercial;\n');
+                            fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                             fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
                             fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
@@ -1941,6 +1958,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Lights\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 1.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -1954,6 +1972,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Plugs\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 1.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -1967,6 +1986,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Gas Waterheater\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name wh_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 0.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -1980,6 +2000,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Exterior Lighting\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 0.0;\n');
                             fprintf(write_file,'          power_fraction 1.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -1993,6 +2014,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Occupancy\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name occ_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 0.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2079,8 +2101,24 @@ for tax_ind=1:no_of_tax
                     fprintf(write_file,'     name %s_bigbox_meter%.0f;\n',my_name,jjj);
                     fprintf(write_file,'     groupid Commercial_Meter;\n');
                     fprintf(write_file,'     nominal_voltage %f;\n',taxonomy_data.nom_volt2);
-                    %TODO Commercial billing
+                    if (use_flags.use_billing == 1)
+                        fprintf(write_file,'     bill_mode UNIFORM;\n');
+                        fprintf(write_file,'     price %.5f;\n',tech_data.comm_flat_price(region));
+                        fprintf(write_file,'     monthly_fee %.2f;\n',tech_data.comm_monthly_fee);
+                        fprintf(write_file,'     bill_day 1;\n');
+                    elseif (use_flags.use_billing == 3)
+                        %TODO
+                    end
                     fprintf(write_file,'}\n\n');
+                    
+                    % skew each big box zone identically
+                    sk = round(2*randn(1));
+                    skew_value = tech_data.commercial_skew_std * sk;
+                    if (skew_value < -tech_data.commercial_skew_max)
+                        skew_value = -tech_data.commercial_skew_max;
+                    elseif (skew_value > tech_data.commercial_skew_max)
+                        skew_value = tech_data.commercial_skew_max;
+                    end
 
                     total_index = 0;
                     for phind=1:3
@@ -2107,15 +2145,6 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     phases %sS;\n',my_phases{phind});
                         fprintf(write_file,'     nominal_voltage 120;\n');
                         fprintf(write_file,'}\n\n');
-
-                        % skew each office zone identically per floor
-                        sk = round(2*randn(1));
-                        skew_value = tech_data.commercial_skew_std * sk;
-                        if (skew_value < -tech_data.commercial_skew_max)
-                            skew_value = -tech_data.commercial_skew_max;
-                        elseif (skew_value > tech_data.commercial_skew_max)
-                            skew_value = tech_data.commercial_skew_max;
-                        end
 
                         zones_per_phase = 6 / no_of_phases;
                         for zoneind=1:zones_per_phase
@@ -2159,6 +2188,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'object house {\n');
                             fprintf(write_file,'     name bigbox%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'     groupid Commercial;\n');
+                            fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                             fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                             fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
@@ -2206,6 +2236,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Lights\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 1.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2219,6 +2250,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Plugs\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 1.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2232,6 +2264,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Gas Waterheater\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name wh_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 0.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2245,6 +2278,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Exterior Lighting\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 0.0;\n');
                             fprintf(write_file,'          power_fraction 1.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2258,6 +2292,7 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     // Occupancy\n');
                             fprintf(write_file,'     object ZIPload {\n');
                             fprintf(write_file,'          name occ_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
                             fprintf(write_file,'          power_fraction 0.0;\n');
                             fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2359,6 +2394,16 @@ for tax_ind=1:no_of_tax
                     exterior_ceiling_fraction = 1;
 
                     for jjj = 1:strip_per_phase
+                        
+                        % skew each office zone identically per floor
+                        sk = round(2*randn(1));
+                        skew_value = tech_data.commercial_skew_std * sk;
+                        if (skew_value < -tech_data.commercial_skew_max)
+                            skew_value = -tech_data.commercial_skew_max;
+                        elseif (skew_value > tech_data.commercial_skew_max)
+                            skew_value = tech_data.commercial_skew_max;
+                        end
+                        
                         if (jjj == 1 || jjj == (floor(strip_per_phase/2)+1))
                             floor_area = floor_area_choose;
                             aspect_ratio = 1.5;
@@ -2412,11 +2457,20 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     phases %sS;\n',my_phases{phind});
                         fprintf(write_file,'     groupid Commercial_Meter;\n');
                         fprintf(write_file,'     nominal_voltage 120;\n');
+                        if (use_flags.use_billing == 1)
+                            fprintf(write_file,'     bill_mode UNIFORM;\n');
+                            fprintf(write_file,'     price %.5f;\n',tech_data.comm_flat_price(region));
+                            fprintf(write_file,'     monthly_fee %.2f;\n',tech_data.comm_monthly_fee);
+                            fprintf(write_file,'     bill_day 1;\n');
+                        elseif (use_flags.use_billing == 3)
+                            %TODO
+                        end
                         fprintf(write_file,'}\n\n');
 
                         fprintf(write_file,'object house {\n');
                         fprintf(write_file,'     name stripmall%s_%s%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'     groupid Commercial;\n');
+                        fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                         fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
@@ -2465,6 +2519,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     // Lights\n');
                         fprintf(write_file,'     object ZIPload {\n');
                         fprintf(write_file,'          name lights_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 1.0;\n');
                         fprintf(write_file,'          power_fraction 1.0;\n');
                         fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2478,6 +2533,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     // Plugs\n');
                         fprintf(write_file,'     object ZIPload {\n');
                         fprintf(write_file,'          name plugs_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 1.0;\n');
                         fprintf(write_file,'          power_fraction 1.0;\n');
                         fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2491,6 +2547,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     // Gas Waterheater\n');
                         fprintf(write_file,'     object ZIPload {\n');
                         fprintf(write_file,'          name wh_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 1.0;\n');
                         fprintf(write_file,'          power_fraction 0.0;\n');
                         fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2504,6 +2561,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     // Exterior Lighting\n');
                         fprintf(write_file,'     object ZIPload {\n');
                         fprintf(write_file,'          name ext_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 0.0;\n');
                         fprintf(write_file,'          power_fraction 1.0;\n');
                         fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2517,6 +2575,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'     // Occupancy\n');
                         fprintf(write_file,'     object ZIPload {\n');
                         fprintf(write_file,'          name occ_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 1.0;\n');
                         fprintf(write_file,'          power_fraction 0.0;\n');
                         fprintf(write_file,'          impedance_fraction 0.0;\n');
@@ -2668,7 +2727,7 @@ for tax_ind=1:no_of_tax
        %TODO 
     end
 
-    if (use_flags.use_billing ~= 0)
+    if (tech_data.collect_bills ~= 0)
         fprintf(write_file,'object collector {\n');
         fprintf(write_file,'     group "class=triplex_meter AND groupid=Residential_Meter";\n');
         fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
@@ -2679,6 +2738,14 @@ for tax_ind=1:no_of_tax
 
         fprintf(write_file,'object collector {\n');
         fprintf(write_file,'     group "class=meter AND groupid=Commercial_Meter";\n');
+        fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+        fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
+        fprintf(write_file,'}\n\n');
+        
+        fprintf(write_file,'object collector {\n');
+        fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_Meter";\n');
         fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
         fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
         fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
@@ -2748,15 +2815,33 @@ for tax_ind=1:no_of_tax
         print_date = my_date_start;
         print_date(4) = 3;
 
+        my_month = 1;
         while (datenum(print_date) <= datenum(my_date_end))
             print_date = print_date + [0 1 0 0 0 0];
             print_date2 = datestr(print_date,'yyyy-mm-dd HH:MM:SS');
 
             fprintf(write_file,'object billdump {\n');
             fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_billdump.csv;\n',tech_file);
-            fprintf(write_file,'     group House_Meter;\n');
+            fprintf(write_file,'     filename %s_billdump_res%.0f.csv;\n',tech_file,my_month);
+            fprintf(write_file,'     group Residential_Meter;\n');
+            fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
             fprintf(write_file,'}\n\n');
+            
+            fprintf(write_file,'object billdump {\n');
+            fprintf(write_file,'     runtime ''%s'';\n',print_date2);
+            fprintf(write_file,'     filename %s_billdump_commSP%.0f.csv;\n',tech_file,my_month);
+            fprintf(write_file,'     group Commercial_Meter;\n');
+            fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
+            fprintf(write_file,'}\n\n');
+            
+            fprintf(write_file,'object billdump {\n');
+            fprintf(write_file,'     runtime ''%s'';\n',print_date2);
+            fprintf(write_file,'     filename %s_billdump_comm3p%.0f.csv;\n',tech_file,my_month);
+            fprintf(write_file,'     group Commercial_Meter;\n');
+            fprintf(write_file,'     meter_type METER;\n');
+            fprintf(write_file,'}\n\n');
+            
+            my_month = my_month + 1;
         end
     end
 
