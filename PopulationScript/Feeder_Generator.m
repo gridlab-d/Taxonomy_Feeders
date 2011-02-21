@@ -1330,7 +1330,7 @@ for tax_ind=1:no_of_tax
                     fprintf(write_file,'     auxiliary_system_type ELECTRIC;\n');
                     fprintf(write_file,'     motor_model BASIC;\n');
                     fprintf(write_file,'     motor_efficiency AVERAGE;\n');
-                elseif (floor_area*ceiling_height > 20000 ) % No resistive homes over with large volumes
+                elseif (floor_area*ceiling_height > 12000 ) % No resistive homes over with large volumes
                     fprintf(write_file,'     heating_system_type GAS;\n');
                     if (cool_type <= regional_data.perc_AC)
                         fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
