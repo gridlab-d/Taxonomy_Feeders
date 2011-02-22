@@ -830,7 +830,7 @@ for tax_ind=1:no_of_tax
     end
 
     fprintf(write_file,'//Start actual feeder\n\n');
-    fprintf(write_file,'object node {\n');
+    fprintf(write_file,'object meter {\n');
     fprintf(write_file,'     name network_node;\n');
     fprintf(write_file,'     bustype SWING;\n');
     fprintf(write_file,'     nominal_voltage 230000;\n');
