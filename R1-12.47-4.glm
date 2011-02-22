@@ -64,7 +64,7 @@ object fuse:809 {
      phases ABCN; 
      from R1-12-47-4_node_10; 
      to R1-12-47-4_node_169; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -73,7 +73,7 @@ object fuse:810 {
      phases AN; 
      from R1-12-47-4_node_21; 
      to R1-12-47-4_node_287; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -82,7 +82,7 @@ object fuse:811 {
      phases AN; 
      from R1-12-47-4_node_24; 
      to R1-12-47-4_node_288; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -91,7 +91,7 @@ object fuse:812 {
      phases AN; 
      from R1-12-47-4_node_27; 
      to R1-12-47-4_node_289; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -100,7 +100,7 @@ object fuse:813 {
      phases CN; 
      from R1-12-47-4_node_38; 
      to R1-12-47-4_node_290; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -109,7 +109,7 @@ object fuse:814 {
      phases CN; 
      from R1-12-47-4_node_41; 
      to R1-12-47-4_node_291; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -118,7 +118,7 @@ object fuse:815 {
      phases CN; 
      from R1-12-47-4_node_43; 
      to R1-12-47-4_node_292; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -127,7 +127,7 @@ object fuse:816 {
      phases CN; 
      from R1-12-47-4_node_50; 
      to R1-12-47-4_node_293; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -136,7 +136,7 @@ object fuse:817 {
      phases ABCN; 
      from R1-12-47-4_node_54; 
      to R1-12-47-4_node_294; 
-     current_limit 20; 
+     current_limit 50000;// 20; 
      status CLOSED; 
 } 
 
@@ -145,7 +145,7 @@ object fuse:818 {
      phases ABCN; 
      from R1-12-47-4_node_55; 
      to R1-12-47-4_node_295; 
-     current_limit 30; 
+     current_limit 50000;// 30; 
      status CLOSED; 
 } 
 
@@ -154,7 +154,7 @@ object fuse:819 {
      phases ABCN; 
      from R1-12-47-4_node_57; 
      to R1-12-47-4_node_296; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -163,7 +163,7 @@ object fuse:820 {
      phases ABCN; 
      from R1-12-47-4_node_59; 
      to R1-12-47-4_node_297; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -172,7 +172,7 @@ object fuse:821 {
      phases ABCN; 
      from R1-12-47-4_node_61; 
      to R1-12-47-4_node_298; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -181,7 +181,7 @@ object fuse:822 {
      phases ABCN; 
      from R1-12-47-4_node_63; 
      to R1-12-47-4_node_299; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -190,7 +190,7 @@ object fuse:823 {
      phases ABCN; 
      from R1-12-47-4_node_64; 
      to R1-12-47-4_node_300; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -199,7 +199,7 @@ object fuse:824 {
      phases AN; 
      from R1-12-47-4_node_19; 
      to R1-12-47-4_node_301; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -208,7 +208,7 @@ object fuse:825 {
      phases AN; 
      from R1-12-47-4_node_30; 
      to R1-12-47-4_node_260; 
-     current_limit 40; 
+     current_limit 50000;// 40; 
      status CLOSED; 
 } 
 
@@ -217,7 +217,7 @@ object fuse:826 {
      phases CN; 
      from R1-12-47-4_node_30; 
      to R1-12-47-4_node_268; 
-     current_limit 40; 
+     current_limit 50000;// 40; 
      status CLOSED; 
 } 
 
@@ -226,7 +226,7 @@ object fuse:827 {
      phases ABCN; 
      from R1-12-47-4_node_30; 
      to R1-12-47-4_node_274; 
-     current_limit 40; 
+     current_limit 50000;// 40; 
      status CLOSED; 
 } 
 
@@ -235,7 +235,7 @@ object fuse:828 {
      phases ABCN; 
      from R1-12-47-4_node_56; 
      to R1-12-47-4_node_276; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -244,7 +244,7 @@ object fuse:829 {
      phases ABCN; 
      from R1-12-47-4_node_58; 
      to R1-12-47-4_node_195; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -253,7 +253,7 @@ object fuse:830 {
      phases ABCN; 
      from R1-12-47-4_node_84; 
      to R1-12-47-4_node_196; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -262,7 +262,7 @@ object fuse:831 {
      phases ABCN; 
      from R1-12-47-4_node_87; 
      to R1-12-47-4_node_197; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -271,7 +271,7 @@ object fuse:832 {
      phases ABCN; 
      from R1-12-47-4_node_91; 
      to R1-12-47-4_node_198; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -280,7 +280,7 @@ object fuse:833 {
      phases ABCN; 
      from R1-12-47-4_node_93; 
      to R1-12-47-4_node_199; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -289,7 +289,7 @@ object fuse:834 {
      phases ABCN; 
      from R1-12-47-4_node_170; 
      to R1-12-47-4_node_73; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -298,7 +298,7 @@ object fuse:835 {
      phases ABCN; 
      from R1-12-47-4_node_175; 
      to R1-12-47-4_node_74; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -307,7 +307,7 @@ object fuse:836 {
      phases ABCN; 
      from R1-12-47-4_node_176; 
      to R1-12-47-4_node_77; 
-     current_limit 90; 
+     current_limit 50000;// 90; 
      status CLOSED; 
 } 
 
@@ -316,7 +316,7 @@ object fuse:837 {
      phases ABCN; 
      from R1-12-47-4_node_181; 
      to R1-12-47-4_node_76; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -325,7 +325,7 @@ object fuse:838 {
      phases ABCN; 
      from R1-12-47-4_node_120; 
      to R1-12-47-4_node_224; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -334,7 +334,7 @@ object fuse:839 {
      phases ABCN; 
      from R1-12-47-4_node_140; 
      to R1-12-47-4_node_225; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -343,7 +343,7 @@ object fuse:840 {
      phases ABCN; 
      from R1-12-47-4_node_144; 
      to R1-12-47-4_node_226; 
-     current_limit 8; 
+     current_limit 50000;// 8; 
      status CLOSED; 
 } 
 
@@ -352,7 +352,7 @@ object fuse:841 {
      phases ABCN; 
      from R1-12-47-4_node_111; 
      to R1-12-47-4_node_227; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -361,7 +361,7 @@ object fuse:842 {
      phases ABCN; 
      from R1-12-47-4_node_113; 
      to R1-12-47-4_node_228; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -370,7 +370,7 @@ object fuse:843 {
      phases ABCN; 
      from R1-12-47-4_node_115; 
      to R1-12-47-4_node_229; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 
@@ -379,7 +379,7 @@ object fuse:844 {
      phases ABCN; 
      from R1-12-47-4_node_126; 
      to R1-12-47-4_node_230; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -388,7 +388,7 @@ object fuse:845 {
      phases ABCN; 
      from R1-12-47-4_node_204; 
      to R1-12-47-4_node_107; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -397,7 +397,7 @@ object fuse:846 {
      phases ABCN; 
      from R1-12-47-4_node_209; 
      to R1-12-47-4_node_106; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -406,7 +406,7 @@ object fuse:847 {
      phases ABCN; 
      from R1-12-47-4_node_153; 
      to R1-12-47-4_node_237; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -415,7 +415,7 @@ object fuse:848 {
      phases ABCN; 
      from R1-12-47-4_node_101; 
      to R1-12-47-4_node_235; 
-     current_limit 65; 
+     current_limit 50000;// 65; 
      status CLOSED; 
 } 
 
@@ -424,7 +424,7 @@ object fuse:849 {
      phases ABCN; 
      from R1-12-47-4_node_157; 
      to R1-12-47-4_node_247; 
-     current_limit 8; 
+     current_limit 50000;// 8; 
      status CLOSED; 
 } 
 
@@ -433,7 +433,7 @@ object fuse:850 {
      phases ABCN; 
      from R1-12-47-4_node_159; 
      to R1-12-47-4_node_248; 
-     current_limit 3; 
+     current_limit 50000;// 3; 
      status CLOSED; 
 } 
 
@@ -442,7 +442,7 @@ object fuse:851 {
      phases ABCN; 
      from R1-12-47-4_node_162; 
      to R1-12-47-4_node_249; 
-     current_limit 15; 
+     current_limit 50000;// 15; 
      status CLOSED; 
 } 
 
@@ -451,7 +451,7 @@ object fuse:852 {
      phases ABCN; 
      from R1-12-47-4_node_164; 
      to R1-12-47-4_node_250; 
-     current_limit 25; 
+     current_limit 50000;// 25; 
      status CLOSED; 
 } 
 

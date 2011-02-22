@@ -64,7 +64,7 @@ object fuse:64 {
      phases ABCN; 
      from GC-12-47-1_node_11; 
      to GC-12-47-1_node_12; 
-     current_limit 750; 
+     current_limit 50000;// 750; 
      status CLOSED; 
 } 
 
@@ -73,7 +73,7 @@ object fuse:65 {
      phases ABCN; 
      from GC-12-47-1_node_16; 
      to GC-12-47-1_node_15; 
-     current_limit 750; 
+     current_limit 50000;// 750; 
      status CLOSED; 
 } 
 
@@ -82,7 +82,7 @@ object fuse:66 {
      phases ABCN; 
      from GC-12-47-1_node_16; 
      to GC-12-47-1_node_17; 
-     current_limit 750; 
+     current_limit 50000;// 750; 
      status CLOSED; 
 } 
 
