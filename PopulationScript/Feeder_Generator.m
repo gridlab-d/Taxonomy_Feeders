@@ -1,13 +1,13 @@
 clear;
 clc;
 
-% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'GC-12.47-1.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+%taxonomy_files = {'GC-12.47-1.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,14 +15,14 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
+    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
+    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
     
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1353,15 +1353,10 @@ for tax_ind=1:no_of_tax
                     end
                 end
 
-                if (2000>floor_area > 1500)
-                    fprintf(write_file,'     breaker_amps 600;\n');
-                    fprintf(write_file,'     hvac_breaker_rating 600;\n');
-                elseif (2500>floor_area > 2000)
-                    fprintf(write_file,'     breaker_amps 800;\n');
-                    fprintf(write_file,'     hvac_breaker_rating 800;\n');
-                elseif (floor_area > 2500)
+                if (floor_area > 1500)
                     fprintf(write_file,'     breaker_amps 1000;\n');
                     fprintf(write_file,'     hvac_breaker_rating 1000;\n');
+
                 end
 
                     % choose a cooling & heating schedule
