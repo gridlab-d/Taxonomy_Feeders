@@ -18,6 +18,7 @@ if data.tech_flag == 0
     data.measure_regulators = 0;
     data.include_stats = 1;
     data.measure_market = 0;
+    data.meter_consumption = 1;
    
 % CVR
 elseif data.tech_flag == 1
@@ -148,6 +149,7 @@ elseif (use_flags.use_commercial == 1)
     data.c_ifrac = 0.3;
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
 end
+meter_power_consumption = 5; % Power Consumption of the meter in watts
 
 %% VVC parameters
 if (use_flags.use_vvc == 1)
@@ -210,4 +212,7 @@ end
     data.commercial_skew_max = 5400;
     
     data.tech_number = data.tech_flag;
+    
+
+
 end

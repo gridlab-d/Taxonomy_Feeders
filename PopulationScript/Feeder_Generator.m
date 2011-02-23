@@ -62,7 +62,7 @@ for tax_ind=1:no_of_tax
 
     % Commercial Buildings - FINISHED
     % these may be used to represent large 3-ph loads as ziploads (0) or buildings (1)
-    use_flags.use_commercial = 0; 
+    use_flags.use_commercial = 1; 
 
     % VVC? - NOT FINISHED
     use_flags.use_vvc = 0; % 0 = NONE, 1 = TRUE
@@ -1837,6 +1837,7 @@ for tax_ind=1:no_of_tax
 
                     fprintf(write_file,'object meter {\n');            
                     fprintf(write_file,'     phases %s\n',load_houses{1,5}{iii});
+                    fprintf(write_file,'     meter_power_consumption %d W;\n',meter_power_consumption);
                     fprintf(write_file,'     name %s_office_meter%.0f;\n',my_name,jjj);
                     fprintf(write_file,'     groupid Commercial_Meter;\n');
                     fprintf(write_file,'     nominal_voltage %f;\n',taxonomy_data.nom_volt2);

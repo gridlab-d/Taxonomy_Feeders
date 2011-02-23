@@ -58,21 +58,21 @@ end
 % thermal properties for each level
 %   {sf/apart/mh,level}(R-ceil,R-wall,R-floor,window layers,window glass, glazing treatment, window frame, R-door, Air infiltration, COP high, COP low)
 %   Single family homes
-thermal_properties{1,1} =  [11.0,  4.0,  4.0, 1, 1, 1, 1,   3, 1.5, 2.8, 1.9];
-thermal_properties{1,2} =  [19.0, 11.0,  4.0, 2, 1, 1, 1,   3, 1.5, 3.0, 2.0];
-thermal_properties{1,3} =  [19.0, 11.0, 11.0, 2, 1, 1, 1,   3, 1.0, 3.2, 2.1];
-thermal_properties{1,4} =  [30.0, 11.0, 19.0, 2, 1, 1, 2,   3, 1.0, 3.4, 2.2];
-thermal_properties{1,5} =  [30.0, 19.0, 20.0, 2, 1, 1, 2,   3, 1.0, 3.6, 2.3];
-thermal_properties{1,6} =  [30.0, 19.0, 22.0, 2, 2, 1, 2,   5, 0.5, 3.8, 2.4];
-thermal_properties{1,7} =  [48.0, 22.0, 30.0, 3, 2, 2, 4,  11, 0.5, 4.0, 2.5];
+thermal_properties{1,1} =  [11.0,  4.0,  4.0, 1, 1, 1, 1,   3, .75, 2.8, 1.9];
+thermal_properties{1,2} =  [19.0, 11.0,  4.0, 2, 1, 1, 1,   3, .75, 3.0, 2.0];
+thermal_properties{1,3} =  [19.0, 11.0, 11.0, 2, 1, 1, 1,   3, .5, 3.2, 2.1];
+thermal_properties{1,4} =  [30.0, 11.0, 19.0, 2, 1, 1, 2,   3, .5, 3.4, 2.2];
+thermal_properties{1,5} =  [30.0, 19.0, 20.0, 2, 1, 1, 2,   3, .5, 3.6, 2.3];
+thermal_properties{1,6} =  [30.0, 19.0, 22.0, 2, 2, 1, 2,   5, 0.25, 3.8, 2.4];
+thermal_properties{1,7} =  [48.0, 22.0, 30.0, 3, 2, 2, 4,  11, 0.25, 4.0, 2.5];
 %   Apartments
-thermal_properties{2,1} =  [13.4, 11.7,  9.4, 1, 1, 1, 1, 2.2, 1.5, 2.8, 1.9];
-thermal_properties{2,2} =  [20.3, 11.7, 12.7, 2, 1, 2, 2, 2.7, 0.5, 3.0, 2.0];
-thermal_properties{2,3} =  [28.7, 14.3, 12.7, 2, 2, 3, 4, 6.3, .25, 3.2, 2.1];
+thermal_properties{2,1} =  [13.4, 11.7,  9.4, 1, 1, 1, 1, 2.2, .75, 2.8, 1.9];
+thermal_properties{2,2} =  [20.3, 11.7, 12.7, 2, 1, 2, 2, 2.7, 0.25, 3.0, 2.0];
+thermal_properties{2,3} =  [28.7, 14.3, 12.7, 2, 2, 3, 4, 6.3, .125, 3.2, 2.1];
 %   Mobile Homes
 thermal_properties{3,1} =  [   0,    0,    0, 0, 0, 0, 0,   0,   0,   0,   0];
-thermal_properties{3,2} =  [13.4,  9.2, 11.7, 1, 1, 1, 1, 2.2, 1.5, 2.8, 1.9];
-thermal_properties{3,3} =  [24.1, 11.7, 18.1, 2, 2, 1, 2,   3, 1.5, 3.5, 2.2];
+thermal_properties{3,2} =  [13.4,  9.2, 11.7, 1, 1, 1, 1, 2.2, .75, 2.8, 1.9];
+thermal_properties{3,3} =  [24.1, 11.7, 18.1, 2, 2, 1, 2,   3, .75, 3.5, 2.2];
 
 %   Average floor areas for each type and region
 floor_area{1} = [2209,820,1054];
