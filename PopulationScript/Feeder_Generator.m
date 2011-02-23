@@ -1,13 +1,13 @@
 clear;
 clc;
 
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R1-12.47-3.glm'};
+% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,14 +15,14 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
+    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
+    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1161,13 +1161,13 @@ for tax_ind=1:no_of_tax
                     house_no_S = house_no_S + 1;
 
                     total_houses = total_houses + no_of_houses;
-                    fprintf(write_file,'     groupid Residential_Meter;\n');
-                    fprintf(write_file,'     meter_power_consumption %.1f W;\n',tech_data.res_meter_cons);
+                    fprintf(write_file,'      groupid Residential_Meter;\n');
+                    fprintf(write_file,'      meter_power_consumption %.1f W;\n',tech_data.res_meter_cons);
                     if (use_flags.use_billing == 1) %Fixed price
-                        fprintf(write_file,'     bill_mode UNIFORM;\n');
-                        fprintf(write_file,'     price %.5f;\n',tech_data.flat_price(region));
-                        fprintf(write_file,'     monthly_fee %.2f;\n',tech_data.monthly_fee);
-                        fprintf(write_file,'     bill_day 1;\n');
+                        fprintf(write_file,'      bill_mode UNIFORM;\n');
+                        fprintf(write_file,'      price %.5f;\n',tech_data.flat_price(region));
+                        fprintf(write_file,'      monthly_fee %.2f;\n',tech_data.monthly_fee);
+                        fprintf(write_file,'      bill_day 1;\n');
                     elseif (use_flags.use_billing == 3) % TOU or RTP
                         %TODO
                     end
@@ -2715,7 +2715,7 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'     parent substation_transformer;\n');
     fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
     fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-    fprintf(write_file,'     property power_out_A.real,power_out_A.imag,power_out_B.real,power_out_B.imag,power_out_C.real,power_out_C.imag;\n');
+    fprintf(write_file,'     property power_out_A.real,power_out_A.imag,power_out_B.real,power_out_B.imag,power_out_C.real,power_out_C.imag,power_out.real,power_out.imag;\n');
     fprintf(write_file,'}\n\n');
 
     if (tech_data.measure_market == 1 && use_flags.use_market ~= 0)

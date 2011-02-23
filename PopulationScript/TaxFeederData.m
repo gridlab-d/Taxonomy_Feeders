@@ -16,7 +16,7 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     data.avg_house = 9000;
     
     % Determines sizing of commercial loads (bigger = less houses)
-    data.avg_commercial = 50000;
+    data.avg_commercial = 30000;
     
     % End-of-line measurements for each feeder
     data.EOL_points={'7';'7';'7'};
