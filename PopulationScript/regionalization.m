@@ -139,7 +139,7 @@ perc_res = 1 - perc_pump - perc_gas;
 perc_AC = [0.4348;0.7528;0.5259;0.9673;0.9673];
 
 % Over sizing factor of the AC units
-over_sizing_factor = [0.2;0.4;0.4;0.6;0.6];
+over_sizing_factor = [0.1;0.2;0.2;0.3;0.3];
 
 % pool pumps
 perc_poolpumps = [0.0904;0.0591;0.0818;0.0657;0.0657];
