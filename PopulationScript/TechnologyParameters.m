@@ -8,6 +8,7 @@ if data.tech_flag == 0
     use_flags.use_homes = 1;
     use_flags.use_commercial = 1;
     use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
     data.measure_losses = 0; 
     data.dump_bills = 1;
     data.collect_bills = 0;
@@ -31,7 +32,7 @@ elseif data.tech_flag == 3
     
 % TOU/CPP w/ tech
 elseif data.tech_flag == 4
-    
+    data.meter_consumption = 2;
 % TOU/CPP w/o tech
 elseif data.tech_flag == 5
     
@@ -94,6 +95,13 @@ if (use_flags.use_homes == 1)
 
     % waterheaters 1 = yes, 0 = no
     data.use_wh = 1; 
+    if (data.meter_consumption == 1)
+        data.res_meter_cons = 5; % Electromechanical (Watts)
+    elseif (data.meter_consumption == 2)
+        data.res_meter_cons = 10;% AMI (Watts)
+    else
+        data.res_meter_cons = 0;
+    end
 end
 
 %% Battery Parameters
@@ -140,7 +148,7 @@ if (use_flags.use_commercial == 0)
     data.c_ifrac = 0.3;
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
 elseif (use_flags.use_commercial == 1)
-    % buildings -- needs work
+    % buildings
     data.cooling_COP = 3;
     data.c_z_pf = 1;
     data.c_i_pf = 1;
@@ -148,8 +156,15 @@ elseif (use_flags.use_commercial == 1)
     data.c_zfrac = 0.3;
     data.c_ifrac = 0.3;
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
+    
+    if (data.meter_consumption == 1)
+        data.comm_meter_cons = 15; % Electromechanical (Watts)
+    elseif (data.meter_consumption == 2)
+        data.comm_meter_cons = 30;% AMI (Watts)
+    else
+        data.comm_meter_cons = 0;
+    end
 end
-meter_power_consumption = 5; % Power Consumption of the meter in watts
 
 %% VVC parameters
 if (use_flags.use_vvc == 1)
