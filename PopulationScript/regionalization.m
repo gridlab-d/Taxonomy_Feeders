@@ -58,13 +58,13 @@ end
 % thermal properties for each level
 %   {sf/apart/mh,level}(R-ceil,R-wall,R-floor,window layers,window glass, glazing treatment, window frame, R-door, Air infiltration, COP high, COP low)
 %   Single family homes
-thermal_properties{1,1} =  [11.0,  4.0,  4.0, 1, 1, 1, 1,   3, .75, 2.8, 1.9];
-thermal_properties{1,2} =  [19.0, 11.0,  4.0, 2, 1, 1, 1,   3, .75, 3.0, 2.0];
-thermal_properties{1,3} =  [19.0, 11.0, 11.0, 2, 1, 1, 1,   3, .5, 3.2, 2.1];
-thermal_properties{1,4} =  [30.0, 11.0, 19.0, 2, 1, 1, 2,   3, .5, 3.4, 2.2];
-thermal_properties{1,5} =  [30.0, 19.0, 20.0, 2, 1, 1, 2,   3, .5, 3.6, 2.3];
-thermal_properties{1,6} =  [30.0, 19.0, 22.0, 2, 2, 1, 2,   5, 0.25, 3.8, 2.4];
-thermal_properties{1,7} =  [48.0, 22.0, 30.0, 3, 2, 2, 4,  11, 0.25, 4.0, 2.5];
+thermal_properties{1,1} =  [16.0, 10.0, 10.0, 1, 1, 1, 1,   3,  .75, 2.8, 2.4];
+thermal_properties{1,2} =  [19.0, 11.0, 12.0, 2, 1, 1, 1,   3,  .75, 3.0, 2.5];
+thermal_properties{1,3} =  [19.0, 14.0, 16.0, 2, 1, 1, 1,   3,   .5, 3.2, 2.6];
+thermal_properties{1,4} =  [30.0, 17.0, 19.0, 2, 1, 1, 2,   3,   .5, 3.4, 2.8];
+thermal_properties{1,5} =  [34.0, 19.0, 20.0, 2, 1, 1, 2,   3,   .5, 3.6, 3.0];
+thermal_properties{1,6} =  [36.0, 22.0, 22.0, 2, 2, 1, 2,   5, 0.25, 3.8, 3.0];
+thermal_properties{1,7} =  [48.0, 28.0, 30.0, 3, 2, 2, 4,  11, 0.25, 4.0, 3.0];
 %   Apartments
 thermal_properties{2,1} =  [13.4, 11.7,  9.4, 1, 1, 1, 1, 2.2, .75, 2.8, 1.9];
 thermal_properties{2,2} =  [20.3, 11.7, 12.7, 2, 1, 2, 2, 2.7, 0.25, 3.0, 2.0];
