@@ -25296,14 +25296,14 @@ object recloser:4477 {
 	 phases ABCN;
      from R2-35-00-1_node_1031; 
      to R2-35-00-1_node_597; 
-	 status CLOSED;			//Recloser status – defines initial state – Defaults to CLOSED
-	 operating_mode INDIVIDUAL;	//Defines recloser operation – BANKED mode or INDIVDIUAL phases – defaults to BANKED
-	 phase_A_state CLOSED;		//Override for phase A
-	 phase_B_state CLOSED;		//Override for phase B
-	 phase_C_state CLOSED;		//Override for phase C
-	 retry_time 1.0 s;			//Recloser retry time in seconds (unused right now)
-	 max_number_of_tries 3;		//Maximum number of tries before locking open – influenced by downstream
-	 number_of_tries 0;		//Reading variable – current number of reclosing attempts tried
+	 status CLOSED;
+	 operating_mode INDIVIDUAL;
+	 phase_A_state CLOSED;
+	 phase_B_state CLOSED;
+	 phase_C_state CLOSED;
+	 retry_time 1.0 s;
+	 max_number_of_tries 3;
+	 number_of_tries 0;
 }
 
 object recloser:4478 {
@@ -25311,14 +25311,14 @@ object recloser:4478 {
 	 phases ABCN;
      from R2-35-00-1_node_552; 
      to R2-35-00-1_node_75; 
-	 status CLOSED;			//Recloser status – defines initial state – Defaults to CLOSED
-	 operating_mode INDIVIDUAL;	//Defines recloser operation – BANKED mode or INDIVDIUAL phases – defaults to BANKED
-	 phase_A_state CLOSED;		//Override for phase A
-	 phase_B_state CLOSED;		//Override for phase B
-	 phase_C_state CLOSED;		//Override for phase C
-	 retry_time 1.0 s;			//Recloser retry time in seconds (unused right now)
-	 max_number_of_tries 3;		//Maximum number of tries before locking open – influenced by downstream
-	 number_of_tries 0;		//Reading variable – current number of reclosing attempts tried
+	 status CLOSED;
+	 operating_mode INDIVIDUAL;
+	 phase_A_state CLOSED;
+	 phase_B_state CLOSED;
+	 phase_C_state CLOSED;
+	 retry_time 1.0 s;
+	 max_number_of_tries 3;
+	 number_of_tries 0;
 }
 
 
@@ -25327,14 +25327,14 @@ object recloser:4479 {
 	 phases ABCN;
      from R2-35-00-1_node_285; 
      to R2-35-00-1_node_553; 
-	 status CLOSED;			//Recloser status – defines initial state – Defaults to CLOSED
-	 operating_mode INDIVIDUAL;	//Defines recloser operation – BANKED mode or INDIVDIUAL phases – defaults to BANKED
-	 phase_A_state CLOSED;		//Override for phase A
-	 phase_B_state CLOSED;		//Override for phase B
-	 phase_C_state CLOSED;		//Override for phase C
-	 retry_time 1.0 s;			//Recloser retry time in seconds (unused right now)
-	 max_number_of_tries 3;		//Maximum number of tries before locking open – influenced by downstream
-	 number_of_tries 0;		//Reading variable – current number of reclosing attempts tried
+	 status CLOSED;
+	 operating_mode INDIVIDUAL;
+	 phase_A_state CLOSED;
+	 phase_B_state CLOSED;
+	 phase_C_state CLOSED;
+	 retry_time 1.0 s;
+	 max_number_of_tries 3;
+	 number_of_tries 0;
 }
 
 object recloser:4480 {
@@ -25342,14 +25342,14 @@ object recloser:4480 {
 	 phases ABCN;
      from R2-35-00-1_node_554; 
      to R2-35-00-1_node_302;
-	 status CLOSED;			//Recloser status – defines initial state – Defaults to CLOSED
-	 operating_mode INDIVIDUAL;	//Defines recloser operation – BANKED mode or INDIVDIUAL phases – defaults to BANKED
-	 phase_A_state CLOSED;		//Override for phase A
-	 phase_B_state CLOSED;		//Override for phase B
-	 phase_C_state CLOSED;		//Override for phase C
-	 retry_time 1.0 s;			//Recloser retry time in seconds (unused right now)
-	 max_number_of_tries 3;		//Maximum number of tries before locking open – influenced by downstream
-	 number_of_tries 0;		//Reading variable – current number of reclosing attempts tried
+	 status CLOSED;
+	 operating_mode INDIVIDUAL;
+	 phase_A_state CLOSED;
+	 phase_B_state CLOSED;
+	 phase_C_state CLOSED;
+	 retry_time 1.0 s;
+	 max_number_of_tries 3;
+	 number_of_tries 0;
 }
 
 object recloser:4481 {
@@ -25357,14 +25357,14 @@ object recloser:4481 {
 	 phases ABCN;
      from R2-35-00-1_node_551; 
      to R2-35-00-1_node_286; 
-	 status CLOSED;			//Recloser status – defines initial state – Defaults to CLOSED
-	 operating_mode INDIVIDUAL;	//Defines recloser operation – BANKED mode or INDIVDIUAL phases – defaults to BANKED
-	 phase_A_state CLOSED;		//Override for phase A
-	 phase_B_state CLOSED;		//Override for phase B
-	 phase_C_state CLOSED;		//Override for phase C
-	 retry_time 1.0 s;			//Recloser retry time in seconds (unused right now)
-	 max_number_of_tries 3;		//Maximum number of tries before locking open – influenced by downstream
-	 number_of_tries 0;		//Reading variable – current number of reclosing attempts tried
+	 status CLOSED;
+	 operating_mode INDIVIDUAL;
+	 phase_A_state CLOSED;
+	 phase_B_state CLOSED;
+	 phase_C_state CLOSED;
+	 retry_time 1.0 s;
+	 max_number_of_tries 3;
+	 number_of_tries 0;
 }
 
 object transformer:2705 { 
