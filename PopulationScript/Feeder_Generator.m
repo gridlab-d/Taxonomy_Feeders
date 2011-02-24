@@ -1,13 +1,13 @@
 clear;
 clc;
 
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'GC-12.47-1.glm'};
+% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+taxonomy_files = {'R3-12.47-2.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,14 +15,14 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\';
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
     
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -947,29 +947,37 @@ for tax_ind=1:no_of_tax
                 no_houses_A = 0;
                 no_houses_B = 0;
                 no_houses_C = 0;
-
+                
+                load_A = 0;
+                load_B = 0;
+                load_C = 0;
+                
                 while (strcmp(char(glm_final{1}{m}),'}') == 0)
                     if (strcmp(char(glm_final{2}{m}),'constant_power_A') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        no_houses_A = no_houses_A + ceil(sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
+                        load_A = load_A + sqrt(bb_real^2 + bb_imag^2);
+                        no_houses_A = no_houses_A + ceil( sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_power_B') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        no_houses_B = no_houses_B + ceil(sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
+                        load_B = load_B + sqrt(bb_real^2 + bb_imag^2);
+                        no_houses_B = no_houses_B + ceil( sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_power_C') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        no_houses_C = no_houses_C + ceil(sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
+                        load_C = load_C + sqrt(bb_real^2 + bb_imag^2);
+                        no_houses_C = no_houses_C + ceil( sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_A') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
                         S_A = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
 
+                        load_A = load_A + S_A;
                         no_houses_A = no_houses_A + ceil(S_A / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_B') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
@@ -977,6 +985,7 @@ for tax_ind=1:no_of_tax
 
                         S_B = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
 
+                        load_B = load_B + S_B;
                         no_houses_B = no_houses_B + ceil(S_B / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_C') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
@@ -984,6 +993,7 @@ for tax_ind=1:no_of_tax
 
                         S_C = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
 
+                        load_C = load_C + S_C;
                         no_houses_C = no_houses_C + ceil(S_C / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_current_A') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
@@ -991,6 +1001,7 @@ for tax_ind=1:no_of_tax
 
                         S_A = abs(taxonomy_data.nom_volt2 * (bb_real * 1i*bb_imag));
 
+                        load_A = load_A + S_A;
                         no_houses_A = no_houses_A + ceil(S_A / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_current_B') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
@@ -998,6 +1009,7 @@ for tax_ind=1:no_of_tax
 
                         S_B = abs(taxonomy_data.nom_volt2 * (bb_real * 1i*bb_imag));
 
+                        load_B = load_B + S_B;
                         no_houses_B = no_houses_B + ceil(S_B / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_current_C') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
@@ -1005,6 +1017,7 @@ for tax_ind=1:no_of_tax
 
                         S_C = abs(taxonomy_data.nom_volt2 * (bb_real * 1i*bb_imag));
 
+                        load_C = load_C + S_C;
                         no_houses_C = no_houses_C + ceil(S_C / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'name') ~= 0)
                         parent_name = char(glm_final{3}{m});
@@ -1015,6 +1028,7 @@ for tax_ind=1:no_of_tax
                     elseif (strcmp(char(glm_final{2}{m}),'nominal_voltage') ~= 0)
                         fprintf(write_file,'      nominal_voltage %.2f;\n',taxonomy_data.nom_volt2);
                     elseif (strcmp(char(glm_final{2}{m}),'parent') ~= 0)
+                        my_parent = char(glm_final{3}{m});
                         fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{m}),char(glm_final{2}{m}),char(glm_final{3}{m}),char(glm_final{4}{m}),char(glm_final{5}{m}),char(glm_final{6}{m}),char(glm_final{7}{m}),char(glm_final{8}{m}));        
                     end   
 
@@ -1023,11 +1037,29 @@ for tax_ind=1:no_of_tax
                 fprintf(write_file,'}\n\n');
                 no_loads = no_loads + 1;
 
-                load_houses{1}{no_loads} = no_houses_A;
-                load_houses{2}{no_loads} = no_houses_B;
-                load_houses{3}{no_loads} = no_houses_C;
+                if (load_A < tech_data.load_cutoff)
+                    load_houses{1}{no_loads} = 0;
+                else
+                    load_houses{1}{no_loads} = no_houses_A;
+                end
+                if (load_B < tech_data.load_cutoff)
+                    load_houses{2}{no_loads} = 0;
+                else
+                    load_houses{2}{no_loads} = no_houses_B;
+                end
+                if (load_C < tech_data.load_cutoff)
+                    load_houses{3}{no_loads} = 0;
+                else
+                    load_houses{3}{no_loads} = no_houses_C;
+                end
+                
                 load_houses{4}{no_loads} = parent_name;
-                load_houses{5}{no_loads} = parent_phase;   
+                load_houses{5}{no_loads} = parent_phase;
+                load_houses{6}{no_loads} = load_A;
+                load_houses{7}{no_loads} = load_B;
+                load_houses{8}{no_loads} = load_C;
+                load_houses{9}{no_loads} = my_parent;
+                
             else % ZIP load commercial
                 fprintf(write_file,'\nobject load {\n');
                 m = j;
@@ -1353,11 +1385,9 @@ for tax_ind=1:no_of_tax
                     end
                 end
 
-                if (floor_area > 1500)
+
                     fprintf(write_file,'     breaker_amps 1000;\n');
                     fprintf(write_file,'     hvac_breaker_rating 1000;\n');
-
-                end
 
                     % choose a cooling & heating schedule
                     cooling_set = ceil(regional_data.no_cool_sch*rand(1));           
@@ -2331,7 +2361,7 @@ for tax_ind=1:no_of_tax
                     end %phase index      
                 end %number of big boxes
             % Strip mall
-            else
+            elseif (total_houses > 0)
                 no_of_strip = total_houses;
 
                 my_name = strrep(load_houses{1,4}{iii},';','');
@@ -2617,7 +2647,28 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'}\n\n');
                     end %number of strip zones
                 end %phase index
-            end %commercial selection     
+            end %commercial selection
+            
+            % add the "street light" loads
+            for phind = 1:3
+                if (load_houses{1,phind}{iii} == 0 && load_houses{1,phind+5}{iii} > 0)    
+                    
+                    fprintf(write_file,'object load {\n');
+                    fprintf(write_file,'     parent %s\n',load_houses{1,9}{iii});
+                    fprintf(write_file,'     name str_light_%s%s\n',my_phases{phind},load_houses{1,4}{iii});
+                    fprintf(write_file,'     nominal_voltage %.2f;\n',taxonomy_data.nom_volt2);
+                    fprintf(write_file,'     phases %s;\n',my_phases{phind});
+                    fprintf(write_file,'     base_power_%s %f;\n',my_phases{phind},load_houses{1,phind+5}{iii} / 1000);
+                    fprintf(write_file,'     power_pf_%s %f;\n',my_phases{phind},tech_data.c_p_pf);
+                    fprintf(write_file,'     current_pf_%s %f;\n',my_phases{phind},tech_data.c_i_pf);
+                    fprintf(write_file,'     impedance_pf_%s %f;\n',my_phases{phind},tech_data.c_z_pf);
+                    fprintf(write_file,'     power_fraction_%s %f;\n',my_phases{phind},tech_data.c_pfrac);
+                    fprintf(write_file,'     current_fraction_%s %f;\n',my_phases{phind},tech_data.c_ifrac);
+                    fprintf(write_file,'     impedance_fraction_%s %f;\n',my_phases{phind},tech_data.c_zfrac);
+                    fprintf(write_file,'}\n\n');
+                    
+                end
+            end
         end
     end
 
@@ -2995,11 +3046,11 @@ for tax_ind=1:no_of_tax
         end
     end
     disp(['Back off man, I am done with ',filename,' case ',num2str(tax_ind),' of ',num2str(no_of_tax)]);
-    clear test;
-    clear config;
-    clear config_final;
-    clear phase_S_houses;
-    clear load_houses;
+%     clear test;
+%     clear config;
+%     clear config_final;
+%     clear phase_S_houses;
+%     clear load_houses;
     fclose('all');
 end
 

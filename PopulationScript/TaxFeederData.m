@@ -102,7 +102,7 @@ elseif (strcmp(file_to_extract,'R3-12.47-2.glm')~=0)
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*4.3; 
     data.avg_house = 18000;%14000;
-    data.avg_commercial = 50000;
+    data.avg_commercial = 100000;
     data.EOL_points={'36';'36';'36'};
     % 0 residential, 57 commercial, 5 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)

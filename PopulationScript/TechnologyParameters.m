@@ -164,6 +164,9 @@ elseif (use_flags.use_commercial == 1)
     else
         data.comm_meter_cons = 0;
     end
+    
+    % VA cutoff - loads below this value per phase are made into "light" loads
+    data.load_cutoff = 5000; 
 end
 
 %% VVC parameters
