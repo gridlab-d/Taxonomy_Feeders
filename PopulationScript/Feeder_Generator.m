@@ -7,23 +7,23 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R2-12.47-1.glm'};
-taxonomy_files = {'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
+taxonomy_files = {'R4-12.47-1.glm';'R5-12.47-1.glm'};
+%taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\';
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
-    
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
+
     %% Get the region - this will only work with the taxonomy feeders
     
     token = strtok(file_to_extract,'-');
@@ -1179,7 +1179,11 @@ for tax_ind=1:no_of_tax
                 bb_imag = imag(str2num(glm_final{3}{j}));
 
                 bb = sqrt(bb_real^2 + bb_imag^2);
-                no_of_houses = ceil(bb/taxonomy_data.avg_house);
+                % round to single decimal place
+                no_of_houses = round(bb/taxonomy_data.avg_house);
+                % determine whether we rounded down or up to help determine
+                % the square footage (neg. # => small homes)
+                lg_vs_sm = roundn(bb/taxonomy_data.avg_house,-1) - no_of_houses;
 
                 if (no_of_houses > 0)
                     parent = named_object;
@@ -1190,6 +1194,7 @@ for tax_ind=1:no_of_tax
                     phase_S_houses{house_no_S,1} = num2str(no_of_houses);
                     phase_S_houses{house_no_S,2} = parent;
                     phase_S_houses{house_no_S,3} = phase;
+                    phase_S_houses{house_no_S,4} = num2str(lg_vs_sm);
                     house_no_S = house_no_S + 1;
 
                     total_houses = total_houses + no_of_houses;
@@ -1241,6 +1246,7 @@ for tax_ind=1:no_of_tax
             parent = char(phase_S_houses(jj,2));
             no_houses = str2num(char(phase_S_houses(jj,1)));
             phase = char(phase_S_houses(jj,3));
+            lg_v_sm = str2num(char(phase_S_houses(jj,4)));
 
             for kk=1:no_houses
                 fprintf(write_file,'object house {\n');
@@ -1300,8 +1306,9 @@ for tax_ind=1:no_of_tax
                     f_area = regional_data.floor_area(row_ti);
                     story_rand = rand(1);
                     height_rand = randi(2);
+                    fa_rand = rand(1);
                     if (col_ti == 1) % SF homes
-                        floor_area = f_area + (f_area/2) * rand(1) * (row_ti - 4)/3;
+                        floor_area = f_area + (f_area/2) * fa_rand * (row_ti - 4)/3;
                         if (story_rand < regional_data.one_story(region))
                             stories = 1;
                         else
@@ -1309,10 +1316,22 @@ for tax_ind=1:no_of_tax
                         end
 
                     else
-                        floor_area = f_area + (f_area/2) * (0.5 - rand(1)); %+/- 50%
+                        floor_area = f_area + (f_area/2) * (0.5 - fa_rand); %+/- 50%
                         stories = 1;
                         height_rand = 0;
                     end
+                    
+                    % Now also adjust square footage as a factor of whether
+                    % the load modifier (avg_house) rounded up or down
+                    floor_area = (1 + lg_v_sm) * floor_area;
+                    
+                    if (floor_area > 4000)
+                        floor_area = 3800 + fa_rand*200;
+                    elseif (floor_area < 300)
+                        floor_area = 300 + fa_rand*100;
+                    end
+                       
+                    
                 fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                 fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
                     ceiling_height = 8 + height_rand;
