@@ -1183,7 +1183,7 @@ for tax_ind=1:no_of_tax
                 no_of_houses = round(bb/taxonomy_data.avg_house);
                 % determine whether we rounded down or up to help determine
                 % the square footage (neg. # => small homes)
-                lg_vs_sm = bb/taxonomy_data.avg_house,-1 - no_of_houses;
+                lg_vs_sm = bb/taxonomy_data.avg_house - no_of_houses;
 
                 if (no_of_houses > 0)
                     parent = named_object;
