@@ -1223,7 +1223,7 @@ for tax_ind=1:no_of_tax
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
     RandStream.setDefaultStream(s2);
-
+count_house = 1;
     % Phase S - residential homes
     if (use_flags.use_homes == 1 && total_houses ~= 0)
         [aS,bS] = size(phase_S_houses);
@@ -1331,6 +1331,8 @@ for tax_ind=1:no_of_tax
                         floor_area = 300 + fa_rand*100;
                     end
                        
+                    fl_area(count_house) = floor_area;
+                    count_house = count_house + 1;
                     
                 fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                 fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
@@ -1679,6 +1681,8 @@ for tax_ind=1:no_of_tax
         end
     end
 
+
+    disp(['Mean floor area = ',num2str(mean(fl_area))]);
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
@@ -2775,6 +2779,68 @@ for tax_ind=1:no_of_tax
     % (s1-s6)
     RandStream.setDefaultStream(s6);
 
+    
+    % if you want to create and emissions object
+    if (use_flags.use_emissions ~= 0)
+        % Add emissions object
+        fprintf(write_file,'object emissions {\n');
+        fprintf(write_file,'     name emissionsobject1;\n');
+        fprintf(write_file,'     parent network_node;\n');
+        fprintf(write_file,'     Region %d;\n',region);
+        fprintf(write_file,'     Naturalgas_Max_Out 2222.79 kWh; 		// Naturalgas_Max_Out\n');
+        fprintf(write_file,'     Coal_Max_Out 45.08 kWh; 			// Coal_Max_Out\n');
+        fprintf(write_file,'     Biomass_Max_Out 37.93 kWh; 			// Biomass_Max_Out\n');
+        fprintf(write_file,'     Geothermal_Max_Out 258.09 kWh; 			// Geothermal_Max_Out\n');
+        fprintf(write_file,'     Hydroelectric_Max_Out 238.15 kWh; 		// Hydroelectric_Max_Out\n');
+        fprintf(write_file,'     Nuclear_Max_Out 543.01 kWh; 			// Nuclear_Max_Out\n');
+        fprintf(write_file,'     Wind_Max_Out 35.24 kWh; 			// Wind_Max_Out\n');
+        fprintf(write_file,'     Petroleum_Max_Out 32.83 kWh; 			// Petroleum_Max_Out\n');
+        fprintf(write_file,'     Solarthermal_Max_Out 0.45 kWh; 			// Solarthermal_Max_Out\n');
+        fprintf(write_file,'\n');
+        fprintf(write_file,'     Naturalgas_Conv_Eff 8.16 MBtu/MWh; 		// Naturalgas_Conv_Eff\n');
+        fprintf(write_file,'     Coal_Conv_Eff 10.41 MBtu/MWh; 			// Coal_Conv_Eff\n');
+        fprintf(write_file,'     Biomass_Conv_Eff 12.93 MBtu/MWh; 		// Biomass_Conv_Eff\n');
+        fprintf(write_file,'     Geothermal_Conv_Eff 21.02 MBtu/MWh; 		// Geothermal_Conv_Eff\n');
+        fprintf(write_file,'     Hydroelectric_Conv_Eff 0 MBtu/MWh; 		// Hydroelectric_Conv_Eff\n');
+        fprintf(write_file,'     Nuclear_Conv_Eff 10.46 MBtu/MWh; 		// Nuclear_Conv_Eff\n');
+        fprintf(write_file,'     Wind_Conv_Eff 0 MBtu/MWh; 			// Wind_Conv_Eff\n');
+        fprintf(write_file,'     Petroleum_Conv_Eff 11.00 MBtu/MWh; 		// Petroleum_Conv_Eff\n');
+        fprintf(write_file,'     Solarthermal_Conv_Eff 0 MBtu/MWh; 		// Solarthermal_Conv_Eff\n');
+        fprintf(write_file,'\n');
+        fprintf(write_file,'     Naturalgas_CO2 117.08 lb/MBtu; 			// Naturalgas_CO2\n');
+        fprintf(write_file,'     Coal_CO2 205.573 lb/MBtu; 			// Coal_CO2\n');	
+        fprintf(write_file,'     Biomass_CO2 195 lb/MBtu;				// Biomass_CO2\n');
+        fprintf(write_file,'     Geothermal_CO2 120 lb/MBtu;			// Geothermal_CO2\n');
+        fprintf(write_file,'     Hydroelectric_CO2 0 lb/MBtu; 			// Hydroelectric_CO2\n');
+        fprintf(write_file,'     Nuclear_CO2 0 lb/MBtu; 				// Nuclear_CO2\n');
+        fprintf(write_file,'     Wind_CO2 0 lb/MBtu; 				// Wind_CO2\n');
+        fprintf(write_file,'     Petroleum_CO2 225.13 lb/MBtu; 			// Petroleum_CO2\n');
+        fprintf(write_file,'     Solarthermal_CO2 0 lb/MBtu; 			// Solarthermal_CO2\n');
+        fprintf(write_file,'     \n');
+        fprintf(write_file,'     Naturalgas_SO2 0.001 lb/MBtu; 			// Naturalgas_SO2\n');
+        fprintf(write_file,'     Coal_SO2 0.1 lb/MBtu; 				// Coal_SO2\n');
+        fprintf(write_file,'     Biomass_SO2 0 lb/MBtu; 				// Biomass_SO2\n');
+        fprintf(write_file,'     Geothermal_SO2 0.2 lb/MBtu; 			// Geothermal_SO2\n');
+        fprintf(write_file,'     Hydroelectric_SO2 0 lb/MBtu; 			// Hydroelectric_SO2\n');
+        fprintf(write_file,'     Nuclear_SO2 0 lb/MBtu; 				// Nuclear_SO2\n');
+        fprintf(write_file,'     Wind_SO2 0 lb/MBtu; 		    		// Wind_SO2\n');
+        fprintf(write_file,'     Petroleum_SO2 0.1 lb/MBtu; 			// Petroleum_SO2\n');
+        fprintf(write_file,'     Solarthermal_SO2 0 lb/MBtu; 			// Solarthermal_SO2\n');
+        fprintf(write_file,'     \n');
+        fprintf(write_file,'     Naturalgas_NOx 0.0075 lb/MBtu; 			// Naturalgas_NOx\n');
+        fprintf(write_file,'     Coal_NOx 0.06 lb/MBtu; 				// Coal_NOx\n');
+        fprintf(write_file,'     Biomass_NOx 0.08 lb/MBtu; 			// Biomass_NOx\n');
+        fprintf(write_file,'     Geothermal_NOx 0 lb/MBtu; 			// Geothermal_NOx\n');
+        fprintf(write_file,'     Hydroelectric_NOx 0 lb/MBtu; 			// Hydroelectric_NOx\n');
+        fprintf(write_file,'     Nuclear_NOx 0 lb/MBtu; 				// Nuclear_NOx\n');
+        fprintf(write_file,'     Wind_NOx 0 lb/MBtu; 				// Wind_NOx\n');
+        fprintf(write_file,'     Petroleum_NOx 0.04 lb/MBtu; 			// Petroleum_NOx\n');
+        fprintf(write_file,'     Solarthermal_NOx 0 lb/MBtu; 			// Solarthermal_NOx\n');
+        fprintf(write_file,'     \n');
+        fprintf(write_file,'     cycle_interval 15 min;\n');
+        fprintf(write_file,'}\n');
+        fprintf(write_file,'\n');
+    end
     %% Recorders, collectors, etc.
     fprintf(write_file,'object recorder {\n');
     fprintf(write_file,'     file %s_transformer_power.csv;\n',tech_file);
@@ -2904,71 +2970,7 @@ for tax_ind=1:no_of_tax
     %     fprintf(write_file,'};\n');
     end
 
-    % TODO: add emissions.csv
-    
-    if (use_flags.use_emissions ~= 0)
-        % Add emissions object
-        fprintf(write_file,'object emissions {\n');
-        fprintf(write_file,'     name emissionsobject1;\n');
-        fprintf(write_file,'     parent network_node;\n');
-        fprintf(write_file,'     Region %d;\n',region);
-        fprintf(write_file,'     Naturalgas_Max_Out 2222.79 kWh; 		// Naturalgas_Max_Out\n');
-        fprintf(write_file,'     Coal_Max_Out 45.08 kWh; 			// Coal_Max_Out\n');
-        fprintf(write_file,'     Biomass_Max_Out 37.93 kWh; 			// Biomass_Max_Out\n');
-        fprintf(write_file,'     Geothermal_Max_Out 258.09 kWh; 			// Geothermal_Max_Out\n');
-        fprintf(write_file,'     Hydroelectric_Max_Out 238.15 kWh; 		// Hydroelectric_Max_Out\n');
-        fprintf(write_file,'     Nuclear_Max_Out 543.01 kWh; 			// Nuclear_Max_Out\n');
-        fprintf(write_file,'     Wind_Max_Out 35.24 kWh; 			// Wind_Max_Out\n');
-        fprintf(write_file,'     Petroleum_Max_Out 32.83 kWh; 			// Petroleum_Max_Out\n');
-        fprintf(write_file,'     Solarthermal_Max_Out 0.45 kWh; 			// Solarthermal_Max_Out\n');
-        fprintf(write_file,'\n');
-        fprintf(write_file,'     Naturalgas_Conv_Eff 8.16 MBtu/MWh; 		// Naturalgas_Conv_Eff\n');
-        fprintf(write_file,'     Coal_Conv_Eff 10.41 MBtu/MWh; 			// Coal_Conv_Eff\n');
-        fprintf(write_file,'     Biomass_Conv_Eff 12.93 MBtu/MWh; 		// Biomass_Conv_Eff\n');
-        fprintf(write_file,'     Geothermal_Conv_Eff 21.02 MBtu/MWh; 		// Geothermal_Conv_Eff\n');
-        fprintf(write_file,'     Hydroelectric_Conv_Eff 0 MBtu/MWh; 		// Hydroelectric_Conv_Eff\n');
-        fprintf(write_file,'     Nuclear_Conv_Eff 10.46 MBtu/MWh; 		// Nuclear_Conv_Eff\n');
-        fprintf(write_file,'     Wind_Conv_Eff 0 MBtu/MWh; 			// Wind_Conv_Eff\n');
-        fprintf(write_file,'     Petroleum_Conv_Eff 11.00 MBtu/MWh; 		// Petroleum_Conv_Eff\n');
-        fprintf(write_file,'     Solarthermal_Conv_Eff 0 MBtu/MWh; 		// Solarthermal_Conv_Eff\n');
-        fprintf(write_file,'\n');
-        fprintf(write_file,'     Naturalgas_CO2 117.08 lb/MBtu; 			// Naturalgas_CO2\n');
-        fprintf(write_file,'     Coal_CO2 205.573 lb/MBtu; 			// Coal_CO2\n');	
-        fprintf(write_file,'     Biomass_CO2 195 lb/MBtu;				// Biomass_CO2\n');
-        fprintf(write_file,'     Geothermal_CO2 120 lb/MBtu;			// Geothermal_CO2\n');
-        fprintf(write_file,'     Hydroelectric_CO2 0 lb/MBtu; 			// Hydroelectric_CO2\n');
-        fprintf(write_file,'     Nuclear_CO2 0 lb/MBtu; 				// Nuclear_CO2\n');
-        fprintf(write_file,'     Wind_CO2 0 lb/MBtu; 				// Wind_CO2\n');
-        fprintf(write_file,'     Petroleum_CO2 225.13 lb/MBtu; 			// Petroleum_CO2\n');
-        fprintf(write_file,'     Solarthermal_CO2 0 lb/MBtu; 			// Solarthermal_CO2\n');
-        fprintf(write_file,'     \n');
-        fprintf(write_file,'     Naturalgas_SO2 0.001 lb/MBtu; 			// Naturalgas_SO2\n');
-        fprintf(write_file,'     Coal_SO2 0.1 lb/MBtu; 				// Coal_SO2\n');
-        fprintf(write_file,'     Biomass_SO2 0 lb/MBtu; 				// Biomass_SO2\n');
-        fprintf(write_file,'     Geothermal_SO2 0.2 lb/MBtu; 			// Geothermal_SO2\n');
-        fprintf(write_file,'     Hydroelectric_SO2 0 lb/MBtu; 			// Hydroelectric_SO2\n');
-        fprintf(write_file,'     Nuclear_SO2 0 lb/MBtu; 				// Nuclear_SO2\n');
-        fprintf(write_file,'     Wind_SO2 0 lb/MBtu; 		    		// Wind_SO2\n');
-        fprintf(write_file,'     Petroleum_SO2 0.1 lb/MBtu; 			// Petroleum_SO2\n');
-        fprintf(write_file,'     Solarthermal_SO2 0 lb/MBtu; 			// Solarthermal_SO2\n');
-        fprintf(write_file,'     \n');
-        fprintf(write_file,'     Naturalgas_NOx 0.0075 lb/MBtu; 			// Naturalgas_NOx\n');
-        fprintf(write_file,'     Coal_NOx 0.06 lb/MBtu; 				// Coal_NOx\n');
-        fprintf(write_file,'     Biomass_NOx 0.08 lb/MBtu; 			// Biomass_NOx\n');
-        fprintf(write_file,'     Geothermal_NOx 0 lb/MBtu; 			// Geothermal_NOx\n');
-        fprintf(write_file,'     Hydroelectric_NOx 0 lb/MBtu; 			// Hydroelectric_NOx\n');
-        fprintf(write_file,'     Nuclear_NOx 0 lb/MBtu; 				// Nuclear_NOx\n');
-        fprintf(write_file,'     Wind_NOx 0 lb/MBtu; 				// Wind_NOx\n');
-        fprintf(write_file,'     Petroleum_NOx 0.04 lb/MBtu; 			// Petroleum_NOx\n');
-        fprintf(write_file,'     Solarthermal_NOx 0 lb/MBtu; 			// Solarthermal_NOx\n');
-        fprintf(write_file,'     \n');
-        fprintf(write_file,'     cycle_interval 15 min;\n');
-        fprintf(write_file,'}\n');
-        fprintf(write_file,'\n');
-    end
-    
-
-    
+    % TODO: add emissions.csv   
     
     % TODO: add reliability.csv
 
