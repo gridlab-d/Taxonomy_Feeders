@@ -26,7 +26,7 @@ object regulator:1 {
      configuration feeder_reg_cfg; 
 } 
 
-//object regulator:2{ 
+//object regulator:2 { 
 //     name R5-12-47-3_reg_2; 
 //     from R5-12-47-3_node_487_2; 
 //     to R5-12-47-3_node_488; 
@@ -34,7 +34,7 @@ object regulator:1 {
 //     configuration voltage_reg1_cfg; 
 //} 
 
-object regulator:2{ 
+object regulator:2 { 
      name R5-12-47-3_reg_2; 
      from R5-12-47-3_node_294_2; 
      to R5-12-47-3_node_294; 
@@ -42,15 +42,8 @@ object regulator:2{
      configuration voltage_reg1_cfg; 
 }
 
-//object regulator:2{ 
-//     name R5-12-47-3_reg_2; 
-//     from R5-12-47-3_node_124; 
-//     to R5-12-47-3_node_124_2; 
-//     phases ABCN; 
-//     configuration voltage_reg1_cfg; 
-//}
 
-object regulator:3{ 
+object regulator:3 { 
      name R5-12-47-3_reg_3; 
      from R5-12-47-3_node_334_2; 
      to R5-12-47-3_node_1273; 
@@ -58,7 +51,7 @@ object regulator:3{
      configuration voltage_reg2_cfg;
 } 
 
-object regulator:4{ 
+object regulator:4 { 
      name R5-12-47-3_reg_4; 
      from R5-12-47-3_node_974_2; 
      to R5-12-47-3_node_974; 
