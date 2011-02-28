@@ -102,6 +102,9 @@ if (use_flags.use_homes == 1)
     else
         data.res_meter_cons = 0;
     end
+    
+    % There is no ZIP fraction assosciated with this variable
+    data.light_scalar_res = 1;
 end
 
 %% Battery Parameters
@@ -167,6 +170,9 @@ elseif (use_flags.use_commercial == 1)
     
     % VA cutoff - loads below this value per phase are made into "light" loads
     data.load_cutoff = 5000; 
+
+    % Uses commercial building ZIP fractions
+    data.light_scalar_comm = 1;
 end
 
 %% VVC parameters
@@ -194,7 +200,7 @@ end
 
 %% Solar parameters
 if (use_flags.use_solar == 1)
-    
+
 end
 
 %% PHEV parameters

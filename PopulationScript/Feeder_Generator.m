@@ -1,13 +1,13 @@
 clear;
 clc;
 
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R4-12.47-1.glm';'R5-12.47-1.glm'};
+% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+taxonomy_files = {'R5-12.47-1.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,14 +15,14 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\';
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1208,6 +1208,10 @@ for tax_ind=1:no_of_tax
                     elseif (use_flags.use_billing == 3) % TOU or RTP
                         %TODO
                     end
+                else
+                    fprintf(write_file,'      // Load was too small to convert to a house (less than 1/2 avg_house)\n');
+                    fprintf(write_file,'      power_12_real street_lighting*%.4f;\n',bb_real*tech_data.light_scalar_res);
+                    fprintf(write_file,'      power_12_reac street_lighting*%.4f;\n',bb_imag*tech_data.light_scalar_res);
                 end
             else
                 fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
@@ -1641,14 +1645,14 @@ count_house = 1;
                     no_pool_pumps = no_pool_pumps - 1;
                 end
 
-                    heat_element = 3.5 + 2*rand(1);
+                    heat_element = 3.0 + 0.5*randi(5);
                     tank_set = 120 + 16*rand(1);
                     therm_dead = 4 + 4*rand(1);
                     tank_UA = 2 + 2*rand(1);
                     water_sch = ceil(10*rand(1));
                     water_var = 0.95 + rand(1) * 0.1; % +/-5% variability
                     wh_size_test = rand(1);
-                    wh_size_rand = rand(1);
+                    wh_size_rand = randi(3);
 
                 if (heat_type > (1 - regional_data.wh_electric) && tech_data.use_wh == 1)
                     fprintf(write_file,'     object waterheater {\n');        
@@ -1659,19 +1663,27 @@ count_house = 1;
                     fprintf(write_file,'          thermostat_deadband %.1f;\n',therm_dead);
                     fprintf(write_file,'          location INSIDE;\n');                    
                     fprintf(write_file,'          tank_UA %.1f;\n',tank_UA);
+
                     if (wh_size_test < regional_data.wh_size(1))
                         fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
-                        fprintf(write_file,'          tank_volume %.0f;\n',20 + 10*wh_size_rand);
+                            whsize = 20 + (wh_size_rand-1) * 5;
+                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
                     elseif (wh_size_test < (regional_data.wh_size(1) + regional_data.wh_size(2)))
-                        if(wh_size_rand < 0.5)
+                        if(floor_area < 2000)
                             fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
                         else
                             fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
                         end
-                        fprintf(write_file,'          tank_volume %.0f;\n',31 + 18*wh_size_rand);
+                            whsize = 30 + (wh_size_rand - 1)*10;
+                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
+                    elseif (floor_area > 2000)
+                            whsize = 50 + (wh_size_rand - 1)*10;
+                        fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
+                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
                     else
                         fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
-                        fprintf(write_file,'          tank_volume %.0f;\n',50 + 20*wh_size_rand);
+                            whsize = 30 + (wh_size_rand - 1)*10;
+                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
                     end
                     fprintf(write_file,'     };\n\n');
                 end
@@ -2006,6 +2018,10 @@ count_house = 1;
                             fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
                             fprintf(write_file,'     fan_type %s;\n',fan_type);
                             fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
+                            
+                                init_temp = 68 + 4*rand(1);
+                            fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                            fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
                                 
                                 os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
                             fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
@@ -2117,7 +2133,7 @@ count_house = 1;
                     fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
                     fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                    fprintf(write_file,'     powerA_rating %.0f kVA;\n',25);
+                    fprintf(write_file,'     powerA_rating %.0f kVA;\n',50);
                     fprintf(write_file,'};\n');
                 end
 
@@ -2130,7 +2146,7 @@ count_house = 1;
                     fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
                     fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                    fprintf(write_file,'     powerB_rating %.0f kVA;\n',25);
+                    fprintf(write_file,'     powerB_rating %.0f kVA;\n',50);
                     fprintf(write_file,'};\n');
                 end
 
@@ -2143,7 +2159,7 @@ count_house = 1;
                     fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
                     fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                    fprintf(write_file,'     powerC_rating %.0f kVA;\n',25);
+                    fprintf(write_file,'     powerC_rating %.0f kVA;\n',50);
                     fprintf(write_file,'};\n');
                 end
 
@@ -2289,6 +2305,10 @@ count_house = 1;
                             fprintf(write_file,'     fan_type %s;\n',fan_type);
                             fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
                             
+                                init_temp = 68 + 4*rand(1);
+                            fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                            fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
+                            
                                 os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
                             fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
                             
@@ -2397,10 +2417,10 @@ count_house = 1;
                     fprintf(write_file,'     connect_type SINGLE_PHASE_CENTER_TAPPED;\n');
                     fprintf(write_file,'     install_type POLETOP;\n');
                     fprintf(write_file,'     impedance 0.00033+0.0022j;\n');
-                    fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
+                    fprintf(write_file,'     shunt_impedance 100000+100000j;\n');
                     fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                    fprintf(write_file,'     powerA_rating %.0f kVA;\n',10*strip_per_phase);
+                    fprintf(write_file,'     powerA_rating %.0f kVA;\n',50*strip_per_phase);
                     fprintf(write_file,'};\n');
                 end
 
@@ -2410,10 +2430,10 @@ count_house = 1;
                     fprintf(write_file,'     connect_type SINGLE_PHASE_CENTER_TAPPED;\n');
                     fprintf(write_file,'     install_type POLETOP;\n');
                     fprintf(write_file,'     impedance 0.00033+0.0022j;\n');
-                    fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
+                    fprintf(write_file,'     shunt_impedance 100000+100000j;\n');
                     fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                    fprintf(write_file,'     powerB_rating %.0f kVA;\n',10*strip_per_phase);
+                    fprintf(write_file,'     powerB_rating %.0f kVA;\n',50*strip_per_phase);
                     fprintf(write_file,'};\n');
                 end
 
@@ -2423,10 +2443,10 @@ count_house = 1;
                     fprintf(write_file,'     connect_type SINGLE_PHASE_CENTER_TAPPED;\n');
                     fprintf(write_file,'     install_type POLETOP;\n');
                     fprintf(write_file,'     impedance 0.00033+0.0022j;\n');
-                    fprintf(write_file,'     shunt_impedance 10000+10000j;\n');
+                    fprintf(write_file,'     shunt_impedance 100000+100000j;\n');
                     fprintf(write_file,'     primary_voltage %.3f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     secondary_voltage %.3f;\n',120*sqrt(3));
-                    fprintf(write_file,'     powerC_rating %.0f kVA;\n',10*strip_per_phase);
+                    fprintf(write_file,'     powerC_rating %.0f kVA;\n',50*strip_per_phase);
                     fprintf(write_file,'};\n');
                 end
 
@@ -2575,6 +2595,10 @@ count_house = 1;
                         fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
                         fprintf(write_file,'     fan_type %s;\n',fan_type);
                         fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
+                        
+                            init_temp = 68 + 4*rand(1);
+                        fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                        fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
 
                             os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
                         fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
@@ -2673,6 +2697,8 @@ count_house = 1;
             end %commercial selection
             
             % add the "street light" loads
+            % parent them to the METER as opposed to the node, so we don't
+            % have any "grandchildren"
             for phind = 1:3
                 if (load_houses{1,phind}{iii} == 0 && load_houses{1,phind+5}{iii} > 0)    
                     
@@ -2681,7 +2707,7 @@ count_house = 1;
                     fprintf(write_file,'     name str_light_%s%s\n',my_phases{phind},load_houses{1,4}{iii});
                     fprintf(write_file,'     nominal_voltage %.2f;\n',taxonomy_data.nom_volt2);
                     fprintf(write_file,'     phases %s;\n',my_phases{phind});
-                    fprintf(write_file,'     base_power_%s %f;\n',my_phases{phind},load_houses{1,phind+5}{iii} / 1000);
+                    fprintf(write_file,'     base_power_%s street_lighting*%f;\n',my_phases{phind},tech_data.light_scalar_comm*load_houses{1,phind+5}{iii});
                     fprintf(write_file,'     power_pf_%s %f;\n',my_phases{phind},tech_data.c_p_pf);
                     fprintf(write_file,'     current_pf_%s %f;\n',my_phases{phind},tech_data.c_i_pf);
                     fprintf(write_file,'     impedance_pf_%s %f;\n',my_phases{phind},tech_data.c_z_pf);
@@ -3076,3 +3102,4 @@ count_house = 1;
 end
 
 disp('So tired. All done.');
+clear;
