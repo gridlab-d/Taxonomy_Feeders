@@ -7,7 +7,7 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R4-12.47-1.glm';'R5-12.47-1.glm';'R5-12.47-3.glm'};
+taxonomy_files = {'R5-12.47-3.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,14 +15,14 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\';
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1887,7 +1887,7 @@ count_house = 1;
                     ceiling_height = 13;
                     airchange_per_hour = 0.69;
                     Rroof = 19;
-                    Rwall = 8.3;
+                    Rwall = 18.3;
                     Rfloor = 46;
                     Rdoors = 3;
                     glazing_layers = 'TWO';
@@ -2168,7 +2168,7 @@ count_house = 1;
                     ceiling_height = 14;
                     airchange_per_hour = 1.5;
                     Rroof = 19;
-                    Rwall = 8.3;
+                    Rwall = 18.3;
                     Rfloor = 46;
                     Rdoors = 3;
                     glazing_layers = 'TWO';
@@ -2475,11 +2475,11 @@ count_house = 1;
                         continue;
                     end
 
-                    floor_area_choose = 3200 * (0.7 + 0.6 * rand(1)); %+/- 20%
-                    ceiling_height = 14;
+                    floor_area_choose = 2400 * (0.7 + 0.6 * rand(1)); %+/- 30%
+                    ceiling_height = 12;
                     airchange_per_hour = 1.76;
                     Rroof = 19;
-                    Rwall = 8.3;
+                    Rwall = 18.3;
                     Rfloor = 40;
                     Rdoors = 3;
                     glazing_layers = 'TWO';
@@ -2632,7 +2632,7 @@ count_house = 1;
                         fprintf(write_file,'          current_fraction 0.0;\n');
                         fprintf(write_file,'          power_pf 1.0;\n');  
 
-                            adj_lights = 1.2 * (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                            adj_lights = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_lights*%.2f;\n',adj_lights);
                         fprintf(write_file,'     };\n\n');
 
@@ -2646,7 +2646,7 @@ count_house = 1;
                         fprintf(write_file,'          current_fraction 0.0;\n');
                         fprintf(write_file,'          power_pf 1.0;\n');  
 
-                            adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                            adj_plugs = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_plugs*%.2f;\n',adj_plugs);
                         fprintf(write_file,'     };\n\n');
 
@@ -2660,7 +2660,7 @@ count_house = 1;
                         fprintf(write_file,'          current_fraction 0.0;\n');
                         fprintf(write_file,'          power_pf 1.0;\n');  
 
-                            adj_gas = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                            adj_gas = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_gas*%.2f;\n',adj_gas);
                         fprintf(write_file,'     };\n\n');
 
@@ -2674,7 +2674,7 @@ count_house = 1;
                         fprintf(write_file,'          current_fraction 0.0;\n');
                         fprintf(write_file,'          power_pf 1.0;\n');  
 
-                            adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                            adj_ext = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_exterior*%.2f;\n',adj_ext);
                         fprintf(write_file,'     };\n\n');
 
@@ -2688,7 +2688,7 @@ count_house = 1;
                         fprintf(write_file,'          current_fraction 0.0;\n');
                         fprintf(write_file,'          power_pf 1.0;\n');  
 
-                            adj_occ = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                            adj_occ = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_occupancy*%.2f;\n',adj_occ);
                         fprintf(write_file,'     };\n');
                         fprintf(write_file,'}\n\n');
