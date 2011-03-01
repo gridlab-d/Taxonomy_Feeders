@@ -26,11 +26,11 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     % 0 residential, 0 commercial, 3 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)
     data.nom_volt = 12500;
-    data.feeder_rating = 1.15*7.15; 
+    data.feeder_rating = 1.15*7.15; % Peak in MW (Only transformer sizing)
     data.avg_house = 12000;%6000;
     data.avg_commercial = 50000;
     data.EOL_points={'533';'311';'302'};
-    data.emissions_peak = 15*1000;
+    data.emissions_peak = 15000; %Peak in kVa base .85 pf of 29 (For emissions)
     % 598 residential, 12 commercial, 0 industrial, 8 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-2.glm')~=0)
     data.nom_volt = 12470;
