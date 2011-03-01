@@ -271,7 +271,7 @@ end
 %% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
     data.start_date = '2009-01-01 00:00:00';
-    data.end_date = '2009-01-01 00:30:00';
+    data.end_date = '2010-01-01 00:00:00';
 
     % How often do you want to measure?
     data.meas_interval = 900;  %applies to everything
