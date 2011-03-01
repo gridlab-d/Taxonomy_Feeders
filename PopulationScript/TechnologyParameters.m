@@ -218,6 +218,51 @@ if (use_flags.use_wind == 1)
     
 end
 
+%% Emission parameters
+if (use_flags.use_emissions == 1)
+    
+    data.Naturalgas_Conv_Eff = 8.16; %MBtu/MWh
+    data.Coal_Conv_Eff = 10.41;
+    data.Biomass_Conv_Eff = 12.93;
+    data.Geothermal_Conv_Eff = 21.02;
+    data.Hydroelectric_Conv_Eff = 0;
+    data.Nuclear_Conv_Eff = 10.46;
+    data.Wind_Conv_Eff = 0;
+    data.Petroleum_Conv_Eff = 11.00;
+    data.Solarthermal_Conv_Eff = 0;
+    
+    data.Naturalgas_CO2 = 117.08; %lb/MBtu;
+    data.Coal_CO2 = 205.573;
+    data.Biomass_CO2 = 195;
+    data.Geothermal_CO2 = 120;
+    data.Hydroelectric_CO2 = 0;
+    data.Nuclear_CO2 = 0;
+    data.Wind_CO2 = 0;
+    data.Petroleum_CO2 = 225.13;
+    data.Solarthermal_CO2 = 0;
+
+    data.Naturalgas_SO2 = 0.001; %lb/MBtu;
+    data.Coal_SO2 = 0.1;
+    data.Biomass_SO2 = 0;
+    data.Geothermal_SO2 = 0.2;
+    data.Hydroelectric_SO2 = 0;
+    data.Nuclear_SO2 = 0;
+    data.Wind_SO2 = 0;
+    data.Petroleum_SO2 = 0.1;
+    data.Solarthermal_SO2 = 0;    
+        
+    data.Naturalgas_NOx = 0.0075; %lb/MBtu;
+    data.Coal_NOx = 0.06; 
+    data.Biomass_NOx = 0.08;
+    data.Geothermal_NOx = 0; 			
+    data.Hydroelectric_NOx = 0;
+    data.Nuclear_NOx = 0; 				
+    data.Wind_NOx = 0;
+    data.Petroleum_NOx = 0.04;
+    data.Solarthermal_NOx = 0;
+   
+    data.cycle_interval = 15; %min
+end
 %% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
     data.start_date = '2009-01-01 00:00:00';
