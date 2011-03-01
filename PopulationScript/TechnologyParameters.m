@@ -5,21 +5,26 @@ data.tech_flag = 0;
 
 %base case
 if data.tech_flag == 0
+    %These will all be '1' for base case
     use_flags.use_homes = 1;
     use_flags.use_commercial = 1;
-    use_flags.use_billing = 1;
-    use_flags.use_emissions = 1;
+    use_flags.use_billing = 0;
+    use_flags.use_emissions = 0;
     data.measure_losses = 0; 
-    data.dump_bills = 1;
+    data.dump_bills = 0;
+    data.measure_capacitors = 0;
+    data.measure_regulators = 1;
     data.collect_bills = 0;
-    data.dump_voltage = 0;
     data.collect_house_states = 0;
     data.collect_setpoints = 0;
-    data.measure_capacitors = 0;
-    data.measure_regulators = 0;
-    data.include_stats = 1;
+    data.meter_consumption = 0;
+    data.include_stats = 0;
+    data.measure_EOL_voltage = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
     data.measure_market = 0;
-    data.meter_consumption = 1;
+   
    
 % CVR
 elseif data.tech_flag == 1
@@ -266,7 +271,7 @@ end
 %% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
     data.start_date = '2009-01-01 00:00:00';
-    data.end_date = '2010-01-02 00:00:00';
+    data.end_date = '2009-01-01 00:30:00';
 
     % How often do you want to measure?
     data.meas_interval = 900;  %applies to everything

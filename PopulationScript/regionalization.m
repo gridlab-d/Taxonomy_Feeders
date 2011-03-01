@@ -155,7 +155,14 @@ wh_size = [ 0.0000,0.3333,0.6667;
             0.2259,0.5267,0.2475;
             0.2259,0.5267,0.2475];
 
-
+% emission dispatch order
+% Nuc Hydro Solar BioMass Wind Coal NG GeoTherm Petro
+dispatch_order = [1,5,2,3,4,7,6,8,9;
+                  1,7,2,3,4,5,6,8,9;
+                  1,7,2,3,4,5,6,8,9;
+                  1,7,2,3,4,5,6,8,9;
+                  1,7,2,3,4,6,5,8,9];
+              
 data.thermal_properties = thermal_properties;
 data.thermal_percentages = thermal_percentage{region};
 data.weather = weather{region};
@@ -175,6 +182,7 @@ data.no_cool_sch = 9;
 data.no_heat_sch = 9;
 data.one_story = one_story;
 data.over_sizing_factor = over_sizing_factor(region);
+data.dispatch_order = dispatch_order(region,:);
 end
 
 

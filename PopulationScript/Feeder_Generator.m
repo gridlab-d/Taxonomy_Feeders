@@ -7,7 +7,7 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm'};
+taxonomy_files = {'R5-12.47-4.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,16 +15,16 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    %taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    %output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
+    %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -876,6 +876,10 @@ for tax_ind=1:no_of_tax
     no_loads = 0;
     cap_n = 0;
     reg_n = 0;
+    
+    no_triplines = 0;
+    no_ugls = 0;
+    no_ohls = 0;
 
     for j=1:(nn-1)
         if (m >= j)
@@ -933,12 +937,15 @@ for tax_ind=1:no_of_tax
         elseif (strcmp(char(glm_final{2}{j}),'triplex_line') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
             fprintf(write_file,'      groupid Triplex_Line;\n');
+            no_triplines = no_triplines + 1;
         elseif (strcmp(char(glm_final{2}{j}),'overhead_line') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
             fprintf(write_file,'      groupid Distribution_Line;\n');
+            no_ohls = no_ohls + 1;
         elseif (strcmp(char(glm_final{2}{j}),'underground_line') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
             fprintf(write_file,'      groupid Distribution_Line;\n');
+            no_ugls = no_ugls + 1;
         elseif (strcmp(char(glm_final{2}{j}),'phases') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
             phase = char(glm_final{3}{j});
@@ -1693,10 +1700,10 @@ count_house = 1;
                 fprintf(write_file,'}\n\n'); %end house
             end   
         end
+        
+        disp(['Mean floor area = ',num2str(mean(fl_area))]);
     end
 
-
-    %disp(['Mean floor area = ',num2str(mean(fl_area))]);
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
@@ -1706,6 +1713,9 @@ count_house = 1;
     %  if number of "houses" > 15, then create a large office
     %  if number of "houses" < 15 but > 6, create a big box commercial
     %  else, create a residential strip mall
+    ph3_meter = 0;
+    ph1_meter = 0;
+    
     if (no_loads ~= 0 && use_flags.use_commercial == 1)
 
         % setup all of the line configurations we may need
@@ -1801,7 +1811,7 @@ count_house = 1;
 
         [r1,r2] = size(load_houses{5});
         for iii = 1:r2
-            total_houses = load_houses{1,1}{iii} + load_houses{1,2}{iii} + load_houses{1,3}{iii};
+            total_comm_houses = load_houses{1,1}{iii} + load_houses{1,2}{iii} + load_houses{1,3}{iii};
 
             my_phases = {'A';'B';'C'};
             % read through the phases and do some bit-wise math
@@ -1845,9 +1855,10 @@ count_house = 1;
 
             % Office building - must have all three phases and enough load for
             % 15 zones
-            if (total_houses > 15 && no_of_phases == 3)
-                no_of_offices = round(total_houses / 15);
-
+            if (total_comm_houses > 15 && no_of_phases == 3)
+                no_of_offices = round(total_comm_houses / 15);
+                ph3_meter = ph3_meter + 1;
+                
                 my_name = strrep(load_houses{1,4}{iii},';','');
 
                 fprintf(write_file,'object transformer_configuration {\n');
@@ -1905,6 +1916,7 @@ count_house = 1;
                     fprintf(write_file,'     length 50ft;\n');
                     fprintf(write_file,'     configuration line_configuration_comm%s;\n',ph);
                     fprintf(write_file,'};\n\n');
+                    no_ohls = no_ohls + 1;
 
                     fprintf(write_file,'object meter {\n');            
                     fprintf(write_file,'     phases %s\n',load_houses{1,5}{iii});
@@ -1931,6 +1943,7 @@ count_house = 1;
                         fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
                         fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
                         fprintf(write_file,'}\n\n');
+                       
 
                         fprintf(write_file,'object triplex_meter {\n');
                         fprintf(write_file,'     name %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
@@ -2127,9 +2140,10 @@ count_house = 1;
                 end % total offices needed
 
             % Big box - has at least 2 phases and enough load for 6 zones
-            elseif (total_houses > 6 && no_of_phases >= 2)
-                no_of_bigboxes = round(total_houses / 6);
-
+            elseif (total_comm_houses > 6 && no_of_phases >= 2)
+                no_of_bigboxes = round(total_comm_houses / 6);
+                ph3_meter = ph3_meter + 1;
+                
                 my_name = strrep(load_houses{1,4}{iii},';','');
 
                 if (has_phase_A == 1)
@@ -2192,6 +2206,7 @@ count_house = 1;
                     fprintf(write_file,'     length 50ft;\n');
                     fprintf(write_file,'     configuration line_configuration_comm%s;\n',ph);
                     fprintf(write_file,'};\n\n');
+                    no_ohls = no_ohls + 1;
 
                     fprintf(write_file,'object meter {\n');            
                     fprintf(write_file,'     phases %s\n',load_houses{1,5}{iii});
@@ -2237,6 +2252,7 @@ count_house = 1;
                         fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
                         fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
                         fprintf(write_file,'}\n\n');
+                        
 
                         fprintf(write_file,'object triplex_meter {\n');
                         fprintf(write_file,'     name %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
@@ -2418,9 +2434,10 @@ count_house = 1;
                     end %phase index      
                 end %number of big boxes
             % Strip mall
-            elseif (total_houses > 0)
-                no_of_strip = total_houses;
-
+            elseif (total_comm_houses > 0)
+                no_of_strip = total_comm_houses;
+                ph1_meter = ph1_meter + 1;
+                
                 my_name = strrep(load_houses{1,4}{iii},';','');
 
                 strip_per_phase = ceil(no_of_strip / no_of_phases);
@@ -2471,6 +2488,7 @@ count_house = 1;
                 fprintf(write_file,'     length 50ft;\n');
                 fprintf(write_file,'     configuration line_configuration_comm%s;\n',ph);
                 fprintf(write_file,'};\n\n');
+                no_ohls = no_ohls + 1;
 
                 fprintf(write_file,'object node {\n');            
                 fprintf(write_file,'     phases %s\n',load_houses{1,5}{iii});
@@ -2555,6 +2573,7 @@ count_house = 1;
                         fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
                         fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
                         fprintf(write_file,'}\n\n');
+
 
                         fprintf(write_file,'object triplex_node {\n');
                         fprintf(write_file,'     name %s_tn_%s_%.0f;\n',my_name,my_phases{phind},jjj);
@@ -2881,6 +2900,16 @@ count_house = 1;
         fprintf(write_file,'     Wind_NOx %.2f lb/MBtu;\n',tech_data.Wind_NOx);
         fprintf(write_file,'     Petroleum_NOx %.2f lb/MBtu;\n',tech_data.Petroleum_NOx);
         fprintf(write_file,'     Solarthermal_NOx %.2f lb/MBtu;\n\n',tech_data.Solarthermal_NOx);
+        
+        fprintf(write_file,'     Nuclear_Order %.0f;\n',regional_data.dispatch_order(1));
+		fprintf(write_file,'     Hydroelectric_Order %.0f;\n',regional_data.dispatch_order(2));
+		fprintf(write_file,'     Solarthermal_Order %.0f;\n',regional_data.dispatch_order(3));
+		fprintf(write_file,'     Biomass_Order %.0f;\n',regional_data.dispatch_order(4));
+		fprintf(write_file,'     Wind_Order %.0f;\n',regional_data.dispatch_order(5));
+		fprintf(write_file,'     Coal_Order %.0f;\n',regional_data.dispatch_order(6));
+		fprintf(write_file,'     Naturalgas_Order %.0f;\n',regional_data.dispatch_order(7));
+		fprintf(write_file,'     Geothermal_Order %.0f;\n',regional_data.dispatch_order(8));
+		fprintf(write_file,'     Petroleum_Order %.0f;\n\n',regional_data.dispatch_order(9));
 
         fprintf(write_file,'     cycle_interval %.0f min;\n',tech_data.cycle_interval);
         fprintf(write_file,'}\n\n');
@@ -2890,7 +2919,7 @@ count_house = 1;
         fprintf(write_file,'     parent emissionsobject1;\n');
         fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
         fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     property Total_emissions_CO2,Total_emissions_SO2,Total_emissions_NOx;\n');
+        fprintf(write_file,'     property Total_emissions_CO2,Total_emissions_SO2,Total_energy_out,Total_emissions_NOx,Naturalgas_Out,Coal_Out,Biomass_Out,Geothermal_Out,Hydroelectric_Out,Nuclear_Out,Wind_Out,Petroleum_Out,Solarthermal_Out;\n');
         fprintf(write_file,'}\n\n');
 
     end
@@ -2914,31 +2943,65 @@ count_house = 1;
     end
 
     if (tech_data.measure_losses == 1)
+        if (no_ohls > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=overhead_line";\n');
+            fprintf(write_file,'     property sum(power_losses_A.real),sum(power_losses_A.imag),sum(power_losses_B.real),sum(power_losses_B.imag),sum(power_losses_C.real),sum(power_losses_C.imag);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_OHL_losses.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
+        if (no_ugls > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=underground_line";\n');
+            fprintf(write_file,'     property sum(power_losses_A.real),sum(power_losses_A.imag),sum(power_losses_B.real),sum(power_losses_B.imag),sum(power_losses_C.real),sum(power_losses_C.imag);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_UGL_losses.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
+        if (no_triplines > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=triplex_line";\n');
+            fprintf(write_file,'     property sum(power_losses_A.real),sum(power_losses_A.imag),sum(power_losses_B.real),sum(power_losses_B.imag),sum(power_losses_C.real),sum(power_losses_C.imag);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_TPL_losses.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
+
+        % There's always a transformer (substation)
         fprintf(write_file,'object collector {\n');
-        fprintf(write_file,'     group "class=link";\n');
+        fprintf(write_file,'     group "class=transformer";\n');
         fprintf(write_file,'     property sum(power_losses_A.real),sum(power_losses_A.imag),sum(power_losses_B.real),sum(power_losses_B.imag),sum(power_losses_C.real),sum(power_losses_C.imag);\n');
         fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
         fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     file %s_losses.csv;\n',tech_file);
+        fprintf(write_file,'     file %s_TFR_losses.csv;\n',tech_file);
         fprintf(write_file,'}\n\n');
+
     end
 
     if (tech_data.collect_setpoints == 1)
-        fprintf(write_file,'object collector {\n');
-        fprintf(write_file,'     group "class=house AND groupid=Residential";\n');
-        fprintf(write_file,'     property average(cooling_setpoint),average(heating_setpoint);\n');
-        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
-        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     file %s_res_setpoints.csv;\n',tech_file);
-        fprintf(write_file,'}\n\n');
-
-        fprintf(write_file,'object collector {\n');
-        fprintf(write_file,'     group "class=house AND groupid=Commercial";\n');
-        fprintf(write_file,'     property average(cooling_setpoint),average(heating_setpoint);\n');
-        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
-        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     file %s_comm_setpoints.csv;\n',tech_file);
-        fprintf(write_file,'}\n\n');
+        if (total_houses > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=house AND groupid=Residential";\n');
+            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_res_setpoints.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
+        
+        if (ph3_meter + ph1_meter > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=house AND groupid=Commercial";\n');
+            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_comm_setpoints.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
     end
 
     if (tech_data.collect_house_states ~= 0)
@@ -2946,29 +3009,36 @@ count_house = 1;
     end
 
     if (tech_data.collect_bills ~= 0)
-        fprintf(write_file,'object collector {\n');
-        fprintf(write_file,'     group "class=triplex_meter AND groupid=Residential_Meter";\n');
-        fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
-        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
-        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     file %s_res_load.csv;\n',tech_file);
-        fprintf(write_file,'}\n\n');
-
-        fprintf(write_file,'object collector {\n');
-        fprintf(write_file,'     group "class=meter AND groupid=Commercial_Meter";\n');
-        fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
-        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
-        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
-        fprintf(write_file,'}\n\n');
         
-        fprintf(write_file,'object collector {\n');
-        fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_Meter";\n');
-        fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
-        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
-        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-        fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
-        fprintf(write_file,'}\n\n');
+        if (total_houses > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=triplex_meter AND groupid=Residential_Meter";\n');
+            fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_res_load.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
+
+        if (ph3_meter > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=meter AND groupid=Commercial_Meter";\n');
+            fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
+        
+        if (ph1_meter > 0)
+            fprintf(write_file,'object collector {\n');
+            fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_Meter";\n');
+            fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+            fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
+            fprintf(write_file,'}\n\n');
+        end
     end
 
     if (tech_data.measure_capacitors == 1 && cap_n > 0)
@@ -2979,7 +3049,7 @@ count_house = 1;
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     property switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag;\n');
-            fprintf(write_file,'};\n');
+            fprintf(write_file,'};\n\n');
         end
     end
 
@@ -2990,37 +3060,71 @@ count_house = 1;
             fprintf(write_file,'     file %s_reg%.0f.csv;\n',tech_file,jindex);
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-            fprintf(write_file,'     property tapA,tapB,tapC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag;\n');
-            fprintf(write_file,'};\n');
+            fprintf(write_file,'     property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag;\n');
+            fprintf(write_file,'};\n\n');
         end
     end
 
-    if (use_flags.use_vvc ~= 0)
-        %TODO: add EOL voltage measurements (from Kevin's CVVC files)
+    if (tech_data.measure_EOL_voltage ~= 0)
+        
+        [no_nodes,junk] = size(taxonomy_data.EOL_points);
+        
+        % If too many measurements, buffer gets angry so break it up
+        if (no_nodes > 3)
+            no_nodes1 = 3;
+            no_nodes2 = no_nodes;
+        else
+            no_nodes1 = no_nodes;
+            no_nodes2 = 0;
+        end
+        fprintf(write_file,'object multi_recorder {\n');
+        fprintf(write_file,'     parent %s;\n',taxonomy_data.EOL_points{1,1});
+        fprintf(write_file,'     file %s_EOLVolt1.csv;\n',tech_file);
+        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+        
+        fprintf(write_file,'     property ');
+        
+        for jind=1:no_nodes1
+            if (strfind(taxonomy_data.EOL_points{jind,2},'A') ~= 0)
+                fprintf(write_file,'%s:voltage_A.real,%s:voltage_A.imag,',taxonomy_data.EOL_points{jind,1},taxonomy_data.EOL_points{jind,1});
+            end
+            if (strfind(taxonomy_data.EOL_points{jind,2},'B') ~= 0)
+                fprintf(write_file,'%s:voltage_B.real,%s:voltage_B.imag,',taxonomy_data.EOL_points{jind,1},taxonomy_data.EOL_points{jind,1});
+            end
+            if (strfind(taxonomy_data.EOL_points{jind,2},'C') ~= 0)
+                fprintf(write_file,'%s:voltage_C.real,%s:voltage_C.imag,',taxonomy_data.EOL_points{jind,1},taxonomy_data.EOL_points{jind,1});
+            end            
+        end
+        fprintf(write_file,';\n');
+        
+        fprintf(write_file,'};\n\n');
+        
+        if (no_nodes2 > 0)
+            fprintf(write_file,'object multi_recorder {\n');
+            fprintf(write_file,'     parent %s;\n',taxonomy_data.EOL_points{1,1});
+            fprintf(write_file,'     file %s_EOLVolt2.csv;\n',tech_file);
+            fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+            fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
 
-    %     fprintf(write_file,'object recorder {\n');
-    %     fprintf(write_file,'     parent Reg1;\n');
-    %     fprintf(write_file,'     file reg1_output.csv;\n');
-    %     fprintf(write_file,'     interval %d;\n',meas_interval);
-    %     fprintf(write_file,'     limit %d;\n',meas_limit);
-    %     fprintf(write_file,'     property tap_A,tap_B,tap_C,power_in_A.real,power_in_A.imag,power_in_B.real,power_in_B.imag,power_in_C.real,power_in_C.imag,power_in.real,power_in.imag;\n');
-    %     fprintf(write_file,'};\n');
-    % 
-    %     fprintf(write_file,'object recorder {\n');
-    %     fprintf(write_file,'     parent 630;\n');
-    %     fprintf(write_file,'     file Voltage_630.csv;\n');
-    %     fprintf(write_file,'     interval %d;\n',meas_interval);
-    %     fprintf(write_file,'     limit %d;\n',meas_limit);
-    %     fprintf(write_file,'     property voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag;\n');
-    %     fprintf(write_file,'};\n');
-    % 
-    %     fprintf(write_file,'object recorder {\n');
-    %     fprintf(write_file,'     parent CAP2;\n');
-    %     fprintf(write_file,'     file capacitor2_output.csv;\n');
-    %     fprintf(write_file,'     interval %d;\n',meas_interval);
-    %     fprintf(write_file,'     limit %d;\n',meas_limit);
-    %     fprintf(write_file,'     property switchA,switchB,switchC;\n');
-    %     fprintf(write_file,'};\n');
+            fprintf(write_file,'     property ');
+
+            for jind=4:no_nodes2
+                if (strfind(taxonomy_data.EOL_points{jind,2},'A') ~= 0)
+                    fprintf(write_file,'%s:voltage_A.real,%s:voltage_A.imag,',taxonomy_data.EOL_points{jind,1},taxonomy_data.EOL_points{jind,1});
+                end
+                if (strfind(taxonomy_data.EOL_points{jind,2},'B') ~= 0)
+                    fprintf(write_file,'%s:voltage_B.real,%s:voltage_B.imag,',taxonomy_data.EOL_points{jind,1},taxonomy_data.EOL_points{jind,1});
+                end
+                if (strfind(taxonomy_data.EOL_points{jind,2},'C') ~= 0)
+                    fprintf(write_file,'%s:voltage_C.real,%s:voltage_C.imag,',taxonomy_data.EOL_points{jind,1},taxonomy_data.EOL_points{jind,1});
+                end            
+            end
+            fprintf(write_file,';\n');
+
+            fprintf(write_file,'};\n\n');
+        end
+
     end
 
     % TODO: add emissions.csv   
@@ -3038,27 +3142,30 @@ count_house = 1;
         while (datenum(print_date) <= datenum(my_date_end))
             print_date = print_date + [0 1 0 0 0 0];
             print_date2 = datestr(print_date,'yyyy-mm-dd HH:MM:SS');
-
-            fprintf(write_file,'object billdump {\n');
-            fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_bill_res%.0f.csv;\n',tech_file,my_month);
-            fprintf(write_file,'     group Residential_Meter;\n');
-            fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
-            fprintf(write_file,'}\n\n');
-            
-            fprintf(write_file,'object billdump {\n');
-            fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_bill_commSP%.0f.csv;\n',tech_file,my_month);
-            fprintf(write_file,'     group Commercial_Meter;\n');
-            fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
-            fprintf(write_file,'}\n\n');
-            
-            fprintf(write_file,'object billdump {\n');
-            fprintf(write_file,'     runtime ''%s'';\n',print_date2);
-            fprintf(write_file,'     filename %s_bill_comm3p%.0f.csv;\n',tech_file,my_month);
-            fprintf(write_file,'     group Commercial_Meter;\n');
-            fprintf(write_file,'     meter_type METER;\n');
-            fprintf(write_file,'}\n\n');
+            if (total_houses > 0)
+                fprintf(write_file,'object billdump {\n');
+                fprintf(write_file,'     runtime ''%s'';\n',print_date2);
+                fprintf(write_file,'     filename %s_bill_res%.0f.csv;\n',tech_file,my_month);
+                fprintf(write_file,'     group Residential_Meter;\n');
+                fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
+                fprintf(write_file,'}\n\n');
+            end
+            if (ph1_meter > 0)
+                fprintf(write_file,'object billdump {\n');
+                fprintf(write_file,'     runtime ''%s'';\n',print_date2);
+                fprintf(write_file,'     filename %s_bill_commSP%.0f.csv;\n',tech_file,my_month);
+                fprintf(write_file,'     group Commercial_Meter;\n');
+                fprintf(write_file,'     meter_type TRIPLEX_METER;\n');
+                fprintf(write_file,'}\n\n');
+            end
+            if (ph3_meter > 0)
+                fprintf(write_file,'object billdump {\n');
+                fprintf(write_file,'     runtime ''%s'';\n',print_date2);
+                fprintf(write_file,'     filename %s_bill_comm3p%.0f.csv;\n',tech_file,my_month);
+                fprintf(write_file,'     group Commercial_Meter;\n');
+                fprintf(write_file,'     meter_type METER;\n');
+                fprintf(write_file,'}\n\n');
+            end
             
             my_month = my_month + 1;
         end
