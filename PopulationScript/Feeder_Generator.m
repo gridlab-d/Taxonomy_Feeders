@@ -7,7 +7,7 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R5-12.47-3.glm'};
+taxonomy_files = {'R5-12.47-1.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -2049,10 +2049,12 @@ count_house = 1;
                             fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 1.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
                                 adj_lights = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                             fprintf(write_file,'          base_power office_lights*%.2f;\n',adj_lights);
@@ -2063,10 +2065,12 @@ count_house = 1;
                             fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 1.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
                                 adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
                             fprintf(write_file,'          base_power office_plugs*%.2f;\n',adj_plugs);
@@ -2091,10 +2095,12 @@ count_house = 1;
                             fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 0.0;\n');
-                            fprintf(write_file,'          power_fraction 1.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
 
                                 adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                             fprintf(write_file,'          base_power office_exterior*%.2f;\n',adj_ext);
@@ -2335,10 +2341,12 @@ count_house = 1;
                             fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 1.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
 
                                 adj_lights = 1.2 * (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                             fprintf(write_file,'          base_power bigbox_lights*%.2f;\n',adj_lights);
@@ -2349,10 +2357,12 @@ count_house = 1;
                             fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 1.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
                                 adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
                             fprintf(write_file,'          base_power bigbox_plugs*%.2f;\n',adj_plugs);
@@ -2377,10 +2387,12 @@ count_house = 1;
                             fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
                             fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                             fprintf(write_file,'          heatgain_fraction 0.0;\n');
-                            fprintf(write_file,'          power_fraction 1.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
                                 adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                             fprintf(write_file,'          base_power bigbox_exterior*%.2f;\n',adj_ext);
@@ -2627,10 +2639,12 @@ count_house = 1;
                         fprintf(write_file,'          name lights_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                        fprintf(write_file,'          power_fraction 1.0;\n');
-                        fprintf(write_file,'          impedance_fraction 0.0;\n');
-                        fprintf(write_file,'          current_fraction 0.0;\n');
-                        fprintf(write_file,'          power_pf 1.0;\n');  
+                        fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                        fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                        fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                        fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                        fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                        fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
                             adj_lights = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_lights*%.2f;\n',adj_lights);
@@ -2641,10 +2655,12 @@ count_house = 1;
                         fprintf(write_file,'          name plugs_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                        fprintf(write_file,'          power_fraction 1.0;\n');
-                        fprintf(write_file,'          impedance_fraction 0.0;\n');
-                        fprintf(write_file,'          current_fraction 0.0;\n');
-                        fprintf(write_file,'          power_pf 1.0;\n');  
+                        fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                        fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                        fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                        fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                        fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                        fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
                             adj_plugs = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_plugs*%.2f;\n',adj_plugs);
@@ -2669,10 +2685,12 @@ count_house = 1;
                         fprintf(write_file,'          name ext_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
                         fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
                         fprintf(write_file,'          heatgain_fraction 0.0;\n');
-                        fprintf(write_file,'          power_fraction 1.0;\n');
-                        fprintf(write_file,'          impedance_fraction 0.0;\n');
-                        fprintf(write_file,'          current_fraction 0.0;\n');
-                        fprintf(write_file,'          power_pf 1.0;\n');  
+                        fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                        fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                        fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                        fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                        fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                        fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
 
                             adj_ext = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
                         fprintf(write_file,'          base_power stripmall_exterior*%.2f;\n',adj_ext);
@@ -2812,15 +2830,15 @@ count_house = 1;
         fprintf(write_file,'object emissions {\n');
         fprintf(write_file,'     name emissionsobject1;\n');
         fprintf(write_file,'     parent network_node;\n');
-        fprintf(write_file,'     Naturalgas_Max_Out NG_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Coal_Max_Out Coal_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Biomass_Max_Out Bio_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Geothermal_Max_Out Geo_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Hydroelectric_Max_Out Hydro_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Nuclear_Max_Out Nuclear_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Wind_Max_Out Wind_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Petroleum_Max_Out Petroleum_Max_Out_R%d*%.1f kWh;\n',region,texonomy_data.emissions_peak);
-        fprintf(write_file,'     Solarthermal_Max_Out Solar_Max_Out_R%d*%.1f kWh;\n\n',region,texonomy_data.emissions_peak);
+        fprintf(write_file,'     Naturalgas_Max_Out NG_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Coal_Max_Out Coal_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Biomass_Max_Out Bio_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Geothermal_Max_Out Geo_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Hydroelectric_Max_Out Hydro_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Nuclear_Max_Out Nuclear_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Wind_Max_Out Wind_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Petroleum_Max_Out Petroleum_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Solarthermal_Max_Out Solar_Max_Out_R%d*%.1f kWh;\n\n',region,taxonomy_data.emissions_peak);
 
         fprintf(write_file,'     Naturalgas_Conv_Eff %.2f MBtu/MWh;\n',tech_data.Naturalgas_Conv_Eff);
         fprintf(write_file,'     Coal_Conv_Eff %.2f MBtu/MWh;\n',tech_data.Coal_Conv_Eff);
@@ -2860,7 +2878,7 @@ count_house = 1;
         fprintf(write_file,'     Nuclear_NOx %.2f lb/MBtu;\n',tech_data.Nuclear_NOx);
         fprintf(write_file,'     Wind_NOx %.2f lb/MBtu;\n',tech_data.Wind_NOx);
         fprintf(write_file,'     Petroleum_NOx %.2f lb/MBtu;\n',tech_data.Petroleum_NOx);
-        fprintf(write_file,'     Solarthermal_NOx %.2f lb/MBtu;\n\n',tech_data.Solarthermal_NOx);NOx
+        fprintf(write_file,'     Solarthermal_NOx %.2f lb/MBtu;\n\n',tech_data.Solarthermal_NOx);
 
         fprintf(write_file,'     cycle_interval %.0f min;\n',tech_data.cycle_interval);
         fprintf(write_file,'}\n\n');
