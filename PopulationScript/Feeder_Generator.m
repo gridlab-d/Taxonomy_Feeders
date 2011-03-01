@@ -15,14 +15,16 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\';
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
+    %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
 
     %% Get the region - this will only work with the taxonomy feeders
     
