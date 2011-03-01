@@ -7,7 +7,7 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R5-12.47-1.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm'};
 %taxonomy_files = {'R2-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,16 +15,16 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
-    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    %taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
-    %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+    %output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
+    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1696,7 +1696,7 @@ count_house = 1;
     end
 
 
-    disp(['Mean floor area = ',num2str(mean(fl_area))]);
+    %disp(['Mean floor area = ',num2str(mean(fl_area))]);
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
@@ -2832,15 +2832,15 @@ count_house = 1;
         fprintf(write_file,'object emissions {\n');
         fprintf(write_file,'     name emissionsobject1;\n');
         fprintf(write_file,'     parent network_node;\n');
-        fprintf(write_file,'     Naturalgas_Max_Out NG_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Coal_Max_Out Coal_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Biomass_Max_Out Bio_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Geothermal_Max_Out Geo_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Hydroelectric_Max_Out Hydro_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Nuclear_Max_Out Nuclear_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Wind_Max_Out Wind_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Petroleum_Max_Out Petroleum_Max_Out_R%d*%.1f kWh;\n',region,taxonomy_data.emissions_peak);
-        fprintf(write_file,'     Solarthermal_Max_Out Solar_Max_Out_R%d*%.1f kWh;\n\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Naturalgas_Max_Out NG_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Coal_Max_Out Coal_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Biomass_Max_Out Bio_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Geothermal_Max_Out Geo_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Hydroelectric_Max_Out Hydro_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Nuclear_Max_Out Nuclear_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Wind_Max_Out Wind_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Petroleum_Max_Out Petroleum_Max_Out_R%d*%.1f ;\n',region,taxonomy_data.emissions_peak);
+        fprintf(write_file,'     Solarthermal_Max_Out Solar_Max_Out_R%d*%.1f ;\n\n',region,taxonomy_data.emissions_peak);
 
         fprintf(write_file,'     Naturalgas_Conv_Eff %.2f MBtu/MWh;\n',tech_data.Naturalgas_Conv_Eff);
         fprintf(write_file,'     Coal_Conv_Eff %.2f MBtu/MWh;\n',tech_data.Coal_Conv_Eff);
