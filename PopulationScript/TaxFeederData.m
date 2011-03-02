@@ -13,10 +13,10 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     data.feeder_rating = 1.15*5.2; 
             
     % Determines how many houses to populate (bigger avg_house = less houses)
-    data.avg_house = 9000;
+    data.avg_house = 8000;
     
     % Determines sizing of commercial loads (bigger = less houses)
-    data.avg_commercial = 15000;
+    data.avg_commercial = 14000;
     
     % End-of-line measurements for each feeder
     data.EOL_points={'GC-12-47-1_node_7','ABC'};
@@ -75,8 +75,8 @@ elseif (strcmp(file_to_extract,'R1-25.00-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-12.47-1.glm')~=0)    
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*6.05; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 7000;
+    data.avg_commercial = 20000;
     data.EOL_points={'R2-12-47-1_node_5','A';
                      'R2-12-47-1_node_17','BC'};
     data.emissions_peak = 15*1000;

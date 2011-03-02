@@ -6,8 +6,10 @@ data.tech_flag = 0;
 %base case
 if data.tech_flag == 0
     %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
     use_flags.use_homes = 1;
     use_flags.use_commercial = 1;
+    % These will inclide recorders
     use_flags.use_billing = 0;
     use_flags.use_emissions = 0;
     data.measure_losses = 0; 
@@ -17,9 +19,9 @@ if data.tech_flag == 0
     data.collect_bills = 0;
     data.collect_house_states = 0;
     data.collect_setpoints = 0;
-    data.meter_consumption = 0;
-    data.include_stats = 0;
-    data.measure_EOL_voltage = 1;
+    data.meter_consumption = 1;
+    data.include_stats = 1;
+    data.measure_EOL_voltage = 0;
     
     %Set to '1' only for testing
     data.dump_voltage = 0;   
