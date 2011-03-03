@@ -12,9 +12,10 @@ if data.tech_flag == 0
     % These will inclide recorders
     use_flags.use_billing = 0;
     use_flags.use_emissions = 0;
+    use_flags.use_capacitor_outtages = 1;
     data.measure_losses = 0; 
     data.dump_bills = 0;
-    data.measure_capacitors = 0;
+    data.measure_capacitors = 1;
     data.measure_regulators = 1;
     data.collect_bills = 0;
     data.collect_house_states = 0;
@@ -103,9 +104,9 @@ if (use_flags.use_homes == 1)
     % waterheaters 1 = yes, 0 = no
     data.use_wh = 1; 
     if (data.meter_consumption == 1)
-        data.res_meter_cons = 5; % Electromechanical (Watts)
+        data.res_meter_cons = '5+5j'; % Electromechanical (VAr)
     elseif (data.meter_consumption == 2)
-        data.res_meter_cons = 10;% AMI (Watts)
+        data.res_meter_cons = '10+10j';% AMI (VAr)
     else
         data.res_meter_cons = 0;
     end
@@ -168,9 +169,9 @@ elseif (use_flags.use_commercial == 1)
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
     
     if (data.meter_consumption == 1)
-        data.comm_meter_cons = 15; % Electromechanical (Watts)
+        data.comm_meter_cons = '15+5j'; % Electromechanical (VAr)
     elseif (data.meter_consumption == 2)
-        data.comm_meter_cons = 30;% AMI (Watts)
+        data.comm_meter_cons = '30+10j';% AMI (VAr)
     else
         data.comm_meter_cons = 0;
     end
@@ -272,7 +273,7 @@ if (use_flags.use_emissions == 1)
 end
 %% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
-    data.start_date = '2009-05-01 00:00:00';
+    data.start_date = '2009-01-01 00:00:00';
     data.end_date = '2010-01-01 00:00:00';
 
     % How often do you want to measure?

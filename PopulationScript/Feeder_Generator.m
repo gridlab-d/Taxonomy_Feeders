@@ -8,23 +8,23 @@ clc;
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
 %taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm'};
-taxonomy_files = {'R1-12.47-3.glm'};%'GC-12.47-1.glm'};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
+taxonomy_files = {'R1-12.47-4.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    %taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-    %output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+    output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
+    %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1208,7 +1208,7 @@ for tax_ind=1:no_of_tax
 
                     total_houses = total_houses + no_of_houses;
                     fprintf(write_file,'      groupid Residential_Meter;\n');
-                    fprintf(write_file,'      meter_power_consumption %.1f W;\n',tech_data.res_meter_cons);
+                    fprintf(write_file,'      meter_power_consumption %s;\n',tech_data.res_meter_cons);
                     if (use_flags.use_billing == 1) %Fixed price
                         fprintf(write_file,'      bill_mode UNIFORM;\n');
                         fprintf(write_file,'      price %.5f;\n',tech_data.flat_price(region));
@@ -1922,7 +1922,7 @@ count_house = 1;
                     fprintf(write_file,'     phases %s\n',load_houses{1,5}{iii});
                     fprintf(write_file,'     name %s_office_meter%.0f;\n',my_name,jjj);
                     fprintf(write_file,'     groupid Commercial_Meter;\n');
-                    fprintf(write_file,'     meter_power_consumption %.1f W;\n',tech_data.comm_meter_cons);
+                    fprintf(write_file,'     meter_power_consumption %s;\n',tech_data.comm_meter_cons);
                     fprintf(write_file,'     nominal_voltage %f;\n',taxonomy_data.nom_volt2);
                     if (use_flags.use_billing == 1)
                         fprintf(write_file,'     bill_mode UNIFORM;\n');
@@ -2213,7 +2213,7 @@ count_house = 1;
                     fprintf(write_file,'     name %s_bigbox_meter%.0f;\n',my_name,jjj);
                     fprintf(write_file,'     groupid Commercial_Meter;\n');
                     fprintf(write_file,'     nominal_voltage %f;\n',taxonomy_data.nom_volt2);
-                    fprintf(write_file,'     meter_power_consumption %.1f W;\n',tech_data.comm_meter_cons);
+                    fprintf(write_file,'     meter_power_consumption %s;\n',tech_data.comm_meter_cons);
                     if (use_flags.use_billing == 1)
                         fprintf(write_file,'     bill_mode UNIFORM;\n');
                         fprintf(write_file,'     price %.5f;\n',tech_data.comm_flat_price(region));
@@ -2587,7 +2587,7 @@ count_house = 1;
                         fprintf(write_file,'     phases %sS;\n',my_phases{phind});
                         fprintf(write_file,'     groupid Commercial_Meter;\n');
                         % divide by 3 since these are smaller units
-                        fprintf(write_file,'     meter_power_consumption %.1f W;\n',tech_data.comm_meter_cons / 3); 
+                        fprintf(write_file,'     meter_power_consumption %s;\n',tech_data.comm_meter_cons / 3); 
                         fprintf(write_file,'     nominal_voltage 120;\n');
                         if (use_flags.use_billing == 1)
                             fprintf(write_file,'     bill_mode UNIFORM;\n');
@@ -2923,6 +2923,20 @@ count_house = 1;
         fprintf(write_file,'}\n\n');
 
     end
+    
+    % Add players to capacitor for outtages
+    if (use_flags.use_capacitor_outtages == 1)
+        [cap_out_a,cap_out_b] = size(taxonomy_data.capacitor_outtage);
+        for cap_ind=1:cap_out_a
+            fprintf(write_file,'object player {\n');
+            fprintf(write_file,'     parent %s;\n',taxonomy_data.capacitor_outtage{cap_ind,1});
+            fprintf(write_file,'     file %s;\n',taxonomy_data.capacitor_outtage{cap_ind,2});
+            fprintf(write_file,'     property service_status;\n');
+            fprintf(write_file,'     loop 1;\n');
+            fprintf(write_file,'};\n');
+        end
+    end
+    
     %% Recorders, collectors, etc.
     fprintf(write_file,'object recorder {\n');
     fprintf(write_file,'     file %s_transformer_power.csv;\n',tech_file);
@@ -3048,7 +3062,7 @@ count_house = 1;
             fprintf(write_file,'     file %s_cap%.0f.csv;\n',tech_file,jindex);
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-            fprintf(write_file,'     property switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag;\n');
+            fprintf(write_file,'     property service_status,switchA,switchB,switchC,voltage_A.real,voltage_A.imag,voltage_B.real,voltage_B.imag,voltage_C.real,voltage_C.imag;\n');
             fprintf(write_file,'};\n\n');
         end
     end
