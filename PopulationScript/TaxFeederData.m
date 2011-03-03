@@ -27,8 +27,8 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)
     data.nom_volt = 12500;
     data.feeder_rating = 1.15*7.15; % Peak in MW (Only transformer sizing)
-    data.avg_house = 6000;
-    data.avg_commercial = 30000;
+    data.avg_house = 4000;
+    data.avg_commercial = 20000;
     data.EOL_points={'R1-12-47-1_node_533','A';
                      'R1-12-47-1_node_311','B';
                      'R1-12-47-1_node_302','C'};
@@ -47,8 +47,8 @@ elseif (strcmp(file_to_extract,'R1-12.47-2.glm')~=0)
 elseif (strcmp(file_to_extract,'R1-12.47-3.glm')~=0)
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*1.35; 
-    data.avg_house = 12000;
-    data.avg_commercial = 30000;
+    data.avg_house = 8000;
+    data.avg_commercial = 20000;
     data.EOL_points={'R1-12-47-3_node_48','AC';
                      'R1-12-47-3_node_38','B'};
     data.emissions_peak = 15*1000;
@@ -84,8 +84,8 @@ elseif (strcmp(file_to_extract,'R2-12.47-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)    
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*6.1; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 7500;
+    data.avg_commercial = 25000;
     data.EOL_points={'R2-12-47-2_node_146_2','ABC';
                      'R2-12-47-2_node_240','A';
                      'R2-12-47-2_node_103','B';
@@ -105,8 +105,8 @@ elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)    
     data.nom_volt = 24900;
     data.feeder_rating = 1.15*17; 
-    data.avg_house = 10000;
-    data.avg_commercial = 30000;
+    data.avg_house = 6000;
+    data.avg_commercial = 15000;
     data.EOL_points={'R2-25-00-1_node_288','A';
                      'R2-25-00-1_node_286','B';
                      'R2-25-00-1_node_211','C'};
@@ -115,16 +115,16 @@ elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)    
     data.nom_volt = 34500;
     data.feeder_rating = 1.15*8.9; 
-    data.avg_house = 15000;
-    data.avg_commercial = 30000;
+    data.avg_house = 20000;
+    data.avg_commercial = 40000;
     data.EOL_points={'R2-35-00-1_node_1030','ABC'};
     data.emissions_peak = 15*1000;
     % 163 residential, 5 commercial, 0 industrial, 442 agricultural
 elseif (strcmp(file_to_extract,'R3-12.47-1.glm')~=0)    
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*8.4; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 1200;
+    data.avg_commercial = 40000;
     data.EOL_points={'R3-12-47-1_node_358','ABC'};
     data.emissions_peak = 15*1000;
     % 408 residential, 59 commercial,0 industrial, 0 agricultural
@@ -149,8 +149,8 @@ elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
 elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)    
     data.nom_volt = 13800;
     data.feeder_rating = 1.15*5.55; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 6000;
+    data.avg_commercial = 20000;
     data.EOL_points={'R4-12-47-1_node_192','A';
                      'R4-12-47-1_node_198','BC'};
     data.emissions_peak = 15*1000;
@@ -158,8 +158,8 @@ elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)    
     data.nom_volt = 12500;
     data.feeder_rating = 1.15*2.2; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 6000;
+    data.avg_commercial = 20000;
     data.EOL_points={'R4-12-47-2_node_180','A';
                      'R4-12-47-2_node_264','B';
                      'R4-12-47-2_node_256','C'};
@@ -168,8 +168,8 @@ elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)
 elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)    
     data.nom_volt = 24900;
     data.feeder_rating = 1.15*0.95; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 6000;
+    data.avg_commercial = 20000;
     data.EOL_points={'R4-25-00-1_node_230','A';
                      'R4-25-00-1_node_122','B';
                      'R4-25-00-1_node_168','C'};
@@ -178,8 +178,8 @@ elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)    
     data.nom_volt = 13800;
     data.feeder_rating = 1.15*9.4; 
-    data.avg_house = 9000;
-    data.avg_commercial = 30000;
+    data.avg_house = 6500;
+    data.avg_commercial = 20000;
     data.EOL_points={'R5-12-47-1_node_1','ABC'};
     data.emissions_peak = 15*1000;
     % 185 residential, 48 commercial, 0 industrial, 0 agricultural

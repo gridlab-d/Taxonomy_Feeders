@@ -272,7 +272,7 @@ if (use_flags.use_emissions == 1)
 end
 %% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
-    data.start_date = '2009-01-01 00:00:00';
+    data.start_date = '2009-05-01 00:00:00';
     data.end_date = '2010-01-01 00:00:00';
 
     % How often do you want to measure?
