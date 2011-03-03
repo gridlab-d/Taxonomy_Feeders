@@ -1218,9 +1218,11 @@ for tax_ind=1:no_of_tax
                         %TODO
                     end
                 else
-                    fprintf(write_file,'      // Load was too small to convert to a house (less than 1/2 avg_house)\n');
-                    fprintf(write_file,'      power_12_real street_lighting*%.4f;\n',bb_real*tech_data.light_scalar_res);
-                    fprintf(write_file,'      power_12_reac street_lighting*%.4f;\n',bb_imag*tech_data.light_scalar_res);
+                    if (tech_data.get_IEEE_stats == 0)
+                        fprintf(write_file,'      // Load was too small to convert to a house (less than 1/2 avg_house)\n');
+                        fprintf(write_file,'      power_12_real street_lighting*%.4f;\n',bb_real*tech_data.light_scalar_res);
+                        fprintf(write_file,'      power_12_reac street_lighting*%.4f;\n',bb_imag*tech_data.light_scalar_res);
+                    end
                 end
             else
                 fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
@@ -1254,454 +1256,455 @@ count_house = 1;
             cool_sp(:,typeind) = ceil(regional_data.cooling_setpoint{typeind}(:,1) * total_houses_by_type(typeind));
             heat_sp(:,typeind) = ceil(regional_data.heating_setpoint{typeind}(:,1) * total_houses_by_type(typeind));
         end
+        if (tech_data.get_IEEE_stats == 0)
+            for jj=1:aS
+                parent = char(phase_S_houses(jj,2));
+                no_houses = str2num(char(phase_S_houses(jj,1)));
+                phase = char(phase_S_houses(jj,3));
+                lg_v_sm = str2num(char(phase_S_houses(jj,4)));
 
-        for jj=1:aS
-            parent = char(phase_S_houses(jj,2));
-            no_houses = str2num(char(phase_S_houses(jj,1)));
-            phase = char(phase_S_houses(jj,3));
-            lg_v_sm = str2num(char(phase_S_houses(jj,4)));
+                for kk=1:no_houses
+                    fprintf(write_file,'object house {\n');
+                    fprintf(write_file,'     parent %s\n',parent);
+                    fprintf(write_file,'     name house%d_%s\n',kk,parent);
+                    fprintf(write_file,'     groupid Residential;\n');
 
-            for kk=1:no_houses
-                fprintf(write_file,'object house {\n');
-                fprintf(write_file,'     parent %s\n',parent);
-                fprintf(write_file,'     name house%d_%s\n',kk,parent);
-                fprintf(write_file,'     groupid Residential;\n');
+                    %TODO - aspect ratio?, window wall ratio?
 
-                %TODO - aspect ratio?, window wall ratio?
+                    skew_value = tech_data.residential_skew_std*randn(1);
+                    if (skew_value < -tech_data.residential_skew_max)
+                        skew_value = -tech_data.residential_skew_max;
+                    elseif (skew_value > tech_data.residential_skew_max)
+                        skew_value = tech_data.residential_skew_max;
+                    end
 
-                skew_value = tech_data.residential_skew_std*randn(1);
-                if (skew_value < -tech_data.residential_skew_max)
-                    skew_value = -tech_data.residential_skew_max;
-                elseif (skew_value > tech_data.residential_skew_max)
-                    skew_value = tech_data.residential_skew_max;
-                end
+                    wh_skew_value = 4*tech_data.residential_skew_std*randn(1);
+                    if (wh_skew_value < -4*tech_data.residential_skew_max)
+                        wh_skew_value = -4*tech_data.residential_skew_max;
+                    elseif (wh_skew_value > 4*tech_data.residential_skew_max)
+                        wh_skew_value = 4*tech_data.residential_skew_max;
+                    end
 
-                wh_skew_value = 4*tech_data.residential_skew_std*randn(1);
-                if (wh_skew_value < -4*tech_data.residential_skew_max)
-                    wh_skew_value = -4*tech_data.residential_skew_max;
-                elseif (wh_skew_value > 4*tech_data.residential_skew_max)
-                    wh_skew_value = 4*tech_data.residential_skew_max;
-                end
+                    % scale this skew up to weeks
+                    pp_skew_value = 128*tech_data.residential_skew_std*randn(1);
+                    if (pp_skew_value < -128*tech_data.residential_skew_max)
+                        pp_skew_value = -128*tech_data.residential_skew_max;
+                    elseif (pp_skew_value > 128*tech_data.residential_skew_max)
+                        pp_skew_value = 128*tech_data.residential_skew_max;
+                    end
 
-                % scale this skew up to weeks
-                pp_skew_value = 128*tech_data.residential_skew_std*randn(1);
-                if (pp_skew_value < -128*tech_data.residential_skew_max)
-                    pp_skew_value = -128*tech_data.residential_skew_max;
-                elseif (pp_skew_value > 128*tech_data.residential_skew_max)
-                    pp_skew_value = 128*tech_data.residential_skew_max;
-                end
+                    fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
 
-                fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
+                        % Choose what type of building we are going to use
+                        % and set the thermal integrity of said building
+                        [size_a,size_b] = size(thermal_integrity);
 
-                    % Choose what type of building we are going to use
-                    % and set the thermal integrity of said building
-                    [size_a,size_b] = size(thermal_integrity);
-
-                    therm_int = ceil(size_a * size_b * rand(1));
-
-                    row_ti = mod(therm_int,size_a) + 1;
-                    col_ti = mod(therm_int,size_b) + 1;
-                    while ( thermal_integrity(row_ti,col_ti) < 1 )
                         therm_int = ceil(size_a * size_b * rand(1));
 
                         row_ti = mod(therm_int,size_a) + 1;
                         col_ti = mod(therm_int,size_b) + 1;
-                    end
+                        while ( thermal_integrity(row_ti,col_ti) < 1 )
+                            therm_int = ceil(size_a * size_b * rand(1));
 
-                    thermal_integrity(row_ti,col_ti) = thermal_integrity(row_ti,col_ti) - 1;
+                            row_ti = mod(therm_int,size_a) + 1;
+                            col_ti = mod(therm_int,size_b) + 1;
+                        end
 
-                    thermal_temp = regional_data.thermal_properties(row_ti,col_ti);
+                        thermal_integrity(row_ti,col_ti) = thermal_integrity(row_ti,col_ti) - 1;
 
-                    %TODO check this variance on the floor area
-                    % As it is now, this will shift mean of low integrity
-                    % single family homes to a smaller square footage and vice
-                    % versa for high integrity homes-is NOT mathematically correct
-                    f_area = regional_data.floor_area(row_ti);
-                    story_rand = rand(1);
-                    height_rand = randi(2);
-                    fa_rand = rand(1);
-                    if (col_ti == 1) % SF homes
-                        floor_area = f_area + (f_area/2) * fa_rand * (row_ti - 4)/3;
-                        if (story_rand < regional_data.one_story(region))
-                            stories = 1;
+                        thermal_temp = regional_data.thermal_properties(row_ti,col_ti);
+
+                        %TODO check this variance on the floor area
+                        % As it is now, this will shift mean of low integrity
+                        % single family homes to a smaller square footage and vice
+                        % versa for high integrity homes-is NOT mathematically correct
+                        f_area = regional_data.floor_area(row_ti);
+                        story_rand = rand(1);
+                        height_rand = randi(2);
+                        fa_rand = rand(1);
+                        if (col_ti == 1) % SF homes
+                            floor_area = f_area + (f_area/2) * fa_rand * (row_ti - 4)/3;
+                            if (story_rand < regional_data.one_story(region))
+                                stories = 1;
+                            else
+                                stories = 2;
+                            end
+
                         else
-                            stories = 2;
+                            floor_area = f_area + (f_area/2) * (0.5 - fa_rand); %+/- 50%
+                            stories = 1;
+                            height_rand = 0;
                         end
 
-                    else
-                        floor_area = f_area + (f_area/2) * (0.5 - fa_rand); %+/- 50%
-                        stories = 1;
-                        height_rand = 0;
-                    end
-                    
-                    % Now also adjust square footage as a factor of whether
-                    % the load modifier (avg_house) rounded up or down
-                    floor_area = (1 + lg_v_sm) * floor_area;
-                    
-                    if (floor_area > 4000)
-                        floor_area = 3800 + fa_rand*200;
-                    elseif (floor_area < 300)
-                        floor_area = 300 + fa_rand*100;
-                    end
-                       
-                    fl_area(count_house) = floor_area;
-                    count_house = count_house + 1;
-                    
-                fprintf(write_file,'     floor_area %.0f;\n',floor_area);
-                fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
-                    ceiling_height = 8 + height_rand;
-                fprintf(write_file,'     ceiling_height %.0f;\n',ceiling_height);
-                    os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
-                fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
+                        % Now also adjust square footage as a factor of whether
+                        % the load modifier (avg_house) rounded up or down
+                        floor_area = (1 + lg_v_sm) * floor_area;
 
-                    %TODO do I want to handle apartment walls differently?
-                    building_type = {'Single Family';'Apartment';'Mobile Home'};
-                fprintf(write_file,'     //Thermal integrity -> %s %.0f\n',building_type{row_ti},col_ti);
+                        if (floor_area > 4000)
+                            floor_area = 3800 + fa_rand*200;
+                        elseif (floor_area < 300)
+                            floor_area = 300 + fa_rand*100;
+                        end
 
-                    rroof = thermal_temp{1}(1)*(0.8 + 0.4*rand(1));
-                fprintf(write_file,'     Rroof %.2f;\n',rroof);
+                        fl_area(count_house) = floor_area;
+                        count_house = count_house + 1;
 
-                    rwall = thermal_temp{1}(2)*(0.8 + 0.4*rand(1));
-                fprintf(write_file,'     Rwall %.2f;\n',rwall);
+                    fprintf(write_file,'     floor_area %.0f;\n',floor_area);
+                    fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
+                        ceiling_height = 8 + height_rand;
+                    fprintf(write_file,'     ceiling_height %.0f;\n',ceiling_height);
+                        os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                    fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
 
-                    rfloor = thermal_temp{1}(3)*(0.8 + 0.4*rand(1));
-                fprintf(write_file,'     Rfloor %.2f;\n',rfloor);                   
-                fprintf(write_file,'     glazing_layers %.0f;\n',thermal_temp{1}(4));
-                fprintf(write_file,'     glass_type %.0f;\n',thermal_temp{1}(5));
-                fprintf(write_file,'     glazing_treatment %.0f;\n',thermal_temp{1}(6));
-                fprintf(write_file,'     window_frame %.0f;\n',thermal_temp{1}(7));
+                        %TODO do I want to handle apartment walls differently?
+                        building_type = {'Single Family';'Apartment';'Mobile Home'};
+                    fprintf(write_file,'     //Thermal integrity -> %s %.0f\n',building_type{row_ti},col_ti);
 
-                    rdoor = thermal_temp{1}(8)*(0.8 + 0.4*rand(1));
-                fprintf(write_file,'     Rdoors %.2f;\n',rdoor);           
+                        rroof = thermal_temp{1}(1)*(0.8 + 0.4*rand(1));
+                    fprintf(write_file,'     Rroof %.2f;\n',rroof);
 
-                    airchange = thermal_temp{1}(9)*(0.8 + 0.4*rand(1));
-                fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange);
+                        rwall = thermal_temp{1}(2)*(0.8 + 0.4*rand(1));
+                    fprintf(write_file,'     Rwall %.2f;\n',rwall);
 
-                    c_COP = thermal_temp{1}(11) + rand(1)*(thermal_temp{1}(10) - thermal_temp{1}(11));          
-                fprintf(write_file,'     cooling_COP %.1f;\n',c_COP);
+                        rfloor = thermal_temp{1}(3)*(0.8 + 0.4*rand(1));
+                    fprintf(write_file,'     Rfloor %.2f;\n',rfloor);                   
+                    fprintf(write_file,'     glazing_layers %.0f;\n',thermal_temp{1}(4));
+                    fprintf(write_file,'     glass_type %.0f;\n',thermal_temp{1}(5));
+                    fprintf(write_file,'     glazing_treatment %.0f;\n',thermal_temp{1}(6));
+                    fprintf(write_file,'     window_frame %.0f;\n',thermal_temp{1}(7));
 
-                    init_temp = 68 + 4*rand(1);
-                fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
-                fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
+                        rdoor = thermal_temp{1}(8)*(0.8 + 0.4*rand(1));
+                    fprintf(write_file,'     Rdoors %.2f;\n',rdoor);           
 
-                    % This is a bit of a guess from Rob's estimates
-                    mass_floor = 2.5 + 1.5*rand(1); 
-                fprintf(write_file,'     total_thermal_mass_per_floor_area %.3f;\n',mass_floor);
+                        airchange = thermal_temp{1}(9)*(0.8 + 0.4*rand(1));
+                    fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange);
 
-                    heat_type = rand(1);
-                    cool_type = rand(1);
-                    h_COP = c_COP;
+                        c_COP = thermal_temp{1}(11) + rand(1)*(thermal_temp{1}(10) - thermal_temp{1}(11));          
+                    fprintf(write_file,'     cooling_COP %.1f;\n',c_COP);
 
-                if (heat_type <= regional_data.perc_gas)
-                    fprintf(write_file,'     heating_system_type GAS;\n');
-                    if (cool_type <= regional_data.perc_AC)
+                        init_temp = 68 + 4*rand(1);
+                    fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                    fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
+
+                        % This is a bit of a guess from Rob's estimates
+                        mass_floor = 2.5 + 1.5*rand(1); 
+                    fprintf(write_file,'     total_thermal_mass_per_floor_area %.3f;\n',mass_floor);
+
+                        heat_type = rand(1);
+                        cool_type = rand(1);
+                        h_COP = c_COP;
+
+                    if (heat_type <= regional_data.perc_gas)
+                        fprintf(write_file,'     heating_system_type GAS;\n');
+                        if (cool_type <= regional_data.perc_AC)
+                            fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                        end
+                    elseif (heat_type <= (regional_data.perc_gas + regional_data.perc_pump))
+                        fprintf(write_file,'     heating_system_type HEAT_PUMP;\n');                   
+                        fprintf(write_file,'     heating_COP %.1f;\n',h_COP);
                         fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
-                    end
-                elseif (heat_type <= (regional_data.perc_gas + regional_data.perc_pump))
-                    fprintf(write_file,'     heating_system_type HEAT_PUMP;\n');                   
-                    fprintf(write_file,'     heating_COP %.1f;\n',h_COP);
-                    fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
-                    fprintf(write_file,'     auxiliary_strategy DEADBAND;\n');
-                    fprintf(write_file,'     auxiliary_system_type ELECTRIC;\n');
-                    fprintf(write_file,'     motor_model BASIC;\n');
-                    fprintf(write_file,'     motor_efficiency AVERAGE;\n');
-                elseif (floor_area*ceiling_height > 12000 ) % No resistive homes over with large volumes
-                    fprintf(write_file,'     heating_system_type GAS;\n');
-                    if (cool_type <= regional_data.perc_AC)
-                        fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
-                    end
-                else
-                    fprintf(write_file,'     heating_system_type RESISTANCE;\n');
-                    if (cool_type <= regional_data.perc_AC)
-                        fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                        fprintf(write_file,'     auxiliary_strategy DEADBAND;\n');
+                        fprintf(write_file,'     auxiliary_system_type ELECTRIC;\n');
                         fprintf(write_file,'     motor_model BASIC;\n');
-                        fprintf(write_file,'     motor_efficiency GOOD;\n');
-                    end
-                end
-
-
-                    fprintf(write_file,'     breaker_amps 1000;\n');
-                    fprintf(write_file,'     hvac_breaker_rating 1000;\n');
-
-                    % choose a cooling & heating schedule
-                    cooling_set = ceil(regional_data.no_cool_sch*rand(1));           
-                    heating_set = ceil(regional_data.no_heat_sch*rand(1));
-
-                    % choose a cooling bin
-                    coolsp = regional_data.cooling_setpoint{row_ti};
-                    [no_cool_bins,junk] = size(coolsp);
-
-                    % see if we have that bin left
-                    cool_bin = randi(no_cool_bins);
-                    while (cool_sp(cool_bin,row_ti) < 1)
-                        cool_bin = randi(no_cool_bins);
-                    end
-                    cool_sp(cool_bin,row_ti) = cool_sp(cool_bin,row_ti) - 1;
-
-                    % choose a heating bin
-                    heatsp = regional_data.heating_setpoint{row_ti};
-                    [no_heat_bins,junk] = size(heatsp);
-
-                    heat_bin = randi(no_heat_bins);
-                    heat_count = 1;
-
-                    % see if we have that bin left, then check to make sure
-                    % upper limit of chosen bin is not greater than lower limit
-                    % of cooling bin
-                    while (heat_sp(heat_bin,row_ti) < 1 || (heatsp(heat_bin,3) > coolsp(cool_bin,4)))
-                        heat_bin = randi(no_heat_bins);
-
-                        % if we tried a few times, give up and take an extra
-                        % draw from the lowest bin
-                        if (heat_count > 20)
-                            heat_bin = 1;
-                            break;
+                        fprintf(write_file,'     motor_efficiency AVERAGE;\n');
+                    elseif (floor_area*ceiling_height > 12000 ) % No resistive homes over with large volumes
+                        fprintf(write_file,'     heating_system_type GAS;\n');
+                        if (cool_type <= regional_data.perc_AC)
+                            fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
                         end
-
-                        heat_count = heat_count + 1;
-                    end
-                    heat_sp(heat_bin,row_ti) = heat_sp(heat_bin,row_ti) - 1;
-
-                    cool_night = (coolsp(cool_bin,3) - coolsp(cool_bin,4))*rand(1) + coolsp(cool_bin,4);
-                    heat_night = (heatsp(heat_bin,3) - heatsp(heat_bin,4))*rand(1) + heatsp(heat_bin,4);
-
-                    cool_night_diff = coolsp(cool_bin,2) * 2 * rand(1);
-                    heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
-
-                %TODO Pull out market "stuff" and put in an outside loop
-                  % will need to store the set points for later use in market
-                if (use_flags.use_market == 0)
-                    fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
-                    fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
-                elseif (use_flags.use_market == 1)
-                    if (heat_type <= (regional_data.perc_gas + regional_data.perc_pump) && heat_type > regional_data.perc_gas)
-                        fprintf(write_file,'\n     object controller {\n');   
-                        fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'           market %s;\n',tech_data.market_info{2});
-                        fprintf(write_file,'           bid_mode ON;\n');
-                        fprintf(write_file,'           control_mode DOUBLE_RAMP;\n');
-                        fprintf(write_file,'           resolve_mode DEADBAND;\n');
-                        fprintf(write_file,'           slider_setting_heat %.3f;\n',tech_data.market_info{6});
-                        fprintf(write_file,'           slider_setting_cool %.3f;\n',tech_data.market_info{6});
-                        fprintf(write_file,'           heating_base_setpoint heating%d*1;\n',heating_set);
-                        fprintf(write_file,'           cooling_base_setpoint cooling%d*1;\n',cooling_set);
-                        fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
-                        fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
-                        fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
-                        fprintf(write_file,'           target air_temperature;\n');
-                        fprintf(write_file,'           heating_setpoint heating_setpoint;\n');
-                        fprintf(write_file,'           heating_demand last_heating_load;\n');
-                        fprintf(write_file,'           cooling_setpoint cooling_setpoint;\n');
-                        fprintf(write_file,'           cooling_demand last_cooling_load;\n');
-                        fprintf(write_file,'           deadband thermostat_deadband;\n');
-                        fprintf(write_file,'           total hvac_load;\n');
-                        fprintf(write_file,'           load hvac_load;\n');
-                        fprintf(write_file,'           state power_state;\n');
-                        fprintf(write_file,'       };\n\n');
                     else
-                        fprintf(write_file,'\n     object controller {\n');
-                        fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'           market %s;\n',tech_data.market_info{2});
-                        fprintf(write_file,'           bid_mode ON;\n');
-                        fprintf(write_file,'           control_mode RAMP;\n');
-                        fprintf(write_file,'           slider_setting_cool %.3f;\n',tech_data.market_info{6});
-                        fprintf(write_file,'           cooling_base_setpoint cooling%d*1;\n',cooling_set);
-                        fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
-                        fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
-                        fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
-                        fprintf(write_file,'           target air_temperature;\n');
-                        fprintf(write_file,'           cooling_setpoint cooling_setpoint;\n');
-                        fprintf(write_file,'           cooling_demand last_cooling_load;\n');
-                        fprintf(write_file,'           deadband thermostat_deadband;\n');
-                        fprintf(write_file,'           total hvac_load;\n');
-                        fprintf(write_file,'           load hvac_load;\n');
-                        fprintf(write_file,'           state power_state;\n');
-                        fprintf(write_file,'       };\n\n');
+                        fprintf(write_file,'     heating_system_type RESISTANCE;\n');
+                        if (cool_type <= regional_data.perc_AC)
+                            fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                            fprintf(write_file,'     motor_model BASIC;\n');
+                            fprintf(write_file,'     motor_efficiency GOOD;\n');
+                        end
                     end
-                elseif (use_flags.use_market == 2)
-                    cool_slider = market_info{6};
-                    sigma_cool = 1 + (3 - 1)*(1 - cool_slider);
 
-                    cool_high_limit = 5;
-                    range_high_cool = cool_high_limit - cool_high_limit*(1-cool_slider);
-                    k_high_cool = sigma_cool / range_high_cool;
 
-                    cool_low_limit = -3;
-                    range_low_cool = cool_low_limit - cool_low_limit*(1-cool_slider);
-                    k_low_cool = -sigma_cool / range_low_cool;
+                        fprintf(write_file,'     breaker_amps 1000;\n');
+                        fprintf(write_file,'     hvac_breaker_rating 1000;\n');
 
-                    fprintf(write_file,'          cooling_setpoint cooling%d*1;\n',cooling_set);
-                    fprintf(write_file,'          object passive_controller {\n');
-                    fprintf(write_file,'               base_setpoint cooling%d*1;\n',cooling_set);
-                    fprintf(write_file,'               control_mode RAMP;\n');
-                    fprintf(write_file,'               sensitivity 1;\n');  
-                    fprintf(write_file,'               expectation_obj %s;\n',tech_data.market_info{2});
-                    fprintf(write_file,'               expectation_prop avg24;\n');
-                    fprintf(write_file,'               setpoint_prop cooling_setpoint;\n');
-                    fprintf(write_file,'               state_prop override;\n');
-                    fprintf(write_file,'               observation_obj %s;\n',tech_data.market_info{2});
-                    fprintf(write_file,'               observation_prop next.P;\n');
-                    fprintf(write_file,'               mean_observation_prop avg24;\n');
-                    fprintf(write_file,'               stdev_observation_prop std24;\n\n');
-                    fprintf(write_file,'               // Standard deviation %.2f\n',sigma_cool);
-                    fprintf(write_file,'               range_low %.3f;\n',range_low_cool);
-                    fprintf(write_file,'               range_high %.3f;\n',range_high_cool);
-                    fprintf(write_file,'               ramp_low %.3f;\n',k_low_cool);
-                    fprintf(write_file,'               ramp_high %.3f;\n',k_high_cool);
-                    fprintf(write_file,'          };\n\n');
+                        % choose a cooling & heating schedule
+                        cooling_set = ceil(regional_data.no_cool_sch*rand(1));           
+                        heating_set = ceil(regional_data.no_heat_sch*rand(1));
 
-                    if (heat_type > regional_data.perc_gas) %we have electric/HP heat
-                        heat_slider = tech_data.market_info{6};
+                        % choose a cooling bin
+                        coolsp = regional_data.cooling_setpoint{row_ti};
+                        [no_cool_bins,junk] = size(coolsp);
 
-                        sigma_heat = -1 + (-3 + 1)*(1 - heat_slider);
+                        % see if we have that bin left
+                        cool_bin = randi(no_cool_bins);
+                        while (cool_sp(cool_bin,row_ti) < 1)
+                            cool_bin = randi(no_cool_bins);
+                        end
+                        cool_sp(cool_bin,row_ti) = cool_sp(cool_bin,row_ti) - 1;
 
-                        heat_high_limit = 3;
-                        range_high_heat = heat_high_limit - heat_high_limit*(1-heat_slider);
-                        k_high_heat = sigma_heat / range_high_heat;
+                        % choose a heating bin
+                        heatsp = regional_data.heating_setpoint{row_ti};
+                        [no_heat_bins,junk] = size(heatsp);
 
-                        heat_low_limit = -5;
-                        range_low_heat = heat_low_limit - heat_low_limit*(1-heat_slider);
-                        k_low_heat = -sigma_heat / range_low_heat;
+                        heat_bin = randi(no_heat_bins);
+                        heat_count = 1;
 
-                        fprintf(write_file,'          heating_setpoint heating%d*1;\n',heating_set);
+                        % see if we have that bin left, then check to make sure
+                        % upper limit of chosen bin is not greater than lower limit
+                        % of cooling bin
+                        while (heat_sp(heat_bin,row_ti) < 1 || (heatsp(heat_bin,3) > coolsp(cool_bin,4)))
+                            heat_bin = randi(no_heat_bins);
+
+                            % if we tried a few times, give up and take an extra
+                            % draw from the lowest bin
+                            if (heat_count > 20)
+                                heat_bin = 1;
+                                break;
+                            end
+
+                            heat_count = heat_count + 1;
+                        end
+                        heat_sp(heat_bin,row_ti) = heat_sp(heat_bin,row_ti) - 1;
+
+                        cool_night = (coolsp(cool_bin,3) - coolsp(cool_bin,4))*rand(1) + coolsp(cool_bin,4);
+                        heat_night = (heatsp(heat_bin,3) - heatsp(heat_bin,4))*rand(1) + heatsp(heat_bin,4);
+
+                        cool_night_diff = coolsp(cool_bin,2) * 2 * rand(1);
+                        heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
+
+                    %TODO Pull out market "stuff" and put in an outside loop
+                      % will need to store the set points for later use in market
+                    if (use_flags.use_market == 0)
+                        fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
+                        fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
+                    elseif (use_flags.use_market == 1)
+                        if (heat_type <= (regional_data.perc_gas + regional_data.perc_pump) && heat_type > regional_data.perc_gas)
+                            fprintf(write_file,'\n     object controller {\n');   
+                            fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'           market %s;\n',tech_data.market_info{2});
+                            fprintf(write_file,'           bid_mode ON;\n');
+                            fprintf(write_file,'           control_mode DOUBLE_RAMP;\n');
+                            fprintf(write_file,'           resolve_mode DEADBAND;\n');
+                            fprintf(write_file,'           slider_setting_heat %.3f;\n',tech_data.market_info{6});
+                            fprintf(write_file,'           slider_setting_cool %.3f;\n',tech_data.market_info{6});
+                            fprintf(write_file,'           heating_base_setpoint heating%d*1;\n',heating_set);
+                            fprintf(write_file,'           cooling_base_setpoint cooling%d*1;\n',cooling_set);
+                            fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
+                            fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
+                            fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
+                            fprintf(write_file,'           target air_temperature;\n');
+                            fprintf(write_file,'           heating_setpoint heating_setpoint;\n');
+                            fprintf(write_file,'           heating_demand last_heating_load;\n');
+                            fprintf(write_file,'           cooling_setpoint cooling_setpoint;\n');
+                            fprintf(write_file,'           cooling_demand last_cooling_load;\n');
+                            fprintf(write_file,'           deadband thermostat_deadband;\n');
+                            fprintf(write_file,'           total hvac_load;\n');
+                            fprintf(write_file,'           load hvac_load;\n');
+                            fprintf(write_file,'           state power_state;\n');
+                            fprintf(write_file,'       };\n\n');
+                        else
+                            fprintf(write_file,'\n     object controller {\n');
+                            fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'           market %s;\n',tech_data.market_info{2});
+                            fprintf(write_file,'           bid_mode ON;\n');
+                            fprintf(write_file,'           control_mode RAMP;\n');
+                            fprintf(write_file,'           slider_setting_cool %.3f;\n',tech_data.market_info{6});
+                            fprintf(write_file,'           cooling_base_setpoint cooling%d*1;\n',cooling_set);
+                            fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
+                            fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
+                            fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
+                            fprintf(write_file,'           target air_temperature;\n');
+                            fprintf(write_file,'           cooling_setpoint cooling_setpoint;\n');
+                            fprintf(write_file,'           cooling_demand last_cooling_load;\n');
+                            fprintf(write_file,'           deadband thermostat_deadband;\n');
+                            fprintf(write_file,'           total hvac_load;\n');
+                            fprintf(write_file,'           load hvac_load;\n');
+                            fprintf(write_file,'           state power_state;\n');
+                            fprintf(write_file,'       };\n\n');
+                        end
+                    elseif (use_flags.use_market == 2)
+                        cool_slider = market_info{6};
+                        sigma_cool = 1 + (3 - 1)*(1 - cool_slider);
+
+                        cool_high_limit = 5;
+                        range_high_cool = cool_high_limit - cool_high_limit*(1-cool_slider);
+                        k_high_cool = sigma_cool / range_high_cool;
+
+                        cool_low_limit = -3;
+                        range_low_cool = cool_low_limit - cool_low_limit*(1-cool_slider);
+                        k_low_cool = -sigma_cool / range_low_cool;
+
+                        fprintf(write_file,'          cooling_setpoint cooling%d*1;\n',cooling_set);
                         fprintf(write_file,'          object passive_controller {\n');
-                        fprintf(write_file,'               base_setpoint heating%d*1;\n',heating_set);
+                        fprintf(write_file,'               base_setpoint cooling%d*1;\n',cooling_set);
                         fprintf(write_file,'               control_mode RAMP;\n');
                         fprintf(write_file,'               sensitivity 1;\n');  
-                        fprintf(write_file,'               expectation_obj %s;\n',market_info{2});
+                        fprintf(write_file,'               expectation_obj %s;\n',tech_data.market_info{2});
                         fprintf(write_file,'               expectation_prop avg24;\n');
                         fprintf(write_file,'               setpoint_prop cooling_setpoint;\n');
                         fprintf(write_file,'               state_prop override;\n');
-                        fprintf(write_file,'               observation_obj %s;\n',market_info{2});
+                        fprintf(write_file,'               observation_obj %s;\n',tech_data.market_info{2});
                         fprintf(write_file,'               observation_prop next.P;\n');
                         fprintf(write_file,'               mean_observation_prop avg24;\n');
                         fprintf(write_file,'               stdev_observation_prop std24;\n\n');
-                        fprintf(write_file,'               // Standard deviation %.2f\n',sigma_heat);
-                        fprintf(write_file,'               range_low %.3f;\n',range_low_heat);
-                        fprintf(write_file,'               range_high %.3f;\n',range_high_heat);
-                        fprintf(write_file,'               ramp_low %.3f;\n',k_low_heat);
-                        fprintf(write_file,'               ramp_high %.3f;\n',k_high_heat);
+                        fprintf(write_file,'               // Standard deviation %.2f\n',sigma_cool);
+                        fprintf(write_file,'               range_low %.3f;\n',range_low_cool);
+                        fprintf(write_file,'               range_high %.3f;\n',range_high_cool);
+                        fprintf(write_file,'               ramp_low %.3f;\n',k_low_cool);
+                        fprintf(write_file,'               ramp_high %.3f;\n',k_high_cool);
                         fprintf(write_file,'          };\n\n');
+
+                        if (heat_type > regional_data.perc_gas) %we have electric/HP heat
+                            heat_slider = tech_data.market_info{6};
+
+                            sigma_heat = -1 + (-3 + 1)*(1 - heat_slider);
+
+                            heat_high_limit = 3;
+                            range_high_heat = heat_high_limit - heat_high_limit*(1-heat_slider);
+                            k_high_heat = sigma_heat / range_high_heat;
+
+                            heat_low_limit = -5;
+                            range_low_heat = heat_low_limit - heat_low_limit*(1-heat_slider);
+                            k_low_heat = -sigma_heat / range_low_heat;
+
+                            fprintf(write_file,'          heating_setpoint heating%d*1;\n',heating_set);
+                            fprintf(write_file,'          object passive_controller {\n');
+                            fprintf(write_file,'               base_setpoint heating%d*1;\n',heating_set);
+                            fprintf(write_file,'               control_mode RAMP;\n');
+                            fprintf(write_file,'               sensitivity 1;\n');  
+                            fprintf(write_file,'               expectation_obj %s;\n',market_info{2});
+                            fprintf(write_file,'               expectation_prop avg24;\n');
+                            fprintf(write_file,'               setpoint_prop cooling_setpoint;\n');
+                            fprintf(write_file,'               state_prop override;\n');
+                            fprintf(write_file,'               observation_obj %s;\n',market_info{2});
+                            fprintf(write_file,'               observation_prop next.P;\n');
+                            fprintf(write_file,'               mean_observation_prop avg24;\n');
+                            fprintf(write_file,'               stdev_observation_prop std24;\n\n');
+                            fprintf(write_file,'               // Standard deviation %.2f\n',sigma_heat);
+                            fprintf(write_file,'               range_low %.3f;\n',range_low_heat);
+                            fprintf(write_file,'               range_high %.3f;\n',range_high_heat);
+                            fprintf(write_file,'               ramp_low %.3f;\n',k_low_heat);
+                            fprintf(write_file,'               ramp_high %.3f;\n',k_high_heat);
+                            fprintf(write_file,'          };\n\n');
+                        end
                     end
-                end
 
-                % scale all of the end-use loads
-                scalar1 = 324.9/8907 * floor_area^0.442;
-                scalar2 = 0.8 + 0.4 * rand(1);
-                scalar3 = 0.8 + 0.4 * rand(1);
-                resp_scalar = scalar1 * scalar2;
-                unresp_scalar = scalar1 * scalar3;
+                    % scale all of the end-use loads
+                    scalar1 = 324.9/8907 * floor_area^0.442;
+                    scalar2 = 0.8 + 0.4 * rand(1);
+                    scalar3 = 0.8 + 0.4 * rand(1);
+                    resp_scalar = scalar1 * scalar2;
+                    unresp_scalar = scalar1 * scalar3;
 
-                % average size is 1.36 kW
-                % Energy Savings through Automatic Seasonal Run-Time Adjustment of Pool Filter Pumps 
-                % Stephen D Allen, B.S. Electrical Engineering
-                pool_pump_power = 1.36 + .36*rand(1);
-                pool_pump_perc = rand(1);
+                    % average size is 1.36 kW
+                    % Energy Savings through Automatic Seasonal Run-Time Adjustment of Pool Filter Pumps 
+                    % Stephen D Allen, B.S. Electrical Engineering
+                    pool_pump_power = 1.36 + .36*rand(1);
+                    pool_pump_perc = rand(1);
 
-                % average 4-12 hours / day -> 1/6-1/2 duty cycle
-                % typically run for 2 - 4 hours at a time
-                pp_dutycycle = 1/6 + (1/2 - 1/6)*rand(1);
-                pp_period = 4 + 4*rand(1);
-                pp_init_phase = rand(1);
+                    % average 4-12 hours / day -> 1/6-1/2 duty cycle
+                    % typically run for 2 - 4 hours at a time
+                    pp_dutycycle = 1/6 + (1/2 - 1/6)*rand(1);
+                    pp_period = 4 + 4*rand(1);
+                    pp_init_phase = rand(1);
 
-                fprintf(write_file,'     object ZIPload {\n');
-                fprintf(write_file,'           name house%d_resp_%s\n',kk,parent);
-                fprintf(write_file,'           // Responsive load\n');           
-                fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-                fprintf(write_file,'           base_power responsive_loads*%.2f;\n',resp_scalar);
-                fprintf(write_file,'           heatgain_fraction %.3f;\n',tech_data.heat_fraction);
-                fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
-                fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
-                fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
-                fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
-                fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
-                fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
-                fprintf(write_file,'     };\n');
-
-                fprintf(write_file,'     object ZIPload {\n');
-                fprintf(write_file,'           // Unresponsive load\n');           
-                fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-                fprintf(write_file,'           base_power unresponsive_loads*%.2f;\n',unresp_scalar);
-                fprintf(write_file,'           heatgain_fraction %.3f;\n',tech_data.heat_fraction);
-                fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
-                fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
-                fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
-                fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
-                fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
-                fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
-                fprintf(write_file,'     };\n');
-
-                % pool pumps only on single-family homes
-                if (pool_pump_perc < 2*regional_data.perc_poolpumps && no_pool_pumps >= 1 && row_ti == 1)
                     fprintf(write_file,'     object ZIPload {\n');
-                    fprintf(write_file,'           name house%d_ppump_%s\n',kk,parent);
-                    fprintf(write_file,'           // Pool Pump\n');           
-                    fprintf(write_file,'           schedule_skew %.0f;\n',pp_skew_value);
-                    fprintf(write_file,'           base_power pool_pump_season*%.2f;\n',pool_pump_power);
-                    fprintf(write_file,'           duty_cycle %.2f;\n',pp_dutycycle);
-                    fprintf(write_file,'           phase %.2f;\n',pp_init_phase);
-                    fprintf(write_file,'           period %.2f;\n',pp_period);
-                    fprintf(write_file,'           heatgain_fraction 0.0;\n');
+                    fprintf(write_file,'           name house%d_resp_%s\n',kk,parent);
+                    fprintf(write_file,'           // Responsive load\n');           
+                    fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+                    fprintf(write_file,'           base_power responsive_loads*%.2f;\n',resp_scalar);
+                    fprintf(write_file,'           heatgain_fraction %.3f;\n',tech_data.heat_fraction);
                     fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
                     fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
                     fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
                     fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
                     fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
                     fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
-                    fprintf(write_file,'           is_240 TRUE;\n');
                     fprintf(write_file,'     };\n');
 
-                    no_pool_pumps = no_pool_pumps - 1;
-                end
+                    fprintf(write_file,'     object ZIPload {\n');
+                    fprintf(write_file,'           // Unresponsive load\n');           
+                    fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+                    fprintf(write_file,'           base_power unresponsive_loads*%.2f;\n',unresp_scalar);
+                    fprintf(write_file,'           heatgain_fraction %.3f;\n',tech_data.heat_fraction);
+                    fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
+                    fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
+                    fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
+                    fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
+                    fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
+                    fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
+                    fprintf(write_file,'     };\n');
 
-                    heat_element = 3.0 + 0.5*randi(5);
-                    tank_set = 120 + 16*rand(1);
-                    therm_dead = 4 + 4*rand(1);
-                    tank_UA = 2 + 2*rand(1);
-                    water_sch = ceil(10*rand(1));
-                    water_var = 0.95 + rand(1) * 0.1; % +/-5% variability
-                    wh_size_test = rand(1);
-                    wh_size_rand = randi(3);
+                    % pool pumps only on single-family homes
+                    if (pool_pump_perc < 2*regional_data.perc_poolpumps && no_pool_pumps >= 1 && row_ti == 1)
+                        fprintf(write_file,'     object ZIPload {\n');
+                        fprintf(write_file,'           name house%d_ppump_%s\n',kk,parent);
+                        fprintf(write_file,'           // Pool Pump\n');           
+                        fprintf(write_file,'           schedule_skew %.0f;\n',pp_skew_value);
+                        fprintf(write_file,'           base_power pool_pump_season*%.2f;\n',pool_pump_power);
+                        fprintf(write_file,'           duty_cycle %.2f;\n',pp_dutycycle);
+                        fprintf(write_file,'           phase %.2f;\n',pp_init_phase);
+                        fprintf(write_file,'           period %.2f;\n',pp_period);
+                        fprintf(write_file,'           heatgain_fraction 0.0;\n');
+                        fprintf(write_file,'           power_pf %.3f;\n',tech_data.p_pf);
+                        fprintf(write_file,'           current_pf %.3f;\n',tech_data.i_pf);
+                        fprintf(write_file,'           impedance_pf %.3f;\n',tech_data.z_pf);
+                        fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
+                        fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
+                        fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
+                        fprintf(write_file,'           is_240 TRUE;\n');
+                        fprintf(write_file,'     };\n');
 
-                if (heat_type > (1 - regional_data.wh_electric) && tech_data.use_wh == 1)
-                    fprintf(write_file,'     object waterheater {\n');        
-                    fprintf(write_file,'          schedule_skew %.0f;\n',wh_skew_value);   
-                    fprintf(write_file,'          heating_element_capacity %.1f kW;\n',heat_element);
-                    fprintf(write_file,'          tank_setpoint %.1f;\n',tank_set);
-                    fprintf(write_file,'          temperature 132;\n');                   
-                    fprintf(write_file,'          thermostat_deadband %.1f;\n',therm_dead);
-                    fprintf(write_file,'          location INSIDE;\n');                    
-                    fprintf(write_file,'          tank_UA %.1f;\n',tank_UA);
+                        no_pool_pumps = no_pool_pumps - 1;
+                    end
 
-                    if (wh_size_test < regional_data.wh_size(1))
-                        fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
-                            whsize = 20 + (wh_size_rand-1) * 5;
-                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
-                    elseif (wh_size_test < (regional_data.wh_size(1) + regional_data.wh_size(2)))
-                        if(floor_area < 2000)
+                        heat_element = 3.0 + 0.5*randi(5);
+                        tank_set = 120 + 16*rand(1);
+                        therm_dead = 4 + 4*rand(1);
+                        tank_UA = 2 + 2*rand(1);
+                        water_sch = ceil(10*rand(1));
+                        water_var = 0.95 + rand(1) * 0.1; % +/-5% variability
+                        wh_size_test = rand(1);
+                        wh_size_rand = randi(3);
+
+                    if (heat_type > (1 - regional_data.wh_electric) && tech_data.use_wh == 1)
+                        fprintf(write_file,'     object waterheater {\n');        
+                        fprintf(write_file,'          schedule_skew %.0f;\n',wh_skew_value);   
+                        fprintf(write_file,'          heating_element_capacity %.1f kW;\n',heat_element);
+                        fprintf(write_file,'          tank_setpoint %.1f;\n',tank_set);
+                        fprintf(write_file,'          temperature 132;\n');                   
+                        fprintf(write_file,'          thermostat_deadband %.1f;\n',therm_dead);
+                        fprintf(write_file,'          location INSIDE;\n');                    
+                        fprintf(write_file,'          tank_UA %.1f;\n',tank_UA);
+
+                        if (wh_size_test < regional_data.wh_size(1))
                             fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
+                                whsize = 20 + (wh_size_rand-1) * 5;
+                            fprintf(write_file,'          tank_volume %.0f;\n',whsize);
+                        elseif (wh_size_test < (regional_data.wh_size(1) + regional_data.wh_size(2)))
+                            if(floor_area < 2000)
+                                fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
+                            else
+                                fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
+                            end
+                                whsize = 30 + (wh_size_rand - 1)*10;
+                            fprintf(write_file,'          tank_volume %.0f;\n',whsize);
+                        elseif (floor_area > 2000)
+                                whsize = 50 + (wh_size_rand - 1)*10;
+                            fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
+                            fprintf(write_file,'          tank_volume %.0f;\n',whsize);
                         else
                             fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
+                                whsize = 30 + (wh_size_rand - 1)*10;
+                            fprintf(write_file,'          tank_volume %.0f;\n',whsize);
                         end
-                            whsize = 30 + (wh_size_rand - 1)*10;
-                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
-                    elseif (floor_area > 2000)
-                            whsize = 50 + (wh_size_rand - 1)*10;
-                        fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
-                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
-                    else
-                        fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
-                            whsize = 30 + (wh_size_rand - 1)*10;
-                        fprintf(write_file,'          tank_volume %.0f;\n',whsize);
+                        fprintf(write_file,'     };\n\n');
                     end
-                    fprintf(write_file,'     };\n\n');
-                end
 
-                fprintf(write_file,'}\n\n'); %end house
-            end   
+                    fprintf(write_file,'}\n\n'); %end house
+                end   
+            end
         end
         
-        disp(['Mean floor area = ',num2str(mean(fl_area))]);
+        %disp(['Mean floor area = ',num2str(mean(fl_area))]);
     end
 
     % Initialize pseudo-random numbers - put this before each technology where 
@@ -1933,210 +1936,212 @@ count_house = 1;
                         %TODO
                     end
                     fprintf(write_file,'}\n\n');
+                    
+                    if (tech_data.get_IEEE_stats == 0)
+                        for phind = 1:3                  
+                            fprintf(write_file,'object transformer {\n');
+                            fprintf(write_file,'     name %s_CTTF_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     phases %sS;\n',my_phases{phind});
+                            fprintf(write_file,'     from %s_office_meter%.0f;\n',my_name,jjj);
+                            fprintf(write_file,'     to %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
+                            fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
+                            fprintf(write_file,'}\n\n');
 
-                    for phind = 1:3                  
-                        fprintf(write_file,'object transformer {\n');
-                        fprintf(write_file,'     name %s_CTTF_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     phases %sS;\n',my_phases{phind});
-                        fprintf(write_file,'     from %s_office_meter%.0f;\n',my_name,jjj);
-                        fprintf(write_file,'     to %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
-                        fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
-                        fprintf(write_file,'}\n\n');
-                       
 
-                        fprintf(write_file,'object triplex_meter {\n');
-                        fprintf(write_file,'     name %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     phases %sS;\n',my_phases{phind});
-                        fprintf(write_file,'     nominal_voltage 120;\n');
-                        fprintf(write_file,'}\n\n');
+                            fprintf(write_file,'object triplex_meter {\n');
+                            fprintf(write_file,'     name %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     phases %sS;\n',my_phases{phind});
+                            fprintf(write_file,'     nominal_voltage 120;\n');
+                            fprintf(write_file,'}\n\n');
 
-                        % skew each office zone identically per floor
-                        sk = round(2*randn(1));
-                        skew_value = tech_data.commercial_skew_std * sk;
-                        if (skew_value < -tech_data.commercial_skew_max)
-                            skew_value = -tech_data.commercial_skew_max;
-                        elseif (skew_value > tech_data.commercial_skew_max)
-                            skew_value = tech_data.commercial_skew_max;
-                        end
-
-                        for zoneind=1:5
-                            total_depth = sqrt(floor_area_choose / (3 * 1.5));
-                            total_width = 1.5 * total_depth;
-
-                            if (phind < 3)
-                                exterior_ceiling_fraction = 0;
-                            else
-                                exterior_ceiling_fraction = 1;
+                            % skew each office zone identically per floor
+                            sk = round(2*randn(1));
+                            skew_value = tech_data.commercial_skew_std * sk;
+                            if (skew_value < -tech_data.commercial_skew_max)
+                                skew_value = -tech_data.commercial_skew_max;
+                            elseif (skew_value > tech_data.commercial_skew_max)
+                                skew_value = tech_data.commercial_skew_max;
                             end
 
-                            if (zoneind == 5)
-                                exterior_wall_fraction = 0;
-                                w = total_depth - 30;
-                                d = total_width - 30;
-                                floor_area = w*d;
-                                aspect_ratio = w/d;
-                            else
-                                window_wall_ratio = 0.33;
+                            for zoneind=1:5
+                                total_depth = sqrt(floor_area_choose / (3 * 1.5));
+                                total_width = 1.5 * total_depth;
 
-                                if (zoneind == 1 || zoneind == 3)
-                                    w = total_width - 15;
-                                    d = 15;
+                                if (phind < 3)
+                                    exterior_ceiling_fraction = 0;
+                                else
+                                    exterior_ceiling_fraction = 1;
+                                end
+
+                                if (zoneind == 5)
+                                    exterior_wall_fraction = 0;
+                                    w = total_depth - 30;
+                                    d = total_width - 30;
                                     floor_area = w*d;
-                                    exterior_wall_fraction = w / (2 * (w+d));
                                     aspect_ratio = w/d;
                                 else
-                                    w = total_depth - 15;
-                                    d = 15;
-                                    floor_area = w*d;                        
-                                    exterior_wall_fraction = w / (2 * (w+d));
-                                    aspect_ratio = w/d;
+                                    window_wall_ratio = 0.33;
+
+                                    if (zoneind == 1 || zoneind == 3)
+                                        w = total_width - 15;
+                                        d = 15;
+                                        floor_area = w*d;
+                                        exterior_wall_fraction = w / (2 * (w+d));
+                                        aspect_ratio = w/d;
+                                    else
+                                        w = total_depth - 15;
+                                        d = 15;
+                                        floor_area = w*d;                        
+                                        exterior_wall_fraction = w / (2 * (w+d));
+                                        aspect_ratio = w/d;
+                                    end
                                 end
-                            end
 
-                            if (phind > 1)
-                                exterior_floor_fraction = 0;
-                            else
-                                exterior_floor_fraction = w / (2*(w+d)) / (floor_area / (floor_area_choose/3));
-                            end
+                                if (phind > 1)
+                                    exterior_floor_fraction = 0;
+                                else
+                                    exterior_floor_fraction = w / (2*(w+d)) / (floor_area / (floor_area_choose/3));
+                                end
 
-                            thermal_mass_per_floor_area = 3.9 * (0.5 + 1 * rand(1)); %+/- 50%
-                            interior_exterior_wall_ratio = (floor_area * (2 - 1) + 0*20) / (no_of_stories * ceiling_height * 2 * (w+d)) - 1 + window_wall_ratio*exterior_wall_fraction;
-                            no_of_doors = 0.1; % will round to zero
+                                thermal_mass_per_floor_area = 3.9 * (0.5 + 1 * rand(1)); %+/- 50%
+                                interior_exterior_wall_ratio = (floor_area * (2 - 1) + 0*20) / (no_of_stories * ceiling_height * 2 * (w+d)) - 1 + window_wall_ratio*exterior_wall_fraction;
+                                no_of_doors = 0.1; % will round to zero
 
-                            fprintf(write_file,'object house {\n');
-                            fprintf(write_file,'     name office%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                            fprintf(write_file,'     groupid Commercial;\n');
-                            fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'     floor_area %.0f;\n',floor_area);
-                            fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
-                            fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
-                            fprintf(write_file,'     aspect_ratio %.2f;\n',aspect_ratio);
-                            fprintf(write_file,'     total_thermal_mass_per_floor_area %1.2f;\n',thermal_mass_per_floor_area);
-                            fprintf(write_file,'     interior_surface_heat_transfer_coeff %1.2f;\n',surface_heat_trans_coeff);
-                            fprintf(write_file,'     interior_exterior_wall_ratio %2.1f;\n',interior_exterior_wall_ratio);
-                            fprintf(write_file,'     exterior_floor_fraction %.3f;\n',exterior_floor_fraction);
-                            fprintf(write_file,'     exterior_ceiling_fraction %.3f;\n',exterior_ceiling_fraction);
-                            fprintf(write_file,'     Rwall %2.1f;\n',Rwall);
-                            fprintf(write_file,'     Rroof %2.1f;\n',Rroof);
-                            fprintf(write_file,'     Rfloor %.2f;\n',Rfloor);
-                            fprintf(write_file,'     Rdoors %2.1f;\n',Rdoors);
-                            fprintf(write_file,'     exterior_wall_fraction %.2f;\n',exterior_wall_fraction);
-                            fprintf(write_file,'     glazing_layers %s;\n',glazing_layers);
-                            fprintf(write_file,'     glass_type %s;\n',glass_type);
-                            fprintf(write_file,'     glazing_treatment %s;\n',glazing_treatment);
-                            fprintf(write_file,'     window_frame %s;\n',window_frame);            
-                            fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange_per_hour);    
-                            fprintf(write_file,'     window_wall_ratio %0.3f;\n',window_wall_ratio);    
-                            fprintf(write_file,'     heating_system_type %s;\n',heat_type);
-                            fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
-                            fprintf(write_file,'     fan_type %s;\n',fan_type);
-                            fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
-                            
-                                init_temp = 68 + 4*rand(1);
-                            fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
-                            fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
-                                
-                                os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
-                            fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
+                                fprintf(write_file,'object house {\n');
+                                fprintf(write_file,'     name office%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                                fprintf(write_file,'     groupid Commercial;\n');
+                                fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'     floor_area %.0f;\n',floor_area);
+                                fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
+                                fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
+                                fprintf(write_file,'     aspect_ratio %.2f;\n',aspect_ratio);
+                                fprintf(write_file,'     total_thermal_mass_per_floor_area %1.2f;\n',thermal_mass_per_floor_area);
+                                fprintf(write_file,'     interior_surface_heat_transfer_coeff %1.2f;\n',surface_heat_trans_coeff);
+                                fprintf(write_file,'     interior_exterior_wall_ratio %2.1f;\n',interior_exterior_wall_ratio);
+                                fprintf(write_file,'     exterior_floor_fraction %.3f;\n',exterior_floor_fraction);
+                                fprintf(write_file,'     exterior_ceiling_fraction %.3f;\n',exterior_ceiling_fraction);
+                                fprintf(write_file,'     Rwall %2.1f;\n',Rwall);
+                                fprintf(write_file,'     Rroof %2.1f;\n',Rroof);
+                                fprintf(write_file,'     Rfloor %.2f;\n',Rfloor);
+                                fprintf(write_file,'     Rdoors %2.1f;\n',Rdoors);
+                                fprintf(write_file,'     exterior_wall_fraction %.2f;\n',exterior_wall_fraction);
+                                fprintf(write_file,'     glazing_layers %s;\n',glazing_layers);
+                                fprintf(write_file,'     glass_type %s;\n',glass_type);
+                                fprintf(write_file,'     glazing_treatment %s;\n',glazing_treatment);
+                                fprintf(write_file,'     window_frame %s;\n',window_frame);            
+                                fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange_per_hour);    
+                                fprintf(write_file,'     window_wall_ratio %0.3f;\n',window_wall_ratio);    
+                                fprintf(write_file,'     heating_system_type %s;\n',heat_type);
+                                fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
+                                fprintf(write_file,'     fan_type %s;\n',fan_type);
+                                fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
-                                COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
-                            fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
+                                    init_temp = 68 + 4*rand(1);
+                                fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                                fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
 
-                            if (use_flags.use_market == 0)
-                                fprintf(write_file,'     cooling_setpoint office_cooling;\n');
-                            else
-                                % controllers will be added later
-                                fprintf(write_file,'     cooling_setpoint 80;\n');
-                            end
+                                    os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                                fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
 
-                            if (use_flags.use_market == 0)
-                                fprintf(write_file,'     heating_setpoint office_heating;\n');
-                            else
-                                % controllers will be added later
-                                fprintf(write_file,'     heating_setpoint 60;\n');
-                            end
+                                    COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
+                                fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
-                            % Need all of the "appliances"
-                            fprintf(write_file,'     // Lights\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
+                                if (use_flags.use_market == 0)
+                                    fprintf(write_file,'     cooling_setpoint office_cooling;\n');
+                                else
+                                    % controllers will be added later
+                                    fprintf(write_file,'     cooling_setpoint 80;\n');
+                                end
 
-                                adj_lights = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power office_lights*%.2f;\n',adj_lights);
-                            fprintf(write_file,'     };\n\n');
+                                if (use_flags.use_market == 0)
+                                    fprintf(write_file,'     heating_setpoint office_heating;\n');
+                                else
+                                    % controllers will be added later
+                                    fprintf(write_file,'     heating_setpoint 60;\n');
+                                end
 
-                            fprintf(write_file,'     // Plugs\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
+                                % Need all of the "appliances"
+                                fprintf(write_file,'     // Lights\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                                fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                                fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                                fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                                fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                                fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
-                                adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power office_plugs*%.2f;\n',adj_plugs);
-                            fprintf(write_file,'     };\n\n');
+                                    adj_lights = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power office_lights*%.2f;\n',adj_lights);
+                                fprintf(write_file,'     };\n\n');
 
-                            fprintf(write_file,'     // Gas Waterheater\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name wh_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 0.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                                fprintf(write_file,'     // Plugs\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                                fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                                fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                                fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                                fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                                fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
 
-                                adj_gas = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power office_gas*%.2f;\n',adj_gas);
-                            fprintf(write_file,'     };\n\n');
+                                    adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power office_plugs*%.2f;\n',adj_plugs);
+                                fprintf(write_file,'     };\n\n');
 
-                            fprintf(write_file,'     // Exterior Lighting\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 0.0;\n');
-                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
+                                fprintf(write_file,'     // Gas Waterheater\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name wh_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction 0.0;\n');
+                                fprintf(write_file,'          impedance_fraction 0.0;\n');
+                                fprintf(write_file,'          current_fraction 0.0;\n');
+                                fprintf(write_file,'          power_pf 1.0;\n');  
 
-                                adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power office_exterior*%.2f;\n',adj_ext);
-                            fprintf(write_file,'     };\n\n');
+                                    adj_gas = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power office_gas*%.2f;\n',adj_gas);
+                                fprintf(write_file,'     };\n\n');
 
-                            fprintf(write_file,'     // Occupancy\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name occ_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 0.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
+                                fprintf(write_file,'     // Exterior Lighting\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 0.0;\n');
+                                fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                                fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                                fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                                fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                                fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                                fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
 
-                                adj_occ = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power office_occupancy*%.2f;\n',adj_occ);
-                            fprintf(write_file,'     };\n');
-                            fprintf(write_file,'}\n\n');
-                        end % office zones (1-5)        
-                    end % office phases (A-C)
+                                    adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power office_exterior*%.2f;\n',adj_ext);
+                                fprintf(write_file,'     };\n\n');
+
+                                fprintf(write_file,'     // Occupancy\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name occ_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction 0.0;\n');
+                                fprintf(write_file,'          impedance_fraction 0.0;\n');
+                                fprintf(write_file,'          current_fraction 0.0;\n');
+                                fprintf(write_file,'          power_pf 1.0;\n');  
+
+                                    adj_occ = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power office_occupancy*%.2f;\n',adj_occ);
+                                fprintf(write_file,'     };\n');
+                                fprintf(write_file,'}\n\n');
+                            end % office zones (1-5)        
+                        end % office phases (A-C)
+                    end
                 end % total offices needed
 
             % Big box - has at least 2 phases and enough load for 6 zones
@@ -2234,204 +2239,207 @@ count_house = 1;
                     end
 
                     total_index = 0;
-                    for phind=1:3
-                        % skip outta the for-loop if the phase is missing
-                        if (phind==1 && has_phase_A == 0)
-                            continue;
-                        elseif (phind==2 && has_phase_B == 0)
-                            continue;
-                        elseif (phind==3 && has_phase_C == 0)
-                            continue;
-                        end
-
-                        fprintf(write_file,'object transformer {\n');
-                        fprintf(write_file,'     name %s_CTTF_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     phases %sS;\n',my_phases{phind});
-                        fprintf(write_file,'     from %s_bigbox_meter%.0f;\n',my_name,jjj);
-                        fprintf(write_file,'     to %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
-                        fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
-                        fprintf(write_file,'}\n\n');
-                        
-
-                        fprintf(write_file,'object triplex_meter {\n');
-                        fprintf(write_file,'     name %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     phases %sS;\n',my_phases{phind});
-                        fprintf(write_file,'     nominal_voltage 120;\n');
-                        fprintf(write_file,'}\n\n');
-
-                        zones_per_phase = 6 / no_of_phases;
-                        for zoneind=1:zones_per_phase
-                            total_index = total_index + 1;
-                            thermal_mass_per_floor_area = 3.9 * (0.8 + 0.4 * rand(1)); %+/- 20%
-                            floor_area = floor_area_choose / 6;
-                            exterior_ceiling_fraction = 1;
-                            aspect_ratio = 1.28301275561855;
-
-                            total_depth = sqrt(floor_area_choose / aspect_ratio);
-                            total_width = aspect_ratio * total_depth;
-                            d = total_width / 3;               
-                            w = total_depth / 2;
-                            if (total_index == 2 || total_index == 5)
-                                exterior_wall_fraction = d / (2*(d + w));
-                                exterior_floor_fraction = (0 + d) / (2*(total_width + total_depth)) / (floor_area / (floor_area_choose));
-                            else
-                                exterior_wall_fraction = 0.5;
-                                exterior_floor_fraction = (w + d) / (2*(total_width + total_depth)) / (floor_area / (floor_area_choose));
+                    
+                    if (tech_data.get_IEEE_stats == 0)
+                        for phind=1:3
+                            % skip outta the for-loop if the phase is missing
+                            if (phind==1 && has_phase_A == 0)
+                                continue;
+                            elseif (phind==2 && has_phase_B == 0)
+                                continue;
+                            elseif (phind==3 && has_phase_C == 0)
+                                continue;
                             end
 
-                            if (total_index == 2)
-                                window_wall_ratio = 0.76;
-                            else
-                                window_wall_ratio = 0;
-                            end
-
-                            if (total_index < 4)
-                                no_of_doors = 0.1; % this will round to 0
-                            elseif (j == 4 || j== 6)
-                                no_of_doors = 1;
-                            else
-                                no_of_doors = 24;
-                            end
-                            interior_exterior_wall_ratio = (floor_area * (2 - 1) + no_of_doors*20) / (no_of_stories * ceiling_height * 2 * (w+d)) - 1 + window_wall_ratio*exterior_wall_fraction;
-
-                            if (total_index > 6)
-                                error('Something wrong in the indexing of the retail strip.');
-                            end
-
-                            fprintf(write_file,'object house {\n');
-                            fprintf(write_file,'     name bigbox%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'     groupid Commercial;\n');
-                            fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                            fprintf(write_file,'     floor_area %.0f;\n',floor_area);
-                            fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
-                            fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
-                            fprintf(write_file,'     aspect_ratio %.2f;\n',aspect_ratio);
-                            fprintf(write_file,'     total_thermal_mass_per_floor_area %1.2f;\n',thermal_mass_per_floor_area);
-                            fprintf(write_file,'     interior_surface_heat_transfer_coeff %1.2f;\n',surface_heat_trans_coeff);
-                            fprintf(write_file,'     interior_exterior_wall_ratio %2.1f;\n',interior_exterior_wall_ratio);
-                            fprintf(write_file,'     exterior_floor_fraction %.3f;\n',exterior_floor_fraction);
-                            fprintf(write_file,'     exterior_ceiling_fraction %.3f;\n',exterior_ceiling_fraction);
-                            fprintf(write_file,'     Rwall %2.1f;\n',Rwall);
-                            fprintf(write_file,'     Rroof %2.1f;\n',Rroof);
-                            fprintf(write_file,'     Rfloor %.2f;\n',Rfloor);
-                            fprintf(write_file,'     Rdoors %2.1f;\n',Rdoors);
-                            fprintf(write_file,'     exterior_wall_fraction %.2f;\n',exterior_wall_fraction);
-                            fprintf(write_file,'     glazing_layers %s;\n',glazing_layers);
-                            fprintf(write_file,'     glass_type %s;\n',glass_type);
-                            fprintf(write_file,'     glazing_treatment %s;\n',glazing_treatment);
-                            fprintf(write_file,'     window_frame %s;\n',window_frame);            
-                            fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange_per_hour);    
-                            fprintf(write_file,'     window_wall_ratio %0.3f;\n',window_wall_ratio);    
-                            fprintf(write_file,'     heating_system_type %s;\n',heat_type);
-                            fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
-                            fprintf(write_file,'     fan_type %s;\n',fan_type);
-                            fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
-                            
-                                init_temp = 68 + 4*rand(1);
-                            fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
-                            fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
-                            
-                                os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
-                            fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
-                            
-                                COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
-                            fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
-
-                            if (use_flags.use_market == 0)
-                                fprintf(write_file,'     cooling_setpoint bigbox_cooling;\n');
-                            else
-                                % controllers will be added later
-                                fprintf(write_file,'     cooling_setpoint 80;\n');
-                            end
-
-                            if (use_flags.use_market == 0)
-                                fprintf(write_file,'     heating_setpoint bigbox_heating;\n');
-                            else
-                                % controllers will be added later
-                                fprintf(write_file,'     heating_setpoint 60;\n');
-                            end
-
-                            % Need all of the "appliances"
-                            fprintf(write_file,'     // Lights\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
-
-                                adj_lights = 1.2 * (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power bigbox_lights*%.2f;\n',adj_lights);
-                            fprintf(write_file,'     };\n\n');
-
-                            fprintf(write_file,'     // Plugs\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
-
-                                adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power bigbox_plugs*%.2f;\n',adj_plugs);
-                            fprintf(write_file,'     };\n\n');
-
-                            fprintf(write_file,'     // Gas Waterheater\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name wh_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 0.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
-
-                                adj_gas = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power bigbox_gas*%.2f;\n',adj_gas);
-                            fprintf(write_file,'     };\n\n');
-
-                            fprintf(write_file,'     // Exterior Lighting\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 0.0;\n');
-                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
-
-                                adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power bigbox_exterior*%.2f;\n',adj_ext);
-                            fprintf(write_file,'     };\n\n');
-
-                            fprintf(write_file,'     // Occupancy\n');
-                            fprintf(write_file,'     object ZIPload {\n');
-                            fprintf(write_file,'          name occ_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
-                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                            fprintf(write_file,'          power_fraction 0.0;\n');
-                            fprintf(write_file,'          impedance_fraction 0.0;\n');
-                            fprintf(write_file,'          current_fraction 0.0;\n');
-                            fprintf(write_file,'          power_pf 1.0;\n');  
-
-                                adj_occ = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                            fprintf(write_file,'          base_power bigbox_occupancy*%.2f;\n',adj_occ);
-                            fprintf(write_file,'     };\n');
+                            fprintf(write_file,'object transformer {\n');
+                            fprintf(write_file,'     name %s_CTTF_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     phases %sS;\n',my_phases{phind});
+                            fprintf(write_file,'     from %s_bigbox_meter%.0f;\n',my_name,jjj);
+                            fprintf(write_file,'     to %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     groupid %s;\n','Distribution_Trans');
+                            fprintf(write_file,'     configuration CTTF_config_%s_%s;\n',my_phases{phind},my_name);
                             fprintf(write_file,'}\n\n');
-                        end %zone index
-                    end %phase index      
+
+
+                            fprintf(write_file,'object triplex_meter {\n');
+                            fprintf(write_file,'     name %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     phases %sS;\n',my_phases{phind});
+                            fprintf(write_file,'     nominal_voltage 120;\n');
+                            fprintf(write_file,'}\n\n');
+
+                            zones_per_phase = 6 / no_of_phases;
+                            for zoneind=1:zones_per_phase
+                                total_index = total_index + 1;
+                                thermal_mass_per_floor_area = 3.9 * (0.8 + 0.4 * rand(1)); %+/- 20%
+                                floor_area = floor_area_choose / 6;
+                                exterior_ceiling_fraction = 1;
+                                aspect_ratio = 1.28301275561855;
+
+                                total_depth = sqrt(floor_area_choose / aspect_ratio);
+                                total_width = aspect_ratio * total_depth;
+                                d = total_width / 3;               
+                                w = total_depth / 2;
+                                if (total_index == 2 || total_index == 5)
+                                    exterior_wall_fraction = d / (2*(d + w));
+                                    exterior_floor_fraction = (0 + d) / (2*(total_width + total_depth)) / (floor_area / (floor_area_choose));
+                                else
+                                    exterior_wall_fraction = 0.5;
+                                    exterior_floor_fraction = (w + d) / (2*(total_width + total_depth)) / (floor_area / (floor_area_choose));
+                                end
+
+                                if (total_index == 2)
+                                    window_wall_ratio = 0.76;
+                                else
+                                    window_wall_ratio = 0;
+                                end
+
+                                if (total_index < 4)
+                                    no_of_doors = 0.1; % this will round to 0
+                                elseif (j == 4 || j== 6)
+                                    no_of_doors = 1;
+                                else
+                                    no_of_doors = 24;
+                                end
+                                interior_exterior_wall_ratio = (floor_area * (2 - 1) + no_of_doors*20) / (no_of_stories * ceiling_height * 2 * (w+d)) - 1 + window_wall_ratio*exterior_wall_fraction;
+
+                                if (total_index > 6)
+                                    error('Something wrong in the indexing of the retail strip.');
+                                end
+
+                                fprintf(write_file,'object house {\n');
+                                fprintf(write_file,'     name bigbox%s_%s%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'     groupid Commercial;\n');
+                                fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                                fprintf(write_file,'     floor_area %.0f;\n',floor_area);
+                                fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
+                                fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
+                                fprintf(write_file,'     aspect_ratio %.2f;\n',aspect_ratio);
+                                fprintf(write_file,'     total_thermal_mass_per_floor_area %1.2f;\n',thermal_mass_per_floor_area);
+                                fprintf(write_file,'     interior_surface_heat_transfer_coeff %1.2f;\n',surface_heat_trans_coeff);
+                                fprintf(write_file,'     interior_exterior_wall_ratio %2.1f;\n',interior_exterior_wall_ratio);
+                                fprintf(write_file,'     exterior_floor_fraction %.3f;\n',exterior_floor_fraction);
+                                fprintf(write_file,'     exterior_ceiling_fraction %.3f;\n',exterior_ceiling_fraction);
+                                fprintf(write_file,'     Rwall %2.1f;\n',Rwall);
+                                fprintf(write_file,'     Rroof %2.1f;\n',Rroof);
+                                fprintf(write_file,'     Rfloor %.2f;\n',Rfloor);
+                                fprintf(write_file,'     Rdoors %2.1f;\n',Rdoors);
+                                fprintf(write_file,'     exterior_wall_fraction %.2f;\n',exterior_wall_fraction);
+                                fprintf(write_file,'     glazing_layers %s;\n',glazing_layers);
+                                fprintf(write_file,'     glass_type %s;\n',glass_type);
+                                fprintf(write_file,'     glazing_treatment %s;\n',glazing_treatment);
+                                fprintf(write_file,'     window_frame %s;\n',window_frame);            
+                                fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange_per_hour);    
+                                fprintf(write_file,'     window_wall_ratio %0.3f;\n',window_wall_ratio);    
+                                fprintf(write_file,'     heating_system_type %s;\n',heat_type);
+                                fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
+                                fprintf(write_file,'     fan_type %s;\n',fan_type);
+                                fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
+
+                                    init_temp = 68 + 4*rand(1);
+                                fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                                fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
+
+                                    os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                                fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
+
+                                    COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
+                                fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
+
+                                if (use_flags.use_market == 0)
+                                    fprintf(write_file,'     cooling_setpoint bigbox_cooling;\n');
+                                else
+                                    % controllers will be added later
+                                    fprintf(write_file,'     cooling_setpoint 80;\n');
+                                end
+
+                                if (use_flags.use_market == 0)
+                                    fprintf(write_file,'     heating_setpoint bigbox_heating;\n');
+                                else
+                                    % controllers will be added later
+                                    fprintf(write_file,'     heating_setpoint 60;\n');
+                                end
+
+                                % Need all of the "appliances"
+                                fprintf(write_file,'     // Lights\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name lights_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                                fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                                fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                                fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                                fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                                fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
+
+                                    adj_lights = 1.2 * (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power bigbox_lights*%.2f;\n',adj_lights);
+                                fprintf(write_file,'     };\n\n');
+
+                                fprintf(write_file,'     // Plugs\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name plugs_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                                fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                                fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                                fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                                fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                                fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
+
+                                    adj_plugs = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power bigbox_plugs*%.2f;\n',adj_plugs);
+                                fprintf(write_file,'     };\n\n');
+
+                                fprintf(write_file,'     // Gas Waterheater\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name wh_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction 0.0;\n');
+                                fprintf(write_file,'          impedance_fraction 0.0;\n');
+                                fprintf(write_file,'          current_fraction 0.0;\n');
+                                fprintf(write_file,'          power_pf 1.0;\n');  
+
+                                    adj_gas = (0.9 + 0.2*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power bigbox_gas*%.2f;\n',adj_gas);
+                                fprintf(write_file,'     };\n\n');
+
+                                fprintf(write_file,'     // Exterior Lighting\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name ext_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 0.0;\n');
+                                fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                                fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                                fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                                fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                                fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                                fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
+
+                                    adj_ext = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power bigbox_exterior*%.2f;\n',adj_ext);
+                                fprintf(write_file,'     };\n\n');
+
+                                fprintf(write_file,'     // Occupancy\n');
+                                fprintf(write_file,'     object ZIPload {\n');
+                                fprintf(write_file,'          name occ_%s_%s_%.0f_zone%.0f;\n',my_name,my_phases{phind},jjj,zoneind);
+                                fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                                fprintf(write_file,'          power_fraction 0.0;\n');
+                                fprintf(write_file,'          impedance_fraction 0.0;\n');
+                                fprintf(write_file,'          current_fraction 0.0;\n');
+                                fprintf(write_file,'          power_pf 1.0;\n');  
+
+                                    adj_occ = (0.9 + 0.1*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                                fprintf(write_file,'          base_power bigbox_occupancy*%.2f;\n',adj_occ);
+                                fprintf(write_file,'     };\n');
+                                fprintf(write_file,'}\n\n');
+                            end %zone index
+                        end %phase index    
+                    end
                 end %number of big boxes
             % Strip mall
             elseif (total_comm_houses > 0)
@@ -2599,138 +2607,140 @@ count_house = 1;
                         end
                         fprintf(write_file,'}\n\n');
 
-                        fprintf(write_file,'object house {\n');
-                        fprintf(write_file,'     name stripmall%s_%s%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     groupid Commercial;\n');
-                        fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'     floor_area %.0f;\n',floor_area);
-                        fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
-                        fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
-                        fprintf(write_file,'     aspect_ratio %.2f;\n',aspect_ratio);
-                        fprintf(write_file,'     total_thermal_mass_per_floor_area %1.2f;\n',thermal_mass_per_floor_area);
-                        fprintf(write_file,'     interior_surface_heat_transfer_coeff %1.2f;\n',surface_heat_trans_coeff);
-                        fprintf(write_file,'     interior_exterior_wall_ratio %2.1f;\n',interior_exterior_wall_ratio);
-                        fprintf(write_file,'     exterior_floor_fraction %.3f;\n',exterior_floor_fraction);
-                        fprintf(write_file,'     exterior_ceiling_fraction %.3f;\n',exterior_ceiling_fraction);
-                        fprintf(write_file,'     Rwall %2.1f;\n',Rwall);
-                        fprintf(write_file,'     Rroof %2.1f;\n',Rroof);
-                        fprintf(write_file,'     Rfloor %.2f;\n',Rfloor);
-                        fprintf(write_file,'     Rdoors %2.1f;\n',Rdoors);
-                        fprintf(write_file,'     exterior_wall_fraction %.2f;\n',exterior_wall_fraction);
-                        fprintf(write_file,'     glazing_layers %s;\n',glazing_layers);
-                        fprintf(write_file,'     glass_type %s;\n',glass_type);
-                        fprintf(write_file,'     glazing_treatment %s;\n',glazing_treatment);
-                        fprintf(write_file,'     window_frame %s;\n',window_frame);            
-                        fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange_per_hour);    
-                        fprintf(write_file,'     window_wall_ratio %0.3f;\n',window_wall_ratio);    
-                        fprintf(write_file,'     heating_system_type %s;\n',heat_type);
-                        fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
-                        fprintf(write_file,'     fan_type %s;\n',fan_type);
-                        fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
-                        
-                            init_temp = 68 + 4*rand(1);
-                        fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
-                        fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
+                        if (tech_data.get_IEEE_stats == 0)
+                            fprintf(write_file,'object house {\n');
+                            fprintf(write_file,'     name stripmall%s_%s%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     groupid Commercial;\n');
+                            fprintf(write_file,'     schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'     parent %s_tm_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'     floor_area %.0f;\n',floor_area);
+                            fprintf(write_file,'     design_internal_gains %.0f;\n',int_gains*floor_area*3.413);
+                            fprintf(write_file,'     number_of_doors %.0f;\n',no_of_doors);
+                            fprintf(write_file,'     aspect_ratio %.2f;\n',aspect_ratio);
+                            fprintf(write_file,'     total_thermal_mass_per_floor_area %1.2f;\n',thermal_mass_per_floor_area);
+                            fprintf(write_file,'     interior_surface_heat_transfer_coeff %1.2f;\n',surface_heat_trans_coeff);
+                            fprintf(write_file,'     interior_exterior_wall_ratio %2.1f;\n',interior_exterior_wall_ratio);
+                            fprintf(write_file,'     exterior_floor_fraction %.3f;\n',exterior_floor_fraction);
+                            fprintf(write_file,'     exterior_ceiling_fraction %.3f;\n',exterior_ceiling_fraction);
+                            fprintf(write_file,'     Rwall %2.1f;\n',Rwall);
+                            fprintf(write_file,'     Rroof %2.1f;\n',Rroof);
+                            fprintf(write_file,'     Rfloor %.2f;\n',Rfloor);
+                            fprintf(write_file,'     Rdoors %2.1f;\n',Rdoors);
+                            fprintf(write_file,'     exterior_wall_fraction %.2f;\n',exterior_wall_fraction);
+                            fprintf(write_file,'     glazing_layers %s;\n',glazing_layers);
+                            fprintf(write_file,'     glass_type %s;\n',glass_type);
+                            fprintf(write_file,'     glazing_treatment %s;\n',glazing_treatment);
+                            fprintf(write_file,'     window_frame %s;\n',window_frame);            
+                            fprintf(write_file,'     airchange_per_hour %.2f;\n',airchange_per_hour);    
+                            fprintf(write_file,'     window_wall_ratio %0.3f;\n',window_wall_ratio);    
+                            fprintf(write_file,'     heating_system_type %s;\n',heat_type);
+                            fprintf(write_file,'     auxiliary_system_type %s;\n',aux_type);
+                            fprintf(write_file,'     fan_type %s;\n',fan_type);
+                            fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
-                            os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
-                        fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
-                        
-                            COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
-                        fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
+                                init_temp = 68 + 4*rand(1);
+                            fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
+                            fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
 
-                        if (use_flags.use_market == 0)
-                            fprintf(write_file,'     cooling_setpoint stripmall_cooling;\n');
-                        else
-                            % controllers will be added later
-                            fprintf(write_file,'     cooling_setpoint 80;\n');
+                                os_rand = regional_data.over_sizing_factor * (.8 + 0.4*rand);
+                            fprintf(write_file,'     over_sizing_factor %.1f;\n',os_rand);
+
+                                COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
+                            fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
+
+                            if (use_flags.use_market == 0)
+                                fprintf(write_file,'     cooling_setpoint stripmall_cooling;\n');
+                            else
+                                % controllers will be added later
+                                fprintf(write_file,'     cooling_setpoint 80;\n');
+                            end
+
+                            if (use_flags.use_market == 0)
+                                fprintf(write_file,'     heating_setpoint stripmall_heating;\n');
+                            else
+                                % controllers will be added later
+                                fprintf(write_file,'     heating_setpoint 60;\n');
+                            end
+
+                            %TODO Fix the commercial zip loads
+                            % Need all of the "appliances"
+                            fprintf(write_file,'     // Lights\n');
+                            fprintf(write_file,'     object ZIPload {\n');
+                            fprintf(write_file,'          name lights_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
+
+                                adj_lights = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                            fprintf(write_file,'          base_power stripmall_lights*%.2f;\n',adj_lights);
+                            fprintf(write_file,'     };\n\n');
+
+                            fprintf(write_file,'     // Plugs\n');
+                            fprintf(write_file,'     object ZIPload {\n');
+                            fprintf(write_file,'          name plugs_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
+
+                                adj_plugs = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                            fprintf(write_file,'          base_power stripmall_plugs*%.2f;\n',adj_plugs);
+                            fprintf(write_file,'     };\n\n');
+
+                            fprintf(write_file,'     // Gas Waterheater\n');
+                            fprintf(write_file,'     object ZIPload {\n');
+                            fprintf(write_file,'          name wh_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                            fprintf(write_file,'          power_fraction 0.0;\n');
+                            fprintf(write_file,'          impedance_fraction 0.0;\n');
+                            fprintf(write_file,'          current_fraction 0.0;\n');
+                            fprintf(write_file,'          power_pf 1.0;\n');  
+
+                                adj_gas = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
+                            fprintf(write_file,'          base_power stripmall_gas*%.2f;\n',adj_gas);
+                            fprintf(write_file,'     };\n\n');
+
+                            fprintf(write_file,'     // Exterior Lighting\n');
+                            fprintf(write_file,'     object ZIPload {\n');
+                            fprintf(write_file,'          name ext_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'          heatgain_fraction 0.0;\n');
+                            fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
+                            fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
+                            fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
+                            fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
+                            fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
+                            fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
+
+                                adj_ext = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                            fprintf(write_file,'          base_power stripmall_exterior*%.2f;\n',adj_ext);
+                            fprintf(write_file,'     };\n\n');
+
+                            fprintf(write_file,'     // Occupancy\n');
+                            fprintf(write_file,'     object ZIPload {\n');
+                            fprintf(write_file,'          name occ_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
+                            fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
+                            fprintf(write_file,'          heatgain_fraction 1.0;\n');
+                            fprintf(write_file,'          power_fraction 0.0;\n');
+                            fprintf(write_file,'          impedance_fraction 0.0;\n');
+                            fprintf(write_file,'          current_fraction 0.0;\n');
+                            fprintf(write_file,'          power_pf 1.0;\n');  
+
+                                adj_occ = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
+                            fprintf(write_file,'          base_power stripmall_occupancy*%.2f;\n',adj_occ);
+                            fprintf(write_file,'     };\n');
+                            fprintf(write_file,'}\n\n');
                         end
-
-                        if (use_flags.use_market == 0)
-                            fprintf(write_file,'     heating_setpoint stripmall_heating;\n');
-                        else
-                            % controllers will be added later
-                            fprintf(write_file,'     heating_setpoint 60;\n');
-                        end
-
-                        %TODO Fix the commercial zip loads
-                        % Need all of the "appliances"
-                        fprintf(write_file,'     // Lights\n');
-                        fprintf(write_file,'     object ZIPload {\n');
-                        fprintf(write_file,'          name lights_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                        fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                        fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                        fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                        fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                        fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                        fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
-
-                            adj_lights = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                        fprintf(write_file,'          base_power stripmall_lights*%.2f;\n',adj_lights);
-                        fprintf(write_file,'     };\n\n');
-
-                        fprintf(write_file,'     // Plugs\n');
-                        fprintf(write_file,'     object ZIPload {\n');
-                        fprintf(write_file,'          name plugs_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                        fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                        fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                        fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                        fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                        fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                        fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf);
-
-                            adj_plugs = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
-                        fprintf(write_file,'          base_power stripmall_plugs*%.2f;\n',adj_plugs);
-                        fprintf(write_file,'     };\n\n');
-
-                        fprintf(write_file,'     // Gas Waterheater\n');
-                        fprintf(write_file,'     object ZIPload {\n');
-                        fprintf(write_file,'          name wh_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                        fprintf(write_file,'          power_fraction 0.0;\n');
-                        fprintf(write_file,'          impedance_fraction 0.0;\n');
-                        fprintf(write_file,'          current_fraction 0.0;\n');
-                        fprintf(write_file,'          power_pf 1.0;\n');  
-
-                            adj_gas = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 20% then convert W/sf -> kW 
-                        fprintf(write_file,'          base_power stripmall_gas*%.2f;\n',adj_gas);
-                        fprintf(write_file,'     };\n\n');
-
-                        fprintf(write_file,'     // Exterior Lighting\n');
-                        fprintf(write_file,'     object ZIPload {\n');
-                        fprintf(write_file,'          name ext_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'          heatgain_fraction 0.0;\n');
-                        fprintf(write_file,'          power_fraction %.2f;\n',tech_data.c_pfrac);
-                        fprintf(write_file,'          impedance_fraction %.2f;\n',tech_data.c_zfrac);
-                        fprintf(write_file,'          current_fraction %.2f;\n',tech_data.c_ifrac);
-                        fprintf(write_file,'          power_pf %.2f;\n',tech_data.c_p_pf);
-                        fprintf(write_file,'          current_pf %.2f;\n',tech_data.c_i_pf);
-                        fprintf(write_file,'          impedance_pf %.2f;\n',tech_data.c_z_pf); 
-
-                            adj_ext = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                        fprintf(write_file,'          base_power stripmall_exterior*%.2f;\n',adj_ext);
-                        fprintf(write_file,'     };\n\n');
-
-                        fprintf(write_file,'     // Occupancy\n');
-                        fprintf(write_file,'     object ZIPload {\n');
-                        fprintf(write_file,'          name occ_%s_%s_%.0f;\n',my_name,my_phases{phind},jjj);
-                        fprintf(write_file,'          schedule_skew %.0f;\n',skew_value);
-                        fprintf(write_file,'          heatgain_fraction 1.0;\n');
-                        fprintf(write_file,'          power_fraction 0.0;\n');
-                        fprintf(write_file,'          impedance_fraction 0.0;\n');
-                        fprintf(write_file,'          current_fraction 0.0;\n');
-                        fprintf(write_file,'          power_pf 1.0;\n');  
-
-                            adj_occ = (0.8 + 0.4*rand(1)) * floor_area / 1000; % randomize 10% then convert W/sf -> kW 
-                        fprintf(write_file,'          base_power stripmall_occupancy*%.2f;\n',adj_occ);
-                        fprintf(write_file,'     };\n');
-                        fprintf(write_file,'}\n\n');
                     end %number of strip zones
                 end %phase index
             end %commercial selection
