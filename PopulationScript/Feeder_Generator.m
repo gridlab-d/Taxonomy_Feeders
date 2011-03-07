@@ -863,7 +863,6 @@ for tax_ind=1:no_of_tax
 
     fprintf(write_file,'object transformer {\n');
     fprintf(write_file,'     name substation_transformer;\n');
-    fprintf(write_file,'     groupid Distribution_Trans;\n');
     fprintf(write_file,'     from network_node;\n');
     fprintf(write_file,'     to %s\n',swing_node);
     fprintf(write_file,'     phases ABCN;\n');
@@ -2967,7 +2966,7 @@ count_house = 1;
     fprintf(write_file,'     parent substation_transformer;\n');
     fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
     fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-    fprintf(write_file,'     property power_out_A.real,power_out_A.imag,power_out_B.real,power_out_B.imag,power_out_C.real,power_out_C.imag,power_out.real,power_out.imag;\n');
+    fprintf(write_file,'     property power_out_A.real,power_out_A.imag,power_out_B.real,power_out_B.imag,power_out_C.real,power_out_C.imag,power_out.real,power_out.imag,power_losses_A.real,power_losses_A.imag,power_losses_B.real,power_losses_B.imag,power_losses_C.real,power_losses_C.imag;\n');
     fprintf(write_file,'}\n\n');
 
     if (tech_data.measure_market == 1 && use_flags.use_market ~= 0)
