@@ -7,7 +7,7 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R3-12.47-3.glm'};
+taxonomy_files = {'R1-12.47-2.glm'};
 %taxonomy_files = {'R1-12.47-4.glm';'R2-35.00-1.glm';'R3-12.47-1.glm';'R3-12.47-3.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,16 +15,16 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    %taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-   %output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
-    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+   output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
+   %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -892,8 +892,8 @@ for tax_ind=1:no_of_tax
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
         elseif (strcmp(char(glm_final{2}{j}),'from') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
-        elseif (strcmp(char(glm_final{2}{j}),'triplex_node') ~= 0)
-            fprintf(write_file,'object triplex_meter {\n');
+%         elseif (strcmp(char(glm_final{2}{j}),'triplex_node') ~= 0)
+%             fprintf(write_file,'object triplex_meter {\n');
         elseif (strcmp(char(glm_final{2}{j}),'capacitor') ~= 0)
             c = j;
             while (strcmp(char(glm_final{1}{c}),'}') == 0)
@@ -920,6 +920,7 @@ for tax_ind=1:no_of_tax
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
         elseif (strcmp(char(glm_final{2}{j}),'parent') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
+            parent_object = char(glm_final{3}{j});
         elseif (strcmp(char(glm_final{2}{j}),'transformer') ~= 0)
             m = j;
             if (0 && use_flags.use_commercial == 1) % TODO not sure why I did this, but I won't throw it away until I'm sure
@@ -1195,28 +1196,20 @@ for tax_ind=1:no_of_tax
                 lg_vs_sm = bb/taxonomy_data.avg_house - no_of_houses;
 
                 if (no_of_houses > 0)
-                    parent = named_object;
+                    name = named_object;
 
                     no_of_center_taps = no_of_center_taps + 1;
-                    center_taps{no_of_center_taps,1} = parent;
+                    center_taps{no_of_center_taps,1} = name;
 
                     phase_S_houses{house_no_S,1} = num2str(no_of_houses);
-                    phase_S_houses{house_no_S,2} = parent;
+                    phase_S_houses{house_no_S,2} = name;
                     phase_S_houses{house_no_S,3} = phase;
                     phase_S_houses{house_no_S,4} = num2str(lg_vs_sm);
+                    phase_S_houses{house_no_S,5} = parent_object;
                     house_no_S = house_no_S + 1;
 
                     total_houses = total_houses + no_of_houses;
-                    fprintf(write_file,'      groupid Residential_Meter;\n');
-                    fprintf(write_file,'      meter_power_consumption %s;\n',tech_data.res_meter_cons);
-                    if (use_flags.use_billing == 1) %Fixed price
-                        fprintf(write_file,'      bill_mode UNIFORM;\n');
-                        fprintf(write_file,'      price %.5f;\n',tech_data.flat_price(region));
-                        fprintf(write_file,'      monthly_fee %.2f;\n',tech_data.monthly_fee);
-                        fprintf(write_file,'      bill_day 1;\n');
-                    elseif (use_flags.use_billing == 3) % TOU or RTP
-                        %TODO
-                    end
+
                 else
                     if (tech_data.get_IEEE_stats == 0)
                         fprintf(write_file,'      // Load was too small to convert to a house (less than 1/2 avg_house)\n');
@@ -1258,15 +1251,34 @@ count_house = 1;
         end
         if (tech_data.get_IEEE_stats == 0)
             for jj=1:aS
-                parent = char(phase_S_houses(jj,2));
+                parent = char(phase_S_houses(jj,2)); %name of node
+                parent2 = char(phase_S_houses(jj,5)); %name of node's parent
                 no_houses = str2num(char(phase_S_houses(jj,1)));
                 phase = char(phase_S_houses(jj,3));
                 lg_v_sm = str2num(char(phase_S_houses(jj,4)));
 
                 for kk=1:no_houses
+                    
+                    fprintf(write_file,'object triplex_meter {\n');
+                    fprintf(write_file,'      phases %s\n',phase);
+                    fprintf(write_file,'      name tpm%d_%s\n',kk,parent2);
+                    fprintf(write_file,'      parent %s\n',parent2);
+                    fprintf(write_file,'      groupid Residential_Meter;\n');
+                    fprintf(write_file,'      meter_power_consumption %s;\n',tech_data.res_meter_cons);
+                    if (use_flags.use_billing == 1) %Fixed price
+                        fprintf(write_file,'      bill_mode UNIFORM;\n');
+                        fprintf(write_file,'      price %.5f;\n',tech_data.flat_price(region));
+                        fprintf(write_file,'      monthly_fee %.2f;\n',tech_data.monthly_fee);
+                        fprintf(write_file,'      bill_day 1;\n');
+                    elseif (use_flags.use_billing == 3) % TOU or RTP
+                        %TODO
+                    end
+                    fprintf(write_file,'      nominal_voltage 120;\n');
+                    fprintf(write_file,'}\n');
+                    
                     fprintf(write_file,'object house {\n');
-                    fprintf(write_file,'     parent %s\n',parent);
-                    fprintf(write_file,'     name house%d_%s\n',kk,parent);
+                    fprintf(write_file,'     parent tpm%d_%s\n',kk,parent2);
+                    fprintf(write_file,'     name house%d_%s\n',kk,parent2);
                     fprintf(write_file,'     groupid Residential;\n');
 
                     %TODO - aspect ratio?, window wall ratio?
