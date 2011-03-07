@@ -1654,6 +1654,8 @@ count_house = 1;
                         fprintf(write_file,'     };\n');
 
                         no_pool_pumps = no_pool_pumps - 1;
+                        
+                        %store_pool_pumps
                     end
 
                         heat_element = 3.0 + 0.5*randi(5);
@@ -3028,16 +3030,12 @@ count_house = 1;
         end
     end
 
-    if (tech_data.collect_house_states ~= 0)
-       %TODO 
-    end
-
-    if (tech_data.collect_bills ~= 0)
+    if (tech_data.measure_loads ~= 0)
         
         if (total_houses > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=triplex_meter AND groupid=Residential_Meter";\n');
-            fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+            fprintf(write_file,'     property sum(measured_real_power),sum(indiv_measured_power_1.real),sum(indiv_measured_power_2.real);\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_res_load.csv;\n',tech_file);
@@ -3047,7 +3045,7 @@ count_house = 1;
         if (ph3_meter > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=meter AND groupid=Commercial_Meter";\n');
-            fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+            fprintf(write_file,'     property sum(measured_power_A.real),sum(measured_power_B.real),sum(measured_power_C.real);\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
@@ -3057,7 +3055,7 @@ count_house = 1;
         if (ph1_meter > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_Meter";\n');
-            fprintf(write_file,'     property sum(measured_power.real),avg(monthly_bill),avg(monthly_energy);\n');
+            fprintf(write_file,'     property sum(measured_real_power),sum(indiv_measured_power_1.real),sum(indiv_measured_power_2.real);\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
