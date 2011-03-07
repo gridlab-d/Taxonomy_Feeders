@@ -55,7 +55,7 @@ elseif (strcmp(file_to_extract,'R1-12.47-3.glm')~=0)
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*1.35; 
     data.avg_house = 8000;
-    data.avg_commercial = 20000;
+    data.avg_commercial = 15000;
     data.EOL_points={'R1-12-47-3_node_48','AC';
                      'R1-12-47-3_node_38','B'};
     data.capacitor_outtage={ };
@@ -107,8 +107,8 @@ elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)    
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*1.4; 
-    data.avg_house = 15000;
-    data.avg_commercial = 30000;
+    data.avg_house = 50000;
+    data.avg_commercial = 50000;
     data.EOL_points={'R2-12-47-3_node_36','A';
                      'R2-12-47-3_node_627','B';
                      'R2-12-47-3_node_813','C'};
@@ -129,8 +129,8 @@ elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)    
     data.nom_volt = 34500;
     data.feeder_rating = 1.15*8.9; 
-    data.avg_house = 25000;
-    data.avg_commercial = 45000;
+    data.avg_house = 100000;
+    data.avg_commercial = 100000;
     data.EOL_points={'R2-35-00-1_node_1030','ABC'};
     data.capacitor_outtage={ };
     data.emissions_peak = 15*1000;
@@ -156,8 +156,8 @@ elseif (strcmp(file_to_extract,'R3-12.47-2.glm')~=0)
 elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*7.8; 
-    data.avg_house = 12000;
-    data.avg_commercial = 25000;
+    data.avg_house = 7000;
+    data.avg_commercial = 15000;
     data.EOL_points={'R3-12-47-3_node_1844','A';
                      'R3-12-47-3_node_1845','B';
                      'R3-12-47-3_node_206','C'};
@@ -208,8 +208,8 @@ elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)
 elseif (strcmp(file_to_extract,'R5-12.47-2.glm')~=0)    
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*4.5; 
-    data.avg_house = 7000;
-    data.avg_commercial = 25000;
+    data.avg_house = 4500;
+    data.avg_commercial = 15000;
     data.EOL_points={'R5-12-47-2_node_114','A';
                      'R5-12-47-2_node_158','B';
                      'R5-12-47-2_node_293','C'};

@@ -27,7 +27,7 @@ if data.tech_flag == 0
     %Set to '1' only for testing
     data.dump_voltage = 0;   
     data.measure_market = 0;
-    data.get_IEEE_stats = 1;
+    data.get_IEEE_stats = 0;
    
    
 % CVR
