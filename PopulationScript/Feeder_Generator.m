@@ -3048,7 +3048,7 @@ count_house = 1;
             fprintf(write_file,'     property sum(measured_power_A.real),sum(measured_power_B.real),sum(measured_power_C.real);\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-            fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
+            fprintf(write_file,'     file %s_comm_load1.csv;\n',tech_file);
             fprintf(write_file,'}\n\n');
         end
         
@@ -3058,7 +3058,7 @@ count_house = 1;
             fprintf(write_file,'     property sum(measured_real_power),sum(indiv_measured_power_1.real),sum(indiv_measured_power_2.real);\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
-            fprintf(write_file,'     file %s_comm_load.csv;\n',tech_file);
+            fprintf(write_file,'     file %s_comm_load2.csv;\n',tech_file);
             fprintf(write_file,'}\n\n');
         end
     end
