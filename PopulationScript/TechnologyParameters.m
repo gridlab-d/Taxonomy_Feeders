@@ -100,20 +100,19 @@ if (use_flags.use_homes == 1)
     data.z_pf = 1;
     data.i_pf = 1;
     data.p_pf = 1;
-    data.zfrac = 0.3;
-    data.ifrac = 0.3;
+    data.zfrac = 0.2;
+    data.ifrac = 0.4;
     data.pfrac = 1 - data.zfrac - data.ifrac;
 
     data.heat_fraction = 0.9;
 
     % waterheaters 1 = yes, 0 = no
     data.use_wh = 1; 
+    % Meter data is from Itron type meters (Centrution vs. OpenWay)
     if (data.meter_consumption == 1)
-        %data.res_meter_cons = '5+5j'; % Electromechanical (VAr)
-        data.res_meter_cons = '5'; % Electromechanical (VAr)
+        data.res_meter_cons = '1+7j'; % Electromechanical (VAr)
     elseif (data.meter_consumption == 2)
-        %data.res_meter_cons = '10+10j';% AMI (VAr)
-        data.res_meter_cons = '5'; % Electromechanical (VAr)
+        data.res_meter_cons = '2+11j';% AMI (VAr)
     else
         data.res_meter_cons = 0;
     end
@@ -162,8 +161,8 @@ if (use_flags.use_commercial == 0)
     data.c_z_pf = 1;
     data.c_i_pf = 1;
     data.c_p_pf = 1;
-    data.c_zfrac = 0.3;
-    data.c_ifrac = 0.3;
+    data.c_zfrac = 0.2;
+    data.c_ifrac = 0.4;
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
 elseif (use_flags.use_commercial == 1)
     % buildings
@@ -171,16 +170,15 @@ elseif (use_flags.use_commercial == 1)
     data.c_z_pf = 1;
     data.c_i_pf = 1;
     data.c_p_pf = 1;
-    data.c_zfrac = 0.3;
-    data.c_ifrac = 0.3;
+    data.c_zfrac = 0.2;
+    data.c_ifrac = 0.4;
     data.c_pfrac = 1 - data.c_zfrac - data.c_ifrac;
     
+    % Meter data is from Itron type meters (Centrution vs. OpenWay)
     if (data.meter_consumption == 1)
-        %data.comm_meter_cons = '15+5j'; % Electromechanical (VAr)
-        data.comm_meter_cons = '15'; % Electromechanical (VAr)
+        data.comm_meter_cons = '1+15j'; % Electromechanical (VAr)
     elseif (data.meter_consumption == 2)
-        %data.comm_meter_cons = '30+10j';% AMI (VAr)
-        data.comm_meter_cons = '30';% AMI (VAr)
+        data.comm_meter_cons = '4+21j';% AMI (VAr)
     else
         data.comm_meter_cons = 0;
     end
@@ -282,7 +280,7 @@ if (use_flags.use_emissions == 1)
 end
 %% Other parameters    
     % simulation start and end times -> please use format: yyyy-mm-dd HH:MM:SS
-    data.start_date = '2009-05-01 00:00:00';
+    data.start_date = '2009-01-01 00:00:00';
     data.end_date = '2010-01-01 00:00:00';
 
     % How often do you want to measure?
