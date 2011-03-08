@@ -119,44 +119,10 @@ object regulator_configuration {
      tap_pos_C 0; 
 } 
 
-//object capacitor:9650 { 
-//     name R5-12-47-3_cap_1; 
-//     phases ABCN; 
-//     pt_phase B; 
-//     parent R5-12-47-3_node_124; 
-//     phases_connected ABC; 
-//     control VOLT; 
-//     voltage_set_high 7300; 
-//     voltage_set_low 7075; 
-//     capacitor_A 0.2 MVAr; 
-//     capacitor_B 0.2 MVAr; 
-//     capacitor_C 0.2 MVAr; 
-//     control_level INDIVIDUAL; 
-//     time_delay 30.0; 
-//     dwell_time 30.0; 
-//     cap_nominal_voltage 7970; 
-//     nominal_voltage 7967.43; 
-//} 
 
-//object capacitor:9651 { 
-//     name R5-12-47-3_cap_2; 
-//     phases CN; 
-//     pt_phase C; 
-//     parent R5-12-47-3_node_125; 
-//     phases_connected C; 
-//     control VOLT; 
-//     voltage_set_high 7300; 
-//     voltage_set_low 7050; 
-//     capacitor_C 0.05 MVAr; 
-//     control_level INDIVIDUAL; 
-//     time_delay 30.0; 
-//     dwell_time 30.0; 
-//     cap_nominal_voltage 7970; 
-//     nominal_voltage 7967.43; 
-//} 
 
 object capacitor:9652 { 
-     name R5-12-47-3_cap_3; 
+     name R5-12-47-3_cap_1; 
      phases ABCN; 
      pt_phase B; 
      parent R5-12-47-3_node_126; 
@@ -175,7 +141,7 @@ object capacitor:9652 {
 } 
 
 object capacitor:9653 { 
-     name R5-12-47-3_cap_4; 
+     name R5-12-47-3_cap_2; 
      phases ABCN; 
      pt_phase B; 
      parent R5-12-47-3_node_127; 
@@ -193,25 +159,10 @@ object capacitor:9653 {
      nominal_voltage 7967.43; 
 } 
 
-//object capacitor:9654 { 
-//     name R5-12-47-3_cap_5; 
-//     phases CN; 
-//     pt_phase C; 
-//     parent R5-12-47-3_node_384; 
-//     phases_connected C; 
-//     control VOLT; 
-//     voltage_set_high 7300; 
-//     voltage_set_low 7000; 
-//     capacitor_C 0.05 MVAr; 
-//     control_level INDIVIDUAL; 
-//     time_delay 30.0; 
-//     dwell_time 30.0; 
-//     cap_nominal_voltage 7970; 
-//     nominal_voltage 7967.43;  
-//} 
+
 
 object capacitor { 
-     name R5-12-47-3_cap_6; 
+     name R5-12-47-3_cap_3; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_393; 
@@ -231,7 +182,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_7; 
+     name R5-12-47-3_cap_4; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_563; 
@@ -251,7 +202,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_8; 
+     name R5-12-47-3_cap_5; 
      phases ABCN; 
      pt_phase B; 
      parent R5-12-47-3_node_754; 
@@ -271,7 +222,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_9; 
+     name R5-12-47-3_cap_6; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_332; 
@@ -291,7 +242,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_10; 
+     name R5-12-47-3_cap_7; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_970; 
@@ -311,7 +262,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_11; 
+     name R5-12-47-3_cap_8; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_1456; 
@@ -331,7 +282,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_12; 
+     name R5-12-47-3_cap_9; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_273; 
@@ -351,7 +302,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_13; 
+     name R5-12-47-3_cap_10; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_206; 
@@ -371,7 +322,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_14; 
+     name R5-12-47-3_cap_11; 
      phases CN; 
      pt_phase C; 
      parent R5-12-47-3_node_1373; 
@@ -391,7 +342,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_15; 
+     name R5-12-47-3_cap_12; 
      phases BN; 
      pt_phase B; 
      parent R5-12-47-3_node_271; 
@@ -411,7 +362,7 @@ object capacitor {
 }
 
 object capacitor { 
-     name R5-12-47-3_cap_16; 
+     name R5-12-47-3_cap_13; 
      phases CN; 
      pt_phase C; 
      parent R5-12-47-3_node_1365; 
