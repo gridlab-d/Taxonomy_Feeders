@@ -101,7 +101,7 @@ elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)
                      'R2-12-47-2_node_240','A';
                      'R2-12-47-2_node_103','B';
                      'R2-12-47-2_node_242','C'}; %6 Measurements because of voltage regulator
-    data.capacitor_outtage={'R2-12-47-3_cap_1','R2-12-47-3_cap_1_outtage.player';'R2-12-47-3_cap_2','R2-12-47-3_cap_2_outtage.player';'R2-12-47-3_cap_3','R2-12-47-3_cap_3_outtage.player';'R2-12-47-3_cap_4','R2-12-47-3_cap_4_outtage.player'};
+    data.capacitor_outtage={'R2-12-47-2_cap_1','R2-12-47-2_cap_1_outtage.player';'R2-12-47-2_cap_2','R2-12-47-2_cap_2_outtage.player';'R2-12-47-2_cap_3','R2-12-47-2_cap_3_outtage.player';'R2-12-47-2_cap_4','R2-12-47-2_cap_4_outtage.player'};
     data.emissions_peak = 15*1000;
     % 192 residential, 8 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)    
