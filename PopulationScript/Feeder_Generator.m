@@ -3024,7 +3024,7 @@ count_house = 1;
         if (total_houses > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=house AND groupid=Residential";\n');
-            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint);\n');
+            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint,avg(air_temperature));\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_res_setpoints.csv;\n',tech_file);
@@ -3034,7 +3034,7 @@ count_house = 1;
         if (ph3_meter + ph1_meter > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=house AND groupid=Commercial";\n');
-            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint);\n');
+            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint,avg(air_temperature));\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_comm_setpoints.csv;\n',tech_file);
