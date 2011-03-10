@@ -1,0 +1,135 @@
+reg_1,Black,image,2,100,C:\Energy_Graph\Symbols\Regulator Symbol.png,,reg_1,ABCN
+fuse_1,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_1,AN
+fuse_2,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_2,BCN
+fuse_3,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_3,AN
+fuse_4,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_4,AN
+fuse_5,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_5,ABCN
+fuse_6,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_6,BN
+fuse_7,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_7,BN
+load_1,Black,,1,100,,,load_1,CN
+load_2,Black,,1,100,,,load_2,ABCN
+load_3,Black,,1,100,,,load_3,ACN
+load_4,Black,,1,100,,,load_4,CN
+load_5,Black,,1,100,,,load_5,CN
+load_6,Black,,1,100,,,load_6,ABCN
+load_7,Black,,1,100,,,load_7,AN
+load_8,Black,,1,100,,,load_8,ABCN
+load_9,Black,,1,100,,,load_9,BN
+load_10,Black,,1,100,,,load_10,ABCN
+load_11,Black,,1,100,,,load_11,AN
+load_12,Black,,1,100,,,load_12,AN
+load_13,Black,,1,100,,,load_13,AN
+load_14,Black,,1,100,,,load_14,AN
+load_15,Black,,1,100,,,load_15,BN
+load_16,Black,,1,100,,,load_16,BN
+load_17,Black,,1,100,,,load_17,BN
+load_18,Black,,1,100,,,load_18,ABCN
+load_19,Black,,1,100,,,load_19,AN
+load_20,Black,,1,100,,,load_20,ABCN
+load_21,Black,,1,100,,,load_21,ABCN
+meter_1,Black,triangle,5,100,,,meter_1,CN
+meter_2,Black,triangle,5,100,,,meter_2,ABCN
+meter_3,Black,triangle,5,100,,,meter_3,ACN
+meter_4,Black,triangle,5,100,,,meter_4,CN
+meter_5,Black,triangle,5,100,,,meter_5,CN
+meter_6,Black,triangle,5,100,,,meter_6,ABCN
+meter_7,Black,triangle,5,100,,,meter_7,AN
+meter_8,Black,triangle,5,100,,,meter_8,ABCN
+meter_9,Black,triangle,5,100,,,meter_9,BN
+meter_10,Black,triangle,5,100,,,meter_10,ABCN
+meter_11,Black,triangle,5,100,,,meter_11,AN
+meter_12,Black,triangle,5,100,,,meter_12,AN
+meter_13,Black,triangle,5,100,,,meter_13,AN
+meter_14,Black,triangle,5,100,,,meter_14,AN
+meter_15,Black,triangle,5,100,,,meter_15,BN
+meter_16,Black,triangle,5,100,,,meter_16,BN
+meter_17,Black,triangle,5,100,,,meter_17,BN
+meter_18,Black,triangle,5,100,,,meter_18,ABCN
+meter_19,Black,triangle,5,100,,,meter_19,AN
+meter_20,Black,triangle,5,100,,,meter_20,ABCN
+meter_21,Black,triangle,5,100,,,meter_21,ABCN
+meter_22,Black,triangle,5,100,,,meter_22,ABCN
+node_1,Black,,1,100,,,node_1,ABCN
+node_2,Black,,1,100,,,node_2,ABCN
+node_3,Black,,1,100,,,node_3,ABCN
+node_4,Black,,1,100,,,node_4,ABCN
+node_5,Black,,1,100,,,node_5,ACN
+node_6,Black,,1,100,,,node_6,CN
+node_7,Black,,1,100,,,node_7,ABCN
+node_8,Black,,1,100,,,node_8,ABCN
+node_9,Black,,1,100,,,node_9,ABCN
+node_10,Black,,1,100,,,node_10,ABCN
+node_11,Black,,1,100,,,node_11,ACN
+node_12,Black,,1,100,,,node_12,CN
+node_13,Black,,1,100,,,node_13,ACN
+node_14,Black,,1,100,,,node_14,CN
+node_15,Black,,1,100,,,node_15,ABCN
+node_16,Black,,1,100,,,node_16,ABCN
+node_17,Black,,1,100,,,node_17,ABCN
+node_18,Black,,1,100,,,node_18,ABCN
+node_19,Black,,1,100,,,node_19,ABCN
+node_20,Black,,1,100,,,node_20,AN
+node_21,Black,,1,100,,,node_21,ABCN
+node_22,Black,,1,100,,,node_22,ABCN
+node_23,Black,,1,100,,,node_23,BCN
+node_24,Black,,1,100,,,node_24,BN
+node_25,Black,,1,100,,,node_25,BCN
+node_26,Black,,1,100,,,node_26,BCN
+node_27,Black,,1,100,,,node_27,ABCN
+node_28,Black,,1,100,,,node_28,AN
+node_29,Black,,1,100,,,node_29,AN
+node_30,Black,,1,100,,,node_30,AN
+node_31,Black,,1,100,,,node_31,ABCN
+node_32,Black,,1,100,,,node_32,ABCN
+node_33,Black,,1,100,,,node_33,AN
+node_34,Black,,1,100,,,node_34,ABCN
+node_35,Black,,1,100,,,node_35,ABCN
+node_36,Black,,1,100,,,node_36,ABCN
+node_37,Black,,1,100,,,node_37,BN
+node_38,Black,,1,100,,,node_38,BN
+node_39,Black,,1,100,,,node_39,BN
+node_40,Black,,1,100,,,node_40,BN
+node_41,Black,,1,100,,,node_41,ABCN
+node_42,Black,,1,100,,,node_42,ABCN
+node_43,Black,,1,100,,,node_43,ABCN
+node_44,Black,,1,100,,,node_44,AN
+node_45,Black,,1,100,,,node_45,ABCN
+node_46,Black,,1,100,,,node_46,ABCN
+node_47,Black,,1,100,,,node_47,ABCN
+node_48,Black,,1,100,,,node_48,ABCN
+node_49,Black,,1,100,,,node_49,ABCN
+node_50,Black,,1,100,,,node_50,ABCN
+node_51,Black,,1,100,,,node_51,ABCN
+node_52,Black,,1,100,,,node_52,ABCN
+node_53,Black,,1,100,,,node_53,ABCN
+switch_1,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_1,ABCN
+switch_2,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_2,ABCN
+switch_3,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_3,ABCN
+switch_4,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_4,ABCN
+switch_5,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_5,ABCN
+switch_6,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_6,ABCN
+xfmr_1,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_1,BS
+xfmr_2,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_2,CN
+xfmr_3,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_3,ABCN
+xfmr_4,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_4,ACN
+xfmr_5,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_5,CN
+xfmr_6,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_6,CN
+xfmr_7,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_7,ABCN
+xfmr_8,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_8,AN
+xfmr_9,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_9,ABCN
+xfmr_10,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_10,BN
+xfmr_11,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_11,ABCN
+xfmr_12,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_12,AN
+xfmr_13,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_13,AN
+xfmr_14,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_14,AN
+xfmr_15,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_15,AN
+xfmr_16,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_16,BN
+xfmr_17,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_17,BN
+xfmr_18,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_18,BN
+xfmr_19,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_19,ABCN
+xfmr_20,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_20,AN
+xfmr_21,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_21,ABCN
+xfmr_22,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_22,ABCN
+tm_1,Black,triangle,2,100,,,tm_1,BS
+tn_1,Black,,1,100,,,tn_1,BS
+tn_2,Black,,1,100,,,tn_2,BS

@@ -1,0 +1,2790 @@
+reg_1,Black,image,2,100,C:\Energy_Graph\Symbols\Regulator Symbol.png,,reg_1,ABCN
+fuse_1,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_1,CN
+fuse_2,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_2,CN
+fuse_3,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_3,CN
+fuse_4,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_4,ABCN
+fuse_5,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_5,AN
+fuse_6,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_6,AN
+fuse_7,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_7,BN
+fuse_8,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_8,CN
+fuse_9,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_9,CN
+fuse_10,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_10,BN
+fuse_11,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_11,ACN
+fuse_12,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_12,BN
+fuse_13,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_13,BN
+fuse_14,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_14,CN
+fuse_15,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_15,BN
+fuse_16,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_16,BN
+fuse_17,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_17,ACN
+fuse_18,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_18,AN
+fuse_19,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_19,AN
+fuse_20,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_20,CN
+fuse_21,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_21,BN
+fuse_22,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_22,AN
+fuse_23,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_23,BN
+fuse_24,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_24,CN
+fuse_25,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_25,CN
+fuse_26,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_26,BN
+fuse_27,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_27,AN
+fuse_28,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_28,AN
+fuse_29,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_29,AN
+fuse_30,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_30,AN
+fuse_31,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_31,BN
+fuse_32,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_32,ABN
+fuse_33,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_33,BCN
+fuse_34,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_34,BN
+fuse_35,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_35,ABN
+fuse_36,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_36,AN
+fuse_37,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_37,ABCN
+fuse_38,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_38,CN
+fuse_39,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_39,BN
+fuse_40,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_40,BN
+fuse_41,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_41,CN
+fuse_42,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_42,BN
+fuse_43,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_43,CN
+fuse_44,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_44,CN
+fuse_45,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_45,CN
+fuse_46,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_46,CN
+fuse_47,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_47,ABCN
+fuse_48,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_48,AN
+fuse_49,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_49,AN
+fuse_50,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_50,BN
+fuse_51,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_51,AN
+fuse_52,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_52,AN
+fuse_53,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_53,ABN
+fuse_54,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_54,BN
+fuse_55,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_55,CN
+fuse_56,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_56,CN
+fuse_57,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_57,BN
+fuse_58,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_58,BN
+fuse_59,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_59,CN
+fuse_60,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_60,CN
+fuse_61,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_61,ABCN
+fuse_62,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_62,AN
+fuse_63,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_63,ACN
+fuse_64,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_64,BN
+fuse_65,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_65,CN
+fuse_66,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_66,AN
+fuse_67,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_67,CN
+fuse_68,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_68,CN
+fuse_69,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_69,CN
+fuse_70,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_70,AN
+fuse_71,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_71,ABCN
+fuse_72,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_72,BN
+fuse_73,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_73,BN
+fuse_74,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_74,BN
+fuse_75,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_75,AN
+fuse_76,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_76,CN
+fuse_77,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_77,CN
+fuse_78,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_78,BN
+fuse_79,Black,image,3,100,C:\Energy_Graph\Symbols\Fuse Symbol.png,,fuse_79,BN
+load_1,Black,,1,100,,,load_1,CN
+load_2,Black,,1,100,,,load_2,ABCN
+load_3,Black,,1,100,,,load_3,ABCN
+load_4,Black,,1,100,,,load_4,ABCN
+load_5,Black,,1,100,,,load_5,ABCN
+load_6,Black,,1,100,,,load_6,ABN
+load_7,Black,,1,100,,,load_7,ABCN
+load_8,Black,,1,100,,,load_8,ABCN
+load_9,Black,,1,100,,,load_9,ACN
+load_10,Black,,1,100,,,load_10,CN
+load_11,Black,,1,100,,,load_11,ABCN
+load_12,Black,,1,100,,,load_12,ACN
+load_13,Black,,1,100,,,load_13,CN
+load_14,Black,,1,100,,,load_14,BN
+load_15,Black,,1,100,,,load_15,BN
+load_16,Black,,1,100,,,load_16,AN
+load_17,Black,,1,100,,,load_17,ABN
+load_18,Black,,1,100,,,load_18,ABCN
+load_19,Black,,1,100,,,load_19,ABCN
+load_20,Black,,1,100,,,load_20,BCN
+load_21,Black,,1,100,,,load_21,BCN
+load_22,Black,,1,100,,,load_22,BCN
+load_23,Black,,1,100,,,load_23,CN
+load_24,Black,,1,100,,,load_24,CN
+load_25,Black,,1,100,,,load_25,CN
+load_26,Black,,1,100,,,load_26,BCN
+load_27,Black,,1,100,,,load_27,BN
+load_28,Black,,1,100,,,load_28,ABCN
+load_29,Black,,1,100,,,load_29,ACN
+load_30,Black,,1,100,,,load_30,AN
+load_31,Black,,1,100,,,load_31,ABCN
+load_32,Black,,1,100,,,load_32,CN
+load_33,Black,,1,100,,,load_33,CN
+load_34,Black,,1,100,,,load_34,ACN
+load_35,Black,,1,100,,,load_35,ABCN
+load_36,Black,,1,100,,,load_36,CN
+load_37,Black,,1,100,,,load_37,CN
+load_38,Black,,1,100,,,load_38,CN
+load_39,Black,,1,100,,,load_39,ABCN
+load_40,Black,,1,100,,,load_40,BN
+load_41,Black,,1,100,,,load_41,ABCN
+load_42,Black,,1,100,,,load_42,AN
+load_43,Black,,1,100,,,load_43,AN
+load_44,Black,,1,100,,,load_44,ABCN
+load_45,Black,,1,100,,,load_45,BN
+load_46,Black,,1,100,,,load_46,CN
+load_47,Black,,1,100,,,load_47,ABCN
+load_48,Black,,1,100,,,load_48,ABCN
+load_49,Black,,1,100,,,load_49,ABCN
+load_50,Black,,1,100,,,load_50,BCN
+load_51,Black,,1,100,,,load_51,BCN
+load_52,Black,,1,100,,,load_52,ABN
+load_53,Black,,1,100,,,load_53,ABCN
+load_54,Black,,1,100,,,load_54,ABCN
+load_55,Black,,1,100,,,load_55,BN
+load_56,Black,,1,100,,,load_56,CN
+load_57,Black,,1,100,,,load_57,ABCN
+load_58,Black,,1,100,,,load_58,ABCN
+load_59,Black,,1,100,,,load_59,BN
+load_60,Black,,1,100,,,load_60,AN
+load_61,Black,,1,100,,,load_61,CN
+load_62,Black,,1,100,,,load_62,AN
+load_63,Black,,1,100,,,load_63,ABCN
+load_64,Black,,1,100,,,load_64,ABCN
+load_65,Black,,1,100,,,load_65,ABCN
+load_66,Black,,1,100,,,load_66,BN
+load_67,Black,,1,100,,,load_67,BN
+load_68,Black,,1,100,,,load_68,BCN
+load_69,Black,,1,100,,,load_69,BN
+load_70,Black,,1,100,,,load_70,ABCN
+load_71,Black,,1,100,,,load_71,ABN
+load_72,Black,,1,100,,,load_72,CN
+load_73,Black,,1,100,,,load_73,AN
+load_74,Black,,1,100,,,load_74,ABCN
+load_75,Black,,1,100,,,load_75,CN
+meter_1,Black,triangle,5,100,,,meter_1,CN
+meter_2,Black,triangle,5,100,,,meter_2,ABCN
+meter_3,Black,triangle,5,100,,,meter_3,ABCN
+meter_4,Black,triangle,5,100,,,meter_4,ABCN
+meter_5,Black,triangle,5,100,,,meter_5,ABCN
+meter_6,Black,triangle,5,100,,,meter_6,ABN
+meter_7,Black,triangle,5,100,,,meter_7,ABCN
+meter_8,Black,triangle,5,100,,,meter_8,ABCN
+meter_9,Black,triangle,5,100,,,meter_9,ACN
+meter_10,Black,triangle,5,100,,,meter_10,CN
+meter_11,Black,triangle,5,100,,,meter_11,ABCN
+meter_12,Black,triangle,5,100,,,meter_12,ACN
+meter_13,Black,triangle,5,100,,,meter_13,CN
+meter_14,Black,triangle,5,100,,,meter_14,BN
+meter_15,Black,triangle,5,100,,,meter_15,BN
+meter_16,Black,triangle,5,100,,,meter_16,AN
+meter_17,Black,triangle,5,100,,,meter_17,ABN
+meter_18,Black,triangle,5,100,,,meter_18,ABCN
+meter_19,Black,triangle,5,100,,,meter_19,ABCN
+meter_20,Black,triangle,5,100,,,meter_20,BCN
+meter_21,Black,triangle,5,100,,,meter_21,BCN
+meter_22,Black,triangle,5,100,,,meter_22,BCN
+meter_23,Black,triangle,5,100,,,meter_23,CN
+meter_24,Black,triangle,5,100,,,meter_24,CN
+meter_25,Black,triangle,5,100,,,meter_25,CN
+meter_26,Black,triangle,5,100,,,meter_26,BCN
+meter_27,Black,triangle,5,100,,,meter_27,BN
+meter_28,Black,triangle,5,100,,,meter_28,ABCN
+meter_29,Black,triangle,5,100,,,meter_29,ACN
+meter_30,Black,triangle,5,100,,,meter_30,AN
+meter_31,Black,triangle,5,100,,,meter_31,ABCN
+meter_32,Black,triangle,5,100,,,meter_32,CN
+meter_33,Black,triangle,5,100,,,meter_33,CN
+meter_34,Black,triangle,5,100,,,meter_34,ACN
+meter_35,Black,triangle,5,100,,,meter_35,ABCN
+meter_36,Black,triangle,5,100,,,meter_36,CN
+meter_37,Black,triangle,5,100,,,meter_37,CN
+meter_38,Black,triangle,5,100,,,meter_38,CN
+meter_39,Black,triangle,5,100,,,meter_39,ABCN
+meter_40,Black,triangle,5,100,,,meter_40,BN
+meter_41,Black,triangle,5,100,,,meter_41,ABCN
+meter_42,Black,triangle,5,100,,,meter_42,AN
+meter_43,Black,triangle,5,100,,,meter_43,AN
+meter_44,Black,triangle,5,100,,,meter_44,ABCN
+meter_45,Black,triangle,5,100,,,meter_45,BN
+meter_46,Black,triangle,5,100,,,meter_46,CN
+meter_47,Black,triangle,5,100,,,meter_47,ABCN
+meter_48,Black,triangle,5,100,,,meter_48,ABCN
+meter_49,Black,triangle,5,100,,,meter_49,ABCN
+meter_50,Black,triangle,5,100,,,meter_50,BCN
+meter_51,Black,triangle,5,100,,,meter_51,BCN
+meter_52,Black,triangle,5,100,,,meter_52,ABN
+meter_53,Black,triangle,5,100,,,meter_53,ABCN
+meter_54,Black,triangle,5,100,,,meter_54,ABCN
+meter_55,Black,triangle,5,100,,,meter_55,BN
+meter_56,Black,triangle,5,100,,,meter_56,CN
+meter_57,Black,triangle,5,100,,,meter_57,ABCN
+meter_58,Black,triangle,5,100,,,meter_58,ABCN
+meter_59,Black,triangle,5,100,,,meter_59,BN
+meter_60,Black,triangle,5,100,,,meter_60,AN
+meter_61,Black,triangle,5,100,,,meter_61,CN
+meter_62,Black,triangle,5,100,,,meter_62,AN
+meter_63,Black,triangle,5,100,,,meter_63,ABCN
+meter_64,Black,triangle,5,100,,,meter_64,ABCN
+meter_65,Black,triangle,5,100,,,meter_65,ABCN
+meter_66,Black,triangle,5,100,,,meter_66,BN
+meter_67,Black,triangle,5,100,,,meter_67,BN
+meter_68,Black,triangle,5,100,,,meter_68,BCN
+meter_69,Black,triangle,5,100,,,meter_69,BN
+meter_70,Black,triangle,5,100,,,meter_70,ABCN
+meter_71,Black,triangle,5,100,,,meter_71,ABN
+meter_72,Black,triangle,5,100,,,meter_72,CN
+meter_73,Black,triangle,5,100,,,meter_73,AN
+meter_74,Black,triangle,5,100,,,meter_74,ABCN
+meter_75,Black,triangle,5,100,,,meter_75,CN
+meter_76,Black,triangle,5,100,,,meter_76,ABCN
+node_1,Black,,1,100,,,node_1,BN
+node_2,Black,,1,100,,,node_2,CN
+node_3,Black,,1,100,,,node_3,ABCN
+node_4,Black,,1,100,,,node_4,ABCN
+node_5,Black,,1,100,,,node_5,ABCN
+node_6,Black,,1,100,,,node_6,CN
+node_7,Black,,1,100,,,node_7,CN
+node_8,Black,,1,100,,,node_8,ABCN
+node_9,Black,,1,100,,,node_9,ABCN
+node_10,Black,,1,100,,,node_10,CN
+node_11,Black,,1,100,,,node_11,ABCN
+node_12,Black,,1,100,,,node_12,BN
+node_13,Black,,1,100,,,node_13,CN
+node_14,Black,,1,100,,,node_14,ABCN
+node_15,Black,,1,100,,,node_15,CN
+node_16,Black,,1,100,,,node_16,BN
+node_17,Black,,1,100,,,node_17,ABCN
+node_18,Black,,1,100,,,node_18,CN
+node_19,Black,,1,100,,,node_19,ABCN
+node_20,Black,,1,100,,,node_20,BN
+node_21,Black,,1,100,,,node_21,ABCN
+node_22,Black,,1,100,,,node_22,ABCN
+node_23,Black,,1,100,,,node_23,ABCN
+node_24,Black,,1,100,,,node_24,AN
+node_25,Black,,1,100,,,node_25,AN
+node_26,Black,,1,100,,,node_26,ACN
+node_27,Black,,1,100,,,node_27,ACN
+node_28,Black,,1,100,,,node_28,CN
+node_29,Black,,1,100,,,node_29,CN
+node_30,Black,,1,100,,,node_30,CN
+node_31,Black,,1,100,,,node_31,CN
+node_32,Black,,1,100,,,node_32,ABCN
+node_33,Black,,1,100,,,node_33,ABN
+node_34,Black,,1,100,,,node_34,ABCN
+node_35,Black,,1,100,,,node_35,AN
+node_36,Black,,1,100,,,node_36,ABCN
+node_37,Black,,1,100,,,node_37,ABCN
+node_38,Black,,1,100,,,node_38,ABCN
+node_39,Black,,1,100,,,node_39,ABCN
+node_40,Black,,1,100,,,node_40,ABCN
+node_41,Black,,1,100,,,node_41,AN
+node_42,Black,,1,100,,,node_42,BN
+node_43,Black,,1,100,,,node_43,BN
+node_44,Black,,1,100,,,node_44,BN
+node_45,Black,,1,100,,,node_45,ABCN
+node_46,Black,,1,100,,,node_46,ABCN
+node_47,Black,,1,100,,,node_47,ACN
+node_48,Black,,1,100,,,node_48,AN
+node_49,Black,,1,100,,,node_49,AN
+node_50,Black,,1,100,,,node_50,ABCN
+node_51,Black,,1,100,,,node_51,ACN
+node_52,Black,,1,100,,,node_52,BCN
+node_53,Black,,1,100,,,node_53,CN
+node_54,Black,,1,100,,,node_54,AN
+node_55,Black,,1,100,,,node_55,AN
+node_56,Black,,1,100,,,node_56,CN
+node_57,Black,,1,100,,,node_57,AN
+node_58,Black,,1,100,,,node_58,AN
+node_59,Black,,1,100,,,node_59,AN
+node_60,Black,,1,100,,,node_60,AN
+node_61,Black,,1,100,,,node_61,CN
+node_62,Black,,1,100,,,node_62,BN
+node_63,Black,,1,100,,,node_63,BN
+node_64,Black,,1,100,,,node_64,CN
+node_65,Black,,1,100,,,node_65,BN
+node_66,Black,,1,100,,,node_66,CN
+node_67,Black,,1,100,,,node_67,CN
+node_68,Black,,1,100,,,node_68,CN
+node_69,Black,,1,100,,,node_69,AN
+node_70,Black,,1,100,,,node_70,CN
+node_71,Black,,1,100,,,node_71,CN
+node_72,Black,,1,100,,,node_72,CN
+node_73,Black,,1,100,,,node_73,CN
+node_74,Black,,1,100,,,node_74,BN
+node_75,Black,,1,100,,,node_75,BN
+node_76,Black,,1,100,,,node_76,ABCN
+node_77,Black,,1,100,,,node_77,BN
+node_78,Black,,1,100,,,node_78,BN
+node_79,Black,,1,100,,,node_79,AN
+node_80,Black,,1,100,,,node_80,AN
+node_81,Black,,1,100,,,node_81,AN
+node_82,Black,,1,100,,,node_82,AN
+node_83,Black,,1,100,,,node_83,CN
+node_84,Black,,1,100,,,node_84,CN
+node_85,Black,,1,100,,,node_85,ACN
+node_86,Black,,1,100,,,node_86,ACN
+node_87,Black,,1,100,,,node_87,BN
+node_88,Black,,1,100,,,node_88,BN
+node_89,Black,,1,100,,,node_89,BN
+node_90,Black,,1,100,,,node_90,BN
+node_91,Black,,1,100,,,node_91,BN
+node_92,Black,,1,100,,,node_92,BN
+node_93,Black,,1,100,,,node_93,BN
+node_94,Black,,1,100,,,node_94,BN
+node_95,Black,,1,100,,,node_95,BN
+node_96,Black,,1,100,,,node_96,BN
+node_97,Black,,1,100,,,node_97,BN
+node_98,Black,,1,100,,,node_98,BN
+node_99,Black,,1,100,,,node_99,BN
+node_100,Black,,1,100,,,node_100,BN
+node_101,Black,,1,100,,,node_101,BN
+node_102,Black,,1,100,,,node_102,BN
+node_103,Black,,1,100,,,node_103,BN
+node_104,Black,,1,100,,,node_104,BN
+node_105,Black,,1,100,,,node_105,BN
+node_106,Black,,1,100,,,node_106,BN
+node_107,Black,,1,100,,,node_107,BN
+node_108,Black,,1,100,,,node_108,BN
+node_109,Black,,1,100,,,node_109,CN
+node_110,Black,,1,100,,,node_110,CN
+node_111,Black,,1,100,,,node_111,CN
+node_112,Black,,1,100,,,node_112,CN
+node_113,Black,,1,100,,,node_113,BN
+node_114,Black,,1,100,,,node_114,BN
+node_115,Black,,1,100,,,node_115,BN
+node_116,Black,,1,100,,,node_116,BN
+node_117,Black,,1,100,,,node_117,BN
+node_118,Black,,1,100,,,node_118,BN
+node_119,Black,,1,100,,,node_119,BN
+node_120,Black,,1,100,,,node_120,BN
+node_121,Black,,1,100,,,node_121,ABCN
+node_122,Black,,1,100,,,node_122,ACN
+node_123,Black,,1,100,,,node_123,ACN
+node_124,Black,,1,100,,,node_124,CN
+node_125,Black,,1,100,,,node_125,BN
+node_126,Black,,1,100,,,node_126,BN
+node_127,Black,,1,100,,,node_127,AN
+node_128,Black,,1,100,,,node_128,AN
+node_129,Black,,1,100,,,node_129,AN
+node_130,Black,,1,100,,,node_130,AN
+node_131,Black,,1,100,,,node_131,AN
+node_132,Black,,1,100,,,node_132,AN
+node_133,Black,,1,100,,,node_133,CN
+node_134,Black,,1,100,,,node_134,CN
+node_135,Black,,1,100,,,node_135,CN
+node_136,Black,,1,100,,,node_136,AN
+node_137,Black,,1,100,,,node_137,AN
+node_138,Black,,1,100,,,node_138,BN
+node_139,Black,,1,100,,,node_139,ABCN
+node_140,Black,,1,100,,,node_140,BN
+node_141,Black,,1,100,,,node_141,BN
+node_142,Black,,1,100,,,node_142,ABCN
+node_143,Black,,1,100,,,node_143,AN
+node_144,Black,,1,100,,,node_144,AN
+node_145,Black,,1,100,,,node_145,ABCN
+node_146,Black,,1,100,,,node_146,ABCN
+node_147,Black,,1,100,,,node_147,BN
+node_148,Black,,1,100,,,node_148,BN
+node_149,Black,,1,100,,,node_149,BN
+node_150,Black,,1,100,,,node_150,CN
+node_151,Black,,1,100,,,node_151,CN
+node_152,Black,,1,100,,,node_152,CN
+node_153,Black,,1,100,,,node_153,CN
+node_154,Black,,1,100,,,node_154,CN
+node_155,Black,,1,100,,,node_155,CN
+node_156,Black,,1,100,,,node_156,CN
+node_157,Black,,1,100,,,node_157,CN
+node_158,Black,,1,100,,,node_158,CN
+node_159,Black,,1,100,,,node_159,ABCN
+node_160,Black,,1,100,,,node_160,ABCN
+node_161,Black,,1,100,,,node_161,ABCN
+node_162,Black,,1,100,,,node_162,ABCN
+node_163,Black,,1,100,,,node_163,BN
+node_164,Black,,1,100,,,node_164,BN
+node_165,Black,,1,100,,,node_165,BN
+node_166,Black,,1,100,,,node_166,BN
+node_167,Black,,1,100,,,node_167,AN
+node_168,Black,,1,100,,,node_168,AN
+node_169,Black,,1,100,,,node_169,BN
+node_170,Black,,1,100,,,node_170,AN
+node_171,Black,,1,100,,,node_171,AN
+node_172,Black,,1,100,,,node_172,AN
+node_173,Black,,1,100,,,node_173,AN
+node_174,Black,,1,100,,,node_174,AN
+node_175,Black,,1,100,,,node_175,BN
+node_176,Black,,1,100,,,node_176,AN
+node_177,Black,,1,100,,,node_177,AN
+node_178,Black,,1,100,,,node_178,AN
+node_179,Black,,1,100,,,node_179,ABCN
+node_180,Black,,1,100,,,node_180,ABCN
+node_181,Black,,1,100,,,node_181,ABCN
+node_182,Black,,1,100,,,node_182,ABCN
+node_183,Black,,1,100,,,node_183,BN
+node_184,Black,,1,100,,,node_184,ABCN
+node_185,Black,,1,100,,,node_185,ABN
+node_186,Black,,1,100,,,node_186,AN
+node_187,Black,,1,100,,,node_187,ABN
+node_188,Black,,1,100,,,node_188,ABN
+node_189,Black,,1,100,,,node_189,ABN
+node_190,Black,,1,100,,,node_190,ABCN
+node_191,Black,,1,100,,,node_191,ABCN
+node_192,Black,,1,100,,,node_192,ABN
+node_193,Black,,1,100,,,node_193,ABCN
+node_194,Black,,1,100,,,node_194,ABCN
+node_195,Black,,1,100,,,node_195,BN
+node_196,Black,,1,100,,,node_196,ABCN
+node_197,Black,,1,100,,,node_197,BCN
+node_198,Black,,1,100,,,node_198,BCN
+node_199,Black,,1,100,,,node_199,BCN
+node_200,Black,,1,100,,,node_200,BCN
+node_201,Black,,1,100,,,node_201,BCN
+node_202,Black,,1,100,,,node_202,BN
+node_203,Black,,1,100,,,node_203,ABCN
+node_204,Black,,1,100,,,node_204,CN
+node_205,Black,,1,100,,,node_205,ABCN
+node_206,Black,,1,100,,,node_206,BN
+node_207,Black,,1,100,,,node_207,BN
+node_208,Black,,1,100,,,node_208,BN
+node_209,Black,,1,100,,,node_209,ABCN
+node_210,Black,,1,100,,,node_210,CN
+node_211,Black,,1,100,,,node_211,ABCN
+node_212,Black,,1,100,,,node_212,CN
+node_213,Black,,1,100,,,node_213,CN
+node_214,Black,,1,100,,,node_214,CN
+node_215,Black,,1,100,,,node_215,ABCN
+node_216,Black,,1,100,,,node_216,ABN
+node_217,Black,,1,100,,,node_217,ABCN
+node_218,Black,,1,100,,,node_218,BCN
+node_219,Black,,1,100,,,node_219,ABCN
+node_220,Black,,1,100,,,node_220,AN
+node_221,Black,,1,100,,,node_221,BN
+node_222,Black,,1,100,,,node_222,ABCN
+node_223,Black,,1,100,,,node_223,ABCN
+node_224,Black,,1,100,,,node_224,ACN
+node_225,Black,,1,100,,,node_225,ABCN
+node_226,Black,,1,100,,,node_226,ABCN
+node_227,Black,,1,100,,,node_227,ABCN
+node_228,Black,,1,100,,,node_228,ABCN
+node_229,Black,,1,100,,,node_229,ABCN
+node_230,Black,,1,100,,,node_230,ABCN
+node_231,Black,,1,100,,,node_231,ABCN
+node_232,Black,,1,100,,,node_232,BN
+node_233,Black,,1,100,,,node_233,ABCN
+node_234,Black,,1,100,,,node_234,CN
+node_235,Black,,1,100,,,node_235,ABCN
+node_236,Black,,1,100,,,node_236,CN
+node_237,Black,,1,100,,,node_237,CN
+node_238,Black,,1,100,,,node_238,CN
+node_239,Black,,1,100,,,node_239,ABCN
+node_240,Black,,1,100,,,node_240,CN
+node_241,Black,,1,100,,,node_241,ABCN
+node_242,Black,,1,100,,,node_242,ABCN
+node_243,Black,,1,100,,,node_243,AN
+node_244,Black,,1,100,,,node_244,AN
+node_245,Black,,1,100,,,node_245,AN
+node_246,Black,,1,100,,,node_246,AN
+node_247,Black,,1,100,,,node_247,AN
+node_248,Black,,1,100,,,node_248,AN
+node_249,Black,,1,100,,,node_249,AN
+node_250,Black,,1,100,,,node_250,BN
+node_251,Black,,1,100,,,node_251,ABCN
+node_252,Black,,1,100,,,node_252,ABCN
+node_253,Black,,1,100,,,node_253,BN
+node_254,Black,,1,100,,,node_254,ABCN
+node_255,Black,,1,100,,,node_255,CN
+node_256,Black,,1,100,,,node_256,ABCN
+node_257,Black,,1,100,,,node_257,BN
+node_258,Black,,1,100,,,node_258,ABCN
+node_259,Black,,1,100,,,node_259,ABCN
+node_260,Black,,1,100,,,node_260,CN
+node_261,Black,,1,100,,,node_261,CN
+node_262,Black,,1,100,,,node_262,CN
+node_263,Black,,1,100,,,node_263,CN
+node_264,Black,,1,100,,,node_264,CN
+node_265,Black,,1,100,,,node_265,CN
+node_266,Black,,1,100,,,node_266,CN
+node_267,Black,,1,100,,,node_267,CN
+node_268,Black,,1,100,,,node_268,CN
+node_269,Black,,1,100,,,node_269,CN
+node_270,Black,,1,100,,,node_270,ACN
+node_271,Black,,1,100,,,node_271,ABCN
+node_272,Black,,1,100,,,node_272,ABCN
+node_273,Black,,1,100,,,node_273,ABCN
+node_274,Black,,1,100,,,node_274,CN
+node_275,Black,,1,100,,,node_275,ABCN
+node_276,Black,,1,100,,,node_276,ABCN
+node_277,Black,,1,100,,,node_277,CN
+node_278,Black,,1,100,,,node_278,ABCN
+node_279,Black,,1,100,,,node_279,CN
+node_280,Black,,1,100,,,node_280,AN
+node_281,Black,,1,100,,,node_281,ABCN
+node_282,Black,,1,100,,,node_282,CN
+node_283,Black,,1,100,,,node_283,AN
+node_284,Black,,1,100,,,node_284,AN
+node_285,Black,,1,100,,,node_285,AN
+node_286,Black,,1,100,,,node_286,AN
+node_287,Black,,1,100,,,node_287,AN
+node_288,Black,,1,100,,,node_288,AN
+node_289,Black,,1,100,,,node_289,ABCN
+node_290,Black,,1,100,,,node_290,CN
+node_291,Black,,1,100,,,node_291,ABCN
+node_292,Black,,1,100,,,node_292,ACN
+node_293,Black,,1,100,,,node_293,ACN
+node_294,Black,,1,100,,,node_294,ACN
+node_295,Black,,1,100,,,node_295,ACN
+node_296,Black,,1,100,,,node_296,ACN
+node_297,Black,,1,100,,,node_297,ACN
+node_298,Black,,1,100,,,node_298,ACN
+node_299,Black,,1,100,,,node_299,CN
+node_300,Black,,1,100,,,node_300,ACN
+node_301,Black,,1,100,,,node_301,AN
+node_302,Black,,1,100,,,node_302,ACN
+node_303,Black,,1,100,,,node_303,CN
+node_304,Black,,1,100,,,node_304,CN
+node_305,Black,,1,100,,,node_305,CN
+node_306,Black,,1,100,,,node_306,ACN
+node_307,Black,,1,100,,,node_307,ACN
+node_308,Black,,1,100,,,node_308,ACN
+node_309,Black,,1,100,,,node_309,ACN
+node_310,Black,,1,100,,,node_310,ACN
+node_311,Black,,1,100,,,node_311,CN
+node_312,Black,,1,100,,,node_312,CN
+node_313,Black,,1,100,,,node_313,CN
+node_314,Black,,1,100,,,node_314,CN
+node_315,Black,,1,100,,,node_315,CN
+node_316,Black,,1,100,,,node_316,ABCN
+node_317,Black,,1,100,,,node_317,BN
+node_318,Black,,1,100,,,node_318,BCN
+node_319,Black,,1,100,,,node_319,ABCN
+node_320,Black,,1,100,,,node_320,CN
+node_321,Black,,1,100,,,node_321,BN
+node_322,Black,,1,100,,,node_322,BN
+node_323,Black,,1,100,,,node_323,BN
+node_324,Black,,1,100,,,node_324,ABCN
+node_325,Black,,1,100,,,node_325,AN
+node_326,Black,,1,100,,,node_326,ABCN
+node_327,Black,,1,100,,,node_327,BN
+node_328,Black,,1,100,,,node_328,ABCN
+node_329,Black,,1,100,,,node_329,AN
+node_330,Black,,1,100,,,node_330,AN
+node_331,Black,,1,100,,,node_331,AN
+node_332,Black,,1,100,,,node_332,AN
+node_333,Black,,1,100,,,node_333,AN
+node_334,Black,,1,100,,,node_334,AN
+node_335,Black,,1,100,,,node_335,AN
+node_336,Black,,1,100,,,node_336,ABCN
+node_337,Black,,1,100,,,node_337,ABCN
+node_338,Black,,1,100,,,node_338,AN
+node_339,Black,,1,100,,,node_339,AN
+node_340,Black,,1,100,,,node_340,ABCN
+node_341,Black,,1,100,,,node_341,ABCN
+node_342,Black,,1,100,,,node_342,ABCN
+node_343,Black,,1,100,,,node_343,BN
+node_344,Black,,1,100,,,node_344,BN
+node_345,Black,,1,100,,,node_345,BN
+node_346,Black,,1,100,,,node_346,AN
+node_347,Black,,1,100,,,node_347,AN
+node_348,Black,,1,100,,,node_348,ABCN
+node_349,Black,,1,100,,,node_349,AN
+node_350,Black,,1,100,,,node_350,ABCN
+node_351,Black,,1,100,,,node_351,BN
+node_352,Black,,1,100,,,node_352,BN
+node_353,Black,,1,100,,,node_353,BN
+node_354,Black,,1,100,,,node_354,BN
+node_355,Black,,1,100,,,node_355,BN
+node_356,Black,,1,100,,,node_356,BN
+node_357,Black,,1,100,,,node_357,BN
+node_358,Black,,1,100,,,node_358,BN
+node_359,Black,,1,100,,,node_359,BN
+node_360,Black,,1,100,,,node_360,BN
+node_361,Black,,1,100,,,node_361,BN
+node_362,Black,,1,100,,,node_362,BN
+node_363,Black,,1,100,,,node_363,BN
+node_364,Black,,1,100,,,node_364,BN
+node_365,Black,,1,100,,,node_365,BN
+node_366,Black,,1,100,,,node_366,BN
+node_367,Black,,1,100,,,node_367,BN
+node_368,Black,,1,100,,,node_368,BN
+node_369,Black,,1,100,,,node_369,BN
+node_370,Black,,1,100,,,node_370,CN
+node_371,Black,,1,100,,,node_371,BN
+node_372,Black,,1,100,,,node_372,ABCN
+node_373,Black,,1,100,,,node_373,ABCN
+node_374,Black,,1,100,,,node_374,AN
+node_375,Black,,1,100,,,node_375,ABCN
+node_376,Black,,1,100,,,node_376,AN
+node_377,Black,,1,100,,,node_377,ABCN
+node_378,Black,,1,100,,,node_378,BN
+node_379,Black,,1,100,,,node_379,ABCN
+node_380,Black,,1,100,,,node_380,ABCN
+node_381,Black,,1,100,,,node_381,ABCN
+node_382,Black,,1,100,,,node_382,BCN
+node_383,Black,,1,100,,,node_383,BCN
+node_384,Black,,1,100,,,node_384,BCN
+node_385,Black,,1,100,,,node_385,ABCN
+node_386,Black,,1,100,,,node_386,ABN
+node_387,Black,,1,100,,,node_387,ABCN
+node_388,Black,,1,100,,,node_388,AN
+node_389,Black,,1,100,,,node_389,ABN
+node_390,Black,,1,100,,,node_390,ABN
+node_391,Black,,1,100,,,node_391,ABN
+node_392,Black,,1,100,,,node_392,ABN
+node_393,Black,,1,100,,,node_393,ABN
+node_394,Black,,1,100,,,node_394,ABCN
+node_395,Black,,1,100,,,node_395,ABCN
+node_396,Black,,1,100,,,node_396,ABCN
+node_397,Black,,1,100,,,node_397,BN
+node_398,Black,,1,100,,,node_398,BN
+node_399,Black,,1,100,,,node_399,BN
+node_400,Black,,1,100,,,node_400,BCN
+node_401,Black,,1,100,,,node_401,CN
+node_402,Black,,1,100,,,node_402,CN
+node_403,Black,,1,100,,,node_403,CN
+node_404,Black,,1,100,,,node_404,ABCN
+node_405,Black,,1,100,,,node_405,BN
+node_406,Black,,1,100,,,node_406,CN
+node_407,Black,,1,100,,,node_407,ABCN
+node_408,Black,,1,100,,,node_408,ABCN
+node_409,Black,,1,100,,,node_409,BN
+node_410,Black,,1,100,,,node_410,ABCN
+node_411,Black,,1,100,,,node_411,BN
+node_412,Black,,1,100,,,node_412,AN
+node_413,Black,,1,100,,,node_413,CN
+node_414,Black,,1,100,,,node_414,ABCN
+node_415,Black,,1,100,,,node_415,ABCN
+node_416,Black,,1,100,,,node_416,ABCN
+node_417,Black,,1,100,,,node_417,ABCN
+node_418,Black,,1,100,,,node_418,ABCN
+node_419,Black,,1,100,,,node_419,CN
+node_420,Black,,1,100,,,node_420,CN
+node_421,Black,,1,100,,,node_421,CN
+node_422,Black,,1,100,,,node_422,CN
+node_423,Black,,1,100,,,node_423,CN
+node_424,Black,,1,100,,,node_424,CN
+node_425,Black,,1,100,,,node_425,ABCN
+node_426,Black,,1,100,,,node_426,ABCN
+node_427,Black,,1,100,,,node_427,ABCN
+node_428,Black,,1,100,,,node_428,ABCN
+node_429,Black,,1,100,,,node_429,ABCN
+node_430,Black,,1,100,,,node_430,AN
+node_431,Black,,1,100,,,node_431,AN
+node_432,Black,,1,100,,,node_432,AN
+node_433,Black,,1,100,,,node_433,AN
+node_434,Black,,1,100,,,node_434,AN
+node_435,Black,,1,100,,,node_435,AN
+node_436,Black,,1,100,,,node_436,ACN
+node_437,Black,,1,100,,,node_437,ACN
+node_438,Black,,1,100,,,node_438,CN
+node_439,Black,,1,100,,,node_439,BN
+node_440,Black,,1,100,,,node_440,BN
+node_441,Black,,1,100,,,node_441,BN
+node_442,Black,,1,100,,,node_442,BN
+node_443,Black,,1,100,,,node_443,BN
+node_444,Black,,1,100,,,node_444,BN
+node_445,Black,,1,100,,,node_445,BN
+node_446,Black,,1,100,,,node_446,CN
+node_447,Black,,1,100,,,node_447,AN
+node_448,Black,,1,100,,,node_448,AN
+node_449,Black,,1,100,,,node_449,AN
+node_450,Black,,1,100,,,node_450,CN
+node_451,Black,,1,100,,,node_451,ABCN
+node_452,Black,,1,100,,,node_452,AN
+node_453,Black,,1,100,,,node_453,AN
+node_454,Black,,1,100,,,node_454,AN
+node_455,Black,,1,100,,,node_455,AN
+node_456,Black,,1,100,,,node_456,AN
+node_457,Black,,1,100,,,node_457,AN
+node_458,Black,,1,100,,,node_458,AN
+node_459,Black,,1,100,,,node_459,AN
+node_460,Black,,1,100,,,node_460,AN
+node_461,Black,,1,100,,,node_461,ABCN
+node_462,Black,,1,100,,,node_462,BN
+node_463,Black,,1,100,,,node_463,ABCN
+node_464,Black,,1,100,,,node_464,AN
+node_465,Black,,1,100,,,node_465,AN
+node_466,Black,,1,100,,,node_466,AN
+node_467,Black,,1,100,,,node_467,AN
+node_468,Black,,1,100,,,node_468,BN
+node_469,Black,,1,100,,,node_469,BN
+node_470,Black,,1,100,,,node_470,BN
+node_471,Black,,1,100,,,node_471,BN
+node_472,Black,,1,100,,,node_472,ABCN
+node_473,Black,,1,100,,,node_473,CN
+node_474,Black,,1,100,,,node_474,CN
+node_475,Black,,1,100,,,node_475,AN
+node_476,Black,,1,100,,,node_476,AN
+node_477,Black,,1,100,,,node_477,AN
+node_478,Black,,1,100,,,node_478,AN
+node_479,Black,,1,100,,,node_479,BN
+node_480,Black,,1,100,,,node_480,BN
+node_481,Black,,1,100,,,node_481,BN
+node_482,Black,,1,100,,,node_482,BN
+node_483,Black,,1,100,,,node_483,BN
+node_484,Black,,1,100,,,node_484,BN
+node_485,Black,,1,100,,,node_485,BN
+node_486,Black,,1,100,,,node_486,BN
+node_487,Black,,1,100,,,node_487,BN
+node_488,Black,,1,100,,,node_488,ABCN
+node_489,Black,,1,100,,,node_489,BN
+node_490,Black,,1,100,,,node_490,AN
+node_491,Black,,1,100,,,node_491,ABN
+node_492,Black,,1,100,,,node_492,ABN
+node_493,Black,,1,100,,,node_493,ABCN
+node_494,Black,,1,100,,,node_494,ACN
+node_495,Black,,1,100,,,node_495,BCN
+node_496,Black,,1,100,,,node_496,CN
+node_497,Black,,1,100,,,node_497,BN
+node_498,Black,,1,100,,,node_498,CN
+node_499,Black,,1,100,,,node_499,CN
+node_500,Black,,1,100,,,node_500,ABN
+node_501,Black,,1,100,,,node_501,ABCN
+node_502,Black,,1,100,,,node_502,AN
+node_503,Black,,1,100,,,node_503,ABCN
+node_504,Black,,1,100,,,node_504,CN
+node_505,Black,,1,100,,,node_505,CN
+node_506,Black,,1,100,,,node_506,CN
+node_507,Black,,1,100,,,node_507,CN
+node_508,Black,,1,100,,,node_508,AN
+node_509,Black,,1,100,,,node_509,BN
+node_510,Black,,1,100,,,node_510,ACN
+node_511,Black,,1,100,,,node_511,CN
+node_512,Black,,1,100,,,node_512,BN
+node_513,Black,,1,100,,,node_513,CN
+node_514,Black,,1,100,,,node_514,BN
+node_515,Black,,1,100,,,node_515,CN
+node_516,Black,,1,100,,,node_516,CN
+node_517,Black,,1,100,,,node_517,ABCN
+node_518,Black,,1,100,,,node_518,ABCN
+node_519,Black,,1,100,,,node_519,CN
+node_520,Black,,1,100,,,node_520,AN
+node_521,Black,,1,100,,,node_521,CN
+node_522,Black,,1,100,,,node_522,ACN
+node_523,Black,,1,100,,,node_523,BN
+node_524,Black,,1,100,,,node_524,CN
+node_525,Black,,1,100,,,node_525,AN
+node_526,Black,,1,100,,,node_526,CN
+node_527,Black,,1,100,,,node_527,AN
+node_528,Black,,1,100,,,node_528,BN
+node_529,Black,,1,100,,,node_529,BN
+node_530,Black,,1,100,,,node_530,AN
+node_531,Black,,1,100,,,node_531,BN
+node_532,Black,,1,100,,,node_532,ABCN
+node_533,Black,,1,100,,,node_533,ABCN
+node_534,Black,,1,100,,,node_534,CN
+node_535,Black,,1,100,,,node_535,CN
+node_536,Black,,1,100,,,node_536,AN
+node_537,Black,,1,100,,,node_537,ABCN
+node_538,Black,,1,100,,,node_538,BN
+node_539,Black,,1,100,,,node_539,BN
+node_540,Black,,1,100,,,node_540,BN
+node_541,Black,,1,100,,,node_541,ABCN
+node_542,Black,,1,100,,,node_542,ABCN
+node_543,Black,,1,100,,,node_543,ABN
+node_544,Black,,1,100,,,node_544,CN
+node_545,Black,,1,100,,,node_545,CN
+node_546,Black,,1,100,,,node_546,ABCN
+node_547,Black,,1,100,,,node_547,AN
+node_548,Black,,1,100,,,node_548,AN
+node_549,Black,,1,100,,,node_549,AN
+node_550,Black,,1,100,,,node_550,AN
+node_551,Black,,1,100,,,node_551,ABCN
+node_552,Black,,1,100,,,node_552,CN
+node_553,Black,,1,100,,,node_553,CN
+node_554,Black,,1,100,,,node_554,CN
+node_555,Black,,1,100,,,node_555,CN
+node_556,Black,,1,100,,,node_556,CN
+node_557,Black,,1,100,,,node_557,CN
+node_558,Black,,1,100,,,node_558,CN
+node_559,Black,,1,100,,,node_559,CN
+node_560,Black,,1,100,,,node_560,BN
+node_561,Black,,1,100,,,node_561,ABCN
+node_562,Black,,1,100,,,node_562,CN
+node_563,Black,,1,100,,,node_563,BN
+node_564,Black,,1,100,,,node_564,BN
+node_565,Black,,1,100,,,node_565,BN
+node_566,Black,,1,100,,,node_566,BN
+node_567,Black,,1,100,,,node_567,BN
+node_568,Black,,1,100,,,node_568,AN
+node_569,Black,,1,100,,,node_569,AN
+node_570,Black,,1,100,,,node_570,CN
+node_571,Black,,1,100,,,node_571,ABCN
+node_572,Black,,1,100,,,node_572,ABCN
+switch_1,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_1,ABCN
+switch_2,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_2,CN
+switch_3,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_3,ABCN
+switch_4,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_4,ABCN
+switch_5,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_5,ABCN
+switch_6,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_6,ABCN
+switch_7,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_7,ABCN
+switch_8,Black,image,3,100,C:\Energy_Graph\Symbols\Switch Symbol.png,,switch_8,ABCN
+xfmr_1,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_1,CS
+xfmr_2,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_2,CS
+xfmr_3,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_3,AS
+xfmr_4,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_4,BS
+xfmr_5,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_5,CS
+xfmr_6,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_6,CS
+xfmr_7,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_7,BS
+xfmr_8,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_8,CS
+xfmr_9,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_9,AS
+xfmr_10,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_10,BS
+xfmr_11,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_11,CS
+xfmr_12,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_12,CS
+xfmr_13,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_13,AS
+xfmr_14,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_14,AS
+xfmr_15,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_15,AS
+xfmr_16,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_16,CS
+xfmr_17,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_17,AS
+xfmr_18,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_18,CS
+xfmr_19,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_19,CS
+xfmr_20,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_20,CS
+xfmr_21,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_21,CS
+xfmr_22,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_22,CS
+xfmr_23,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_23,AS
+xfmr_24,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_24,BS
+xfmr_25,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_25,CS
+xfmr_26,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_26,BS
+xfmr_27,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_27,AS
+xfmr_28,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_28,CS
+xfmr_29,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_29,AS
+xfmr_30,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_30,CS
+xfmr_31,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_31,AS
+xfmr_32,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_32,AS
+xfmr_33,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_33,AS
+xfmr_34,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_34,BS
+xfmr_35,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_35,CS
+xfmr_36,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_36,CS
+xfmr_37,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_37,CS
+xfmr_38,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_38,CS
+xfmr_39,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_39,CS
+xfmr_40,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_40,BS
+xfmr_41,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_41,BS
+xfmr_42,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_42,AS
+xfmr_43,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_43,AS
+xfmr_44,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_44,AS
+xfmr_45,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_45,CS
+xfmr_46,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_46,CS
+xfmr_47,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_47,AS
+xfmr_48,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_48,CS
+xfmr_49,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_49,AS
+xfmr_50,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_50,CS
+xfmr_51,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_51,BS
+xfmr_52,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_52,BS
+xfmr_53,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_53,BS
+xfmr_54,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_54,BS
+xfmr_55,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_55,BS
+xfmr_56,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_56,BS
+xfmr_57,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_57,BS
+xfmr_58,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_58,BS
+xfmr_59,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_59,BS
+xfmr_60,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_60,BS
+xfmr_61,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_61,BS
+xfmr_62,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_62,BS
+xfmr_63,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_63,BS
+xfmr_64,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_64,BS
+xfmr_65,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_65,CS
+xfmr_66,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_66,CS
+xfmr_67,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_67,BS
+xfmr_68,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_68,BS
+xfmr_69,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_69,BS
+xfmr_70,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_70,CS
+xfmr_71,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_71,BS
+xfmr_72,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_72,AS
+xfmr_73,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_73,AS
+xfmr_74,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_74,AS
+xfmr_75,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_75,CS
+xfmr_76,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_76,CS
+xfmr_77,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_77,AS
+xfmr_78,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_78,BS
+xfmr_79,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_79,AS
+xfmr_80,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_80,BS
+xfmr_81,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_81,CS
+xfmr_82,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_82,BS
+xfmr_83,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_83,BS
+xfmr_84,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_84,AS
+xfmr_85,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_85,AS
+xfmr_86,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_86,BS
+xfmr_87,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_87,CS
+xfmr_88,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_88,BS
+xfmr_89,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_89,CS
+xfmr_90,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_90,CS
+xfmr_91,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_91,CS
+xfmr_92,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_92,CS
+xfmr_93,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_93,CS
+xfmr_94,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_94,BS
+xfmr_95,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_95,BS
+xfmr_96,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_96,BS
+xfmr_97,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_97,AS
+xfmr_98,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_98,BS
+xfmr_99,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_99,AS
+xfmr_100,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_100,BS
+xfmr_101,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_101,AS
+xfmr_102,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_102,AS
+xfmr_103,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_103,BS
+xfmr_104,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_104,CS
+xfmr_105,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_105,AS
+xfmr_106,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_106,BS
+xfmr_107,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_107,CS
+xfmr_108,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_108,AS
+xfmr_109,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_109,BS
+xfmr_110,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_110,CS
+xfmr_111,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_111,BS
+xfmr_112,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_112,AS
+xfmr_113,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_113,BS
+xfmr_114,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_114,AS
+xfmr_115,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_115,AS
+xfmr_116,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_116,BS
+xfmr_117,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_117,AS
+xfmr_118,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_118,BS
+xfmr_119,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_119,AS
+xfmr_120,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_120,BS
+xfmr_121,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_121,AS
+xfmr_122,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_122,BS
+xfmr_123,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_123,AS
+xfmr_124,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_124,BS
+xfmr_125,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_125,CS
+xfmr_126,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_126,BS
+xfmr_127,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_127,CS
+xfmr_128,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_128,BS
+xfmr_129,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_129,CS
+xfmr_130,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_130,BS
+xfmr_131,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_131,AS
+xfmr_132,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_132,BS
+xfmr_133,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_133,CS
+xfmr_134,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_134,CS
+xfmr_135,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_135,AS
+xfmr_136,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_136,BS
+xfmr_137,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_137,CS
+xfmr_138,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_138,BS
+xfmr_139,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_139,BS
+xfmr_140,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_140,CS
+xfmr_141,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_141,AS
+xfmr_142,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_142,BS
+xfmr_143,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_143,CS
+xfmr_144,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_144,CS
+xfmr_145,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_145,CS
+xfmr_146,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_146,AS
+xfmr_147,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_147,BS
+xfmr_148,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_148,CS
+xfmr_149,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_149,AS
+xfmr_150,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_150,BS
+xfmr_151,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_151,CS
+xfmr_152,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_152,AS
+xfmr_153,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_153,BS
+xfmr_154,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_154,CS
+xfmr_155,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_155,AS
+xfmr_156,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_156,BS
+xfmr_157,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_157,CS
+xfmr_158,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_158,BS
+xfmr_159,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_159,CS
+xfmr_160,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_160,AS
+xfmr_161,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_161,BS
+xfmr_162,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_162,CS
+xfmr_163,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_163,CS
+xfmr_164,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_164,CS
+xfmr_165,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_165,CS
+xfmr_166,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_166,CS
+xfmr_167,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_167,AS
+xfmr_168,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_168,BS
+xfmr_169,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_169,CS
+xfmr_170,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_170,AS
+xfmr_171,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_171,AS
+xfmr_172,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_172,AS
+xfmr_173,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_173,AS
+xfmr_174,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_174,AS
+xfmr_175,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_175,BS
+xfmr_176,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_176,AS
+xfmr_177,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_177,BS
+xfmr_178,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_178,CS
+xfmr_179,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_179,BS
+xfmr_180,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_180,CS
+xfmr_181,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_181,BS
+xfmr_182,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_182,AS
+xfmr_183,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_183,BS
+xfmr_184,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_184,CS
+xfmr_185,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_185,CS
+xfmr_186,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_186,CS
+xfmr_187,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_187,CS
+xfmr_188,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_188,CS
+xfmr_189,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_189,CS
+xfmr_190,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_190,CS
+xfmr_191,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_191,CS
+xfmr_192,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_192,CS
+xfmr_193,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_193,CS
+xfmr_194,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_194,CS
+xfmr_195,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_195,AS
+xfmr_196,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_196,CS
+xfmr_197,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_197,AS
+xfmr_198,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_198,BS
+xfmr_199,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_199,CS
+xfmr_200,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_200,AS
+xfmr_201,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_201,BS
+xfmr_202,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_202,CS
+xfmr_203,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_203,AS
+xfmr_204,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_204,BS
+xfmr_205,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_205,CS
+xfmr_206,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_206,CS
+xfmr_207,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_207,CS
+xfmr_208,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_208,AS
+xfmr_209,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_209,BS
+xfmr_210,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_210,CS
+xfmr_211,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_211,CS
+xfmr_212,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_212,AS
+xfmr_213,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_213,AS
+xfmr_214,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_214,BS
+xfmr_215,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_215,CS
+xfmr_216,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_216,CS
+xfmr_217,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_217,AS
+xfmr_218,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_218,AS
+xfmr_219,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_219,AS
+xfmr_220,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_220,AS
+xfmr_221,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_221,AS
+xfmr_222,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_222,AS
+xfmr_223,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_223,BS
+xfmr_224,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_224,CS
+xfmr_225,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_225,CS
+xfmr_226,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_226,AS
+xfmr_227,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_227,BS
+xfmr_228,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_228,CS
+xfmr_229,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_229,AS
+xfmr_230,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_230,CS
+xfmr_231,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_231,AS
+xfmr_232,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_232,CS
+xfmr_233,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_233,AS
+xfmr_234,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_234,CS
+xfmr_235,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_235,AS
+xfmr_236,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_236,CS
+xfmr_237,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_237,AS
+xfmr_238,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_238,CS
+xfmr_239,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_239,AS
+xfmr_240,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_240,CS
+xfmr_241,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_241,AS
+xfmr_242,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_242,CS
+xfmr_243,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_243,CS
+xfmr_244,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_244,AS
+xfmr_245,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_245,AS
+xfmr_246,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_246,CS
+xfmr_247,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_247,CS
+xfmr_248,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_248,CS
+xfmr_249,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_249,CS
+xfmr_250,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_250,AS
+xfmr_251,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_251,CS
+xfmr_252,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_252,AS
+xfmr_253,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_253,CS
+xfmr_254,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_254,AS
+xfmr_255,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_255,CS
+xfmr_256,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_256,CS
+xfmr_257,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_257,CS
+xfmr_258,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_258,CS
+xfmr_259,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_259,BS
+xfmr_260,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_260,BS
+xfmr_261,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_261,CS
+xfmr_262,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_262,CS
+xfmr_263,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_263,BS
+xfmr_264,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_264,BS
+xfmr_265,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_265,BS
+xfmr_266,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_266,AS
+xfmr_267,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_267,BS
+xfmr_268,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_268,CS
+xfmr_269,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_269,AS
+xfmr_270,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_270,BS
+xfmr_271,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_271,AS
+xfmr_272,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_272,AS
+xfmr_273,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_273,AS
+xfmr_274,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_274,AS
+xfmr_275,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_275,AS
+xfmr_276,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_276,AS
+xfmr_277,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_277,BS
+xfmr_278,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_278,CS
+xfmr_279,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_279,AS
+xfmr_280,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_280,AS
+xfmr_281,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_281,BS
+xfmr_282,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_282,CS
+xfmr_283,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_283,AS
+xfmr_284,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_284,AS
+xfmr_285,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_285,BS
+xfmr_286,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_286,BS
+xfmr_287,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_287,BS
+xfmr_288,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_288,BS
+xfmr_289,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_289,BS
+xfmr_290,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_290,BS
+xfmr_291,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_291,BS
+xfmr_292,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_292,BS
+xfmr_293,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_293,BS
+xfmr_294,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_294,BS
+xfmr_295,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_295,BS
+xfmr_296,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_296,BS
+xfmr_297,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_297,CS
+xfmr_298,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_298,BS
+xfmr_299,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_299,AS
+xfmr_300,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_300,AS
+xfmr_301,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_301,BS
+xfmr_302,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_302,CS
+xfmr_303,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_303,AS
+xfmr_304,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_304,BS
+xfmr_305,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_305,AS
+xfmr_306,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_306,BS
+xfmr_307,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_307,CS
+xfmr_308,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_308,AS
+xfmr_309,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_309,BS
+xfmr_310,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_310,CS
+xfmr_311,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_311,AS
+xfmr_312,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_312,AS
+xfmr_313,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_313,BS
+xfmr_314,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_314,AS
+xfmr_315,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_315,BS
+xfmr_316,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_316,AS
+xfmr_317,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_317,BS
+xfmr_318,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_318,AS
+xfmr_319,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_319,BS
+xfmr_320,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_320,AS
+xfmr_321,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_321,BS
+xfmr_322,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_322,AS
+xfmr_323,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_323,BS
+xfmr_324,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_324,CS
+xfmr_325,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_325,AS
+xfmr_326,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_326,BS
+xfmr_327,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_327,CS
+xfmr_328,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_328,AS
+xfmr_329,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_329,BS
+xfmr_330,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_330,CS
+xfmr_331,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_331,BS
+xfmr_332,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_332,BS
+xfmr_333,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_333,BS
+xfmr_334,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_334,BS
+xfmr_335,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_335,CS
+xfmr_336,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_336,CS
+xfmr_337,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_337,CS
+xfmr_338,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_338,CS
+xfmr_339,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_339,AS
+xfmr_340,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_340,BS
+xfmr_341,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_341,CS
+xfmr_342,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_342,BS
+xfmr_343,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_343,CS
+xfmr_344,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_344,AS
+xfmr_345,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_345,BS
+xfmr_346,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_346,CS
+xfmr_347,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_347,AS
+xfmr_348,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_348,BS
+xfmr_349,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_349,CS
+xfmr_350,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_350,BS
+xfmr_351,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_351,AS
+xfmr_352,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_352,CS
+xfmr_353,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_353,AS
+xfmr_354,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_354,BS
+xfmr_355,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_355,CS
+xfmr_356,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_356,AS
+xfmr_357,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_357,BS
+xfmr_358,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_358,CS
+xfmr_359,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_359,AS
+xfmr_360,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_360,BS
+xfmr_361,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_361,CS
+xfmr_362,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_362,AS
+xfmr_363,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_363,BS
+xfmr_364,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_364,CS
+xfmr_365,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_365,AS
+xfmr_366,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_366,BS
+xfmr_367,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_367,CS
+xfmr_368,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_368,CS
+xfmr_369,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_369,CS
+xfmr_370,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_370,CS
+xfmr_371,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_371,CS
+xfmr_372,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_372,CS
+xfmr_373,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_373,CS
+xfmr_374,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_374,AS
+xfmr_375,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_375,BS
+xfmr_376,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_376,CS
+xfmr_377,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_377,AS
+xfmr_378,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_378,BS
+xfmr_379,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_379,CS
+xfmr_380,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_380,AS
+xfmr_381,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_381,BS
+xfmr_382,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_382,CS
+xfmr_383,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_383,AS
+xfmr_384,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_384,BS
+xfmr_385,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_385,CS
+xfmr_386,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_386,AS
+xfmr_387,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_387,BS
+xfmr_388,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_388,CS
+xfmr_389,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_389,AS
+xfmr_390,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_390,AS
+xfmr_391,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_391,AS
+xfmr_392,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_392,AS
+xfmr_393,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_393,AS
+xfmr_394,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_394,AS
+xfmr_395,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_395,AS
+xfmr_396,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_396,CS
+xfmr_397,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_397,CS
+xfmr_398,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_398,BS
+xfmr_399,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_399,BS
+xfmr_400,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_400,BS
+xfmr_401,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_401,BS
+xfmr_402,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_402,BS
+xfmr_403,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_403,BS
+xfmr_404,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_404,BS
+xfmr_405,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_405,CS
+xfmr_406,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_406,AS
+xfmr_407,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_407,AS
+xfmr_408,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_408,AS
+xfmr_409,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_409,CS
+xfmr_410,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_410,AS
+xfmr_411,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_411,BS
+xfmr_412,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_412,CS
+xfmr_413,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_413,AS
+xfmr_414,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_414,AS
+xfmr_415,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_415,AS
+xfmr_416,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_416,AS
+xfmr_417,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_417,AS
+xfmr_418,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_418,AS
+xfmr_419,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_419,AS
+xfmr_420,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_420,AS
+xfmr_421,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_421,AS
+xfmr_422,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_422,BS
+xfmr_423,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_423,AS
+xfmr_424,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_424,BS
+xfmr_425,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_425,CS
+xfmr_426,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_426,AS
+xfmr_427,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_427,AS
+xfmr_428,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_428,AS
+xfmr_429,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_429,AS
+xfmr_430,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_430,BS
+xfmr_431,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_431,BS
+xfmr_432,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_432,BS
+xfmr_433,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_433,BS
+xfmr_434,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_434,AS
+xfmr_435,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_435,BS
+xfmr_436,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_436,CS
+xfmr_437,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_437,CS
+xfmr_438,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_438,CS
+xfmr_439,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_439,AS
+xfmr_440,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_440,AS
+xfmr_441,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_441,AS
+xfmr_442,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_442,AS
+xfmr_443,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_443,BS
+xfmr_444,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_444,BS
+xfmr_445,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_445,BS
+xfmr_446,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_446,BS
+xfmr_447,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_447,BS
+xfmr_448,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_448,BS
+xfmr_449,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_449,BS
+xfmr_450,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_450,AS
+xfmr_451,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_451,BS
+xfmr_452,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_452,CS
+xfmr_453,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_453,CS
+xfmr_454,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_454,AS
+xfmr_455,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_455,BS
+xfmr_456,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_456,CS
+xfmr_457,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_457,AS
+xfmr_458,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_458,BS
+xfmr_459,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_459,CS
+xfmr_460,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_460,CS
+xfmr_461,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_461,CS
+xfmr_462,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_462,AS
+xfmr_463,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_463,AS
+xfmr_464,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_464,AS
+xfmr_465,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_465,CS
+xfmr_466,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_466,CS
+xfmr_467,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_467,CS
+xfmr_468,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_468,CS
+xfmr_469,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_469,CS
+xfmr_470,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_470,BS
+xfmr_471,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_471,CS
+xfmr_472,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_472,BS
+xfmr_473,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_473,BS
+xfmr_474,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_474,BS
+xfmr_475,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_475,AS
+xfmr_476,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_476,CS
+xfmr_477,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_477,CN
+xfmr_478,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_478,ABCN
+xfmr_479,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_479,ABCN
+xfmr_480,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_480,ABCN
+xfmr_481,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_481,ABCN
+xfmr_482,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_482,ABN
+xfmr_483,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_483,ABCN
+xfmr_484,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_484,ABCN
+xfmr_485,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_485,ACN
+xfmr_486,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_486,CN
+xfmr_487,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_487,ABCN
+xfmr_488,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_488,ACN
+xfmr_489,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_489,CN
+xfmr_490,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_490,BN
+xfmr_491,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_491,BN
+xfmr_492,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_492,AN
+xfmr_493,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_493,ABN
+xfmr_494,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_494,ABCN
+xfmr_495,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_495,ABCN
+xfmr_496,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_496,BCN
+xfmr_497,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_497,BCN
+xfmr_498,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_498,BCN
+xfmr_499,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_499,CN
+xfmr_500,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_500,CN
+xfmr_501,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_501,CN
+xfmr_502,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_502,BCN
+xfmr_503,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_503,BN
+xfmr_504,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_504,ABCN
+xfmr_505,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_505,ACN
+xfmr_506,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_506,AN
+xfmr_507,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_507,ABCN
+xfmr_508,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_508,CN
+xfmr_509,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_509,CN
+xfmr_510,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_510,ACN
+xfmr_511,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_511,ABCN
+xfmr_512,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_512,CN
+xfmr_513,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_513,CN
+xfmr_514,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_514,CN
+xfmr_515,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_515,ABCN
+xfmr_516,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_516,BN
+xfmr_517,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_517,ABCN
+xfmr_518,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_518,AN
+xfmr_519,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_519,AN
+xfmr_520,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_520,ABCN
+xfmr_521,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_521,BN
+xfmr_522,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_522,CN
+xfmr_523,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_523,ABCN
+xfmr_524,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_524,ABCN
+xfmr_525,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_525,ABCN
+xfmr_526,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_526,BCN
+xfmr_527,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_527,BCN
+xfmr_528,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_528,ABN
+xfmr_529,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_529,ABCN
+xfmr_530,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_530,ABCN
+xfmr_531,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_531,BN
+xfmr_532,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_532,CN
+xfmr_533,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_533,ABCN
+xfmr_534,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_534,ABCN
+xfmr_535,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_535,BN
+xfmr_536,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_536,AN
+xfmr_537,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_537,CN
+xfmr_538,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_538,AN
+xfmr_539,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_539,ABCN
+xfmr_540,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_540,ABCN
+xfmr_541,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_541,ABCN
+xfmr_542,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_542,BN
+xfmr_543,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_543,BN
+xfmr_544,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_544,BCN
+xfmr_545,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_545,BN
+xfmr_546,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_546,ABCN
+xfmr_547,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_547,ABN
+xfmr_548,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_548,CN
+xfmr_549,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_549,AN
+xfmr_550,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_550,ABCN
+xfmr_551,Black,image,3,100,C:\Energy_Graph\Symbols\Transformer Symbol.png,,xfmr_551,CN
+tm_1,Black,triangle,2,100,,,tm_1,CS
+tm_2,Black,triangle,2,100,,,tm_2,CS
+tm_3,Black,triangle,2,100,,,tm_3,AS
+tm_4,Black,triangle,2,100,,,tm_4,BS
+tm_5,Black,triangle,2,100,,,tm_5,CS
+tm_6,Black,triangle,2,100,,,tm_6,CS
+tm_7,Black,triangle,2,100,,,tm_7,BS
+tm_8,Black,triangle,2,100,,,tm_8,CS
+tm_9,Black,triangle,2,100,,,tm_9,AS
+tm_10,Black,triangle,2,100,,,tm_10,BS
+tm_11,Black,triangle,2,100,,,tm_11,CS
+tm_12,Black,triangle,2,100,,,tm_12,CS
+tm_13,Black,triangle,2,100,,,tm_13,AS
+tm_14,Black,triangle,2,100,,,tm_14,AS
+tm_15,Black,triangle,2,100,,,tm_15,AS
+tm_16,Black,triangle,2,100,,,tm_16,CS
+tm_17,Black,triangle,2,100,,,tm_17,AS
+tm_18,Black,triangle,2,100,,,tm_18,CS
+tm_19,Black,triangle,2,100,,,tm_19,CS
+tm_20,Black,triangle,2,100,,,tm_20,CS
+tm_21,Black,triangle,2,100,,,tm_21,CS
+tm_22,Black,triangle,2,100,,,tm_22,CS
+tm_23,Black,triangle,2,100,,,tm_23,AS
+tm_24,Black,triangle,2,100,,,tm_24,BS
+tm_25,Black,triangle,2,100,,,tm_25,CS
+tm_26,Black,triangle,2,100,,,tm_26,BS
+tm_27,Black,triangle,2,100,,,tm_27,AS
+tm_28,Black,triangle,2,100,,,tm_28,CS
+tm_29,Black,triangle,2,100,,,tm_29,AS
+tm_30,Black,triangle,2,100,,,tm_30,CS
+tm_31,Black,triangle,2,100,,,tm_31,AS
+tm_32,Black,triangle,2,100,,,tm_32,AS
+tm_33,Black,triangle,2,100,,,tm_33,AS
+tm_34,Black,triangle,2,100,,,tm_34,BS
+tm_35,Black,triangle,2,100,,,tm_35,CS
+tm_36,Black,triangle,2,100,,,tm_36,CS
+tm_37,Black,triangle,2,100,,,tm_37,CS
+tm_38,Black,triangle,2,100,,,tm_38,CS
+tm_39,Black,triangle,2,100,,,tm_39,CS
+tm_40,Black,triangle,2,100,,,tm_40,BS
+tm_41,Black,triangle,2,100,,,tm_41,BS
+tm_42,Black,triangle,2,100,,,tm_42,AS
+tm_43,Black,triangle,2,100,,,tm_43,AS
+tm_44,Black,triangle,2,100,,,tm_44,AS
+tm_45,Black,triangle,2,100,,,tm_45,CS
+tm_46,Black,triangle,2,100,,,tm_46,CS
+tm_47,Black,triangle,2,100,,,tm_47,AS
+tm_48,Black,triangle,2,100,,,tm_48,CS
+tm_49,Black,triangle,2,100,,,tm_49,AS
+tm_50,Black,triangle,2,100,,,tm_50,CS
+tm_51,Black,triangle,2,100,,,tm_51,BS
+tm_52,Black,triangle,2,100,,,tm_52,BS
+tm_53,Black,triangle,2,100,,,tm_53,BS
+tm_54,Black,triangle,2,100,,,tm_54,BS
+tm_55,Black,triangle,2,100,,,tm_55,BS
+tm_56,Black,triangle,2,100,,,tm_56,BS
+tm_57,Black,triangle,2,100,,,tm_57,BS
+tm_58,Black,triangle,2,100,,,tm_58,BS
+tm_59,Black,triangle,2,100,,,tm_59,BS
+tm_60,Black,triangle,2,100,,,tm_60,BS
+tm_61,Black,triangle,2,100,,,tm_61,BS
+tm_62,Black,triangle,2,100,,,tm_62,BS
+tm_63,Black,triangle,2,100,,,tm_63,BS
+tm_64,Black,triangle,2,100,,,tm_64,BS
+tm_65,Black,triangle,2,100,,,tm_65,CS
+tm_66,Black,triangle,2,100,,,tm_66,CS
+tm_67,Black,triangle,2,100,,,tm_67,BS
+tm_68,Black,triangle,2,100,,,tm_68,BS
+tm_69,Black,triangle,2,100,,,tm_69,BS
+tm_70,Black,triangle,2,100,,,tm_70,CS
+tm_71,Black,triangle,2,100,,,tm_71,BS
+tm_72,Black,triangle,2,100,,,tm_72,AS
+tm_73,Black,triangle,2,100,,,tm_73,AS
+tm_74,Black,triangle,2,100,,,tm_74,AS
+tm_75,Black,triangle,2,100,,,tm_75,CS
+tm_76,Black,triangle,2,100,,,tm_76,CS
+tm_77,Black,triangle,2,100,,,tm_77,AS
+tm_78,Black,triangle,2,100,,,tm_78,BS
+tm_79,Black,triangle,2,100,,,tm_79,AS
+tm_80,Black,triangle,2,100,,,tm_80,BS
+tm_81,Black,triangle,2,100,,,tm_81,CS
+tm_82,Black,triangle,2,100,,,tm_82,BS
+tm_83,Black,triangle,2,100,,,tm_83,BS
+tm_84,Black,triangle,2,100,,,tm_84,AS
+tm_85,Black,triangle,2,100,,,tm_85,AS
+tm_86,Black,triangle,2,100,,,tm_86,BS
+tm_87,Black,triangle,2,100,,,tm_87,CS
+tm_88,Black,triangle,2,100,,,tm_88,BS
+tm_89,Black,triangle,2,100,,,tm_89,CS
+tm_90,Black,triangle,2,100,,,tm_90,CS
+tm_91,Black,triangle,2,100,,,tm_91,CS
+tm_92,Black,triangle,2,100,,,tm_92,CS
+tm_93,Black,triangle,2,100,,,tm_93,CS
+tm_94,Black,triangle,2,100,,,tm_94,BS
+tm_95,Black,triangle,2,100,,,tm_95,BS
+tm_96,Black,triangle,2,100,,,tm_96,BS
+tm_97,Black,triangle,2,100,,,tm_97,AS
+tm_98,Black,triangle,2,100,,,tm_98,BS
+tm_99,Black,triangle,2,100,,,tm_99,AS
+tm_100,Black,triangle,2,100,,,tm_100,BS
+tm_101,Black,triangle,2,100,,,tm_101,AS
+tm_102,Black,triangle,2,100,,,tm_102,AS
+tm_103,Black,triangle,2,100,,,tm_103,BS
+tm_104,Black,triangle,2,100,,,tm_104,CS
+tm_105,Black,triangle,2,100,,,tm_105,AS
+tm_106,Black,triangle,2,100,,,tm_106,BS
+tm_107,Black,triangle,2,100,,,tm_107,CS
+tm_108,Black,triangle,2,100,,,tm_108,AS
+tm_109,Black,triangle,2,100,,,tm_109,BS
+tm_110,Black,triangle,2,100,,,tm_110,CS
+tm_111,Black,triangle,2,100,,,tm_111,BS
+tm_112,Black,triangle,2,100,,,tm_112,AS
+tm_113,Black,triangle,2,100,,,tm_113,BS
+tm_114,Black,triangle,2,100,,,tm_114,AS
+tm_115,Black,triangle,2,100,,,tm_115,AS
+tm_116,Black,triangle,2,100,,,tm_116,BS
+tm_117,Black,triangle,2,100,,,tm_117,AS
+tm_118,Black,triangle,2,100,,,tm_118,BS
+tm_119,Black,triangle,2,100,,,tm_119,AS
+tm_120,Black,triangle,2,100,,,tm_120,BS
+tm_121,Black,triangle,2,100,,,tm_121,AS
+tm_122,Black,triangle,2,100,,,tm_122,BS
+tm_123,Black,triangle,2,100,,,tm_123,AS
+tm_124,Black,triangle,2,100,,,tm_124,BS
+tm_125,Black,triangle,2,100,,,tm_125,CS
+tm_126,Black,triangle,2,100,,,tm_126,BS
+tm_127,Black,triangle,2,100,,,tm_127,CS
+tm_128,Black,triangle,2,100,,,tm_128,BS
+tm_129,Black,triangle,2,100,,,tm_129,CS
+tm_130,Black,triangle,2,100,,,tm_130,BS
+tm_131,Black,triangle,2,100,,,tm_131,AS
+tm_132,Black,triangle,2,100,,,tm_132,BS
+tm_133,Black,triangle,2,100,,,tm_133,CS
+tm_134,Black,triangle,2,100,,,tm_134,CS
+tm_135,Black,triangle,2,100,,,tm_135,AS
+tm_136,Black,triangle,2,100,,,tm_136,BS
+tm_137,Black,triangle,2,100,,,tm_137,CS
+tm_138,Black,triangle,2,100,,,tm_138,BS
+tm_139,Black,triangle,2,100,,,tm_139,BS
+tm_140,Black,triangle,2,100,,,tm_140,CS
+tm_141,Black,triangle,2,100,,,tm_141,AS
+tm_142,Black,triangle,2,100,,,tm_142,BS
+tm_143,Black,triangle,2,100,,,tm_143,CS
+tm_144,Black,triangle,2,100,,,tm_144,CS
+tm_145,Black,triangle,2,100,,,tm_145,CS
+tm_146,Black,triangle,2,100,,,tm_146,AS
+tm_147,Black,triangle,2,100,,,tm_147,BS
+tm_148,Black,triangle,2,100,,,tm_148,CS
+tm_149,Black,triangle,2,100,,,tm_149,AS
+tm_150,Black,triangle,2,100,,,tm_150,BS
+tm_151,Black,triangle,2,100,,,tm_151,CS
+tm_152,Black,triangle,2,100,,,tm_152,AS
+tm_153,Black,triangle,2,100,,,tm_153,BS
+tm_154,Black,triangle,2,100,,,tm_154,CS
+tm_155,Black,triangle,2,100,,,tm_155,AS
+tm_156,Black,triangle,2,100,,,tm_156,BS
+tm_157,Black,triangle,2,100,,,tm_157,CS
+tm_158,Black,triangle,2,100,,,tm_158,BS
+tm_159,Black,triangle,2,100,,,tm_159,CS
+tm_160,Black,triangle,2,100,,,tm_160,AS
+tm_161,Black,triangle,2,100,,,tm_161,BS
+tm_162,Black,triangle,2,100,,,tm_162,CS
+tm_163,Black,triangle,2,100,,,tm_163,CS
+tm_164,Black,triangle,2,100,,,tm_164,CS
+tm_165,Black,triangle,2,100,,,tm_165,CS
+tm_166,Black,triangle,2,100,,,tm_166,CS
+tm_167,Black,triangle,2,100,,,tm_167,AS
+tm_168,Black,triangle,2,100,,,tm_168,BS
+tm_169,Black,triangle,2,100,,,tm_169,CS
+tm_170,Black,triangle,2,100,,,tm_170,AS
+tm_171,Black,triangle,2,100,,,tm_171,AS
+tm_172,Black,triangle,2,100,,,tm_172,AS
+tm_173,Black,triangle,2,100,,,tm_173,AS
+tm_174,Black,triangle,2,100,,,tm_174,AS
+tm_175,Black,triangle,2,100,,,tm_175,BS
+tm_176,Black,triangle,2,100,,,tm_176,AS
+tm_177,Black,triangle,2,100,,,tm_177,BS
+tm_178,Black,triangle,2,100,,,tm_178,CS
+tm_179,Black,triangle,2,100,,,tm_179,BS
+tm_180,Black,triangle,2,100,,,tm_180,CS
+tm_181,Black,triangle,2,100,,,tm_181,BS
+tm_182,Black,triangle,2,100,,,tm_182,AS
+tm_183,Black,triangle,2,100,,,tm_183,BS
+tm_184,Black,triangle,2,100,,,tm_184,CS
+tm_185,Black,triangle,2,100,,,tm_185,CS
+tm_186,Black,triangle,2,100,,,tm_186,CS
+tm_187,Black,triangle,2,100,,,tm_187,CS
+tm_188,Black,triangle,2,100,,,tm_188,CS
+tm_189,Black,triangle,2,100,,,tm_189,CS
+tm_190,Black,triangle,2,100,,,tm_190,CS
+tm_191,Black,triangle,2,100,,,tm_191,CS
+tm_192,Black,triangle,2,100,,,tm_192,CS
+tm_193,Black,triangle,2,100,,,tm_193,CS
+tm_194,Black,triangle,2,100,,,tm_194,CS
+tm_195,Black,triangle,2,100,,,tm_195,AS
+tm_196,Black,triangle,2,100,,,tm_196,CS
+tm_197,Black,triangle,2,100,,,tm_197,AS
+tm_198,Black,triangle,2,100,,,tm_198,BS
+tm_199,Black,triangle,2,100,,,tm_199,CS
+tm_200,Black,triangle,2,100,,,tm_200,AS
+tm_201,Black,triangle,2,100,,,tm_201,BS
+tm_202,Black,triangle,2,100,,,tm_202,CS
+tm_203,Black,triangle,2,100,,,tm_203,AS
+tm_204,Black,triangle,2,100,,,tm_204,BS
+tm_205,Black,triangle,2,100,,,tm_205,CS
+tm_206,Black,triangle,2,100,,,tm_206,CS
+tm_207,Black,triangle,2,100,,,tm_207,CS
+tm_208,Black,triangle,2,100,,,tm_208,AS
+tm_209,Black,triangle,2,100,,,tm_209,BS
+tm_210,Black,triangle,2,100,,,tm_210,CS
+tm_211,Black,triangle,2,100,,,tm_211,CS
+tm_212,Black,triangle,2,100,,,tm_212,AS
+tm_213,Black,triangle,2,100,,,tm_213,AS
+tm_214,Black,triangle,2,100,,,tm_214,BS
+tm_215,Black,triangle,2,100,,,tm_215,CS
+tm_216,Black,triangle,2,100,,,tm_216,CS
+tm_217,Black,triangle,2,100,,,tm_217,AS
+tm_218,Black,triangle,2,100,,,tm_218,AS
+tm_219,Black,triangle,2,100,,,tm_219,AS
+tm_220,Black,triangle,2,100,,,tm_220,AS
+tm_221,Black,triangle,2,100,,,tm_221,AS
+tm_222,Black,triangle,2,100,,,tm_222,AS
+tm_223,Black,triangle,2,100,,,tm_223,BS
+tm_224,Black,triangle,2,100,,,tm_224,CS
+tm_225,Black,triangle,2,100,,,tm_225,CS
+tm_226,Black,triangle,2,100,,,tm_226,AS
+tm_227,Black,triangle,2,100,,,tm_227,BS
+tm_228,Black,triangle,2,100,,,tm_228,CS
+tm_229,Black,triangle,2,100,,,tm_229,AS
+tm_230,Black,triangle,2,100,,,tm_230,CS
+tm_231,Black,triangle,2,100,,,tm_231,AS
+tm_232,Black,triangle,2,100,,,tm_232,CS
+tm_233,Black,triangle,2,100,,,tm_233,AS
+tm_234,Black,triangle,2,100,,,tm_234,CS
+tm_235,Black,triangle,2,100,,,tm_235,AS
+tm_236,Black,triangle,2,100,,,tm_236,CS
+tm_237,Black,triangle,2,100,,,tm_237,AS
+tm_238,Black,triangle,2,100,,,tm_238,CS
+tm_239,Black,triangle,2,100,,,tm_239,AS
+tm_240,Black,triangle,2,100,,,tm_240,CS
+tm_241,Black,triangle,2,100,,,tm_241,AS
+tm_242,Black,triangle,2,100,,,tm_242,CS
+tm_243,Black,triangle,2,100,,,tm_243,CS
+tm_244,Black,triangle,2,100,,,tm_244,AS
+tm_245,Black,triangle,2,100,,,tm_245,AS
+tm_246,Black,triangle,2,100,,,tm_246,CS
+tm_247,Black,triangle,2,100,,,tm_247,CS
+tm_248,Black,triangle,2,100,,,tm_248,CS
+tm_249,Black,triangle,2,100,,,tm_249,CS
+tm_250,Black,triangle,2,100,,,tm_250,AS
+tm_251,Black,triangle,2,100,,,tm_251,CS
+tm_252,Black,triangle,2,100,,,tm_252,AS
+tm_253,Black,triangle,2,100,,,tm_253,CS
+tm_254,Black,triangle,2,100,,,tm_254,AS
+tm_255,Black,triangle,2,100,,,tm_255,CS
+tm_256,Black,triangle,2,100,,,tm_256,CS
+tm_257,Black,triangle,2,100,,,tm_257,CS
+tm_258,Black,triangle,2,100,,,tm_258,CS
+tm_259,Black,triangle,2,100,,,tm_259,BS
+tm_260,Black,triangle,2,100,,,tm_260,BS
+tm_261,Black,triangle,2,100,,,tm_261,CS
+tm_262,Black,triangle,2,100,,,tm_262,CS
+tm_263,Black,triangle,2,100,,,tm_263,BS
+tm_264,Black,triangle,2,100,,,tm_264,BS
+tm_265,Black,triangle,2,100,,,tm_265,BS
+tm_266,Black,triangle,2,100,,,tm_266,AS
+tm_267,Black,triangle,2,100,,,tm_267,BS
+tm_268,Black,triangle,2,100,,,tm_268,CS
+tm_269,Black,triangle,2,100,,,tm_269,AS
+tm_270,Black,triangle,2,100,,,tm_270,BS
+tm_271,Black,triangle,2,100,,,tm_271,AS
+tm_272,Black,triangle,2,100,,,tm_272,AS
+tm_273,Black,triangle,2,100,,,tm_273,AS
+tm_274,Black,triangle,2,100,,,tm_274,AS
+tm_275,Black,triangle,2,100,,,tm_275,AS
+tm_276,Black,triangle,2,100,,,tm_276,AS
+tm_277,Black,triangle,2,100,,,tm_277,BS
+tm_278,Black,triangle,2,100,,,tm_278,CS
+tm_279,Black,triangle,2,100,,,tm_279,AS
+tm_280,Black,triangle,2,100,,,tm_280,AS
+tm_281,Black,triangle,2,100,,,tm_281,BS
+tm_282,Black,triangle,2,100,,,tm_282,CS
+tm_283,Black,triangle,2,100,,,tm_283,AS
+tm_284,Black,triangle,2,100,,,tm_284,AS
+tm_285,Black,triangle,2,100,,,tm_285,BS
+tm_286,Black,triangle,2,100,,,tm_286,BS
+tm_287,Black,triangle,2,100,,,tm_287,BS
+tm_288,Black,triangle,2,100,,,tm_288,BS
+tm_289,Black,triangle,2,100,,,tm_289,BS
+tm_290,Black,triangle,2,100,,,tm_290,BS
+tm_291,Black,triangle,2,100,,,tm_291,BS
+tm_292,Black,triangle,2,100,,,tm_292,BS
+tm_293,Black,triangle,2,100,,,tm_293,BS
+tm_294,Black,triangle,2,100,,,tm_294,BS
+tm_295,Black,triangle,2,100,,,tm_295,BS
+tm_296,Black,triangle,2,100,,,tm_296,BS
+tm_297,Black,triangle,2,100,,,tm_297,CS
+tm_298,Black,triangle,2,100,,,tm_298,BS
+tm_299,Black,triangle,2,100,,,tm_299,AS
+tm_300,Black,triangle,2,100,,,tm_300,AS
+tm_301,Black,triangle,2,100,,,tm_301,BS
+tm_302,Black,triangle,2,100,,,tm_302,CS
+tm_303,Black,triangle,2,100,,,tm_303,AS
+tm_304,Black,triangle,2,100,,,tm_304,BS
+tm_305,Black,triangle,2,100,,,tm_305,AS
+tm_306,Black,triangle,2,100,,,tm_306,BS
+tm_307,Black,triangle,2,100,,,tm_307,CS
+tm_308,Black,triangle,2,100,,,tm_308,AS
+tm_309,Black,triangle,2,100,,,tm_309,BS
+tm_310,Black,triangle,2,100,,,tm_310,CS
+tm_311,Black,triangle,2,100,,,tm_311,AS
+tm_312,Black,triangle,2,100,,,tm_312,AS
+tm_313,Black,triangle,2,100,,,tm_313,BS
+tm_314,Black,triangle,2,100,,,tm_314,AS
+tm_315,Black,triangle,2,100,,,tm_315,BS
+tm_316,Black,triangle,2,100,,,tm_316,AS
+tm_317,Black,triangle,2,100,,,tm_317,BS
+tm_318,Black,triangle,2,100,,,tm_318,AS
+tm_319,Black,triangle,2,100,,,tm_319,BS
+tm_320,Black,triangle,2,100,,,tm_320,AS
+tm_321,Black,triangle,2,100,,,tm_321,BS
+tm_322,Black,triangle,2,100,,,tm_322,AS
+tm_323,Black,triangle,2,100,,,tm_323,BS
+tm_324,Black,triangle,2,100,,,tm_324,CS
+tm_325,Black,triangle,2,100,,,tm_325,AS
+tm_326,Black,triangle,2,100,,,tm_326,BS
+tm_327,Black,triangle,2,100,,,tm_327,CS
+tm_328,Black,triangle,2,100,,,tm_328,AS
+tm_329,Black,triangle,2,100,,,tm_329,BS
+tm_330,Black,triangle,2,100,,,tm_330,CS
+tm_331,Black,triangle,2,100,,,tm_331,BS
+tm_332,Black,triangle,2,100,,,tm_332,BS
+tm_333,Black,triangle,2,100,,,tm_333,BS
+tm_334,Black,triangle,2,100,,,tm_334,BS
+tm_335,Black,triangle,2,100,,,tm_335,CS
+tm_336,Black,triangle,2,100,,,tm_336,CS
+tm_337,Black,triangle,2,100,,,tm_337,CS
+tm_338,Black,triangle,2,100,,,tm_338,CS
+tm_339,Black,triangle,2,100,,,tm_339,AS
+tm_340,Black,triangle,2,100,,,tm_340,BS
+tm_341,Black,triangle,2,100,,,tm_341,CS
+tm_342,Black,triangle,2,100,,,tm_342,BS
+tm_343,Black,triangle,2,100,,,tm_343,CS
+tm_344,Black,triangle,2,100,,,tm_344,AS
+tm_345,Black,triangle,2,100,,,tm_345,BS
+tm_346,Black,triangle,2,100,,,tm_346,CS
+tm_347,Black,triangle,2,100,,,tm_347,AS
+tm_348,Black,triangle,2,100,,,tm_348,BS
+tm_349,Black,triangle,2,100,,,tm_349,CS
+tm_350,Black,triangle,2,100,,,tm_350,BS
+tm_351,Black,triangle,2,100,,,tm_351,AS
+tm_352,Black,triangle,2,100,,,tm_352,CS
+tm_353,Black,triangle,2,100,,,tm_353,AS
+tm_354,Black,triangle,2,100,,,tm_354,BS
+tm_355,Black,triangle,2,100,,,tm_355,CS
+tm_356,Black,triangle,2,100,,,tm_356,AS
+tm_357,Black,triangle,2,100,,,tm_357,BS
+tm_358,Black,triangle,2,100,,,tm_358,CS
+tm_359,Black,triangle,2,100,,,tm_359,AS
+tm_360,Black,triangle,2,100,,,tm_360,BS
+tm_361,Black,triangle,2,100,,,tm_361,CS
+tm_362,Black,triangle,2,100,,,tm_362,AS
+tm_363,Black,triangle,2,100,,,tm_363,BS
+tm_364,Black,triangle,2,100,,,tm_364,CS
+tm_365,Black,triangle,2,100,,,tm_365,AS
+tm_366,Black,triangle,2,100,,,tm_366,BS
+tm_367,Black,triangle,2,100,,,tm_367,CS
+tm_368,Black,triangle,2,100,,,tm_368,CS
+tm_369,Black,triangle,2,100,,,tm_369,CS
+tm_370,Black,triangle,2,100,,,tm_370,CS
+tm_371,Black,triangle,2,100,,,tm_371,CS
+tm_372,Black,triangle,2,100,,,tm_372,CS
+tm_373,Black,triangle,2,100,,,tm_373,CS
+tm_374,Black,triangle,2,100,,,tm_374,AS
+tm_375,Black,triangle,2,100,,,tm_375,BS
+tm_376,Black,triangle,2,100,,,tm_376,CS
+tm_377,Black,triangle,2,100,,,tm_377,AS
+tm_378,Black,triangle,2,100,,,tm_378,BS
+tm_379,Black,triangle,2,100,,,tm_379,CS
+tm_380,Black,triangle,2,100,,,tm_380,AS
+tm_381,Black,triangle,2,100,,,tm_381,BS
+tm_382,Black,triangle,2,100,,,tm_382,CS
+tm_383,Black,triangle,2,100,,,tm_383,AS
+tm_384,Black,triangle,2,100,,,tm_384,BS
+tm_385,Black,triangle,2,100,,,tm_385,CS
+tm_386,Black,triangle,2,100,,,tm_386,AS
+tm_387,Black,triangle,2,100,,,tm_387,BS
+tm_388,Black,triangle,2,100,,,tm_388,CS
+tm_389,Black,triangle,2,100,,,tm_389,AS
+tm_390,Black,triangle,2,100,,,tm_390,AS
+tm_391,Black,triangle,2,100,,,tm_391,AS
+tm_392,Black,triangle,2,100,,,tm_392,AS
+tm_393,Black,triangle,2,100,,,tm_393,AS
+tm_394,Black,triangle,2,100,,,tm_394,AS
+tm_395,Black,triangle,2,100,,,tm_395,AS
+tm_396,Black,triangle,2,100,,,tm_396,CS
+tm_397,Black,triangle,2,100,,,tm_397,CS
+tm_398,Black,triangle,2,100,,,tm_398,BS
+tm_399,Black,triangle,2,100,,,tm_399,BS
+tm_400,Black,triangle,2,100,,,tm_400,BS
+tm_401,Black,triangle,2,100,,,tm_401,BS
+tm_402,Black,triangle,2,100,,,tm_402,BS
+tm_403,Black,triangle,2,100,,,tm_403,BS
+tm_404,Black,triangle,2,100,,,tm_404,BS
+tm_405,Black,triangle,2,100,,,tm_405,CS
+tm_406,Black,triangle,2,100,,,tm_406,AS
+tm_407,Black,triangle,2,100,,,tm_407,AS
+tm_408,Black,triangle,2,100,,,tm_408,AS
+tm_409,Black,triangle,2,100,,,tm_409,CS
+tm_410,Black,triangle,2,100,,,tm_410,AS
+tm_411,Black,triangle,2,100,,,tm_411,BS
+tm_412,Black,triangle,2,100,,,tm_412,CS
+tm_413,Black,triangle,2,100,,,tm_413,AS
+tm_414,Black,triangle,2,100,,,tm_414,AS
+tm_415,Black,triangle,2,100,,,tm_415,AS
+tm_416,Black,triangle,2,100,,,tm_416,AS
+tm_417,Black,triangle,2,100,,,tm_417,AS
+tm_418,Black,triangle,2,100,,,tm_418,AS
+tm_419,Black,triangle,2,100,,,tm_419,AS
+tm_420,Black,triangle,2,100,,,tm_420,AS
+tm_421,Black,triangle,2,100,,,tm_421,AS
+tm_422,Black,triangle,2,100,,,tm_422,BS
+tm_423,Black,triangle,2,100,,,tm_423,AS
+tm_424,Black,triangle,2,100,,,tm_424,BS
+tm_425,Black,triangle,2,100,,,tm_425,CS
+tm_426,Black,triangle,2,100,,,tm_426,AS
+tm_427,Black,triangle,2,100,,,tm_427,AS
+tm_428,Black,triangle,2,100,,,tm_428,AS
+tm_429,Black,triangle,2,100,,,tm_429,AS
+tm_430,Black,triangle,2,100,,,tm_430,BS
+tm_431,Black,triangle,2,100,,,tm_431,BS
+tm_432,Black,triangle,2,100,,,tm_432,BS
+tm_433,Black,triangle,2,100,,,tm_433,BS
+tm_434,Black,triangle,2,100,,,tm_434,AS
+tm_435,Black,triangle,2,100,,,tm_435,BS
+tm_436,Black,triangle,2,100,,,tm_436,CS
+tm_437,Black,triangle,2,100,,,tm_437,CS
+tm_438,Black,triangle,2,100,,,tm_438,CS
+tm_439,Black,triangle,2,100,,,tm_439,AS
+tm_440,Black,triangle,2,100,,,tm_440,AS
+tm_441,Black,triangle,2,100,,,tm_441,AS
+tm_442,Black,triangle,2,100,,,tm_442,AS
+tm_443,Black,triangle,2,100,,,tm_443,BS
+tm_444,Black,triangle,2,100,,,tm_444,BS
+tm_445,Black,triangle,2,100,,,tm_445,BS
+tm_446,Black,triangle,2,100,,,tm_446,BS
+tm_447,Black,triangle,2,100,,,tm_447,BS
+tm_448,Black,triangle,2,100,,,tm_448,BS
+tm_449,Black,triangle,2,100,,,tm_449,BS
+tm_450,Black,triangle,2,100,,,tm_450,AS
+tm_451,Black,triangle,2,100,,,tm_451,BS
+tm_452,Black,triangle,2,100,,,tm_452,CS
+tm_453,Black,triangle,2,100,,,tm_453,CS
+tm_454,Black,triangle,2,100,,,tm_454,AS
+tm_455,Black,triangle,2,100,,,tm_455,BS
+tm_456,Black,triangle,2,100,,,tm_456,CS
+tm_457,Black,triangle,2,100,,,tm_457,AS
+tm_458,Black,triangle,2,100,,,tm_458,BS
+tm_459,Black,triangle,2,100,,,tm_459,CS
+tm_460,Black,triangle,2,100,,,tm_460,CS
+tm_461,Black,triangle,2,100,,,tm_461,CS
+tm_462,Black,triangle,2,100,,,tm_462,AS
+tm_463,Black,triangle,2,100,,,tm_463,AS
+tm_464,Black,triangle,2,100,,,tm_464,AS
+tm_465,Black,triangle,2,100,,,tm_465,CS
+tm_466,Black,triangle,2,100,,,tm_466,CS
+tm_467,Black,triangle,2,100,,,tm_467,CS
+tm_468,Black,triangle,2,100,,,tm_468,CS
+tm_469,Black,triangle,2,100,,,tm_469,CS
+tm_470,Black,triangle,2,100,,,tm_470,BS
+tm_471,Black,triangle,2,100,,,tm_471,CS
+tm_472,Black,triangle,2,100,,,tm_472,BS
+tm_473,Black,triangle,2,100,,,tm_473,BS
+tm_474,Black,triangle,2,100,,,tm_474,BS
+tm_475,Black,triangle,2,100,,,tm_475,AS
+tm_476,Black,triangle,2,100,,,tm_476,CS
+tn_1,Black,,1,100,,,tn_1,CS
+tn_2,Black,,1,100,,,tn_2,CS
+tn_3,Black,,1,100,,,tn_3,AS
+tn_4,Black,,1,100,,,tn_4,BS
+tn_5,Black,,1,100,,,tn_5,CS
+tn_6,Black,,1,100,,,tn_6,CS
+tn_7,Black,,1,100,,,tn_7,BS
+tn_8,Black,,1,100,,,tn_8,CS
+tn_9,Black,,1,100,,,tn_9,AS
+tn_10,Black,,1,100,,,tn_10,BS
+tn_11,Black,,1,100,,,tn_11,CS
+tn_12,Black,,1,100,,,tn_12,CS
+tn_13,Black,,1,100,,,tn_13,AS
+tn_14,Black,,1,100,,,tn_14,AS
+tn_15,Black,,1,100,,,tn_15,AS
+tn_16,Black,,1,100,,,tn_16,CS
+tn_17,Black,,1,100,,,tn_17,AS
+tn_18,Black,,1,100,,,tn_18,CS
+tn_19,Black,,1,100,,,tn_19,CS
+tn_20,Black,,1,100,,,tn_20,CS
+tn_21,Black,,1,100,,,tn_21,CS
+tn_22,Black,,1,100,,,tn_22,CS
+tn_23,Black,,1,100,,,tn_23,AS
+tn_24,Black,,1,100,,,tn_24,BS
+tn_25,Black,,1,100,,,tn_25,CS
+tn_26,Black,,1,100,,,tn_26,BS
+tn_27,Black,,1,100,,,tn_27,AS
+tn_28,Black,,1,100,,,tn_28,CS
+tn_29,Black,,1,100,,,tn_29,AS
+tn_30,Black,,1,100,,,tn_30,CS
+tn_31,Black,,1,100,,,tn_31,AS
+tn_32,Black,,1,100,,,tn_32,AS
+tn_33,Black,,1,100,,,tn_33,AS
+tn_34,Black,,1,100,,,tn_34,BS
+tn_35,Black,,1,100,,,tn_35,CS
+tn_36,Black,,1,100,,,tn_36,CS
+tn_37,Black,,1,100,,,tn_37,CS
+tn_38,Black,,1,100,,,tn_38,CS
+tn_39,Black,,1,100,,,tn_39,CS
+tn_40,Black,,1,100,,,tn_40,BS
+tn_41,Black,,1,100,,,tn_41,BS
+tn_42,Black,,1,100,,,tn_42,AS
+tn_43,Black,,1,100,,,tn_43,AS
+tn_44,Black,,1,100,,,tn_44,AS
+tn_45,Black,,1,100,,,tn_45,CS
+tn_46,Black,,1,100,,,tn_46,CS
+tn_47,Black,,1,100,,,tn_47,AS
+tn_48,Black,,1,100,,,tn_48,CS
+tn_49,Black,,1,100,,,tn_49,AS
+tn_50,Black,,1,100,,,tn_50,CS
+tn_51,Black,,1,100,,,tn_51,BS
+tn_52,Black,,1,100,,,tn_52,BS
+tn_53,Black,,1,100,,,tn_53,BS
+tn_54,Black,,1,100,,,tn_54,BS
+tn_55,Black,,1,100,,,tn_55,BS
+tn_56,Black,,1,100,,,tn_56,BS
+tn_57,Black,,1,100,,,tn_57,BS
+tn_58,Black,,1,100,,,tn_58,BS
+tn_59,Black,,1,100,,,tn_59,BS
+tn_60,Black,,1,100,,,tn_60,BS
+tn_61,Black,,1,100,,,tn_61,BS
+tn_62,Black,,1,100,,,tn_62,BS
+tn_63,Black,,1,100,,,tn_63,BS
+tn_64,Black,,1,100,,,tn_64,BS
+tn_65,Black,,1,100,,,tn_65,CS
+tn_66,Black,,1,100,,,tn_66,CS
+tn_67,Black,,1,100,,,tn_67,BS
+tn_68,Black,,1,100,,,tn_68,BS
+tn_69,Black,,1,100,,,tn_69,BS
+tn_70,Black,,1,100,,,tn_70,CS
+tn_71,Black,,1,100,,,tn_71,BS
+tn_72,Black,,1,100,,,tn_72,AS
+tn_73,Black,,1,100,,,tn_73,AS
+tn_74,Black,,1,100,,,tn_74,AS
+tn_75,Black,,1,100,,,tn_75,CS
+tn_76,Black,,1,100,,,tn_76,CS
+tn_77,Black,,1,100,,,tn_77,AS
+tn_78,Black,,1,100,,,tn_78,BS
+tn_79,Black,,1,100,,,tn_79,AS
+tn_80,Black,,1,100,,,tn_80,BS
+tn_81,Black,,1,100,,,tn_81,CS
+tn_82,Black,,1,100,,,tn_82,BS
+tn_83,Black,,1,100,,,tn_83,BS
+tn_84,Black,,1,100,,,tn_84,AS
+tn_85,Black,,1,100,,,tn_85,AS
+tn_86,Black,,1,100,,,tn_86,BS
+tn_87,Black,,1,100,,,tn_87,CS
+tn_88,Black,,1,100,,,tn_88,BS
+tn_89,Black,,1,100,,,tn_89,CS
+tn_90,Black,,1,100,,,tn_90,CS
+tn_91,Black,,1,100,,,tn_91,CS
+tn_92,Black,,1,100,,,tn_92,CS
+tn_93,Black,,1,100,,,tn_93,CS
+tn_94,Black,,1,100,,,tn_94,BS
+tn_95,Black,,1,100,,,tn_95,BS
+tn_96,Black,,1,100,,,tn_96,BS
+tn_97,Black,,1,100,,,tn_97,AS
+tn_98,Black,,1,100,,,tn_98,BS
+tn_99,Black,,1,100,,,tn_99,AS
+tn_100,Black,,1,100,,,tn_100,BS
+tn_101,Black,,1,100,,,tn_101,AS
+tn_102,Black,,1,100,,,tn_102,AS
+tn_103,Black,,1,100,,,tn_103,BS
+tn_104,Black,,1,100,,,tn_104,CS
+tn_105,Black,,1,100,,,tn_105,AS
+tn_106,Black,,1,100,,,tn_106,BS
+tn_107,Black,,1,100,,,tn_107,CS
+tn_108,Black,,1,100,,,tn_108,AS
+tn_109,Black,,1,100,,,tn_109,BS
+tn_110,Black,,1,100,,,tn_110,CS
+tn_111,Black,,1,100,,,tn_111,BS
+tn_112,Black,,1,100,,,tn_112,AS
+tn_113,Black,,1,100,,,tn_113,BS
+tn_114,Black,,1,100,,,tn_114,AS
+tn_115,Black,,1,100,,,tn_115,AS
+tn_116,Black,,1,100,,,tn_116,BS
+tn_117,Black,,1,100,,,tn_117,AS
+tn_118,Black,,1,100,,,tn_118,BS
+tn_119,Black,,1,100,,,tn_119,AS
+tn_120,Black,,1,100,,,tn_120,BS
+tn_121,Black,,1,100,,,tn_121,AS
+tn_122,Black,,1,100,,,tn_122,BS
+tn_123,Black,,1,100,,,tn_123,AS
+tn_124,Black,,1,100,,,tn_124,BS
+tn_125,Black,,1,100,,,tn_125,CS
+tn_126,Black,,1,100,,,tn_126,BS
+tn_127,Black,,1,100,,,tn_127,CS
+tn_128,Black,,1,100,,,tn_128,BS
+tn_129,Black,,1,100,,,tn_129,CS
+tn_130,Black,,1,100,,,tn_130,BS
+tn_131,Black,,1,100,,,tn_131,AS
+tn_132,Black,,1,100,,,tn_132,BS
+tn_133,Black,,1,100,,,tn_133,CS
+tn_134,Black,,1,100,,,tn_134,CS
+tn_135,Black,,1,100,,,tn_135,AS
+tn_136,Black,,1,100,,,tn_136,BS
+tn_137,Black,,1,100,,,tn_137,CS
+tn_138,Black,,1,100,,,tn_138,BS
+tn_139,Black,,1,100,,,tn_139,BS
+tn_140,Black,,1,100,,,tn_140,CS
+tn_141,Black,,1,100,,,tn_141,AS
+tn_142,Black,,1,100,,,tn_142,BS
+tn_143,Black,,1,100,,,tn_143,CS
+tn_144,Black,,1,100,,,tn_144,CS
+tn_145,Black,,1,100,,,tn_145,CS
+tn_146,Black,,1,100,,,tn_146,AS
+tn_147,Black,,1,100,,,tn_147,BS
+tn_148,Black,,1,100,,,tn_148,CS
+tn_149,Black,,1,100,,,tn_149,AS
+tn_150,Black,,1,100,,,tn_150,BS
+tn_151,Black,,1,100,,,tn_151,CS
+tn_152,Black,,1,100,,,tn_152,AS
+tn_153,Black,,1,100,,,tn_153,BS
+tn_154,Black,,1,100,,,tn_154,CS
+tn_155,Black,,1,100,,,tn_155,AS
+tn_156,Black,,1,100,,,tn_156,BS
+tn_157,Black,,1,100,,,tn_157,CS
+tn_158,Black,,1,100,,,tn_158,BS
+tn_159,Black,,1,100,,,tn_159,CS
+tn_160,Black,,1,100,,,tn_160,AS
+tn_161,Black,,1,100,,,tn_161,BS
+tn_162,Black,,1,100,,,tn_162,CS
+tn_163,Black,,1,100,,,tn_163,CS
+tn_164,Black,,1,100,,,tn_164,CS
+tn_165,Black,,1,100,,,tn_165,CS
+tn_166,Black,,1,100,,,tn_166,CS
+tn_167,Black,,1,100,,,tn_167,AS
+tn_168,Black,,1,100,,,tn_168,BS
+tn_169,Black,,1,100,,,tn_169,CS
+tn_170,Black,,1,100,,,tn_170,AS
+tn_171,Black,,1,100,,,tn_171,AS
+tn_172,Black,,1,100,,,tn_172,AS
+tn_173,Black,,1,100,,,tn_173,AS
+tn_174,Black,,1,100,,,tn_174,AS
+tn_175,Black,,1,100,,,tn_175,BS
+tn_176,Black,,1,100,,,tn_176,AS
+tn_177,Black,,1,100,,,tn_177,BS
+tn_178,Black,,1,100,,,tn_178,CS
+tn_179,Black,,1,100,,,tn_179,BS
+tn_180,Black,,1,100,,,tn_180,CS
+tn_181,Black,,1,100,,,tn_181,BS
+tn_182,Black,,1,100,,,tn_182,AS
+tn_183,Black,,1,100,,,tn_183,BS
+tn_184,Black,,1,100,,,tn_184,CS
+tn_185,Black,,1,100,,,tn_185,CS
+tn_186,Black,,1,100,,,tn_186,CS
+tn_187,Black,,1,100,,,tn_187,CS
+tn_188,Black,,1,100,,,tn_188,CS
+tn_189,Black,,1,100,,,tn_189,CS
+tn_190,Black,,1,100,,,tn_190,CS
+tn_191,Black,,1,100,,,tn_191,CS
+tn_192,Black,,1,100,,,tn_192,CS
+tn_193,Black,,1,100,,,tn_193,CS
+tn_194,Black,,1,100,,,tn_194,CS
+tn_195,Black,,1,100,,,tn_195,AS
+tn_196,Black,,1,100,,,tn_196,CS
+tn_197,Black,,1,100,,,tn_197,AS
+tn_198,Black,,1,100,,,tn_198,BS
+tn_199,Black,,1,100,,,tn_199,CS
+tn_200,Black,,1,100,,,tn_200,AS
+tn_201,Black,,1,100,,,tn_201,BS
+tn_202,Black,,1,100,,,tn_202,CS
+tn_203,Black,,1,100,,,tn_203,AS
+tn_204,Black,,1,100,,,tn_204,BS
+tn_205,Black,,1,100,,,tn_205,CS
+tn_206,Black,,1,100,,,tn_206,CS
+tn_207,Black,,1,100,,,tn_207,CS
+tn_208,Black,,1,100,,,tn_208,AS
+tn_209,Black,,1,100,,,tn_209,BS
+tn_210,Black,,1,100,,,tn_210,CS
+tn_211,Black,,1,100,,,tn_211,CS
+tn_212,Black,,1,100,,,tn_212,AS
+tn_213,Black,,1,100,,,tn_213,AS
+tn_214,Black,,1,100,,,tn_214,BS
+tn_215,Black,,1,100,,,tn_215,CS
+tn_216,Black,,1,100,,,tn_216,CS
+tn_217,Black,,1,100,,,tn_217,AS
+tn_218,Black,,1,100,,,tn_218,AS
+tn_219,Black,,1,100,,,tn_219,AS
+tn_220,Black,,1,100,,,tn_220,AS
+tn_221,Black,,1,100,,,tn_221,AS
+tn_222,Black,,1,100,,,tn_222,AS
+tn_223,Black,,1,100,,,tn_223,BS
+tn_224,Black,,1,100,,,tn_224,CS
+tn_225,Black,,1,100,,,tn_225,CS
+tn_226,Black,,1,100,,,tn_226,AS
+tn_227,Black,,1,100,,,tn_227,BS
+tn_228,Black,,1,100,,,tn_228,CS
+tn_229,Black,,1,100,,,tn_229,AS
+tn_230,Black,,1,100,,,tn_230,CS
+tn_231,Black,,1,100,,,tn_231,AS
+tn_232,Black,,1,100,,,tn_232,CS
+tn_233,Black,,1,100,,,tn_233,AS
+tn_234,Black,,1,100,,,tn_234,CS
+tn_235,Black,,1,100,,,tn_235,AS
+tn_236,Black,,1,100,,,tn_236,CS
+tn_237,Black,,1,100,,,tn_237,AS
+tn_238,Black,,1,100,,,tn_238,CS
+tn_239,Black,,1,100,,,tn_239,AS
+tn_240,Black,,1,100,,,tn_240,CS
+tn_241,Black,,1,100,,,tn_241,AS
+tn_242,Black,,1,100,,,tn_242,CS
+tn_243,Black,,1,100,,,tn_243,CS
+tn_244,Black,,1,100,,,tn_244,AS
+tn_245,Black,,1,100,,,tn_245,AS
+tn_246,Black,,1,100,,,tn_246,CS
+tn_247,Black,,1,100,,,tn_247,CS
+tn_248,Black,,1,100,,,tn_248,CS
+tn_249,Black,,1,100,,,tn_249,CS
+tn_250,Black,,1,100,,,tn_250,AS
+tn_251,Black,,1,100,,,tn_251,CS
+tn_252,Black,,1,100,,,tn_252,AS
+tn_253,Black,,1,100,,,tn_253,CS
+tn_254,Black,,1,100,,,tn_254,AS
+tn_255,Black,,1,100,,,tn_255,CS
+tn_256,Black,,1,100,,,tn_256,CS
+tn_257,Black,,1,100,,,tn_257,CS
+tn_258,Black,,1,100,,,tn_258,CS
+tn_259,Black,,1,100,,,tn_259,BS
+tn_260,Black,,1,100,,,tn_260,BS
+tn_261,Black,,1,100,,,tn_261,CS
+tn_262,Black,,1,100,,,tn_262,CS
+tn_263,Black,,1,100,,,tn_263,BS
+tn_264,Black,,1,100,,,tn_264,BS
+tn_265,Black,,1,100,,,tn_265,BS
+tn_266,Black,,1,100,,,tn_266,AS
+tn_267,Black,,1,100,,,tn_267,BS
+tn_268,Black,,1,100,,,tn_268,CS
+tn_269,Black,,1,100,,,tn_269,AS
+tn_270,Black,,1,100,,,tn_270,BS
+tn_271,Black,,1,100,,,tn_271,AS
+tn_272,Black,,1,100,,,tn_272,AS
+tn_273,Black,,1,100,,,tn_273,AS
+tn_274,Black,,1,100,,,tn_274,AS
+tn_275,Black,,1,100,,,tn_275,AS
+tn_276,Black,,1,100,,,tn_276,AS
+tn_277,Black,,1,100,,,tn_277,BS
+tn_278,Black,,1,100,,,tn_278,CS
+tn_279,Black,,1,100,,,tn_279,AS
+tn_280,Black,,1,100,,,tn_280,AS
+tn_281,Black,,1,100,,,tn_281,BS
+tn_282,Black,,1,100,,,tn_282,CS
+tn_283,Black,,1,100,,,tn_283,AS
+tn_284,Black,,1,100,,,tn_284,AS
+tn_285,Black,,1,100,,,tn_285,BS
+tn_286,Black,,1,100,,,tn_286,BS
+tn_287,Black,,1,100,,,tn_287,BS
+tn_288,Black,,1,100,,,tn_288,BS
+tn_289,Black,,1,100,,,tn_289,BS
+tn_290,Black,,1,100,,,tn_290,BS
+tn_291,Black,,1,100,,,tn_291,BS
+tn_292,Black,,1,100,,,tn_292,BS
+tn_293,Black,,1,100,,,tn_293,BS
+tn_294,Black,,1,100,,,tn_294,BS
+tn_295,Black,,1,100,,,tn_295,BS
+tn_296,Black,,1,100,,,tn_296,BS
+tn_297,Black,,1,100,,,tn_297,CS
+tn_298,Black,,1,100,,,tn_298,BS
+tn_299,Black,,1,100,,,tn_299,AS
+tn_300,Black,,1,100,,,tn_300,AS
+tn_301,Black,,1,100,,,tn_301,BS
+tn_302,Black,,1,100,,,tn_302,CS
+tn_303,Black,,1,100,,,tn_303,AS
+tn_304,Black,,1,100,,,tn_304,BS
+tn_305,Black,,1,100,,,tn_305,AS
+tn_306,Black,,1,100,,,tn_306,BS
+tn_307,Black,,1,100,,,tn_307,CS
+tn_308,Black,,1,100,,,tn_308,AS
+tn_309,Black,,1,100,,,tn_309,BS
+tn_310,Black,,1,100,,,tn_310,CS
+tn_311,Black,,1,100,,,tn_311,AS
+tn_312,Black,,1,100,,,tn_312,AS
+tn_313,Black,,1,100,,,tn_313,BS
+tn_314,Black,,1,100,,,tn_314,AS
+tn_315,Black,,1,100,,,tn_315,BS
+tn_316,Black,,1,100,,,tn_316,AS
+tn_317,Black,,1,100,,,tn_317,BS
+tn_318,Black,,1,100,,,tn_318,AS
+tn_319,Black,,1,100,,,tn_319,BS
+tn_320,Black,,1,100,,,tn_320,AS
+tn_321,Black,,1,100,,,tn_321,BS
+tn_322,Black,,1,100,,,tn_322,AS
+tn_323,Black,,1,100,,,tn_323,BS
+tn_324,Black,,1,100,,,tn_324,CS
+tn_325,Black,,1,100,,,tn_325,AS
+tn_326,Black,,1,100,,,tn_326,BS
+tn_327,Black,,1,100,,,tn_327,CS
+tn_328,Black,,1,100,,,tn_328,AS
+tn_329,Black,,1,100,,,tn_329,BS
+tn_330,Black,,1,100,,,tn_330,CS
+tn_331,Black,,1,100,,,tn_331,BS
+tn_332,Black,,1,100,,,tn_332,BS
+tn_333,Black,,1,100,,,tn_333,BS
+tn_334,Black,,1,100,,,tn_334,BS
+tn_335,Black,,1,100,,,tn_335,CS
+tn_336,Black,,1,100,,,tn_336,CS
+tn_337,Black,,1,100,,,tn_337,CS
+tn_338,Black,,1,100,,,tn_338,CS
+tn_339,Black,,1,100,,,tn_339,AS
+tn_340,Black,,1,100,,,tn_340,BS
+tn_341,Black,,1,100,,,tn_341,CS
+tn_342,Black,,1,100,,,tn_342,BS
+tn_343,Black,,1,100,,,tn_343,CS
+tn_344,Black,,1,100,,,tn_344,AS
+tn_345,Black,,1,100,,,tn_345,BS
+tn_346,Black,,1,100,,,tn_346,CS
+tn_347,Black,,1,100,,,tn_347,AS
+tn_348,Black,,1,100,,,tn_348,BS
+tn_349,Black,,1,100,,,tn_349,CS
+tn_350,Black,,1,100,,,tn_350,BS
+tn_351,Black,,1,100,,,tn_351,AS
+tn_352,Black,,1,100,,,tn_352,CS
+tn_353,Black,,1,100,,,tn_353,AS
+tn_354,Black,,1,100,,,tn_354,BS
+tn_355,Black,,1,100,,,tn_355,CS
+tn_356,Black,,1,100,,,tn_356,AS
+tn_357,Black,,1,100,,,tn_357,BS
+tn_358,Black,,1,100,,,tn_358,CS
+tn_359,Black,,1,100,,,tn_359,AS
+tn_360,Black,,1,100,,,tn_360,BS
+tn_361,Black,,1,100,,,tn_361,CS
+tn_362,Black,,1,100,,,tn_362,AS
+tn_363,Black,,1,100,,,tn_363,BS
+tn_364,Black,,1,100,,,tn_364,CS
+tn_365,Black,,1,100,,,tn_365,AS
+tn_366,Black,,1,100,,,tn_366,BS
+tn_367,Black,,1,100,,,tn_367,CS
+tn_368,Black,,1,100,,,tn_368,CS
+tn_369,Black,,1,100,,,tn_369,CS
+tn_370,Black,,1,100,,,tn_370,CS
+tn_371,Black,,1,100,,,tn_371,CS
+tn_372,Black,,1,100,,,tn_372,CS
+tn_373,Black,,1,100,,,tn_373,CS
+tn_374,Black,,1,100,,,tn_374,AS
+tn_375,Black,,1,100,,,tn_375,BS
+tn_376,Black,,1,100,,,tn_376,CS
+tn_377,Black,,1,100,,,tn_377,AS
+tn_378,Black,,1,100,,,tn_378,BS
+tn_379,Black,,1,100,,,tn_379,CS
+tn_380,Black,,1,100,,,tn_380,AS
+tn_381,Black,,1,100,,,tn_381,BS
+tn_382,Black,,1,100,,,tn_382,CS
+tn_383,Black,,1,100,,,tn_383,AS
+tn_384,Black,,1,100,,,tn_384,BS
+tn_385,Black,,1,100,,,tn_385,CS
+tn_386,Black,,1,100,,,tn_386,AS
+tn_387,Black,,1,100,,,tn_387,BS
+tn_388,Black,,1,100,,,tn_388,CS
+tn_389,Black,,1,100,,,tn_389,AS
+tn_390,Black,,1,100,,,tn_390,AS
+tn_391,Black,,1,100,,,tn_391,AS
+tn_392,Black,,1,100,,,tn_392,AS
+tn_393,Black,,1,100,,,tn_393,AS
+tn_394,Black,,1,100,,,tn_394,AS
+tn_395,Black,,1,100,,,tn_395,AS
+tn_396,Black,,1,100,,,tn_396,CS
+tn_397,Black,,1,100,,,tn_397,CS
+tn_398,Black,,1,100,,,tn_398,BS
+tn_399,Black,,1,100,,,tn_399,BS
+tn_400,Black,,1,100,,,tn_400,BS
+tn_401,Black,,1,100,,,tn_401,BS
+tn_402,Black,,1,100,,,tn_402,BS
+tn_403,Black,,1,100,,,tn_403,BS
+tn_404,Black,,1,100,,,tn_404,BS
+tn_405,Black,,1,100,,,tn_405,CS
+tn_406,Black,,1,100,,,tn_406,AS
+tn_407,Black,,1,100,,,tn_407,AS
+tn_408,Black,,1,100,,,tn_408,AS
+tn_409,Black,,1,100,,,tn_409,CS
+tn_410,Black,,1,100,,,tn_410,AS
+tn_411,Black,,1,100,,,tn_411,BS
+tn_412,Black,,1,100,,,tn_412,CS
+tn_413,Black,,1,100,,,tn_413,AS
+tn_414,Black,,1,100,,,tn_414,AS
+tn_415,Black,,1,100,,,tn_415,AS
+tn_416,Black,,1,100,,,tn_416,AS
+tn_417,Black,,1,100,,,tn_417,AS
+tn_418,Black,,1,100,,,tn_418,AS
+tn_419,Black,,1,100,,,tn_419,AS
+tn_420,Black,,1,100,,,tn_420,AS
+tn_421,Black,,1,100,,,tn_421,AS
+tn_422,Black,,1,100,,,tn_422,BS
+tn_423,Black,,1,100,,,tn_423,AS
+tn_424,Black,,1,100,,,tn_424,BS
+tn_425,Black,,1,100,,,tn_425,CS
+tn_426,Black,,1,100,,,tn_426,AS
+tn_427,Black,,1,100,,,tn_427,AS
+tn_428,Black,,1,100,,,tn_428,AS
+tn_429,Black,,1,100,,,tn_429,AS
+tn_430,Black,,1,100,,,tn_430,BS
+tn_431,Black,,1,100,,,tn_431,BS
+tn_432,Black,,1,100,,,tn_432,BS
+tn_433,Black,,1,100,,,tn_433,BS
+tn_434,Black,,1,100,,,tn_434,AS
+tn_435,Black,,1,100,,,tn_435,BS
+tn_436,Black,,1,100,,,tn_436,CS
+tn_437,Black,,1,100,,,tn_437,CS
+tn_438,Black,,1,100,,,tn_438,CS
+tn_439,Black,,1,100,,,tn_439,AS
+tn_440,Black,,1,100,,,tn_440,AS
+tn_441,Black,,1,100,,,tn_441,AS
+tn_442,Black,,1,100,,,tn_442,AS
+tn_443,Black,,1,100,,,tn_443,BS
+tn_444,Black,,1,100,,,tn_444,BS
+tn_445,Black,,1,100,,,tn_445,BS
+tn_446,Black,,1,100,,,tn_446,BS
+tn_447,Black,,1,100,,,tn_447,BS
+tn_448,Black,,1,100,,,tn_448,BS
+tn_449,Black,,1,100,,,tn_449,BS
+tn_450,Black,,1,100,,,tn_450,AS
+tn_451,Black,,1,100,,,tn_451,BS
+tn_452,Black,,1,100,,,tn_452,CS
+tn_453,Black,,1,100,,,tn_453,CS
+tn_454,Black,,1,100,,,tn_454,AS
+tn_455,Black,,1,100,,,tn_455,BS
+tn_456,Black,,1,100,,,tn_456,CS
+tn_457,Black,,1,100,,,tn_457,AS
+tn_458,Black,,1,100,,,tn_458,BS
+tn_459,Black,,1,100,,,tn_459,CS
+tn_460,Black,,1,100,,,tn_460,CS
+tn_461,Black,,1,100,,,tn_461,CS
+tn_462,Black,,1,100,,,tn_462,AS
+tn_463,Black,,1,100,,,tn_463,AS
+tn_464,Black,,1,100,,,tn_464,AS
+tn_465,Black,,1,100,,,tn_465,CS
+tn_466,Black,,1,100,,,tn_466,CS
+tn_467,Black,,1,100,,,tn_467,CS
+tn_468,Black,,1,100,,,tn_468,CS
+tn_469,Black,,1,100,,,tn_469,CS
+tn_470,Black,,1,100,,,tn_470,BS
+tn_471,Black,,1,100,,,tn_471,CS
+tn_472,Black,,1,100,,,tn_472,BS
+tn_473,Black,,1,100,,,tn_473,BS
+tn_474,Black,,1,100,,,tn_474,BS
+tn_475,Black,,1,100,,,tn_475,AS
+tn_476,Black,,1,100,,,tn_476,CS
+tn_477,Black,,1,100,,,tn_477,CS
+tn_478,Black,,1,100,,,tn_478,CS
+tn_479,Black,,1,100,,,tn_479,AS
+tn_480,Black,,1,100,,,tn_480,BS
+tn_481,Black,,1,100,,,tn_481,CS
+tn_482,Black,,1,100,,,tn_482,CS
+tn_483,Black,,1,100,,,tn_483,BS
+tn_484,Black,,1,100,,,tn_484,CS
+tn_485,Black,,1,100,,,tn_485,AS
+tn_486,Black,,1,100,,,tn_486,BS
+tn_487,Black,,1,100,,,tn_487,CS
+tn_488,Black,,1,100,,,tn_488,CS
+tn_489,Black,,1,100,,,tn_489,AS
+tn_490,Black,,1,100,,,tn_490,AS
+tn_491,Black,,1,100,,,tn_491,AS
+tn_492,Black,,1,100,,,tn_492,CS
+tn_493,Black,,1,100,,,tn_493,AS
+tn_494,Black,,1,100,,,tn_494,CS
+tn_495,Black,,1,100,,,tn_495,CS
+tn_496,Black,,1,100,,,tn_496,CS
+tn_497,Black,,1,100,,,tn_497,CS
+tn_498,Black,,1,100,,,tn_498,CS
+tn_499,Black,,1,100,,,tn_499,AS
+tn_500,Black,,1,100,,,tn_500,BS
+tn_501,Black,,1,100,,,tn_501,CS
+tn_502,Black,,1,100,,,tn_502,BS
+tn_503,Black,,1,100,,,tn_503,AS
+tn_504,Black,,1,100,,,tn_504,CS
+tn_505,Black,,1,100,,,tn_505,AS
+tn_506,Black,,1,100,,,tn_506,CS
+tn_507,Black,,1,100,,,tn_507,AS
+tn_508,Black,,1,100,,,tn_508,AS
+tn_509,Black,,1,100,,,tn_509,AS
+tn_510,Black,,1,100,,,tn_510,BS
+tn_511,Black,,1,100,,,tn_511,CS
+tn_512,Black,,1,100,,,tn_512,CS
+tn_513,Black,,1,100,,,tn_513,CS
+tn_514,Black,,1,100,,,tn_514,CS
+tn_515,Black,,1,100,,,tn_515,CS
+tn_516,Black,,1,100,,,tn_516,BS
+tn_517,Black,,1,100,,,tn_517,BS
+tn_518,Black,,1,100,,,tn_518,AS
+tn_519,Black,,1,100,,,tn_519,AS
+tn_520,Black,,1,100,,,tn_520,AS
+tn_521,Black,,1,100,,,tn_521,CS
+tn_522,Black,,1,100,,,tn_522,CS
+tn_523,Black,,1,100,,,tn_523,AS
+tn_524,Black,,1,100,,,tn_524,CS
+tn_525,Black,,1,100,,,tn_525,AS
+tn_526,Black,,1,100,,,tn_526,CS
+tn_527,Black,,1,100,,,tn_527,BS
+tn_528,Black,,1,100,,,tn_528,BS
+tn_529,Black,,1,100,,,tn_529,BS
+tn_530,Black,,1,100,,,tn_530,BS
+tn_531,Black,,1,100,,,tn_531,BS
+tn_532,Black,,1,100,,,tn_532,BS
+tn_533,Black,,1,100,,,tn_533,BS
+tn_534,Black,,1,100,,,tn_534,BS
+tn_535,Black,,1,100,,,tn_535,BS
+tn_536,Black,,1,100,,,tn_536,BS
+tn_537,Black,,1,100,,,tn_537,BS
+tn_538,Black,,1,100,,,tn_538,BS
+tn_539,Black,,1,100,,,tn_539,BS
+tn_540,Black,,1,100,,,tn_540,BS
+tn_541,Black,,1,100,,,tn_541,CS
+tn_542,Black,,1,100,,,tn_542,CS
+tn_543,Black,,1,100,,,tn_543,BS
+tn_544,Black,,1,100,,,tn_544,BS
+tn_545,Black,,1,100,,,tn_545,BS
+tn_546,Black,,1,100,,,tn_546,CS
+tn_547,Black,,1,100,,,tn_547,BS
+tn_548,Black,,1,100,,,tn_548,AS
+tn_549,Black,,1,100,,,tn_549,AS
+tn_550,Black,,1,100,,,tn_550,AS
+tn_551,Black,,1,100,,,tn_551,CS
+tn_552,Black,,1,100,,,tn_552,CS
+tn_553,Black,,1,100,,,tn_553,AS
+tn_554,Black,,1,100,,,tn_554,BS
+tn_555,Black,,1,100,,,tn_555,AS
+tn_556,Black,,1,100,,,tn_556,BS
+tn_557,Black,,1,100,,,tn_557,CS
+tn_558,Black,,1,100,,,tn_558,BS
+tn_559,Black,,1,100,,,tn_559,BS
+tn_560,Black,,1,100,,,tn_560,AS
+tn_561,Black,,1,100,,,tn_561,AS
+tn_562,Black,,1,100,,,tn_562,BS
+tn_563,Black,,1,100,,,tn_563,CS
+tn_564,Black,,1,100,,,tn_564,BS
+tn_565,Black,,1,100,,,tn_565,CS
+tn_566,Black,,1,100,,,tn_566,CS
+tn_567,Black,,1,100,,,tn_567,CS
+tn_568,Black,,1,100,,,tn_568,CS
+tn_569,Black,,1,100,,,tn_569,CS
+tn_570,Black,,1,100,,,tn_570,BS
+tn_571,Black,,1,100,,,tn_571,BS
+tn_572,Black,,1,100,,,tn_572,BS
+tn_573,Black,,1,100,,,tn_573,AS
+tn_574,Black,,1,100,,,tn_574,BS
+tn_575,Black,,1,100,,,tn_575,AS
+tn_576,Black,,1,100,,,tn_576,BS
+tn_577,Black,,1,100,,,tn_577,AS
+tn_578,Black,,1,100,,,tn_578,AS
+tn_579,Black,,1,100,,,tn_579,BS
+tn_580,Black,,1,100,,,tn_580,CS
+tn_581,Black,,1,100,,,tn_581,AS
+tn_582,Black,,1,100,,,tn_582,BS
+tn_583,Black,,1,100,,,tn_583,CS
+tn_584,Black,,1,100,,,tn_584,AS
+tn_585,Black,,1,100,,,tn_585,BS
+tn_586,Black,,1,100,,,tn_586,CS
+tn_587,Black,,1,100,,,tn_587,BS
+tn_588,Black,,1,100,,,tn_588,AS
+tn_589,Black,,1,100,,,tn_589,BS
+tn_590,Black,,1,100,,,tn_590,AS
+tn_591,Black,,1,100,,,tn_591,AS
+tn_592,Black,,1,100,,,tn_592,BS
+tn_593,Black,,1,100,,,tn_593,AS
+tn_594,Black,,1,100,,,tn_594,BS
+tn_595,Black,,1,100,,,tn_595,AS
+tn_596,Black,,1,100,,,tn_596,BS
+tn_597,Black,,1,100,,,tn_597,AS
+tn_598,Black,,1,100,,,tn_598,BS
+tn_599,Black,,1,100,,,tn_599,AS
+tn_600,Black,,1,100,,,tn_600,BS
+tn_601,Black,,1,100,,,tn_601,CS
+tn_602,Black,,1,100,,,tn_602,BS
+tn_603,Black,,1,100,,,tn_603,CS
+tn_604,Black,,1,100,,,tn_604,BS
+tn_605,Black,,1,100,,,tn_605,CS
+tn_606,Black,,1,100,,,tn_606,BS
+tn_607,Black,,1,100,,,tn_607,AS
+tn_608,Black,,1,100,,,tn_608,BS
+tn_609,Black,,1,100,,,tn_609,CS
+tn_610,Black,,1,100,,,tn_610,CS
+tn_611,Black,,1,100,,,tn_611,AS
+tn_612,Black,,1,100,,,tn_612,BS
+tn_613,Black,,1,100,,,tn_613,CS
+tn_614,Black,,1,100,,,tn_614,BS
+tn_615,Black,,1,100,,,tn_615,BS
+tn_616,Black,,1,100,,,tn_616,CS
+tn_617,Black,,1,100,,,tn_617,AS
+tn_618,Black,,1,100,,,tn_618,BS
+tn_619,Black,,1,100,,,tn_619,CS
+tn_620,Black,,1,100,,,tn_620,CS
+tn_621,Black,,1,100,,,tn_621,CS
+tn_622,Black,,1,100,,,tn_622,AS
+tn_623,Black,,1,100,,,tn_623,BS
+tn_624,Black,,1,100,,,tn_624,CS
+tn_625,Black,,1,100,,,tn_625,AS
+tn_626,Black,,1,100,,,tn_626,BS
+tn_627,Black,,1,100,,,tn_627,CS
+tn_628,Black,,1,100,,,tn_628,AS
+tn_629,Black,,1,100,,,tn_629,BS
+tn_630,Black,,1,100,,,tn_630,CS
+tn_631,Black,,1,100,,,tn_631,AS
+tn_632,Black,,1,100,,,tn_632,BS
+tn_633,Black,,1,100,,,tn_633,CS
+tn_634,Black,,1,100,,,tn_634,BS
+tn_635,Black,,1,100,,,tn_635,CS
+tn_636,Black,,1,100,,,tn_636,AS
+tn_637,Black,,1,100,,,tn_637,BS
+tn_638,Black,,1,100,,,tn_638,CS
+tn_639,Black,,1,100,,,tn_639,CS
+tn_640,Black,,1,100,,,tn_640,CS
+tn_641,Black,,1,100,,,tn_641,CS
+tn_642,Black,,1,100,,,tn_642,CS
+tn_643,Black,,1,100,,,tn_643,AS
+tn_644,Black,,1,100,,,tn_644,BS
+tn_645,Black,,1,100,,,tn_645,CS
+tn_646,Black,,1,100,,,tn_646,AS
+tn_647,Black,,1,100,,,tn_647,AS
+tn_648,Black,,1,100,,,tn_648,AS
+tn_649,Black,,1,100,,,tn_649,AS
+tn_650,Black,,1,100,,,tn_650,AS
+tn_651,Black,,1,100,,,tn_651,BS
+tn_652,Black,,1,100,,,tn_652,AS
+tn_653,Black,,1,100,,,tn_653,BS
+tn_654,Black,,1,100,,,tn_654,CS
+tn_655,Black,,1,100,,,tn_655,BS
+tn_656,Black,,1,100,,,tn_656,CS
+tn_657,Black,,1,100,,,tn_657,BS
+tn_658,Black,,1,100,,,tn_658,AS
+tn_659,Black,,1,100,,,tn_659,BS
+tn_660,Black,,1,100,,,tn_660,CS
+tn_661,Black,,1,100,,,tn_661,CS
+tn_662,Black,,1,100,,,tn_662,CS
+tn_663,Black,,1,100,,,tn_663,CS
+tn_664,Black,,1,100,,,tn_664,CS
+tn_665,Black,,1,100,,,tn_665,CS
+tn_666,Black,,1,100,,,tn_666,CS
+tn_667,Black,,1,100,,,tn_667,CS
+tn_668,Black,,1,100,,,tn_668,CS
+tn_669,Black,,1,100,,,tn_669,CS
+tn_670,Black,,1,100,,,tn_670,CS
+tn_671,Black,,1,100,,,tn_671,AS
+tn_672,Black,,1,100,,,tn_672,CS
+tn_673,Black,,1,100,,,tn_673,AS
+tn_674,Black,,1,100,,,tn_674,BS
+tn_675,Black,,1,100,,,tn_675,CS
+tn_676,Black,,1,100,,,tn_676,AS
+tn_677,Black,,1,100,,,tn_677,BS
+tn_678,Black,,1,100,,,tn_678,CS
+tn_679,Black,,1,100,,,tn_679,AS
+tn_680,Black,,1,100,,,tn_680,BS
+tn_681,Black,,1,100,,,tn_681,CS
+tn_682,Black,,1,100,,,tn_682,CS
+tn_683,Black,,1,100,,,tn_683,CS
+tn_684,Black,,1,100,,,tn_684,AS
+tn_685,Black,,1,100,,,tn_685,BS
+tn_686,Black,,1,100,,,tn_686,CS
+tn_687,Black,,1,100,,,tn_687,CS
+tn_688,Black,,1,100,,,tn_688,AS
+tn_689,Black,,1,100,,,tn_689,AS
+tn_690,Black,,1,100,,,tn_690,BS
+tn_691,Black,,1,100,,,tn_691,CS
+tn_692,Black,,1,100,,,tn_692,CS
+tn_693,Black,,1,100,,,tn_693,AS
+tn_694,Black,,1,100,,,tn_694,AS
+tn_695,Black,,1,100,,,tn_695,AS
+tn_696,Black,,1,100,,,tn_696,AS
+tn_697,Black,,1,100,,,tn_697,AS
+tn_698,Black,,1,100,,,tn_698,AS
+tn_699,Black,,1,100,,,tn_699,BS
+tn_700,Black,,1,100,,,tn_700,CS
+tn_701,Black,,1,100,,,tn_701,CS
+tn_702,Black,,1,100,,,tn_702,AS
+tn_703,Black,,1,100,,,tn_703,BS
+tn_704,Black,,1,100,,,tn_704,CS
+tn_705,Black,,1,100,,,tn_705,AS
+tn_706,Black,,1,100,,,tn_706,CS
+tn_707,Black,,1,100,,,tn_707,AS
+tn_708,Black,,1,100,,,tn_708,CS
+tn_709,Black,,1,100,,,tn_709,AS
+tn_710,Black,,1,100,,,tn_710,CS
+tn_711,Black,,1,100,,,tn_711,AS
+tn_712,Black,,1,100,,,tn_712,CS
+tn_713,Black,,1,100,,,tn_713,AS
+tn_714,Black,,1,100,,,tn_714,CS
+tn_715,Black,,1,100,,,tn_715,AS
+tn_716,Black,,1,100,,,tn_716,CS
+tn_717,Black,,1,100,,,tn_717,AS
+tn_718,Black,,1,100,,,tn_718,CS
+tn_719,Black,,1,100,,,tn_719,CS
+tn_720,Black,,1,100,,,tn_720,AS
+tn_721,Black,,1,100,,,tn_721,AS
+tn_722,Black,,1,100,,,tn_722,CS
+tn_723,Black,,1,100,,,tn_723,CS
+tn_724,Black,,1,100,,,tn_724,CS
+tn_725,Black,,1,100,,,tn_725,CS
+tn_726,Black,,1,100,,,tn_726,AS
+tn_727,Black,,1,100,,,tn_727,CS
+tn_728,Black,,1,100,,,tn_728,AS
+tn_729,Black,,1,100,,,tn_729,CS
+tn_730,Black,,1,100,,,tn_730,AS
+tn_731,Black,,1,100,,,tn_731,CS
+tn_732,Black,,1,100,,,tn_732,CS
+tn_733,Black,,1,100,,,tn_733,CS
+tn_734,Black,,1,100,,,tn_734,CS
+tn_735,Black,,1,100,,,tn_735,BS
+tn_736,Black,,1,100,,,tn_736,BS
+tn_737,Black,,1,100,,,tn_737,CS
+tn_738,Black,,1,100,,,tn_738,CS
+tn_739,Black,,1,100,,,tn_739,BS
+tn_740,Black,,1,100,,,tn_740,BS
+tn_741,Black,,1,100,,,tn_741,BS
+tn_742,Black,,1,100,,,tn_742,AS
+tn_743,Black,,1,100,,,tn_743,BS
+tn_744,Black,,1,100,,,tn_744,CS
+tn_745,Black,,1,100,,,tn_745,AS
+tn_746,Black,,1,100,,,tn_746,BS
+tn_747,Black,,1,100,,,tn_747,AS
+tn_748,Black,,1,100,,,tn_748,AS
+tn_749,Black,,1,100,,,tn_749,AS
+tn_750,Black,,1,100,,,tn_750,AS
+tn_751,Black,,1,100,,,tn_751,AS
+tn_752,Black,,1,100,,,tn_752,AS
+tn_753,Black,,1,100,,,tn_753,BS
+tn_754,Black,,1,100,,,tn_754,CS
+tn_755,Black,,1,100,,,tn_755,AS
+tn_756,Black,,1,100,,,tn_756,AS
+tn_757,Black,,1,100,,,tn_757,BS
+tn_758,Black,,1,100,,,tn_758,CS
+tn_759,Black,,1,100,,,tn_759,AS
+tn_760,Black,,1,100,,,tn_760,AS
+tn_761,Black,,1,100,,,tn_761,BS
+tn_762,Black,,1,100,,,tn_762,BS
+tn_763,Black,,1,100,,,tn_763,BS
+tn_764,Black,,1,100,,,tn_764,BS
+tn_765,Black,,1,100,,,tn_765,BS
+tn_766,Black,,1,100,,,tn_766,BS
+tn_767,Black,,1,100,,,tn_767,BS
+tn_768,Black,,1,100,,,tn_768,BS
+tn_769,Black,,1,100,,,tn_769,BS
+tn_770,Black,,1,100,,,tn_770,BS
+tn_771,Black,,1,100,,,tn_771,BS
+tn_772,Black,,1,100,,,tn_772,BS
+tn_773,Black,,1,100,,,tn_773,CS
+tn_774,Black,,1,100,,,tn_774,BS
+tn_775,Black,,1,100,,,tn_775,AS
+tn_776,Black,,1,100,,,tn_776,AS
+tn_777,Black,,1,100,,,tn_777,BS
+tn_778,Black,,1,100,,,tn_778,CS
+tn_779,Black,,1,100,,,tn_779,AS
+tn_780,Black,,1,100,,,tn_780,BS
+tn_781,Black,,1,100,,,tn_781,AS
+tn_782,Black,,1,100,,,tn_782,BS
+tn_783,Black,,1,100,,,tn_783,CS
+tn_784,Black,,1,100,,,tn_784,AS
+tn_785,Black,,1,100,,,tn_785,BS
+tn_786,Black,,1,100,,,tn_786,CS
+tn_787,Black,,1,100,,,tn_787,AS
+tn_788,Black,,1,100,,,tn_788,AS
+tn_789,Black,,1,100,,,tn_789,BS
+tn_790,Black,,1,100,,,tn_790,AS
+tn_791,Black,,1,100,,,tn_791,BS
+tn_792,Black,,1,100,,,tn_792,AS
+tn_793,Black,,1,100,,,tn_793,BS
+tn_794,Black,,1,100,,,tn_794,AS
+tn_795,Black,,1,100,,,tn_795,BS
+tn_796,Black,,1,100,,,tn_796,AS
+tn_797,Black,,1,100,,,tn_797,BS
+tn_798,Black,,1,100,,,tn_798,AS
+tn_799,Black,,1,100,,,tn_799,BS
+tn_800,Black,,1,100,,,tn_800,CS
+tn_801,Black,,1,100,,,tn_801,AS
+tn_802,Black,,1,100,,,tn_802,BS
+tn_803,Black,,1,100,,,tn_803,CS
+tn_804,Black,,1,100,,,tn_804,AS
+tn_805,Black,,1,100,,,tn_805,BS
+tn_806,Black,,1,100,,,tn_806,CS
+tn_807,Black,,1,100,,,tn_807,BS
+tn_808,Black,,1,100,,,tn_808,BS
+tn_809,Black,,1,100,,,tn_809,BS
+tn_810,Black,,1,100,,,tn_810,BS
+tn_811,Black,,1,100,,,tn_811,CS
+tn_812,Black,,1,100,,,tn_812,CS
+tn_813,Black,,1,100,,,tn_813,CS
+tn_814,Black,,1,100,,,tn_814,CS
+tn_815,Black,,1,100,,,tn_815,AS
+tn_816,Black,,1,100,,,tn_816,BS
+tn_817,Black,,1,100,,,tn_817,CS
+tn_818,Black,,1,100,,,tn_818,BS
+tn_819,Black,,1,100,,,tn_819,CS
+tn_820,Black,,1,100,,,tn_820,AS
+tn_821,Black,,1,100,,,tn_821,BS
+tn_822,Black,,1,100,,,tn_822,CS
+tn_823,Black,,1,100,,,tn_823,AS
+tn_824,Black,,1,100,,,tn_824,BS
+tn_825,Black,,1,100,,,tn_825,CS
+tn_826,Black,,1,100,,,tn_826,BS
+tn_827,Black,,1,100,,,tn_827,AS
+tn_828,Black,,1,100,,,tn_828,CS
+tn_829,Black,,1,100,,,tn_829,AS
+tn_830,Black,,1,100,,,tn_830,BS
+tn_831,Black,,1,100,,,tn_831,CS
+tn_832,Black,,1,100,,,tn_832,AS
+tn_833,Black,,1,100,,,tn_833,BS
+tn_834,Black,,1,100,,,tn_834,CS
+tn_835,Black,,1,100,,,tn_835,AS
+tn_836,Black,,1,100,,,tn_836,BS
+tn_837,Black,,1,100,,,tn_837,CS
+tn_838,Black,,1,100,,,tn_838,AS
+tn_839,Black,,1,100,,,tn_839,BS
+tn_840,Black,,1,100,,,tn_840,CS
+tn_841,Black,,1,100,,,tn_841,AS
+tn_842,Black,,1,100,,,tn_842,BS
+tn_843,Black,,1,100,,,tn_843,CS
+tn_844,Black,,1,100,,,tn_844,CS
+tn_845,Black,,1,100,,,tn_845,CS
+tn_846,Black,,1,100,,,tn_846,CS
+tn_847,Black,,1,100,,,tn_847,CS
+tn_848,Black,,1,100,,,tn_848,CS
+tn_849,Black,,1,100,,,tn_849,CS
+tn_850,Black,,1,100,,,tn_850,AS
+tn_851,Black,,1,100,,,tn_851,BS
+tn_852,Black,,1,100,,,tn_852,CS
+tn_853,Black,,1,100,,,tn_853,AS
+tn_854,Black,,1,100,,,tn_854,BS
+tn_855,Black,,1,100,,,tn_855,CS
+tn_856,Black,,1,100,,,tn_856,AS
+tn_857,Black,,1,100,,,tn_857,BS
+tn_858,Black,,1,100,,,tn_858,CS
+tn_859,Black,,1,100,,,tn_859,AS
+tn_860,Black,,1,100,,,tn_860,BS
+tn_861,Black,,1,100,,,tn_861,CS
+tn_862,Black,,1,100,,,tn_862,AS
+tn_863,Black,,1,100,,,tn_863,BS
+tn_864,Black,,1,100,,,tn_864,CS
+tn_865,Black,,1,100,,,tn_865,AS
+tn_866,Black,,1,100,,,tn_866,AS
+tn_867,Black,,1,100,,,tn_867,AS
+tn_868,Black,,1,100,,,tn_868,AS
+tn_869,Black,,1,100,,,tn_869,AS
+tn_870,Black,,1,100,,,tn_870,AS
+tn_871,Black,,1,100,,,tn_871,AS
+tn_872,Black,,1,100,,,tn_872,CS
+tn_873,Black,,1,100,,,tn_873,CS
+tn_874,Black,,1,100,,,tn_874,BS
+tn_875,Black,,1,100,,,tn_875,BS
+tn_876,Black,,1,100,,,tn_876,BS
+tn_877,Black,,1,100,,,tn_877,BS
+tn_878,Black,,1,100,,,tn_878,BS
+tn_879,Black,,1,100,,,tn_879,BS
+tn_880,Black,,1,100,,,tn_880,BS
+tn_881,Black,,1,100,,,tn_881,CS
+tn_882,Black,,1,100,,,tn_882,AS
+tn_883,Black,,1,100,,,tn_883,AS
+tn_884,Black,,1,100,,,tn_884,AS
+tn_885,Black,,1,100,,,tn_885,CS
+tn_886,Black,,1,100,,,tn_886,AS
+tn_887,Black,,1,100,,,tn_887,BS
+tn_888,Black,,1,100,,,tn_888,CS
+tn_889,Black,,1,100,,,tn_889,AS
+tn_890,Black,,1,100,,,tn_890,AS
+tn_891,Black,,1,100,,,tn_891,AS
+tn_892,Black,,1,100,,,tn_892,AS
+tn_893,Black,,1,100,,,tn_893,AS
+tn_894,Black,,1,100,,,tn_894,AS
+tn_895,Black,,1,100,,,tn_895,AS
+tn_896,Black,,1,100,,,tn_896,AS
+tn_897,Black,,1,100,,,tn_897,AS
+tn_898,Black,,1,100,,,tn_898,BS
+tn_899,Black,,1,100,,,tn_899,AS
+tn_900,Black,,1,100,,,tn_900,BS
+tn_901,Black,,1,100,,,tn_901,CS
+tn_902,Black,,1,100,,,tn_902,AS
+tn_903,Black,,1,100,,,tn_903,AS
+tn_904,Black,,1,100,,,tn_904,AS
+tn_905,Black,,1,100,,,tn_905,AS
+tn_906,Black,,1,100,,,tn_906,BS
+tn_907,Black,,1,100,,,tn_907,BS
+tn_908,Black,,1,100,,,tn_908,BS
+tn_909,Black,,1,100,,,tn_909,BS
+tn_910,Black,,1,100,,,tn_910,AS
+tn_911,Black,,1,100,,,tn_911,BS
+tn_912,Black,,1,100,,,tn_912,CS
+tn_913,Black,,1,100,,,tn_913,CS
+tn_914,Black,,1,100,,,tn_914,CS
+tn_915,Black,,1,100,,,tn_915,AS
+tn_916,Black,,1,100,,,tn_916,AS
+tn_917,Black,,1,100,,,tn_917,AS
+tn_918,Black,,1,100,,,tn_918,AS
+tn_919,Black,,1,100,,,tn_919,BS
+tn_920,Black,,1,100,,,tn_920,BS
+tn_921,Black,,1,100,,,tn_921,BS
+tn_922,Black,,1,100,,,tn_922,BS
+tn_923,Black,,1,100,,,tn_923,BS
+tn_924,Black,,1,100,,,tn_924,BS
+tn_925,Black,,1,100,,,tn_925,BS
+tn_926,Black,,1,100,,,tn_926,AS
+tn_927,Black,,1,100,,,tn_927,BS
+tn_928,Black,,1,100,,,tn_928,CS
+tn_929,Black,,1,100,,,tn_929,CS
+tn_930,Black,,1,100,,,tn_930,AS
+tn_931,Black,,1,100,,,tn_931,BS
+tn_932,Black,,1,100,,,tn_932,CS
+tn_933,Black,,1,100,,,tn_933,AS
+tn_934,Black,,1,100,,,tn_934,BS
+tn_935,Black,,1,100,,,tn_935,CS
+tn_936,Black,,1,100,,,tn_936,CS
+tn_937,Black,,1,100,,,tn_937,CS
+tn_938,Black,,1,100,,,tn_938,AS
+tn_939,Black,,1,100,,,tn_939,AS
+tn_940,Black,,1,100,,,tn_940,AS
+tn_941,Black,,1,100,,,tn_941,CS
+tn_942,Black,,1,100,,,tn_942,CS
+tn_943,Black,,1,100,,,tn_943,CS
+tn_944,Black,,1,100,,,tn_944,CS
+tn_945,Black,,1,100,,,tn_945,CS
+tn_946,Black,,1,100,,,tn_946,BS
+tn_947,Black,,1,100,,,tn_947,CS
+tn_948,Black,,1,100,,,tn_948,BS
+tn_949,Black,,1,100,,,tn_949,BS
+tn_950,Black,,1,100,,,tn_950,BS
+tn_951,Black,,1,100,,,tn_951,AS
+tn_952,Black,,1,100,,,tn_952,CS
