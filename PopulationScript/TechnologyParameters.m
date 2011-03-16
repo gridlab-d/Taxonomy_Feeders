@@ -1,7 +1,7 @@
 function [data,use_flags] = TechnologyParameters(use_flags)
 %% Tech flags
 % each tech turns on certain flags
-data.tech_flag = 0;
+data.tech_flag = 1;
 
 %base case
 if data.tech_flag == 0
@@ -50,7 +50,7 @@ elseif data.tech_flag == 1
     data.measure_capacitors = 1;
     data.measure_regulators = 1;   
     data.collect_setpoints = 1;    
-    data.measure_EOL_voltage = 0;
+    data.measure_EOL_voltage = 1;
     data.measure_loads = 1;
     
     %Prints stats at bottom of GLM

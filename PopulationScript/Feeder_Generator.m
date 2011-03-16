@@ -1,13 +1,13 @@
 clear;
 clc;
 % 
-% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R1-25.00-1.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+%taxonomy_files = {'GC-12.47-1.glm'};
 %taxonomy_files = {'R1-12.47-4.glm';'R2-35.00-1.glm';'R3-12.47-1.glm';'R3-12.47-3.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -849,7 +849,18 @@ for tax_ind=1:no_of_tax
                fprintf(write_file,'%s,',taxonomy_data.capacitor_outtage{cap_index,1});
            end
        end
-       fprintf(write_file,'        voltage_measurements "652,1,680,2"; \n');
+       fprintf(write_file,'        voltage_measurements "');
+       [num_eol,junk]=size(taxonomy_data.EOL_points);
+       for eol_index=1:num_eol
+           if eol_index==num_eol
+               fprintf(write_file,'%s,%d";\n',taxonomy_data.EOL_points{eol_index,1},taxonomy_data.EOL_points{eol_index,3});
+           else
+               fprintf(write_file,'%s,%d,',taxonomy_data.EOL_points{eol_index,1},taxonomy_data.EOL_points{eol_index,3});
+           end
+       end
+       
+       
+       
        fprintf(write_file,'        maximum_voltages %.2f; \n',taxonomy_data.voltage_regulation{3,1});% Turns of controller is voltage is 2000V greater than desired regulation
        fprintf(write_file,'        minimum_voltages %.2f; \n',taxonomy_data.voltage_regulation{2,1});% Turns of controller is voltage is 2000V less than desired regulation
        fprintf(write_file,'        max_vdrop 50; \n');
