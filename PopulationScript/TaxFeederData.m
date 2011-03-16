@@ -13,14 +13,16 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     data.feeder_rating = 1.15*5.38; 
             
     % Determines how many houses to populate (bigger avg_house = less houses)
-    data.avg_house = 4000;
+    data.avg_house = 8000;
     
     % Determines sizing of commercial loads (bigger = less houses)
-    data.avg_commercial = 20000;
+    data.avg_commercial = 12000;
     
     % End-of-line measurements for each feeder
     % name of node, phases to measure
     data.EOL_points={'GC-12-47-1_node_7','ABC'};
+    data.voltage_regulation = 7080;
+    data.regulators={'GC-12-47-1_reg_1'};
     
     % Capacitor outtage information for each feeder
     % Name of capacitor , player file name
@@ -38,6 +40,8 @@ elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)
                      'R1-12-47-1_node_311','B';
                      'R1-12-47-1_node_302','C'};
     data.capacitor_outtage={'R1-12-47-1_cap_1','R1-12-47-1_cap_1_outtage.player';'R1-12-47-1_cap_2','R1-12-47-1_cap_2_outtage.player';'R1-12-47-1_cap_3','R1-12-47-1_cap_3_outtage.player'};
+    data.regulators={'R1-12-47-1_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15000; %Peak in kVa base .85 pf of 29 (For emissions)
     % 598 residential, 12 commercial, 0 industrial, 8 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-2.glm')~=0)
@@ -49,6 +53,8 @@ elseif (strcmp(file_to_extract,'R1-12.47-2.glm')~=0)
                      'R1-12-47-2_node_292','B';
                      'R1-12-47-2_node_248','C'};
     data.capacitor_outtage={'R1-12-47-2_cap_1','R1-12-47-2_cap_1_outtage.player' };
+    data.regulators={'R1-12-47-2_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 251 residential, 13 commercial, 0 indusrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-3.glm')~=0)
@@ -59,6 +65,8 @@ elseif (strcmp(file_to_extract,'R1-12.47-3.glm')~=0)
     data.EOL_points={'R1-12-47-3_node_48','AC';
                      'R1-12-47-3_node_38','B'};
     data.capacitor_outtage={};
+    data.regulators={'R1-12-47-3_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 1 residential, 21 commercial, 0 indusrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-4.glm')~=0)    
@@ -68,6 +76,8 @@ elseif (strcmp(file_to_extract,'R1-12.47-4.glm')~=0)
     data.avg_commercial = 15000;
     data.EOL_points={'R1-12-47-4_node_300','ABC'};
     data.capacitor_outtage={'R1-12-47-4_cap_1','R1-12-47-4_cap_1_outtage.player'};
+    data.regulators={'R1-12-47-4_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 38 residential, 12 commercial, 0 indusrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R1-25.00-1.glm')~=0)    
@@ -80,6 +90,8 @@ elseif (strcmp(file_to_extract,'R1-25.00-1.glm')~=0)
                      'R1-25-00-1_node_227','B';
                      'R1-25-00-1_node_206','C'}; %6 Measurements because of voltage regulator
     data.capacitor_outtage={'R1-25-00-1_cap_1','R1-25-00-1_cap_1_outtage.player'};
+    data.regulators={'R1-25-00-1_reg_1';'R1-25-00-1_reg_2'};
+    data.voltage_regulation = 14136;
     data.emissions_peak = 15*1000;
     % 25 residential, 21 commercial, 5 industrial, 64 agricultural
 elseif (strcmp(file_to_extract,'R2-12.47-1.glm')~=0)    
@@ -90,6 +102,8 @@ elseif (strcmp(file_to_extract,'R2-12.47-1.glm')~=0)
     data.EOL_points={'R2-12-47-1_node_5','A';
                      'R2-12-47-1_node_17','BC'};
     data.capacitor_outtage={'R2-12-47-1_cap_1','R2-12-47-1_cap_1_outtage.player'};
+    data.regulators={'R2-12-47-1_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 91 residential, 80 commercial, 0 industrial, 2 agricultural
 elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)    
@@ -102,6 +116,8 @@ elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)
                      'R2-12-47-2_node_103','B';
                      'R2-12-47-2_node_242','C'}; %6 Measurements because of voltage regulator
     data.capacitor_outtage={'R2-12-47-2_cap_1','R2-12-47-2_cap_1_outtage.player';'R2-12-47-2_cap_2','R2-12-47-2_cap_2_outtage.player';'R2-12-47-2_cap_3','R2-12-47-2_cap_3_outtage.player';'R2-12-47-2_cap_4','R2-12-47-2_cap_4_outtage.player'};
+    data.regulators={'R2-12-47-2_reg_1';'R2-12.47-2_reg_2'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 192 residential, 8 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)    
@@ -113,6 +129,8 @@ elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)
                      'R2-12-47-3_node_627','B';
                      'R2-12-47-3_node_813','C'};
     data.capacitor_outtage={'R2-12-47-3_cap_1','R2-12-47-3_cap_1_outtage.player'};
+    data.regulators={'R2-12-47-3_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 485 residential, 6 commercial, 0 industrial, 5 agricultural
 elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)    
@@ -124,6 +142,8 @@ elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)
                      'R2-25-00-1_node_286','B';
                      'R2-25-00-1_node_211','C'};
     data.capacitor_outtage={'R2-25-00-1_cap_1','R2-25-00-1_cap_1_outtage.player';'R2-25-00-1_cap_2','R2-25-00-1_cap_2_outtage.player';'R2-25-00-1_cap_3','R2-25-00-1_cap_3_outtage.player';'R2-25-00-1_cap_4','R2-25-00-1_cap_4_outtage.player';'R2-25-00-1_cap_5','R2-25-00-1_cap_5_outtage.player'};
+    data.regulators={'R2-25-00-1_reg_1'};
+    data.voltage_regulation = 14136;
     data.emissions_peak = 15*1000;
     % 202 residential, 45 commercial, 0 industrial, 27 agricultural
 elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)    
@@ -133,6 +153,8 @@ elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)
     data.avg_commercial = 30000;
     data.EOL_points={'R2-35-00-1_node_1030','ABC'};
     data.capacitor_outtage={'R2-35-00-1_cap_1','R2-35-00-1_cap_1_outtage.player';'R2-35-00-1_cap_2','R2-35-00-1_cap_2_outtage.player';'R2-35-00-1_cap_3','R2-35-00-1_cap_3_outtage.player';'R2-35-00-1_cap_4','R2-35-00-1_cap_4_outtage.player';'R2-35-00-1_cap_5','R2-35-00-1_cap_5_outtage.player';'R2-35-00-1_cap_6','R2-35-00-1_cap_6_outtage.player';'R2-35-00-1_cap_7','R2-35-00-1_cap_7_outtage.player';'R2-35-00-1_cap_8','R2-35-00-1_cap_8_outtage.player';'R2-35-00-1_cap_9','R2-35-00-1_cap_9_outtage.player';'R2-35-00-1_cap_10','R2-35-00-1_cap_10_outtage.player';'R2-35-00-1_cap_11','R2-35-00-1_cap_11_outtage.player';'R2-35-00-1_cap_12','R2-35-00-1_cap_12_outtage.player';'R2-35-00-1_cap_13','R2-35-00-1_cap_13_outtage.player'};
+    data.regulators={'R2-35-00-1_reg_1'};
+    data.voltage_regulation = 19871;
     data.emissions_peak = 15*1000;
     % 163 residential, 5 commercial, 0 industrial, 442 agricultural
 elseif (strcmp(file_to_extract,'R3-12.47-1.glm')~=0)    
@@ -142,6 +164,8 @@ elseif (strcmp(file_to_extract,'R3-12.47-1.glm')~=0)
     data.avg_commercial = 40000;
     data.EOL_points={'R3-12-47-1_node_358','ABC'};
     data.capacitor_outtage={'R3-12-47-1_cap_1','R3-12-47-1_cap_1_outtage.player'};
+    data.regulators={'R3-12-47-1_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 408 residential, 59 commercial,0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R3-12.47-2.glm')~=0)    
@@ -150,6 +174,8 @@ elseif (strcmp(file_to_extract,'R3-12.47-2.glm')~=0)
     data.avg_house = 14000;
     data.avg_commercial = 30000;
     data.EOL_points={'R3-12-47-2_node_36','ABC'};
+    data.regulators={'R3-12-47-2_reg_1'};
+    data.voltage_regulation = 7080;
     data.capacitor_outtage={};
     data.emissions_peak = 15*1000;
     % 0 residential, 57 commercial, 5 industrial, 0 agricultural
@@ -162,6 +188,8 @@ elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
                      'R3-12-47-3_node_1845','B';
                      'R3-12-47-3_node_206','C'};
     data.capacitor_outtage={'R3-12-47-3_cap_1','R3-12-47-3_cap_1_outtage.player';'R3-12-47-3_cap_2','R3-12-47-3_cap_2_outtage.player'};
+    data.regulators={'R3-12-47-3_reg_1';'R3-12-47-3_reg_2'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 1625 residential, 0 commercial, 0 industrial, 107 agricultural
 elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)    
@@ -172,6 +200,8 @@ elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)
     data.EOL_points={'R4-12-47-1_node_192','A';
                      'R4-12-47-1_node_198','BC'};
     data.capacitor_outtage={'R4-12-47-1_cap_1','R4-12-47-1_cap_1_outtage.player';'R4-12-47-1_cap_2','R4-12-47-1_cap_2_outtage.player';'R4-12-47-1_cap_3','R4-12-47-1_cap_3_outtage.player';'R4-12-47-1_cap_4','R4-12-47-1_cap_4_outtage.player'};
+    data.regulators={'R4-12-47-1_reg_1'};
+    data.voltage_regulation = 7835;
     data.emissions_peak = 15*1000;
     % 476 residential, 75 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)    
@@ -183,6 +213,8 @@ elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)
                      'R4-12-47-2_node_264','B';
                      'R4-12-47-2_node_256','C'};
     data.capacitor_outtage={};
+    data.regulators={'R4-12-47-2_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 176 residential, 21 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)    
@@ -194,6 +226,8 @@ elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)
                      'R4-25-00-1_node_122','B';
                      'R4-25-00-1_node_168','C'};
     data.capacitor_outtage={};
+    data.regulators={'R4-25-00-1_reg_1'};
+    data.voltage_regulation = 14136;
     data.emissions_peak = 15*1000;
     % 140 residential, 1 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)    
@@ -203,6 +237,8 @@ elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)
     data.avg_commercial = 20000;
     data.EOL_points={'R5-12-47-1_node_1','ABC'};
     data.capacitor_outtage={'R5-12-47-1_cap_1','R5-12-47-1_cap_1_outtage.player';'R5-12-47-1_cap_2','R5-12-47-1_cap_2_outtage.player';'R5-12-47-1_cap_3','R5-12-47-1_cap_3_outtage.player'};
+    data.regulators={'R5-12-47-1_reg_1'};
+    data.voltage_regulation = 7835;
     data.emissions_peak = 15*1000;
     % 185 residential, 48 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-2.glm')~=0)    
@@ -214,6 +250,8 @@ elseif (strcmp(file_to_extract,'R5-12.47-2.glm')~=0)
                      'R5-12-47-2_node_158','B';
                      'R5-12-47-2_node_293','C'};
     data.capacitor_outtage={'R5-12-47-2_cap_1','R5-12-47-2_cap_1_outtage.player'};
+    data.regulators={'R5-12-47-2_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 138 residential, 46 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-3.glm')~=0)    
@@ -228,6 +266,8 @@ elseif (strcmp(file_to_extract,'R5-12.47-3.glm')~=0)
                      'R5-12-47-3_node_1278','ABC';
                      'R5-12-47-3_node_749','ABC'}; %18 Measurements because of voltage regulator
     data.capacitor_outtage={'R5-12-47-3_cap_1','R5-12-47-3_cap_1_outtage.player';'R5-12-47-3_cap_2','R5-12-47-3_cap_2_outtage.player';'R5-12-47-3_cap_3','R5-12-47-3_cap_3_outtage.player';'R5-12-47-3_cap_4','R5-12-47-3_cap_4_outtage.player';'R5-12-47-3_cap_5','R5-12-47-3_cap_5_outtage.player';'R5-12-47-3_cap_6','R5-12-47-3_cap_6_outtage.player';'R5-12-47-3_cap_7','R5-12-47-3_cap_7_outtage.player';'R5-12-47-3_cap_8','R5-12-47-3_cap_8_outtage.player';'R5-12-47-3_cap_9','R5-12-47-3_cap_9_outtage.player';'R5-12-47-3_cap_10','R5-12-47-3_cap_10_outtage.player';'R5-12-47-3_cap_11','R5-12-47-3_cap_11_outtage.player';'R5-12-47-3_cap_12','R5-12-47-3_cap_12_outtage.player';'R5-12-47-3_cap_13','R5-12-47-3_cap_13_outtage.player'};
+    data.regulators={'R5-12-47-3_reg_1';'R5-12-47-3_reg_2';'R5-12-47-3_reg_3';'R5-12-47-3_reg_4'};
+    data.voltage_regulation = 7835;
     data.emissions_peak = 15*1000;
     % 1196 residential, 182 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-4.glm')~=0)    
@@ -237,6 +277,8 @@ elseif (strcmp(file_to_extract,'R5-12.47-4.glm')~=0)
     data.avg_commercial = 30000;
     data.EOL_points={'R5-12-47-4_node_555','ABC'};
     data.capacitor_outtage={'R5-12-47-4_cap_1','R5-12-47-4_cap_1_outtage.player';'R5-12-47-4_cap_2','R5-12-47-4_cap_2_outtage.player';'R5-12-47-4_cap_3','R5-12-47-4_cap_3_outtage.player'};
+    data.regulators={'R5-12-47-4_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 175 residential, 31 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-5.glm')~=0)    
@@ -248,6 +290,8 @@ elseif (strcmp(file_to_extract,'R5-12.47-5.glm')~=0)
                      'R5-12-47-5_node_382','B';
                      'R5-12-47-5_node_559','C'};
     data.capacitor_outtage={'R5-12-47-5_cap_1','R5-12-47-5_cap_1_outtage.player';'R5-12-47-5_cap_2','R5-12-47-5_cap_2_outtage.player';'R5-12-47-5_cap_3','R5-12-47-5_cap_3_outtage.player'};
+    data.regulators={'R5-12-47-5_reg_1'};
+    data.voltage_regulation = 7080;
     data.emissions_peak = 15*1000;
     % 352 residential, 28 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-25.00-1.glm')~=0)    
@@ -259,6 +303,8 @@ elseif (strcmp(file_to_extract,'R5-25.00-1.glm')~=0)
                      'R5-25-00-1_node_501','B';
                      'R5-25-00-1_node_785','C'};
     data.capacitor_outtage={'R5-25-00-1_cap_1','R5-25-00-1_cap_1_outtage.player';'R5-25-00-1_cap_2','R5-25-00-1_cap_2_outtage.player';'R5-25-00-1_cap_3','R5-25-00-1_cap_3_outtage.player';'R5-25-00-1_cap_4','R5-25-00-1_cap_4_outtage.player'};
+    data.regulators={'R5-25-00-1_reg_1'};
+    data.voltage_regulation = 13000;
     data.emissions_peak = 15*1000;
     % 370 residential, 14 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-35.00-1.glm')~=0)
@@ -270,6 +316,8 @@ elseif (strcmp(file_to_extract,'R5-35.00-1.glm')~=0)
                      'R5-35-00-1_node_184','B';
                      'R5-35-00-1_node_85','C'};
     data.capacitor_outtage={'R5-35-00-1_cap_1','R5-35-00-1_cap_1_outtage.player'};
+    data.regulators={'R5-35-00-1_reg_1'};
+    data.voltage_regulation = 19871;
     data.emissions_peak = 15*1000;
     % 192 residential, 47 commercial, 0 industrial, 0 agricultural
 end

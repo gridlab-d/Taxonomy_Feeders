@@ -1,13 +1,13 @@
 clear;
 clc;
-
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R2-12.47-2.glm'};
+% 
+% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+taxonomy_files = {'R1-25.00-1.glm'};
 %taxonomy_files = {'R1-12.47-4.glm';'R2-35.00-1.glm';'R3-12.47-1.glm';'R3-12.47-3.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -67,7 +67,7 @@ for tax_ind=1:no_of_tax
     use_flags.use_commercial = 1; 
 
     % VVC? - NOT FINISHED
-    use_flags.use_vvc = 0; % 0 = NONE, 1 = TRUE
+    use_flags.use_vvc = 1; % 0 = NONE, 1 = TRUE
 
     % Customer Billing? - NOT FINISHED
     use_flags.use_billing = 0; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
@@ -817,7 +817,7 @@ for tax_ind=1:no_of_tax
        % TODO: pull all of these out and put into tech parameters
        fprintf(write_file,'//Volt-Var object \n');
        fprintf(write_file,'object volt_var_control {\n');
-       fprintf(write_file,'        name CVVC; \n');
+       fprintf(write_file,'        name volt_var_control; \n');
        fprintf(write_file,'        control_method ACTIVE; \n');
        fprintf(write_file,'        capacitor_delay 60.0; \n');
        fprintf(write_file,'        regulator_delay 60.0; \n');
@@ -825,14 +825,35 @@ for tax_ind=1:no_of_tax
        fprintf(write_file,'        d_max 0.8; \n');
        fprintf(write_file,'        d_min 0.1; \n');
        fprintf(write_file,'        substation_link "Reg1"; \n');
-       fprintf(write_file,'        regulator_list "Reg1"; \n');
-       fprintf(write_file,'        capacitor_list "CAP1,CAP2"; \n');
-       fprintf(write_file,'        voltage_measurements "652,680"; \n');
-       fprintf(write_file,'        maximum_voltages 3500; \n');
-       fprintf(write_file,'        minimum_voltages 2000; \n');
+       
+       [num_regs,junk]=size(taxonomy_data.regulators);
+       fprintf(write_file,'        regulator_list "');
+       for reg_index=1:num_regs
+           if reg_index==num_regs
+               fprintf(write_file,'%s";\n',taxonomy_data.regulators{reg_index,1});
+           else
+               fprintf(write_file,'%s,',taxonomy_data.regulators{reg_index,1});
+           end
+       end
+       
+       
+       
+       
+       [num_caps,junk]=size(taxonomy_data.capacitor_outtage);
+       fprintf(write_file,'        capacitor_list "');
+       for cap_index=1:num_caps
+           if cap_index==num_caps
+               fprintf(write_file,'%s";\n',taxonomy_data.capacitor_outtage{cap_index,1});
+           else
+               fprintf(write_file,'%s,',taxonomy_data.capacitor_outtage{cap_index,1});
+           end
+       end
+       fprintf(write_file,'        voltage_measurements "652,1,680,2"; \n');
+       fprintf(write_file,'        maximum_voltages %.2f; \n',taxonomy_data.voltage_regulation+2000);
+       fprintf(write_file,'        minimum_voltages %.2f; \n',taxonomy_data.voltage_regulation-2000);
        fprintf(write_file,'        max_vdrop 50; \n');
        fprintf(write_file,'        high_load_deadband 30; \n');
-       fprintf(write_file,'        desired_voltages %.1f; \n',output_volt);
+       fprintf(write_file,'        desired_voltages %.2f; \n',taxonomy_data.voltage_regulation);
        fprintf(write_file,'        low_load_deadband 30; \n');
        fprintf(write_file,'}\n');
        fprintf(write_file,'        \n');
@@ -3270,4 +3291,4 @@ count_house = 1;
 end
 
 disp('So tired. All done.');
-clear;
+%clear;

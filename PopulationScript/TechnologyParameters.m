@@ -36,7 +36,33 @@ if data.tech_flag == 0
    
 % CVR
 elseif data.tech_flag == 1
+        %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 0;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 0;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
     
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
 % Automation
 elseif data.tech_flag == 2
     
@@ -192,7 +218,7 @@ end
 
 %% VVC parameters
 if (use_flags.use_vvc == 1)
-    data.output_volt = 2401;  % voltage to regulate to - 2401::120
+    %data.output_volt = 2401;  % voltage to regulate to - 2401::120
 end
 
 %% Customer billing parameters
