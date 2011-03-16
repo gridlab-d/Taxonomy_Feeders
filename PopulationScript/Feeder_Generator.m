@@ -782,6 +782,10 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'     tmyfile "%s.tmy2";\n',tmy);
     fprintf(write_file,'     interpolate QUADRATIC;\n');
     fprintf(write_file,'};\n\n');
+    
+    
+    
+    
 
     fprintf(write_file,'//Configurations\n\n');
 
@@ -824,7 +828,7 @@ for tax_ind=1:no_of_tax
        fprintf(write_file,'        desired_pf 0.99; \n');
        fprintf(write_file,'        d_max 0.8; \n');
        fprintf(write_file,'        d_min 0.1; \n');
-       fprintf(write_file,'        substation_link "Reg1"; \n');
+       fprintf(write_file,'        substation_link "substation_transformer"; \n');
        
        [num_regs,junk]=size(taxonomy_data.regulators);
        fprintf(write_file,'        regulator_list "');
@@ -835,10 +839,7 @@ for tax_ind=1:no_of_tax
                fprintf(write_file,'%s,',taxonomy_data.regulators{reg_index,1});
            end
        end
-       
-       
-       
-       
+
        [num_caps,junk]=size(taxonomy_data.capacitor_outtage);
        fprintf(write_file,'        capacitor_list "');
        for cap_index=1:num_caps
@@ -849,12 +850,12 @@ for tax_ind=1:no_of_tax
            end
        end
        fprintf(write_file,'        voltage_measurements "652,1,680,2"; \n');
-       fprintf(write_file,'        maximum_voltages %.2f; \n',taxonomy_data.voltage_regulation+2000);
-       fprintf(write_file,'        minimum_voltages %.2f; \n',taxonomy_data.voltage_regulation-2000);
+       fprintf(write_file,'        maximum_voltages %.2f; \n',taxonomy_data.voltage_regulation{3,1});% Turns of controller is voltage is 2000V greater than desired regulation
+       fprintf(write_file,'        minimum_voltages %.2f; \n',taxonomy_data.voltage_regulation{2,1});% Turns of controller is voltage is 2000V less than desired regulation
        fprintf(write_file,'        max_vdrop 50; \n');
-       fprintf(write_file,'        high_load_deadband 30; \n');
-       fprintf(write_file,'        desired_voltages %.2f; \n',taxonomy_data.voltage_regulation);
-       fprintf(write_file,'        low_load_deadband 30; \n');
+       fprintf(write_file,'        high_load_deadband %.2f; \n',taxonomy_data.voltage_regulation{5,1});% Sets a 1 volt deadband
+       fprintf(write_file,'        desired_voltages %.2f; \n',taxonomy_data.voltage_regulation{1,1});
+       fprintf(write_file,'        low_load_deadband %.2f; \n',taxonomy_data.voltage_regulation{4,1});% Sets a 1 volt deadband
        fprintf(write_file,'}\n');
        fprintf(write_file,'        \n');
     end
