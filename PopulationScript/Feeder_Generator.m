@@ -7,7 +7,7 @@ taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1
     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'GC-12.47-1.glm'};
+%taxonomy_files = {'R3-12.47-2.glm'};
 %taxonomy_files = {'R1-12.47-4.glm';'R2-35.00-1.glm';'R3-12.47-1.glm';'R3-12.47-3.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -841,13 +841,17 @@ for tax_ind=1:no_of_tax
        end
 
        [num_caps,junk]=size(taxonomy_data.capacitor_outtage);
-       fprintf(write_file,'        capacitor_list "');
-       for cap_index=1:num_caps
-           if cap_index==num_caps
-               fprintf(write_file,'%s";\n',taxonomy_data.capacitor_outtage{cap_index,1});
-           else
-               fprintf(write_file,'%s,',taxonomy_data.capacitor_outtage{cap_index,1});
+       if num_caps ~=0
+           fprintf(write_file,'        capacitor_list "');
+           for cap_index=1:num_caps
+               if cap_index==num_caps
+                   fprintf(write_file,'%s";\n',taxonomy_data.capacitor_outtage{cap_index,1});
+               else
+                   fprintf(write_file,'%s,',taxonomy_data.capacitor_outtage{cap_index,1});
+               end
            end
+       else
+           fprintf(write_file,'        capacitor_list "";\n');
        end
        fprintf(write_file,'        voltage_measurements "');
        [num_eol,junk]=size(taxonomy_data.EOL_points);
