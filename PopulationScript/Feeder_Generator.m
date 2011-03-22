@@ -740,37 +740,17 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'     NR_iteration_limit 50;\n');
     fprintf(write_file,'};\n\n');
 
-    if (use_flags.use_market == 1)
-        fprintf(write_file,'module market;\n\n');
-        fprintf(write_file,'class auction {\n');
-        fprintf(write_file,'    double %s;\n',market_info{4});
-        fprintf(write_file,'    double %s;\n',market_info{5});
-        fprintf(write_file,'}\n');
-
-        fprintf(write_file,'object auction {\n');
-        fprintf(write_file,'    name %s;\n',tech_data.market_info{2});
-        fprintf(write_file,'    special_mode NONE;\n');
-        fprintf(write_file,'    unit kW;\n');
-        fprintf(write_file,'    period %.0f;\n',tech_data.market_info{3});
-        fprintf(write_file,'    init_price 30;\n');
-        fprintf(write_file,'    init_stdev 5;\n');
-        fprintf(write_file,'    capacity_reference_object substation_transformer;\n');
-        fprintf(write_file,'    capacity_reference_property power_out_real;\n');
-        fprintf(write_file,'    object player {\n');
-        fprintf(write_file,'        property capacity_reference_bid_price;\n');
-        fprintf(write_file,'        file %s;\n',tech_data.market_info{7});
-        fprintf(write_file,'        loop 150;\n');
-        fprintf(write_file,'    };\n');
-        fprintf(write_file,'    max_capacity_reference_bid_quantity 500000;\n');
-        fprintf(write_file,'    warmup 0;\n');
-        fprintf(write_file,'}\n\n');
-    elseif (use_flags.use_market == 2)
+    if (use_flags.use_market ~= 0)
         fprintf(write_file,'module market;\n\n');
         fprintf(write_file,'object stubauction {\n');
-        fprintf(write_file,'     name %s;\n',tech_data.market_info{2});
-        fprintf(write_file,'     period %.0f;\n',tech_data.market_info{3});
+        fprintf(write_file,'     name %s;\n',tech_data.market_info{1});
+        fprintf(write_file,'     period %.0f;\n',tech_data.market_info{2});
+        fprintf(write_file,'     control_mode DISABLED;\n');
+        fprintf(write_file,'     avg24 %f;\n',market_info{3});
+        fprintf(write_file,'     std24 %f;\n',market_info{4});
         fprintf(write_file,'     object player {\n');
-        fprintf(write_file,'          file %s;\n',tech_data.market_info{7});
+            this_feeder = strrep(file_to_extract','.glm','');
+        fprintf(write_file,'          file %s_%s.player;\n',this_feeder,tech_data.market_info{6});
         fprintf(write_file,'          loop 150;\n');
         fprintf(write_file,'          property next.P;\n');
         fprintf(write_file,'     };\n');
@@ -1266,8 +1246,32 @@ for tax_ind=1:no_of_tax
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
+    if (use_flags.use_markets ~= 0)
+        RandStream.setDefaultStream(s1);
+        if (total_houses ~= 0)
+            [aa,junk] = size(phase_S_houses);
+
+            market_penetration_random = rand(aa,1);            
+            increased_therm_offset_random = rand(aa,1);
+            
+            % 10 - 25% increase over normal cycle
+            pool_pump_recovery_random = 0.1 + 0.15.*rand(aa,1);
+            
+            % limit slider randomization to Olypen style
+            slider_random = 0.45 + (0.2).*randn(aa,1);
+                sl1 = find(slider_random > market_info{5});
+            slider_random(sl1) = market_info{5};
+                sl2 = find(slider_random < 0);
+            slider_random(sl1) = 0;
+        end
+    end
+    
+    % Initialize pseudo-random numbers - put this before each technology where 
+    % random numbers are needed, so they are not effected by other changes
+    % (s1-s6)
     RandStream.setDefaultStream(s2);
-count_house = 1;
+    count_house = 1;
+    
     % Phase S - residential homes
     if (use_flags.use_homes == 1 && total_houses ~= 0)
         [aS,bS] = size(phase_S_houses);
@@ -1442,11 +1446,14 @@ count_house = 1;
                         cool_type = rand(1);
                         h_COP = c_COP;
 
+                        ct = 'NONE';
                     if (heat_type <= regional_data.perc_gas)
                         fprintf(write_file,'     heating_system_type GAS;\n');
                         if (cool_type <= regional_data.perc_AC)
                             fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                            ct = 'ELEC';
                         end
+                        ht = 'GAS';           
                     elseif (heat_type <= (regional_data.perc_gas + regional_data.perc_pump))
                         fprintf(write_file,'     heating_system_type HEAT_PUMP;\n');                   
                         fprintf(write_file,'     heating_COP %.1f;\n',h_COP);
@@ -1455,18 +1462,24 @@ count_house = 1;
                         fprintf(write_file,'     auxiliary_system_type ELECTRIC;\n');
                         fprintf(write_file,'     motor_model BASIC;\n');
                         fprintf(write_file,'     motor_efficiency AVERAGE;\n');
+                        ht = 'HP';
+                        ct = 'ELEC';
                     elseif (floor_area*ceiling_height > 12000 ) % No resistive homes over with large volumes
                         fprintf(write_file,'     heating_system_type GAS;\n');
                         if (cool_type <= regional_data.perc_AC)
                             fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
+                            ct = 'ELEC';
                         end
+                        ht = 'GAS';
                     else
                         fprintf(write_file,'     heating_system_type RESISTANCE;\n');
                         if (cool_type <= regional_data.perc_AC)
                             fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
                             fprintf(write_file,'     motor_model BASIC;\n');
                             fprintf(write_file,'     motor_efficiency GOOD;\n');
+                            ct = 'ELEC';
                         end
+                        ht = 'ELEC';
                     end
 
 
@@ -1518,23 +1531,46 @@ count_house = 1;
                         cool_night_diff = coolsp(cool_bin,2) * 2 * rand(1);
                         heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
 
-                    %TODO Pull out market "stuff" and put in an outside loop
-                      % will need to store the set points for later use in market
+                    % If we have markets, put in a controller (maybe)
                     if (use_flags.use_market == 0)
                         fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
                         fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
-                    elseif (use_flags.use_market == 1)
-                        if (heat_type <= (regional_data.perc_gas + regional_data.perc_pump) && heat_type > regional_data.perc_gas)
+                    elseif ( (use_flags.use_market == 1 || use_flags.use_market == 2) && market_penetration_random(jj) < market_info{7} && tech_data.use_tech == 1)
+                        % TOU or TOU/CPP with technology
+                                                
+                        % pull in the slider response level
+                        slider = slider_random(jj);
+                        
+                        s_tstat = 2;
+                        hrh = 3-3*(1-slider);
+                        crh = 5-5*(1-slider);
+                        hrl = -5+5*(1-slider);
+                        crl = -3+3*(1-slider);
+                        
+                        hrh2 = -s_tstat - (1 - slider) * (3 - s_tstat);
+                        crh2 = s_tstat + (1 - slider) * (3 - s_tstat);
+                        hrl2 = -s_tstat - (1 - slider) * (3 - s_tstat);
+                        crl2 = s_tstat + (1 - slider) * (3 - s_tstat);
+                        
+                        if (strcmp(ht,'HP') ~= 0) % Control both therm setpoints
+                            fprintf(write_file,'     cooling_setpoint %.2f;\n',cool_night);
+                            fprintf(write_file,'     heating_setpoint %.2f;\n',heat_night);
                             fprintf(write_file,'\n     object controller {\n');   
                             fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'           market %s;\n',tech_data.market_info{2});
-                            fprintf(write_file,'           bid_mode ON;\n');
+                            fprintf(write_file,'           market %s;\n',tech_data.market_info{1});
+                            fprintf(write_file,'           bid_mode OFF;\n');
                             fprintf(write_file,'           control_mode DOUBLE_RAMP;\n');
                             fprintf(write_file,'           resolve_mode DEADBAND;\n');
-                            fprintf(write_file,'           slider_setting_heat %.3f;\n',tech_data.market_info{6});
-                            fprintf(write_file,'           slider_setting_cool %.3f;\n',tech_data.market_info{6});
-                            fprintf(write_file,'           heating_base_setpoint heating%d*1;\n',heating_set);
-                            fprintf(write_file,'           cooling_base_setpoint cooling%d*1;\n',cooling_set);
+                            fprintf(write_file,'           heating_range_high %.3f;\n',hrh);
+                            fprintf(write_file,'           cooling_range_high %.3f;\n',crh);
+                            fprintf(write_file,'           heating_range_low %.3f;\n',hrl);
+                            fprintf(write_file,'           cooling_range_low %.3f;\n',crl);
+                            fprintf(write_file,'           heating_ramp_high %.3f;\n',hrh2);
+                            fprintf(write_file,'           cooling_ramp_high %.3f;\n',crh2);
+                            fprintf(write_file,'           heating_ramp_low %.3f;\n',hrl2);
+                            fprintf(write_file,'           cooling_ramp_low %.3f;\n',crl2);
+                            fprintf(write_file,'           cooling_base_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
+                            fprintf(write_file,'           heating_base_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
                             fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
                             fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
                             fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
@@ -1548,91 +1584,99 @@ count_house = 1;
                             fprintf(write_file,'           load hvac_load;\n');
                             fprintf(write_file,'           state power_state;\n');
                             fprintf(write_file,'       };\n\n');
-                        else
+                        elseif (strcmp(ht,'ELEC') ~= 0) % Control the heat, but check to see if we have AC
+                            if (strcmp(ct,'ELEC') ~= 0) % get to control just like a heat pump
+                                fprintf(write_file,'     cooling_setpoint %.2f;\n',cool_night);
+                                fprintf(write_file,'     heating_setpoint %.2f;\n',heat_night);
+                                fprintf(write_file,'\n     object controller {\n');   
+                                fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'           market %s;\n',tech_data.market_info{1});
+                                fprintf(write_file,'           bid_mode OFF;\n');
+                                fprintf(write_file,'           control_mode DOUBLE_RAMP;\n');
+                                fprintf(write_file,'           resolve_mode DEADBAND;\n');
+                                fprintf(write_file,'           heating_range_high %.3f;\n',hrh);
+                                fprintf(write_file,'           cooling_range_high %.3f;\n',crh);
+                                fprintf(write_file,'           heating_range_low %.3f;\n',hrl);
+                                fprintf(write_file,'           cooling_range_low %.3f;\n',crl);
+                                fprintf(write_file,'           heating_ramp_high %.3f;\n',hrh2);
+                                fprintf(write_file,'           cooling_ramp_high %.3f;\n',crh2);
+                                fprintf(write_file,'           heating_ramp_low %.3f;\n',hrl2);
+                                fprintf(write_file,'           cooling_ramp_low %.3f;\n',crl2);
+                                fprintf(write_file,'           cooling_base_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
+                                fprintf(write_file,'           heating_base_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
+                                fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
+                                fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
+                                fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
+                                fprintf(write_file,'           target air_temperature;\n');
+                                fprintf(write_file,'           heating_setpoint heating_setpoint;\n');
+                                fprintf(write_file,'           heating_demand last_heating_load;\n');
+                                fprintf(write_file,'           cooling_setpoint cooling_setpoint;\n');
+                                fprintf(write_file,'           cooling_demand last_cooling_load;\n');
+                                fprintf(write_file,'           deadband thermostat_deadband;\n');
+                                fprintf(write_file,'           total hvac_load;\n');
+                                fprintf(write_file,'           load hvac_load;\n');
+                                fprintf(write_file,'           state power_state;\n');
+                                fprintf(write_file,'       };\n\n');
+                            else % control only the heat
+                                fprintf(write_file,'     cooling_setpoint %.2f;\n',cool_night);
+                                fprintf(write_file,'     heating_setpoint %.2f;\n',heat_night);
+                                fprintf(write_file,'\n     object controller {\n');
+                                fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
+                                fprintf(write_file,'           market %s;\n',tech_data.market_info{1});
+                                fprintf(write_file,'           bid_mode OFF;\n');
+                                fprintf(write_file,'           control_mode RAMP;\n');
+                                fprintf(write_file,'           range_high %.3f;\n',hrh);
+                                fprintf(write_file,'           range_low %.3f;\n',hrl);
+                                fprintf(write_file,'           ramp_high %.3f;\n',hrh2);
+                                fprintf(write_file,'           ramp_low %.3f;\n',hrl2);
+                                fprintf(write_file,'           base_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
+                                fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
+                                fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
+                                fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
+                                fprintf(write_file,'           target air_temperature;\n');
+                                fprintf(write_file,'           setpoint heating_setpoint;\n');
+                                fprintf(write_file,'           demand last_heating_load;\n');
+                                fprintf(write_file,'           deadband thermostat_deadband;\n');
+                                fprintf(write_file,'           total hvac_load;\n');
+                                fprintf(write_file,'           load hvac_load;\n');
+                                fprintf(write_file,'           state power_state;\n');
+                                fprintf(write_file,'       };\n\n');
+                            end
+                        elseif (strcmp(ct,'ELEC') ~= 0) % gas heat, but control the AC
+                            fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
                             fprintf(write_file,'\n     object controller {\n');
                             fprintf(write_file,'           schedule_skew %.0f;\n',skew_value);
-                            fprintf(write_file,'           market %s;\n',tech_data.market_info{2});
-                            fprintf(write_file,'           bid_mode ON;\n');
+                            fprintf(write_file,'           market %s;\n',tech_data.market_info{1});
+                            fprintf(write_file,'           bid_mode OFF;\n');
                             fprintf(write_file,'           control_mode RAMP;\n');
-                            fprintf(write_file,'           slider_setting_cool %.3f;\n',tech_data.market_info{6});
-                            fprintf(write_file,'           cooling_base_setpoint cooling%d*1;\n',cooling_set);
+                            fprintf(write_file,'           range_high %.3f;\n',hrh);
+                            fprintf(write_file,'           range_low %.3f;\n',hrl);
+                            fprintf(write_file,'           ramp_high %.3f;\n',hrh2);
+                            fprintf(write_file,'           ramp_low %.3f;\n',hrl2);
+                            fprintf(write_file,'           base_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
                             fprintf(write_file,'           period %.0f;\n',tech_data.market_info{3});
                             fprintf(write_file,'           average_target %s;\n',tech_data.market_info{4});
                             fprintf(write_file,'           standard_deviation_target %s;\n',tech_data.market_info{5});
                             fprintf(write_file,'           target air_temperature;\n');
-                            fprintf(write_file,'           cooling_setpoint cooling_setpoint;\n');
-                            fprintf(write_file,'           cooling_demand last_cooling_load;\n');
+                            fprintf(write_file,'           setpoint heating_setpoint;\n');
+                            fprintf(write_file,'           demand last_heating_load;\n');
                             fprintf(write_file,'           deadband thermostat_deadband;\n');
                             fprintf(write_file,'           total hvac_load;\n');
                             fprintf(write_file,'           load hvac_load;\n');
                             fprintf(write_file,'           state power_state;\n');
-                            fprintf(write_file,'       };\n\n');
+                            fprintf(write_file,'       };\n\n'); 
+                        else % gas heat, no AC, so no control
+                            fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
+                            fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
                         end
-                    elseif (use_flags.use_market == 2)
-                        cool_slider = market_info{6};
-                        sigma_cool = 1 + (3 - 1)*(1 - cool_slider);
-
-                        cool_high_limit = 5;
-                        range_high_cool = cool_high_limit - cool_high_limit*(1-cool_slider);
-                        k_high_cool = sigma_cool / range_high_cool;
-
-                        cool_low_limit = -3;
-                        range_low_cool = cool_low_limit - cool_low_limit*(1-cool_slider);
-                        k_low_cool = -sigma_cool / range_low_cool;
-
-                        fprintf(write_file,'          cooling_setpoint cooling%d*1;\n',cooling_set);
-                        fprintf(write_file,'          object passive_controller {\n');
-                        fprintf(write_file,'               base_setpoint cooling%d*1;\n',cooling_set);
-                        fprintf(write_file,'               control_mode RAMP;\n');
-                        fprintf(write_file,'               sensitivity 1;\n');  
-                        fprintf(write_file,'               expectation_obj %s;\n',tech_data.market_info{2});
-                        fprintf(write_file,'               expectation_prop avg24;\n');
-                        fprintf(write_file,'               setpoint_prop cooling_setpoint;\n');
-                        fprintf(write_file,'               state_prop override;\n');
-                        fprintf(write_file,'               observation_obj %s;\n',tech_data.market_info{2});
-                        fprintf(write_file,'               observation_prop next.P;\n');
-                        fprintf(write_file,'               mean_observation_prop avg24;\n');
-                        fprintf(write_file,'               stdev_observation_prop std24;\n\n');
-                        fprintf(write_file,'               // Standard deviation %.2f\n',sigma_cool);
-                        fprintf(write_file,'               range_low %.3f;\n',range_low_cool);
-                        fprintf(write_file,'               range_high %.3f;\n',range_high_cool);
-                        fprintf(write_file,'               ramp_low %.3f;\n',k_low_cool);
-                        fprintf(write_file,'               ramp_high %.3f;\n',k_high_cool);
-                        fprintf(write_file,'          };\n\n');
-
-                        if (heat_type > regional_data.perc_gas) %we have electric/HP heat
-                            heat_slider = tech_data.market_info{6};
-
-                            sigma_heat = -1 + (-3 + 1)*(1 - heat_slider);
-
-                            heat_high_limit = 3;
-                            range_high_heat = heat_high_limit - heat_high_limit*(1-heat_slider);
-                            k_high_heat = sigma_heat / range_high_heat;
-
-                            heat_low_limit = -5;
-                            range_low_heat = heat_low_limit - heat_low_limit*(1-heat_slider);
-                            k_low_heat = -sigma_heat / range_low_heat;
-
-                            fprintf(write_file,'          heating_setpoint heating%d*1;\n',heating_set);
-                            fprintf(write_file,'          object passive_controller {\n');
-                            fprintf(write_file,'               base_setpoint heating%d*1;\n',heating_set);
-                            fprintf(write_file,'               control_mode RAMP;\n');
-                            fprintf(write_file,'               sensitivity 1;\n');  
-                            fprintf(write_file,'               expectation_obj %s;\n',market_info{2});
-                            fprintf(write_file,'               expectation_prop avg24;\n');
-                            fprintf(write_file,'               setpoint_prop cooling_setpoint;\n');
-                            fprintf(write_file,'               state_prop override;\n');
-                            fprintf(write_file,'               observation_obj %s;\n',market_info{2});
-                            fprintf(write_file,'               observation_prop next.P;\n');
-                            fprintf(write_file,'               mean_observation_prop avg24;\n');
-                            fprintf(write_file,'               stdev_observation_prop std24;\n\n');
-                            fprintf(write_file,'               // Standard deviation %.2f\n',sigma_heat);
-                            fprintf(write_file,'               range_low %.3f;\n',range_low_heat);
-                            fprintf(write_file,'               range_high %.3f;\n',range_high_heat);
-                            fprintf(write_file,'               ramp_low %.3f;\n',k_low_heat);
-                            fprintf(write_file,'               ramp_high %.3f;\n',k_high_heat);
-                            fprintf(write_file,'          };\n\n');
-                        end
+                    elseif ( (use_flags.use_market == 1 || use_flags.use_market == 2) && tech_data.use_tech == 0)
+                        % TOU/CPP w/o technology - assumes people offset
+                        % their thermostats a little more
+                        new_rand = 1 + slider_random(jj);
+                        fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff*new_rand,cool_night);
+                        fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff/new_rand,heat_night);
+                    elseif ( use_flags.use_market == 3) %DLC
+                        %TODO
                     end
 
                     % scale all of the end-use loads
@@ -1666,6 +1710,7 @@ count_house = 1;
                     fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
                     fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
                     fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
+                    %TODO add controller for w/ and w/tech
                     fprintf(write_file,'     };\n');
 
                     fprintf(write_file,'     object ZIPload {\n');
@@ -1699,6 +1744,29 @@ count_house = 1;
                         fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
                         fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
                         fprintf(write_file,'           is_240 TRUE;\n');
+                        
+                        if ( (use_flags.use_markets == 1 || use_flags.use_markets == 2) && tech_data.use_tech == 1) % TOU
+                            fprintf(write_file,'           recovery_duty_cycle %.2f;\n',pp_duty_cycle*(1+pool_pump_recovery_random(jj)));
+                            fprintf(write_file,'           object passive_controller {\n');
+                            fprintf(write_file,'                period %.0f;\n',tech_data.market_info{3});
+                            fprintf(write_file,'                control_mode DUTY_CYCLE;\n');
+                            fprintf(write_file,'                pool_pump_model true;\n');
+                            fprintf(write_file,'                observation_property next.P;\n');
+                            fprintf(write_file,'                state_property override;\n');
+                            fprintf(write_file,'                base_duty_cycle %.2f;\n',pp_dutycycle);
+                            fprintf(write_file,'                setpoint duty_cycle;\n');
+                            fprintf(write_file,'                first_tier_hours %.0f;\n',xx); %TODO
+                            fprintf(write_file,'                second_tier_hours %.0f;\n',xx); %TODO
+                            fprintf(write_file,'                first_tier_price %.0f;\n',data.TOU1_price);
+                            fprintf(write_file,'                second_tier_price %.0f;\n',data.TOU2_price);
+                            if (use_flags.use_markets == 2)
+                                fprintf(write_file,'                third_tier_price %.0f;\n',data.CPP_price);                            
+                            end
+                        elseif (use_flags.use_markets == 3) % DLC
+                            %TODO - set duty cycle to 0.001 ?
+                        else % normal
+                            
+                        end
                         fprintf(write_file,'     };\n');
 
                         no_pool_pumps = no_pool_pumps - 1;
@@ -1724,7 +1792,8 @@ count_house = 1;
                         fprintf(write_file,'          thermostat_deadband %.1f;\n',therm_dead);
                         fprintf(write_file,'          location INSIDE;\n');                    
                         fprintf(write_file,'          tank_UA %.1f;\n',tank_UA);
-
+                        %TODO: add passive controller for w/ tech and DLC
+                        
                         if (wh_size_test < regional_data.wh_size(1))
                             fprintf(write_file,'          demand small_%.0f*%.02f;\n',water_sch,water_var);
                                 whsize = 20 + (wh_size_rand-1) * 5;
@@ -1745,6 +1814,25 @@ count_house = 1;
                             fprintf(write_file,'          demand large_%.0f*%.02f;\n',water_sch,water_var);
                                 whsize = 30 + (wh_size_rand - 1)*10;
                             fprintf(write_file,'          tank_volume %.0f;\n',whsize);
+                        end
+                        
+                        if (use_flags.use_markets == 1 || use_flags.use_markets == 2 || use_flags.use_markets == 3)
+                            fprintf(file,'          object passive_controller {\n');
+                            fprintf(file,'	            period %.0f;\n',market_info{2});
+                            fprintf(file,'	            control_mode PROBABILITY_OFF;\n');
+                            fprintf(file,'	            distribution_type NORMAL;\n');
+                            fprintf(file,'	            observation_object %s;\n',market_info{2});
+                            fprintf(file,'	            observation_property next.P;\n');
+                            fprintf(file,'	            stdev_observation_property %s;\n',market_info{4});
+                            fprintf(file,'	            expectation_object %s;\n',market_info{1});
+                            fprintf(file,'	            expectation_property %s;\n',market_info{3});
+                            if (use_flags.use_markets == 3) %DLC
+                                fprintf(file,'	            comfort_level %.2f;\n',9999);
+                            else
+                            	fprintf(file,'	            comfort_level %.2f;\n',slider_random(jj));
+                            end
+                            fprintf(file,'	            state_property override;\n');
+                            fprintf(file,'          };\n');                
                         end
                         fprintf(write_file,'     };\n\n');
                     end

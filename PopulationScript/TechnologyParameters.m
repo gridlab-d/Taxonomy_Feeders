@@ -3,6 +3,9 @@ function [data,use_flags] = TechnologyParameters(use_flags)
 % each tech turns on certain flags
 data.tech_flag = 1;
 
+% setting default to zero
+data.use_tech = 0;
+
 %base case
 if data.tech_flag == 0
     %These will all be '1' for base case
@@ -36,7 +39,7 @@ if data.tech_flag == 0
    
 % CVR
 elseif data.tech_flag == 1
-        %These will all be '1' for base case
+     %These will all be '1' for base case
     % homes and commercial are need to include thse objects
     use_flags.use_homes = 1;
     use_flags.use_commercial = 1;
@@ -71,18 +74,116 @@ elseif data.tech_flag == 3
     
 % TOU/CPP w/ tech
 elseif data.tech_flag == 4
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    use_flags.use_billing = 3;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    
+    % adds in the market
+    use_flags.use_market = 1;
+    
+    % adds in customer/technology interactions
+    data.use_tech = 1;
+    
+    data.include_stats = 1;
     data.meter_consumption = 2;
+    data.dump_voltage = 0;   
+    data.measure_market = 1;
+    data.get_IEEE_stats = 0;
+    
 % TOU/CPP w/o tech
 elseif data.tech_flag == 5
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    use_flags.use_billing = 3;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    data.include_stats = 1;
+    use_flags.use_market = 1;
+    data.use_tech = 0;
+    data.meter_consumption = 2;
+    data.dump_voltage = 0;   
+    data.measure_market = 1;
+    data.get_IEEE_stats = 0;
     
 % TOU w/ tech
 elseif data.tech_flag == 6
-
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    use_flags.use_billing = 3;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    data.include_stats = 1;
+    use_flags.use_market = 1;
+    data.use_tech = 1;
+    data.meter_consumption = 2;
+    data.dump_voltage = 0;   
+    data.measure_market = 1;
+    data.get_IEEE_stats = 0;
+    
 % TOU w/o tech
 elseif data.tech_flag == 7
-
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    use_flags.use_billing = 3;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    data.include_stats = 1;
+    use_flags.use_market = 1;
+    data.use_tech = 0;
+    data.meter_consumption = 2;
+    data.dump_voltage = 0;   
+    data.measure_market = 1;
+    data.get_IEEE_stats = 0;
 % DLC
 elseif data.tech_flag == 8
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    data.include_stats = 1;
+    use_flags.use_market = 1;
+    data.meter_consumption = 2;
+    data.dump_voltage = 0;   
+    data.measure_market = 1;
+    data.get_IEEE_stats = 0;
     
 % Thermal
 elseif data.tech_flag == 9
@@ -157,28 +258,51 @@ if (use_flags.use_batt == 2 || use_flags.use_batt == 1)
 end
 
 %% Market Parameters -- TODO
-% 1 - Active Control
-% 2 - Transactive Control
+% 1 - TOU
+% 2 - TOU/CPP
 % 3 - DLC
-if (use_flags.use_market == 1)
+if (use_flags.use_market ~= 0)
     % market name, 
     % period, 
     % mean, 
-    % stdev,
-    % slider setting (range: 0.001 - 1; NOTE: do not use zero;
+    % stdev, 
+    % max slider setting (range: 0.001 - 1; NOTE: do not use zero;
     % name of the price player/schedule)
     % percent penetration,
-    % slider setting (range: 0 - 1), 
-    % randomize or not [-1 will randomize settings]
+    
+    data.avg_price = 2;
+    data.std_price = 1;
+    
+    if (use_flags.use_market == 1)
+        price_player = 'TOU';
+
+        data.TOU2_price = 2;
+        data.TOU1_price = 1;
+    elseif (use_flags.use_market == 2)
+        price_player = 'CPP';
+                
+        data.CPP_price = 10;
+        data.TOU2_price = 2;
+        data.TOU1_price = 1;
+    elseif (use_flags.use_market == 3)
+        price_player = 'DLC';
+        
+        data.CPP_price = 10;
+    end    
+    
     data.market_info = {'Market_1';
                         300;
-                        'current_price_mean_24h';
-                        'current_price_stdev_24h';
-                        0.5;
-                        'ExamplePrices2.player';
+                        'avg24';
+                        'std24';
                         1.0;
+                        price_player;
                         1.0;
-                        1.0};
+                        };
+                    
+    if (data.use_tech == 1)
+        
+    end
+    
 end
 
 %% Commercial building parameters
