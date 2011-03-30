@@ -1,7 +1,7 @@
 function [data,use_flags] = TechnologyParameters(use_flags)
 %% Tech flags
 % each tech turns on certain flags
-data.tech_flag = 1;
+data.tech_flag = 7;
 
 % setting default to zero
 data.use_tech = 0;
@@ -17,6 +17,7 @@ if data.tech_flag == 0
     use_flags.use_billing = 1;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
     data.measure_capacitors = 1;
@@ -48,6 +49,7 @@ elseif data.tech_flag == 1
     use_flags.use_billing = 0;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 1;
     data.measure_losses = 1; 
     data.dump_bills = 0;
     data.measure_capacitors = 1;
@@ -79,6 +81,7 @@ elseif data.tech_flag == 4
     use_flags.use_billing = 3;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
     data.measure_capacitors = 1;
@@ -106,6 +109,7 @@ elseif data.tech_flag == 5
     use_flags.use_billing = 3;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
     data.measure_capacitors = 1;
@@ -128,6 +132,7 @@ elseif data.tech_flag == 6
     use_flags.use_billing = 3;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
     data.measure_capacitors = 1;
@@ -150,6 +155,7 @@ elseif data.tech_flag == 7
     use_flags.use_billing = 3;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
     data.measure_capacitors = 1;
@@ -171,6 +177,7 @@ elseif data.tech_flag == 8
     use_flags.use_billing = 1;
     use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
     data.measure_capacitors = 1;
@@ -270,37 +277,34 @@ if (use_flags.use_market ~= 0)
     % name of the price player/schedule)
     % percent penetration,
     
-    data.avg_price = 2;
-    data.std_price = 1;
+    
     
     if (use_flags.use_market == 1)
-        price_player = 'TOU';
-
-        data.TOU2_price = 2;
-        data.TOU1_price = 1;
+        data.sub_elas_12 = 1; % TOU substitution elasticity
+        data.sub_elas_13 = 2; % CPP substitution elasticity
+        data.two_tier_cpp = 'false';     
     elseif (use_flags.use_market == 2)
-        price_player = 'CPP';
-                
-        data.CPP_price = 10;
-        data.TOU2_price = 2;
-        data.TOU1_price = 1;
+        data.sub_elas_12 = 1; % TOU substitution elasticity
+        data.sub_elas_13 = 2; % CPP substitution elasticity
+        data.two_tier_cpp = 'true';
     elseif (use_flags.use_market == 3)
-        price_player = 'DLC';
-        
-        data.CPP_price = 10;
+
     end    
     
+    % A lot of these values aren't used, except in an RTP market
     data.market_info = {'Market_1';
-                        300;
+                        900;
                         'avg24';
                         'std24';
                         1.0;
-                        price_player;
+                        'price_player';
                         1.0;
                         };
                     
     if (data.use_tech == 1)
-        
+        data.daily_elasticity = {'daily_elasticity_wtech'};
+    else
+        data.daily_elasticity = {'daily_elasticity_wotech'}; %weekend vs. weekday schedules for daily elasticity
     end
     
 end
@@ -360,7 +364,11 @@ elseif(use_flags.use_billing == 2) %TIERED RATE
     data.second_tier_price = 0.08; % $ / kWh
 elseif(use_flags.use_billing == 3) %RTP/TOU RATE - market must be activated
     data.monthly_fee = 10; % $
+    data.comm_monthly_fee = 25;
     data.flat_price = 0.1; % $ / kWh
+    if (use_flags.use_market == 0)
+        disp('Error: Must use markets when applying use_billing == 3');
+    end
 end
 
 %% Solar parameters
