@@ -1,7 +1,7 @@
 function [data,use_flags] = TechnologyParameters(use_flags)
 %% Tech flags
 % each tech turns on certain flags
-data.tech_flag = 7;
+data.tech_flag = 1;
 
 % setting default to zero
 data.use_tech = 0;

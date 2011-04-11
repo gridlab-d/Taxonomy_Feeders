@@ -274,7 +274,7 @@ elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)
     data.EOL_points={'R2-35-00-1_node_1030','ABC',1};
     data.capacitor_outtage={'R2-35-00-1_cap_1','R2-35-00-1_cap_1_outtage.player';'R2-35-00-1_cap_2','R2-35-00-1_cap_2_outtage.player';'R2-35-00-1_cap_3','R2-35-00-1_cap_3_outtage.player';'R2-35-00-1_cap_4','R2-35-00-1_cap_4_outtage.player';'R2-35-00-1_cap_5','R2-35-00-1_cap_5_outtage.player';'R2-35-00-1_cap_6','R2-35-00-1_cap_6_outtage.player';'R2-35-00-1_cap_7','R2-35-00-1_cap_7_outtage.player';'R2-35-00-1_cap_8','R2-35-00-1_cap_8_outtage.player';'R2-35-00-1_cap_9','R2-35-00-1_cap_9_outtage.player';'R2-35-00-1_cap_10','R2-35-00-1_cap_10_outtage.player';'R2-35-00-1_cap_11','R2-35-00-1_cap_11_outtage.player';'R2-35-00-1_cap_12','R2-35-00-1_cap_12_outtage.player';'R2-35-00-1_cap_13','R2-35-00-1_cap_13_outtage.player'};
     data.regulators={'R2-35-00-1_reg_1'};
-    data.voltage_regulation = {19871;15000;25000;166;166};% desired;min;max;high deadband;low deadband
+    data.voltage_regulation = {19526;15000;25000;166;166};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12800;
     
     data.TOU_prices = [0.062754,0.125509]; % 1st, 2nd tier price
@@ -534,7 +534,7 @@ elseif (strcmp(file_to_extract,'R5-25.00-1.glm')~=0)
                      'R5-25-00-1_node_785','C',1};
     data.capacitor_outtage={'R5-25-00-1_cap_1','R5-25-00-1_cap_1_outtage.player';'R5-25-00-1_cap_2','R5-25-00-1_cap_2_outtage.player';'R5-25-00-1_cap_3','R5-25-00-1_cap_3_outtage.player';'R5-25-00-1_cap_4','R5-25-00-1_cap_4_outtage.player'};
     data.regulators={'R5-25-00-1_reg_1'};
-    data.voltage_regulation = {13200;10000;16000;110;110};% desired;min;max;high deadband;low deadband
+    data.voltage_regulation = {13000;10000;16000;110;110};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12691;
     
     data.TOU_prices = [0.066210,0.132419]; % 1st, 2nd tier price
@@ -556,7 +556,7 @@ elseif (strcmp(file_to_extract,'R5-35.00-1.glm')~=0)
                      'R5-35-00-1_node_85','C',1};
     data.capacitor_outtage={'R5-35-00-1_cap_1','R5-35-00-1_cap_1_outtage.player'};
     data.regulators={'R5-35-00-1_reg_1'};
-    data.voltage_regulation = {19871;15000;25000;166;166};% desired;min;max;high deadband;low deadband
+    data.voltage_regulation = {19526;15000;25000;166;166};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12989;
     
     data.TOU_prices = [0.065769,0.131538]; % 1st, 2nd tier price
