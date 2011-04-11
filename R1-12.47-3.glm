@@ -1126,8 +1126,8 @@ object node:85 {
 } 
 
 object node:224 { 
-     bustype SWING; 
      name R1-12-47-3_node_53; 
+     bustype SWING; 
      phases ABCN; 
      nominal_voltage 7200; 
      voltage_A 7200+0.0j; 
