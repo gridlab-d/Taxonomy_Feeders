@@ -1,13 +1,13 @@
 clear;
 clc;
 % 
-% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R5-12.47-3.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+%taxonomy_files = {'R4-12.47-1.glm'};
 %taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 [no_of_tax,junk] = size(taxonomy_files);
@@ -15,16 +15,16 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    %taxonomy_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    taxonomy_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\'; %Jason
+    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-   %output_directory = 'C:\Documents and Settings\d3x289\My Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\Win32\Release\';% Jason
-   output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+   output_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\';% Jason
+   %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
 
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -1607,11 +1607,13 @@ for tax_ind=1:no_of_tax
                         % pull in the slider response level
                         slider = slider_random(jj);
                         
+                        % set the pre-cool / pre-heat range to really small
+                        % to get rid of it.
                         s_tstat = 2;
-                        hrh = 0-0*(1-slider);
+                        hrh = -5+5*(1-slider);
                         crh = 5-5*(1-slider);
-                        hrl = -5+5*(1-slider);
-                        crl = -0+0*(1-slider);
+                        hrl = -0.005+0*(1-slider);
+                        crl = -0.005+0*(1-slider);
                         
                         hrh2 = -s_tstat - (1 - slider) * (3 - s_tstat);
                         crh2 = s_tstat + (1 - slider) * (3 - s_tstat);
@@ -2297,10 +2299,10 @@ for tax_ind=1:no_of_tax
                                         slider = comm_slider_random(jjj);
 
                                         s_tstat = 2;
-                                        hrh = 0-0*(1-slider);
+                                        hrh = -5+5*(1-slider);
                                         crh = 5-5*(1-slider);
-                                        hrl = -5+5*(1-slider);
-                                        crl = -0+0*(1-slider);
+                                        hrl = -0.005+0*(1-slider);
+                                        crl = -0.005+0*(1-slider);
 
                                         hrh2 = -s_tstat - (1 - slider) * (3 - s_tstat);
                                         crh2 = s_tstat + (1 - slider) * (3 - s_tstat);
@@ -2629,10 +2631,10 @@ for tax_ind=1:no_of_tax
                                         slider = comm_slider_random(jjj);
 
                                         s_tstat = 2;
-                                        hrh = 0-0*(1-slider);
+                                        hrh = -5+5*(1-slider);
                                         crh = 5-5*(1-slider);
-                                        hrl = -5+5*(1-slider);
-                                        crl = -0+0*(1-slider);
+                                        hrl = -0.005+0*(1-slider);
+                                        crl = -0.005+0*(1-slider);
 
                                         hrh2 = -s_tstat - (1 - slider) * (3 - s_tstat);
                                         crh2 = s_tstat + (1 - slider) * (3 - s_tstat);
@@ -2963,12 +2965,12 @@ for tax_ind=1:no_of_tax
                             if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                 % pull in the slider response level
                                     slider = comm_slider_random(jjj);
-
+;
                                     s_tstat = 2;
-                                    hrh = 0-0*(1-slider);
+                                    hrh = -5+5*(1-slider);
                                     crh = 5-5*(1-slider);
-                                    hrl = -5+5*(1-slider);
-                                    crl = -0+0*(1-slider);
+                                    hrl = -0.005+0*(1-slider);
+                                    crl = -0.005+0*(1-slider);
 
                                     hrh2 = -s_tstat - (1 - slider) * (3 - s_tstat);
                                     crh2 = s_tstat + (1 - slider) * (3 - s_tstat);
