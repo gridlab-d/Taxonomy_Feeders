@@ -18,7 +18,7 @@ weather{5} = 'FL-Miami';
 %% Timezone data
 timezone{1} = 'PST+8PDT';
 timezone{2} = 'CST+6CDT';
-timezone{3} = 'MST7'; % Do we want to be this accurate?
+timezone{3} = 'MST+7'; % Do we want to be this accurate?
 timezone{4} = 'CST+6CDT';
 timezone{5} = 'EST+5EDT';
 
