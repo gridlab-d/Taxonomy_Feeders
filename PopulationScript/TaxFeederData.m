@@ -331,9 +331,12 @@ elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
     data.feeder_rating = 1.15*8.620; 
     data.avg_house = 7000;
     data.avg_commercial = 15000;
-    data.EOL_points={'R3-12-47-3_node_1844','A',1;
-                     'R3-12-47-3_node_1845','B',1;
-                     'R3-12-47-3_node_206','C',1};
+    data.EOL_points={'R3-12-47-3_node_871_2','A',1;
+                     'R3-12-47-3_node_871_2','B',1;
+                     'R3-12-47-3_node_871_2','C',1;
+                     'R3-12-47-3_node_1844','A',2;
+                     'R3-12-47-3_node_1845','B',2;
+                     'R3-12-47-3_node_206','C',2};
     data.capacitor_outtage={'R3-12-47-3_cap_1','R3-12-47-3_cap_1_outtage.player';'R3-12-47-3_cap_2','R3-12-47-3_cap_2_outtage.player'};
     data.regulators={'R3-12-47-3_reg_1';'R3-12-47-3_reg_2'};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
@@ -469,7 +472,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-3.glm')~=0)
                      'R5-12-47-3_node_1278','ABC',3;
                      'R5-12-47-3_node_749','ABC',4}; %18 Measurements because of voltage regulator
     data.capacitor_outtage={'R5-12-47-3_cap_1','R5-12-47-3_cap_1_outtage.player';'R5-12-47-3_cap_2','R5-12-47-3_cap_2_outtage.player';'R5-12-47-3_cap_3','R5-12-47-3_cap_3_outtage.player';'R5-12-47-3_cap_4','R5-12-47-3_cap_4_outtage.player';'R5-12-47-3_cap_5','R5-12-47-3_cap_5_outtage.player';'R5-12-47-3_cap_6','R5-12-47-3_cap_6_outtage.player';'R5-12-47-3_cap_7','R5-12-47-3_cap_7_outtage.player';'R5-12-47-3_cap_8','R5-12-47-3_cap_8_outtage.player';'R5-12-47-3_cap_9','R5-12-47-3_cap_9_outtage.player';'R5-12-47-3_cap_10','R5-12-47-3_cap_10_outtage.player';'R5-12-47-3_cap_11','R5-12-47-3_cap_11_outtage.player';'R5-12-47-3_cap_12','R5-12-47-3_cap_12_outtage.player';'R5-12-47-3_cap_13','R5-12-47-3_cap_13_outtage.player'};
-    data.regulators={'R5-12-47-3_reg_1';'R5-12-47-3_reg_2';'R5-12-47-3_reg_3';'R5-12-47-3_reg_4'};
+    data.regulators={'R5-12-47-3_reg_1';'R5-12-47-3_reg_2';'R5-12-47-3_reg_3';'R5-12-47-3_reg_4'}; % The regulators are not coordinated because of their operation on parallel branches.
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 10734;
     
