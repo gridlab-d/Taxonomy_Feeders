@@ -1591,8 +1591,10 @@ for tax_ind=1:no_of_tax
                         end
                         heat_sp(heat_bin,row_ti) = heat_sp(heat_bin,row_ti) - 1;
 
-                        cool_night = (coolsp(cool_bin,3) - coolsp(cool_bin,4))*rand(1) + coolsp(cool_bin,4);
-                        heat_night = (heatsp(heat_bin,3) - heatsp(heat_bin,4))*rand(1) + heatsp(heat_bin,4);
+                        % randomly choose within the bin, then +/- one
+                        % degree to seperate the deadbands
+                        cool_night = (coolsp(cool_bin,3) - coolsp(cool_bin,4))*rand(1) + coolsp(cool_bin,4) + 1;
+                        heat_night = (heatsp(heat_bin,3) - heatsp(heat_bin,4))*rand(1) + heatsp(heat_bin,4) - 1;
 
                         cool_night_diff = coolsp(cool_bin,2) * 2 * rand(1);
                         heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
