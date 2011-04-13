@@ -10,6 +10,25 @@ taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1
 %taxonomy_files = {'R5-12.47-3.glm'};
 %taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
+%Set technology to test
+TechnologyToTest=0;
+% 0 - Base
+% 1 - CVR
+% 2 - Automation
+% 3 - FDIR
+% 4 - TOU/CPP w/ tech
+% 5 - TOU/CPP w/o tech
+% 6 - TOU w/ tech
+% 7 - TOU w/o tech
+% 8 - DLC
+% 9 - Thermal
+% 10 - PHEV
+% 11 - Solar Residential
+% 12 - Solar Commercial
+% 13 - Wind Residential
+% 14 - Wind Commercial
+% 15 - combined W&S 
+
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
 
@@ -67,7 +86,7 @@ for tax_ind=1:no_of_tax
     use_flags.use_commercial = 1; 
 
     % VVC? - NOT FINISHED
-    use_flags.use_vvc = 1; % 0 = NONE, 1 = TRUE
+    use_flags.use_vvc = 0; % 0 = NONE, 1 = TRUE
 
     % Customer Billing? - NOT FINISHED
     use_flags.use_billing = 0; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
@@ -88,7 +107,7 @@ for tax_ind=1:no_of_tax
     use_flags.use_emissions = 0;
 
     %% Get the technical parameters
-    [tech_data,use_flags] = TechnologyParameters(use_flags);
+    [tech_data,use_flags] = TechnologyParameters(use_flags,TechnologyToTest);
 
     %% NO MODIFICATIONS AFTER HERE
     file2 = strrep(file_to_extract,'.glm','');
