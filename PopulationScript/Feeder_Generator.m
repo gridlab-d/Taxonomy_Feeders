@@ -1,13 +1,13 @@
 clear;
 clc;
 % 
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R5-12.47-3.glm'};
+% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+taxonomy_files = {'R2-12.47-3.glm'};
 %taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 %Set technology to test
@@ -35,7 +35,8 @@ region_count = 0; % for commercial feeders
 for tax_ind=1:no_of_tax
     %% File to extract
     %taxonomy_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\'; %Jason
-    taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    taxonomy_directory = 'C:\Code\Taxonomy_Feeders\'; %Frank
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
@@ -43,8 +44,9 @@ for tax_ind=1:no_of_tax
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
    %output_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\';% Jason
-   output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
-
+   %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+   output_directory = 'C:\Code\Taxonomy_Feeders\Extracted\'; % Frank
+   
     %% Get the region - this will only work with the taxonomy feeders
     
     token = strtok(file_to_extract,'-');
@@ -105,6 +107,11 @@ for tax_ind=1:no_of_tax
     
     % Use the emissions object?
     use_flags.use_emissions = 0;
+    
+    % Use the Thermal Storage object?
+    use_flags.use_ts = 0;
+    %1 = add thermal storage using the defaults, 2 = add thermal storage with a randomized schedule, 0 = none
+    %3 = add thermal storage to all houses using defaults, 4 = ass thermal storage to all houses with a randomized schedule
 
     %% Get the technical parameters
     [tech_data,use_flags] = TechnologyParameters(use_flags,TechnologyToTest);
@@ -740,6 +747,9 @@ for tax_ind=1:no_of_tax
     end
     if (use_flags.use_market == 1)
         fprintf(write_file,'#include "daily_elasticity_schedules.glm";\n');
+    end
+    if ((use_flags.use_ts == 2) || (use_flags.use_ts == 4))
+        fprintf(write_file,'#include "thermal_storage_schedule_R%d.glm";\n',region);
     end
 
     fprintf(write_file,'//#define stylesheet=http://gridlab-d.svn.sourceforge.net/viewvc/gridlab-d/trunk/core/gridlabd-2_0\n');
@@ -1408,6 +1418,11 @@ for tax_ind=1:no_of_tax
 
                     %TODO - aspect ratio?, window wall ratio?
 
+                    if (use_flags.use_ts~=0)
+                        %Create array of parents for thermal storage devices
+                        ts_residential_array{jj}{kk} = ['house' num2str(kk) '_' parent2];
+                    end
+                    
                     skew_value = tech_data.residential_skew_std*randn(1);
                     if (skew_value < -tech_data.residential_skew_max)
                         skew_value = -tech_data.residential_skew_max;
@@ -2304,7 +2319,7 @@ for tax_ind=1:no_of_tax
                                 fprintf(write_file,'     fan_type %s;\n',fan_type);
                                 fprintf(write_file,'     cooling_system_type %s;\n',cool_type);
 
-                                    init_temp = 68 + 4*rand(1);
+                                init_temp = 68 + 4*rand(1);
                                 fprintf(write_file,'     air_temperature %.2f;\n',init_temp);
                                 fprintf(write_file,'     mass_temperature %.2f;\n',init_temp);
 
@@ -2314,6 +2329,10 @@ for tax_ind=1:no_of_tax
                                     COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                                 fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
+                                if (use_flags.use_ts~=0)
+                                    %Create array of parents for thermal storage devices
+                                    ts_office_array{iii}{jjj}{phind}{zoneind} = ['office' my_name '_' my_phases{phind} num2str(jjj) '_zone' num2str(zoneind)];
+                                end
                                 
                                 if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                     % pull in the slider response level
@@ -2647,6 +2666,11 @@ for tax_ind=1:no_of_tax
                                     COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                                 fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
+                                if (use_flags.use_ts~=0)
+                                    %Create array of parents for thermal storage devices
+                                    ts_bigbox_array{iii}{jjj}{phind}{zoneind} = ['bigbox' my_name '_' my_phases{phind} num2str(jjj) '_zone' num2str(zoneind)];
+                                end
+                                
                                 if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                     % pull in the slider response level
                                         slider = comm_slider_random(jjj);
@@ -2983,10 +3007,15 @@ for tax_ind=1:no_of_tax
                                 COP_A = tech_data.cooling_COP * (0.8 + 0.4*rand(1));
                             fprintf(write_file,'     cooling_COP %2.2f;\n',COP_A);
 
+                            if (use_flags.use_ts~=0)
+                                %Create array of parents for thermal storage devices
+                                ts_stripmall_array{iii}{jjj}{phind} = ['stripmall' my_name '_' my_phases{phind} num2str(jjj)];
+                            end
+
                             if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                 % pull in the slider response level
                                     slider = comm_slider_random(jjj);
-;
+
                                     s_tstat = 2;
                                     hrh = -5+5*(1-slider);
                                     crh = 5-5*(1-slider);
@@ -3207,6 +3236,123 @@ for tax_ind=1:no_of_tax
     % (s1-s6)
     RandStream.setDefaultStream(s4);
 
+    if (use_flags.use_ts~=0)
+        
+        if (exist('ts_office_array','var'))
+            no_ts_office=length(ts_office_array);
+            office_penetration = rand(no_ts_office,1);
+            
+            for jj=1:no_ts_office
+                if (office_penetration(jj) <= (regional_data.ts_penetration/100))
+                    for jjj=1:length(ts_office_array{jj})
+                        for jjjj=1:length(ts_office_array{jj}{jjj})
+                            for jjjjj=1:length(ts_office_array{jj}{jjj}{jjjj})
+                                if (~isempty(ts_office_array{jj}{jjj}{jjjj}{jjjjj}))
+                                    parent = ts_office_array{jj}{jjj}{jjjj}{jjjjj};
+                                    fprintf(write_file,'object thermal_storage {\n');
+                                    fprintf(write_file,'	 parent %s;\n',parent);
+                                    fprintf(write_file,'	 name thermal_storage_office_%.0f_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj,jjjjj);
+                                    fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                                    fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                                    if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
+                                        fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                        fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                        fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                                    end
+                                    fprintf(write_file,'}\n\n');
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        
+        if (exist('ts_bigbox_array','var'))
+            no_ts_bigbox=length(ts_bigbox_array);
+            bigbox_penetration = rand(no_ts_bigbox,1);
+            
+            for jj=1:no_ts_bigbox
+                if (bigbox_penetration(jj) <= (regional_data.ts_penetration/100))
+                    for jjj=1:length(ts_bigbox_array{jj})
+                        for jjjj=1:length(ts_bigbox_array{jj}{jjj})
+                            for jjjjj=1:length(ts_bigbox_array{jj}{jjj}{jjjj})
+                                if (~isempty(ts_bigbox_array{jj}{jjj}{jjjj}{jjjjj}))
+                                    parent = ts_bigbox_array{jj}{jjj}{jjjj}{jjjjj};
+                                    fprintf(write_file,'object thermal_storage {\n');
+                                    fprintf(write_file,'	 parent %s;\n',parent);
+                                    fprintf(write_file,'	 name thermal_storage_bigbox_%.0f_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj,jjjjj);
+                                    fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                                    fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                                    if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
+                                        fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                        fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                        fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                                    end
+                                    fprintf(write_file,'}\n\n');
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        if (exist('ts_stripmall_array','var'))
+            no_ts_stripmall=length(ts_stripmall_array);
+            stripmall_penetration = rand(no_ts_stripmall,1);
+            
+            for jj=1:no_ts_stripmall
+                if (stripmall_penetration(jj) <= (regional_data.ts_penetration/100))
+                    for jjj=1:length(ts_stripmall_array{jj})
+                        for jjjj=1:length(ts_stripmall_array{jj}{jjj})
+                            if (~isempty(ts_stripmall_array{jj}{jjj}{jjjj}))
+                                parent = ts_stripmall_array{jj}{jjj}{jjjj};
+                                fprintf(write_file,'object thermal_storage {\n');
+                                fprintf(write_file,'	 parent %s;\n',parent);
+                                fprintf(write_file,'	 name thermal_storage_stripmall_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj);
+                                fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                                fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                                if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
+                                    fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                    fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                    fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                                end
+                                fprintf(write_file,'}\n\n');
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        
+        if (exist('ts_residential_array','var') && ((use_flags.use_ts==3) || (use_flags.use_ts==4)))
+            no_ts_residential=length(ts_residential_array);
+            residential_penetration = rand(no_ts_residential,1);
+            
+            for jj=1:no_ts_residential
+                if (residential_penetration(jj) <= (regional_data.ts_penetration/100))
+                    for jjj=1:length(ts_residential_array{jj})
+                        if (~isempty(ts_residential_array{jj}{jjj}))
+                            parent = ts_residential_array{jj}{jjj};
+                            fprintf(write_file,'object thermal_storage {\n');
+                            fprintf(write_file,'	 parent %s\n',parent);  %semicolon in the string
+                            fprintf(write_file,'	 name thermal_storage_residential_%.0f_%.0f;\n',jj,jjj);
+                            fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                            fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                            if (use_flags.use_ts==4)
+                                fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                            end
+                            fprintf(write_file,'}\n\n');
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
@@ -3595,7 +3741,12 @@ for tax_ind=1:no_of_tax
             fprintf(write_file,'//Current Power Factor %.3f\n',tech_data.c_i_pf);
             fprintf(write_file,'//Power Power Factor %.3f\n',tech_data.c_p_pf);
         end
-
+        
+        if (use_flags.use_ts ~= 0)
+            fprintf(write_file,'\n//Thermal Storage Mode = %d\n',use_flags.use_ts);
+            fprintf(write_file,'//Thermal Storage SOC = %0.2f\n',tech_data.ts_SOC);
+            fprintf(write_file,'//Thermal Storage k value = %0.2f\n',tech_data.k_ts);
+        end
 
         fprintf(write_file,'\n//Residential skews +/-%.3f, max:%f\n',tech_data.residential_skew_std,tech_data.residential_skew_max);
         fprintf(write_file,'//Commercial skews +/-%.3f, max:%f\n',tech_data.commercial_skew_std,tech_data.commercial_skew_max);

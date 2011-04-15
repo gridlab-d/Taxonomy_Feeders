@@ -194,7 +194,45 @@ elseif data.tech_flag == 8
     
 % Thermal
 elseif data.tech_flag == 9
+    %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 1;
+    data.measure_loads = 1;
     
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
+    
+    %Turn on energy storage
+    %1 = add thermal storage using the defaults, 2 = add thermal storage with a randomized schedule, 0 = none
+    %3 = add thermal storage to all houses using defaults, 4 = ass thermal storage to all houses with a randomized schedule
+    use_flags.use_ts = 2;
+    
+    %Set initial state of charge
+    data.ts_SOC = 100;
+    
+    %Set thermal losses - no losses
+    data.k_ts = 0;
 % PHEV
 elseif data.tech_flag == 10
     

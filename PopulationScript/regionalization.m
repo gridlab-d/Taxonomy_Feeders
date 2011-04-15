@@ -183,6 +183,8 @@ data.no_heat_sch = 9;
 data.one_story = one_story;
 data.over_sizing_factor = over_sizing_factor(region);
 data.dispatch_order = dispatch_order(region,:);
+
+data.ts_penetration = 10; %0-100, percent of buildings utilizing thermal storage - for all regions
 end
 
 
