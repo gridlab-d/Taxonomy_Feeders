@@ -3766,6 +3766,24 @@ for tax_ind=1:no_of_tax
     clear config_final;
     clear phase_S_houses;
     clear load_houses;
+    
+    if (use_flags.use_ts~=0)
+        if (exist('ts_residential_array','var'))
+            clear ts_residential_array;
+        end
+        
+        if (exist('ts_office_array','var'))
+            clear ts_office_array;
+        end
+        
+        if (exist('ts_bigbox_array','var'))
+            clear ts_bigbox_array;
+        end
+        
+        if (exist('ts_stripmall_array','var'))
+            clear ts_stripmall_array;
+        end
+    end
     fclose('all');
 end
 
