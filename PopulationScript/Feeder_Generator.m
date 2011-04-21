@@ -7,11 +7,11 @@ clc;
 %     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
 %     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
 %     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R2-25.00-1.glm'};
+taxonomy_files = {'R1-12.47-4.glm'};
 %taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 %Set technology to test
-TechnologyToTest=4;
+TechnologyToTest=9;
 % 0 - Base
 % 1 - CVR
 % 2 - Automation
@@ -34,18 +34,18 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    %taxonomy_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
     %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
-    %taxonomy_directory = 'C:\Code\Taxonomy_Feeders\'; %Frank
+    taxonomy_directory = 'C:\Code\Taxonomy_Feeders\'; %Frank
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-   output_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\x64\Release\';% Jason
+   %output_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\x64\Release\';% Jason
    %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
-   %output_directory = 'C:\Code\Taxonomy_Feeders\Extracted\'; % Frank
+   output_directory = 'C:\Code\Taxonomy_Feeders\Extracted\'; % Frank
    
     %% Get the region - this will only work with the taxonomy feeders
     
@@ -3239,49 +3239,91 @@ for tax_ind=1:no_of_tax
     if (use_flags.use_ts~=0)
         
         if (exist('ts_office_array','var'))
-            no_ts_office=length(ts_office_array);
+            no_ts_office_length=length(ts_office_array);
+            no_ts_office=sum(cellfun('prodofsize',ts_office_array));
             office_penetration = rand(no_ts_office,1);
+            office_count=1;
             
-            for jj=1:no_ts_office
-                if (office_penetration(jj) <= (regional_data.ts_penetration/100))
+            for jj=1:no_ts_office_length
+                if (~isempty(ts_office_array{jj}))
                     for jjj=1:length(ts_office_array{jj})
-                        for jjjj=1:length(ts_office_array{jj}{jjj})
-                            for jjjjj=1:length(ts_office_array{jj}{jjj}{jjjj})
-                                if (~isempty(ts_office_array{jj}{jjj}{jjjj}{jjjjj}))
-                                    parent = ts_office_array{jj}{jjj}{jjjj}{jjjjj};
-                                    fprintf(write_file,'object thermal_storage {\n');
-                                    fprintf(write_file,'	 parent %s;\n',parent);
-                                    fprintf(write_file,'	 name thermal_storage_office_%.0f_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj,jjjjj);
-                                    fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
-                                    fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
-                                    if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
-                                        fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
-                                        fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
-                                        fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                        if (office_penetration(office_count) <= (regional_data.ts_penetration/100))
+                            for jjjj=1:length(ts_office_array{jj}{jjj})
+                                for jjjjj=1:length(ts_office_array{jj}{jjj}{jjjj})
+                                    if (~isempty(ts_office_array{jj}{jjj}{jjjj}{jjjjj}))
+                                        parent = ts_office_array{jj}{jjj}{jjjj}{jjjjj};
+                                        fprintf(write_file,'object thermal_storage {\n');
+                                        fprintf(write_file,'	 parent %s;\n',parent);
+                                        fprintf(write_file,'	 name thermal_storage_office_%.0f_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj,jjjjj);
+                                        fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                                        fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                                        if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
+                                            fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                            fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                            fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                                        end
+                                        fprintf(write_file,'}\n\n');
                                     end
-                                    fprintf(write_file,'}\n\n');
                                 end
                             end
                         end
+                    office_count = office_count + 1;
                     end
                 end
             end
         end
         
         if (exist('ts_bigbox_array','var'))
-            no_ts_bigbox=length(ts_bigbox_array);
+            no_ts_bigbox_length=length(ts_bigbox_array);
+            no_ts_bigbox=sum(~cellfun('isempty',ts_bigbox_array));
             bigbox_penetration = rand(no_ts_bigbox,1);
+            bigbox_count=1;
+
+            for jj=1:no_ts_bigbox_length
+                if (~isempty(ts_bigbox_array{jj}))
+                    if (bigbox_penetration(bigbox_count) <= (regional_data.ts_penetration/100))
+                        for jjj=1:length(ts_bigbox_array{jj})
+                            for jjjj=1:length(ts_bigbox_array{jj}{jjj})
+                                for jjjjj=1:length(ts_bigbox_array{jj}{jjj}{jjjj})
+                                    if (~isempty(ts_bigbox_array{jj}{jjj}{jjjj}{jjjjj}))
+                                        parent = ts_bigbox_array{jj}{jjj}{jjjj}{jjjjj};
+                                        fprintf(write_file,'object thermal_storage {\n');
+                                        fprintf(write_file,'	 parent %s;\n',parent);
+                                        fprintf(write_file,'	 name thermal_storage_bigbox_%.0f_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj,jjjjj);
+                                        fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                                        fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                                        if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
+                                            fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                            fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                            fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                                        end
+                                        fprintf(write_file,'}\n\n');
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    bigbox_count = bigbox_count + 1;
+                end
+            end
+        end
+
+        if (exist('ts_stripmall_array','var'))
+            no_ts_stripmall_length=length(ts_stripmall_array);
+            no_ts_stripmall=sum(~cellfun('isempty',ts_stripmall_array));
+            stripmall_penetration = rand(no_ts_stripmall,1);
+            stripmall_count=1;
             
-            for jj=1:no_ts_bigbox
-                if (bigbox_penetration(jj) <= (regional_data.ts_penetration/100))
-                    for jjj=1:length(ts_bigbox_array{jj})
-                        for jjjj=1:length(ts_bigbox_array{jj}{jjj})
-                            for jjjjj=1:length(ts_bigbox_array{jj}{jjj}{jjjj})
-                                if (~isempty(ts_bigbox_array{jj}{jjj}{jjjj}{jjjjj}))
-                                    parent = ts_bigbox_array{jj}{jjj}{jjjj}{jjjjj};
+            for jj=1:no_ts_stripmall_length
+                if (~isempty(ts_stripmall_array{jj}))
+                    if (stripmall_penetration(stripmall_count) <= (regional_data.ts_penetration/100))
+                        for jjj=1:length(ts_stripmall_array{jj})
+                            for jjjj=1:length(ts_stripmall_array{jj}{jjj})
+                                if (~isempty(ts_stripmall_array{jj}{jjj}{jjjj}))
+                                    parent = ts_stripmall_array{jj}{jjj}{jjjj};
                                     fprintf(write_file,'object thermal_storage {\n');
                                     fprintf(write_file,'	 parent %s;\n',parent);
-                                    fprintf(write_file,'	 name thermal_storage_bigbox_%.0f_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj,jjjjj);
+                                    fprintf(write_file,'	 name thermal_storage_stripmall_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj);
                                     fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
                                     fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
                                     if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
@@ -3294,34 +3336,7 @@ for tax_ind=1:no_of_tax
                             end
                         end
                     end
-                end
-            end
-        end
-
-        if (exist('ts_stripmall_array','var'))
-            no_ts_stripmall=length(ts_stripmall_array);
-            stripmall_penetration = rand(no_ts_stripmall,1);
-            
-            for jj=1:no_ts_stripmall
-                if (stripmall_penetration(jj) <= (regional_data.ts_penetration/100))
-                    for jjj=1:length(ts_stripmall_array{jj})
-                        for jjjj=1:length(ts_stripmall_array{jj}{jjj})
-                            if (~isempty(ts_stripmall_array{jj}{jjj}{jjjj}))
-                                parent = ts_stripmall_array{jj}{jjj}{jjjj};
-                                fprintf(write_file,'object thermal_storage {\n');
-                                fprintf(write_file,'	 parent %s;\n',parent);
-                                fprintf(write_file,'	 name thermal_storage_stripmall_%.0f_%.0f_%.0f;\n',jj,jjj,jjjj);
-                                fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
-                                fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
-                                if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
-                                    fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
-                                    fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
-                                    fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
-                                end
-                                fprintf(write_file,'}\n\n');
-                            end
-                        end
-                    end
+                    stripmall_count = stripmall_count + 1;
                 end
             end
         end
