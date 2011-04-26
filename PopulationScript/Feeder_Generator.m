@@ -3259,7 +3259,7 @@ for tax_ind=1:no_of_tax
                                         fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
                                         if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
                                             fprintf(write_file,'     discharge_schedule_type EXTERNAL;\n');
-                                            fprintf(write_file,'     charge_schedule_type EXTERNAL;\n');
+                                            fprintf(write_file,'     recharge_schedule_type EXTERNAL;\n');
                                             fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
                                             fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
                                             fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
@@ -3296,7 +3296,7 @@ for tax_ind=1:no_of_tax
                                         fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
                                         if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
                                             fprintf(write_file,'     discharge_schedule_type EXTERNAL;\n');
-                                            fprintf(write_file,'     charge_schedule_type EXTERNAL;\n');
+                                            fprintf(write_file,'     recharge_schedule_type EXTERNAL;\n');
                                             fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
                                             fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
                                             fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
@@ -3332,7 +3332,7 @@ for tax_ind=1:no_of_tax
                                     fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
                                     if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
                                         fprintf(write_file,'     discharge_schedule_type EXTERNAL;\n');
-                                        fprintf(write_file,'     charge_schedule_type EXTERNAL;\n');
+                                        fprintf(write_file,'     recharge_schedule_type EXTERNAL;\n');
                                         fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
                                         fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
                                         fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
@@ -3366,7 +3366,7 @@ for tax_ind=1:no_of_tax
                                 fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
                                 if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
                                     fprintf(write_file,'     discharge_schedule_type EXTERNAL;\n');
-                                    fprintf(write_file,'     charge_schedule_type EXTERNAL;\n');
+                                    fprintf(write_file,'     recharge_schedule_type EXTERNAL;\n');
                                     fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
                                     fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
                                     fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
