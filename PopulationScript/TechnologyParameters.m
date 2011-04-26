@@ -225,7 +225,7 @@ elseif data.tech_flag == 9
     
     %Turn on energy storage
     %1 = add thermal storage using the defaults, 2 = add thermal storage with a randomized schedule, 0 = none
-    %3 = add thermal storage to all houses using defaults, 4 = ass thermal storage to all houses with a randomized schedule
+    %3 = add thermal storage to all houses using defaults, 4 = add thermal storage to all houses with a randomized schedule
     use_flags.use_ts = 2;
     
     %Set initial state of charge

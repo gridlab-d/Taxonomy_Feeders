@@ -3342,25 +3342,30 @@ for tax_ind=1:no_of_tax
         end
         
         if (exist('ts_residential_array','var') && ((use_flags.use_ts==3) || (use_flags.use_ts==4)))
-            no_ts_residential=length(ts_residential_array);
+            no_ts_residential_length=length(ts_residential_array);
+            no_ts_residential=sum(cellfun('prodofsize',ts_residential_array));
             residential_penetration = rand(no_ts_residential,1);
-            
-            for jj=1:no_ts_residential
-                if (residential_penetration(jj) <= (regional_data.ts_penetration/100))
+            residential_count=1;
+
+            for jj=1:no_ts_residential_length
+                if (~isempty(ts_residential_array{jj}))
                     for jjj=1:length(ts_residential_array{jj})
                         if (~isempty(ts_residential_array{jj}{jjj}))
-                            parent = ts_residential_array{jj}{jjj};
-                            fprintf(write_file,'object thermal_storage {\n');
-                            fprintf(write_file,'	 parent %s\n',parent);  %semicolon in the string
-                            fprintf(write_file,'	 name thermal_storage_residential_%.0f_%.0f;\n',jj,jjj);
-                            fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
-                            fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
-                            if (use_flags.use_ts==4)
-                                fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
-                                fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
-                                fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                            if (residential_penetration(residential_count) <= (regional_data.ts_penetration/100))
+                                parent = ts_residential_array{jj}{jjj};
+                                fprintf(write_file,'object thermal_storage {\n');
+                                fprintf(write_file,'	 parent %s;\n',parent);
+                                fprintf(write_file,'	 name thermal_storage_residential_%.0f_%.0f;\n',jj,jjj);
+                                fprintf(write_file,'	 SOC %0.2f;\n', tech_data.ts_SOC);
+                                fprintf(write_file,'	 k %.2f;\n', tech_data.k_ts);
+                                if ((use_flags.use_ts==2) || (use_flags.use_ts==4))
+                                    fprintf(write_file,'	 schedule_skew %.0f; \n', 900*(9*rand(1)-4));
+                                    fprintf(write_file,'	 recharge_time ts_recharge_schedule*1;\n');
+                                    fprintf(write_file,'	 discharge_time ts_discharge_schedule*1;\n');
+                                end
+                                fprintf(write_file,'}\n\n');
                             end
-                            fprintf(write_file,'}\n\n');
+                            residential_count = residential_count + 1;
                         end
                     end
                 end
