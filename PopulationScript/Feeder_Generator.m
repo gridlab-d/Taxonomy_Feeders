@@ -745,7 +745,7 @@ for tax_ind=1:no_of_tax
     if (use_flags.use_commercial == 1)
         fprintf(write_file,'#include "commercial_schedules.glm";\n');
     end
-    if (use_flags.use_market == 1)
+    if (use_flags.use_market == 1 || use_flags.use_market == 2)
         fprintf(write_file,'#include "daily_elasticity_schedules.glm";\n');
     end
     if ((use_flags.use_ts == 2) || (use_flags.use_ts == 4))
@@ -1824,7 +1824,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'                observation_property current_market.clearing_price;\n');
                         fprintf(write_file,'                state_property multiplier;\n');
                         if (use_flags.use_market == 2) %CPP
-                            fprintf(write_file,'                critical_day %s.value;\n',CPP_flag_name);
+                            fprintf(write_file,'                critical_day %s.value;\n',char(CPP_flag_name));
                             fprintf(write_file,'                first_tier_hours %.0f;\n',taxonomy_data.TOU_hours(1)); 
                             fprintf(write_file,'                second_tier_hours %.0f;\n',taxonomy_data.TOU_hours(2));
                             fprintf(write_file,'                third_tier_hours %.0f;\n',taxonomy_data.TOU_hours(3)); 

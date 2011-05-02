@@ -91,7 +91,7 @@ elseif data.tech_flag == 4
     data.measure_loads = 1;
     
     % adds in the market
-    use_flags.use_market = 1;
+    use_flags.use_market = 2;
     
     % adds in customer/technology interactions
     data.use_tech = 1;
@@ -118,7 +118,7 @@ elseif data.tech_flag == 5
     data.measure_EOL_voltage = 0;
     data.measure_loads = 1;
     data.include_stats = 1;
-    use_flags.use_market = 1;
+    use_flags.use_market = 2;
     data.use_tech = 0;
     data.meter_consumption = 2;
     data.dump_voltage = 0;   

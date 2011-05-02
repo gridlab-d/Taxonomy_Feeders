@@ -35,31 +35,31 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     
     % TOU/CPP pricing information
     % these first values are special to GC since it spans 5 regions
-    reg_TOU_prices = [0.067963,0.135925;
-                      0.070366,0.140733;
-                      0.052073,0.104146;
-                      0.056109,0.112218;
-                      0.057159,0.114317];
-    reg_CPP_prices = [0.062578,0.125157,0.625783;
-                      0.062985,0.125969,0.629846;
-                      0.047060,0.094120,0.470602;
-                      0.050696,0.101391,0.506957;
-                      0.052585,0.105169,0.525845];
+    reg_TOU_prices = [0.0679464937745325,0.135892987549065;
+                      0.0703506939871951,0.140701387974390;
+                      0.0515595729094486,0.103119145818897;
+                      0.0560918102741459,0.112183620548292;
+                      0.0571388828426579,0.114277765685316];
+    reg_CPP_prices = [0.0625639941313420,0.125127988262684,0.625639941313420;
+                      0.0629717969806013,0.125943593961203,0.629717969806013;
+                      0.0465359171662684,0.0930718343325367,0.465359171662684;
+                      0.0506986982511458,0.101397396502292,0.506986982511458;
+                      0.0525808245538562,0.105161649107712,0.525808245538562];
     reg_TOU_hours = [12,12,6;
                      16,8,6;
                      15,9,6;
                      14,10,6;
                      16,8,6];
-    reg_TOU_stats = [0.101944,0.062031;
-                     0.099654,0.062596;
-                     0.074837,0.046766;
-                     0.081813,0.050356;
-                     0.080949,0.052260];
-    reg_CPP_stats = [0.098356,0.062031;
-                     0.094147,0.062596;
-                     0.071249,0.046766;
-                     0.077729,0.050356;
-                     0.078901,0.052260];             
+    reg_TOU_stats = [0.101919740661791,0.0339737303511208;
+                     0.0996314473133507,0.0346784230959517;
+                     0.0740992769135382,0.0255757281833252;
+                     0.0817877852904681,0.0279476806438846;
+                     0.0809207311660888,0.0281658394842305];
+    reg_CPP_stats = [0.0983331629072295,0.0339737303511208;
+                     0.0941279251314418,0.0346784230959517;
+                     0.0704555057370235,0.0255757281833252;
+                     0.0777333866172869,0.0279476806438846;
+                     0.0785958818752267,0.0281658394842305];             
     data.TOU_prices = reg_TOU_prices(region,:); % 1st, 2nd tier price
     data.CPP_prices = reg_CPP_prices(region,:); % 1st, 2nd, and CPP tier prices
     data.TOU_hours = reg_TOU_hours(region,:); % hours at each tier (first 2 need to sum to 24)
@@ -83,11 +83,11 @@ elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 7319; %Peak in kVa base .85 pf of 29 (For emissions)
     
-    data.TOU_prices = [0.069669,0.139338]; % 1st, 2nd tier price
-    data.CPP_prices = [0.064396,0.128791,0.643956]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0763727525667170,0.152745505133434]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0706647954267086,0.141329590853417,0.706647954267086]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [12,12,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.104504,0.063897]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.101225,0.063897];
+    data.TOU_stats = [0.114559128850046,0.0381869197030888]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.111065364943163,0.0381869197030888];
     data.TOU_price_player = {'R1_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R1_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R1.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -105,11 +105,11 @@ elseif (strcmp(file_to_extract,'R1-12.47-2.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 2670;
     
-    data.TOU_prices = [0.074143,0.148287]; % 1st, 2nd tier price
-    data.CPP_prices = [0.068626,0.137246,0.686228]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0741445061731195,0.148289012346239]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0687117461333822,0.137423492266764,0.687117461333822]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [12,12,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.111215,0.068203]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.107856,0.068203];
+    data.TOU_stats = [0.111216759259623,0.0370727806515196]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.107995715746578,0.0370727806515196];
     data.TOU_price_player = {'R1_1247_2_t0_TOU.player'};
     data.CPP_price_player = {'R1_1247_2_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R1.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -126,11 +126,11 @@ elseif (strcmp(file_to_extract,'R1-12.47-3.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 1240;
     
-    data.TOU_prices = [0.066207,0.132415]; % 1st, 2nd tier price
-    data.CPP_prices = [0.060679,0.121357,0.606787]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0661741245743447,0.132348249148689]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0606465277786443,0.121293055557289,0.606465277786443]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [12,12,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.099311,0.060148]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.095370,0.060148];
+    data.TOU_stats = [0.0992611868615855,0.0330875331399860]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0953194401766627,0.0330875331399860];
     data.TOU_price_player = {'R1_1247_3_t0_TOU.player'};
     data.CPP_price_player = {'R1_1247_3_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R1.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -146,11 +146,11 @@ elseif (strcmp(file_to_extract,'R1-12.47-4.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 5117;
     
-    data.TOU_prices = [0.071873,0.143746]; % 1st, 2nd tier price
-    data.CPP_prices = [0.066437,0.132874,0.664368]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0718787416409219,0.143757483281844]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0665234113265357,0.133046822653071,0.665234113265357]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [12,12,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.107810,0.065856]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.104420,0.065856];
+    data.TOU_stats = [0.107818112461318,0.0359398822636768]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.104556263293950,0.0359398822636768];
     data.TOU_price_player = {'R1_1247_4_t0_TOU.player'};
     data.CPP_price_player = {'R1_1247_4_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R1.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -169,11 +169,11 @@ elseif (strcmp(file_to_extract,'R1-25.00-1.glm')~=0)
     data.voltage_regulation = {14136;12000;16000;120;120};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 2339;
     
-    data.TOU_prices = [0.061023,0.122046]; % 1st, 2nd tier price
-    data.CPP_prices = [0.056094,0.112189,0.560943]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0609619919578902,0.121923983915780]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0560306702580464,0.112061340516093,0.560306702580464]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [12,12,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.091534,0.055604]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.088165,0.055604];
+    data.TOU_stats = [0.0914429879367894,0.0304814297455434]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0880645985408123,0.0304814297455434];
     data.TOU_price_player = {'R1_2500_1_t0_TOU.player'};
     data.CPP_price_player = {'R1_2500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R1.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -190,11 +190,11 @@ elseif (strcmp(file_to_extract,'R2-12.47-1.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 6374;
     
-    data.TOU_prices = [0.068507,0.137013]; % 1st, 2nd tier price
-    data.CPP_prices = [0.061270,0.122541,0.612703]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0684432069484743,0.136886413896949]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0612285745614413,0.122457149122883,0.612285745614413]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.097020,0.060893]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.091585,0.060893];
+    data.TOU_stats = [0.0969300426274234,0.0337381531592989]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0915222203998253,0.0337381531592989];
     data.TOU_price_player = {'R2_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R2_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R2.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -213,11 +213,11 @@ elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 5889;
     
-    data.TOU_prices = [0.080420,0.160839]; % 1st, 2nd tier price
-    data.CPP_prices = [0.071685,0.143370,0.716849]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0803695797422817,0.160739159484563]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0716841380186692,0.143368276037338,0.716841380186692]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.113891,0.071243]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.107152,0.071243];
+    data.TOU_stats = [0.113820306465538,0.0396170973217869]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.107150811951885,0.0396170973217869];
     data.TOU_price_player = {'R2_1247_2_t0_TOU.player'};
     data.CPP_price_player = {'R2_1247_2_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R2.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -235,11 +235,11 @@ elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 3424;
     
-    data.TOU_prices = [0.072783,0.145566]; % 1st, 2nd tier price
-    data.CPP_prices = [0.065530,0.131060,0.655301]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0728417314105072,0.145683462821014]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0657130218877896,0.131426043775579,0.657130218877896]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.103076,0.065126]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.097952,0.065126];
+    data.TOU_stats = [0.103159282644206,0.0359063463020671]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0982254072617355,0.0359063463020671];
     data.TOU_price_player = {'R2_1247_3_t0_TOU.player'};
     data.CPP_price_player = {'R2_1247_3_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R2.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -257,11 +257,11 @@ elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)
     data.voltage_regulation = {14136;12000;16000;120;120};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 17164;
     
-    data.TOU_prices = [0.072782,0.145565]; % 1st, 2nd tier price
-    data.CPP_prices = [0.065155,0.130332,0.651659]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0727171707292849,0.145434341458570]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0651246353369309,0.130249270673862,0.651246353369309]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.103075,0.064764]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.097408,0.064764];
+    data.TOU_stats = [0.102982878400784,0.0358449457989571]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0973459086946885,0.0358449457989571];
     data.TOU_price_player = {'R2_2500_1_t0_TOU.player'};
     data.CPP_price_player = {'R2_2500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R2.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -277,11 +277,11 @@ elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)
     data.voltage_regulation = {19526;15000;25000;166;166};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12800;
     
-    data.TOU_prices = [0.062754,0.125509]; % 1st, 2nd tier price
-    data.CPP_prices = [0.056066,0.112133,0.560665]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0627307302459911,0.125461460491982]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0560400739353941,0.112080147870788,0.560400739353941]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.088873,0.055721]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.083806,0.055721];
+    data.TOU_stats = [0.0888399686088443,0.0309222650310128]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0837666405706118,0.0309222650310128];
     data.TOU_price_player = {'R2_3500_1_t0_TOU.player'};
     data.CPP_price_player = {'R2_3500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R2.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -297,11 +297,11 @@ elseif (strcmp(file_to_extract,'R3-12.47-1.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 9387;
     
-    data.TOU_prices = [0.051515,0.103029]; % 1st, 2nd tier price
-    data.CPP_prices = [0.046630,0.093259,0.466297]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0511170713581922,0.102234142716384]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0461945160363975,0.0923890320727950,0.461945160363975]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [15,9,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.074035,0.046338]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.070598,0.046338];
+    data.TOU_stats = [0.0734633320612581,0.0253562287042416]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0699386234936254,0.0253562287042416];
     data.TOU_price_player = {'R3_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R3_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R3.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -317,11 +317,11 @@ elseif (strcmp(file_to_extract,'R3-12.47-2.glm')~=0)
     data.capacitor_outtage={};
     data.emissions_peak = 4412;
     
-    data.TOU_prices = [0.049997,0.099993]; % 1st, 2nd tier price
-    data.CPP_prices = [0.045188,0.090375,0.451876]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0496496510357668,0.0992993020715336]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0448002313223362,0.0896004626446724,0.448002313223362]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [15,9,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.071853,0.044905]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.068414,0.044905];
+    data.TOU_stats = [0.0713544165158740,0.0246283261794586]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0678276726270469,0.0246283261794586];
     data.TOU_price_player = {'R3_1247_2_t0_TOU.player'};
     data.CPP_price_player = {'R3_1247_2_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R3.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -342,11 +342,11 @@ elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 8594;
     
-    data.TOU_prices = [0.048945,0.097891]; % 1st, 2nd tier price
-    data.CPP_prices = [0.044697,0.089395,0.446974]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0485992871590750,0.0971985743181499]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0443831246851801,0.0887662493703603,0.443831246851801]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [15,9,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.070342,0.044418]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.067672,0.044418];
+    data.TOU_stats = [0.0698448771739418,0.0241073012855796]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0671961720387704,0.0241073012855796];
     data.TOU_price_player = {'R3_1247_3_t0_TOU.player'};
     data.CPP_price_player = {'R3_1247_3_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R3.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -363,11 +363,11 @@ elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 4769;
     
-    data.TOU_prices = [0.054889,0.109779]; % 1st, 2nd tier price
-    data.CPP_prices = [0.049900,0.099801,0.499004]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0546937208081850,0.109387441616370]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0497054060420871,0.0994108120841742,0.497054060420871]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [14,10,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.080034,0.049566]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.076509,0.049566];
+    data.TOU_stats = [0.0797492231456491,0.0272510841583174]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0762104290271472,0.0272510841583174];
     data.TOU_price_player = {'R4_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R4_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R4.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -385,11 +385,11 @@ elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 2316;
     
-    data.TOU_prices = [0.060443,0.120886]; % 1st, 2nd tier price
-    data.CPP_prices = [0.054693,0.109386,0.546930]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0602135664223527,0.120427132844705]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0544261785494540,0.108852357098908,0.544261785494540]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [14,10,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.088132,0.054326]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.083858,0.054326];
+    data.TOU_stats = [0.0877977412041490,0.0300013409547237]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0834485169289365,0.0300013409547237];
     data.TOU_price_player = {'R4_1247_2_t0_TOU.player'};
     data.CPP_price_player = {'R4_1247_2_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R4.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -407,11 +407,11 @@ elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)
     data.voltage_regulation = {14136;12000;16000;120;120};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 962;
     
-    data.TOU_prices = [0.063358,0.126716]; % 1st, 2nd tier price
-    data.CPP_prices = [0.057415,0.114830,0.574149]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0628885829866714,0.125777165973343]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0569281789290860,0.113856357858172,0.569281789290860]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [14,10,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.092383,0.057030]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.088031,0.057030];
+    data.TOU_stats = [0.0916981979614388,0.0313341649140678]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0872846896421996,0.0313341649140678];
     data.TOU_price_player = {'R4_2500_1_t0_TOU.player'};
     data.CPP_price_player = {'R4_2500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R4.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -427,11 +427,11 @@ elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 9734;
     
-    data.TOU_prices = [0.060984,0.121969]; % 1st, 2nd tier price
-    data.CPP_prices = [0.055972,0.111945,0.559723]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0608951452300210,0.121790290460042]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0558855758101448,0.111771151620290,0.558855758101448]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.086367,0.055627]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.083665,0.055627];
+    data.TOU_stats = [0.0862403923794757,0.0300174382239981]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0835357024575468,0.0300174382239981];
     data.TOU_price_player = {'R5_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -449,11 +449,11 @@ elseif (strcmp(file_to_extract,'R5-12.47-2.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 5071;
     
-    data.TOU_prices = [0.058294,0.116587]; % 1st, 2nd tier price
-    data.CPP_prices = [0.053451,0.106901,0.534505]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0581946715460628,0.116389343092126]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0533605474352869,0.106721094870574,0.533605474352869]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.082556,0.053121]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.079869,0.053121];
+    data.TOU_stats = [0.0824159510511166,0.0286862762458536]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0797613829491006,0.0286862762458536];
     data.TOU_price_player = {'R5_1247_2_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_2_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -476,11 +476,11 @@ elseif (strcmp(file_to_extract,'R5-12.47-3.glm')~=0)
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 10734;
     
-    data.TOU_prices = [0.061978,0.123955]; % 1st, 2nd tier price
-    data.CPP_prices = [0.056728,0.113457,0.567284]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0618789495634350,0.123757899126870]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0566050052756434,0.113210010551287,0.566050052756434]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.087774,0.056379]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.084796,0.056379];
+    data.TOU_stats = [0.0876336671867751,0.0305023912640237]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0846110791518379,0.0305023912640237];
     data.TOU_price_player = {'R5_1247_3_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_3_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -496,11 +496,11 @@ elseif (strcmp(file_to_extract,'R5-12.47-4.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 7636;
     
-    data.TOU_prices = [0.062245,0.124489]; % 1st, 2nd tier price
-    data.CPP_prices = [0.057032,0.114063,0.570317]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0621197890538884,0.124239578107777]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0569147582220864,0.113829516444173,0.569147582220864]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.088152,0.056680]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.085249,0.056680];
+    data.TOU_stats = [0.0879747467930396,0.0306211098334448]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0850740864589801,0.0306211098334448];
     data.TOU_price_player = {'R5_1247_4_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_4_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -518,11 +518,11 @@ elseif (strcmp(file_to_extract,'R5-12.47-5.glm')~=0)
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 9369;
     
-    data.TOU_prices = [0.064703,0.129407]; % 1st, 2nd tier price
-    data.CPP_prices = [0.059200,0.118399,0.591997]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0646365152337579,0.129273030467516]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0591186052986096,0.118237210597219,0.591186052986096]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.091633,0.058835]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.088490,0.058835];
+    data.TOU_stats = [0.0915389628310749,0.0318616959646743]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0883683159802598,0.0318616959646743];
     data.TOU_price_player = {'R5_1247_5_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_5_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -540,11 +540,11 @@ elseif (strcmp(file_to_extract,'R5-25.00-1.glm')~=0)
     data.voltage_regulation = {13000;10000;16000;110;110};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12691;
     
-    data.TOU_prices = [0.066210,0.132419]; % 1st, 2nd tier price
-    data.CPP_prices = [0.060569,0.121137,0.605686]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0661289459655998,0.132257891931200]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0604596399250690,0.120919279850138,0.604596399250690]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.093767,0.060195]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.090536,0.060195];
+    data.TOU_stats = [0.0936525600878457,0.0325973695085529]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0903728451976838,0.0325973695085529];
     data.TOU_price_player = {'R5_2500_1_t0_TOU.player'};
     data.CPP_price_player = {'R5_2500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
@@ -562,11 +562,11 @@ elseif (strcmp(file_to_extract,'R5-35.00-1.glm')~=0)
     data.voltage_regulation = {19526;15000;25000;166;166};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12989;
     
-    data.TOU_prices = [0.065769,0.131538]; % 1st, 2nd tier price
-    data.CPP_prices = [0.060175,0.120349,0.601747]; % 1st, 2nd, and CPP tier prices
+    data.TOU_prices = [0.0656876272407574,0.131375254481515]; % 1st, 2nd tier price
+    data.CPP_prices = [0.0600624783259463,0.120124956651893,0.600624783259463]; % 1st, 2nd, and CPP tier prices
     data.TOU_hours = [16,8,6]; % hours at each tier (first 2 need to sum to 24)
-    data.TOU_stats = [0.093143,0.059804]; % mean and stdev to be set in stub auction
-    data.CPP_stats = [0.089947,0.059084];
+    data.TOU_stats = [0.0930275595258182,0.0323798274120505]; % mean and stdev to be set in stub auction
+    data.CPP_stats = [0.0897791826525565,0.0323798274120505];
     data.TOU_price_player = {'R5_3500_1_t0_TOU.player'};
     data.CPP_price_player = {'R5_3500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
