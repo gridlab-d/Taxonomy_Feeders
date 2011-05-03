@@ -90,6 +90,14 @@ elseif data.tech_flag == 2
     
     %Prints stats at bottom of GLM
     data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
 % FDIR
 elseif data.tech_flag == 3
     
