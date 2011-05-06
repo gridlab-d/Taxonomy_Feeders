@@ -1,0 +1,20 @@
+In order of use:
+
+1) ExtractDatatoMat.m
+This file simply takes all of the *.csv files and loads them into Matlab.  
+
+All of these csv files should be in a single folder (base_path).  Specify which feeders and technologies you are looking for, in string format.  Lists of each can be specified by appending together using ';'.  Outputs will be a series of *.mat files name "feeder_name_tech#.mat", and will be located in your current directory.
+
+2) PostProcessing.m
+This script will take the raw data dumped into the *.mat files created in (1) and break them down into new *.mat files, looking at specific analysis topics (i.e. annual energy consumption, peak load, billing, etc.).
+
+The input *.mat files for each technology should be located in a single file - please don't mix the technologies in a single folder.  Also, don't have other *.mat files in there (because it will try to process them).  Recommend naming your folders 't0', 't1', etc., since the "tech" variable will be used in the naming convention.  Use a different write directory so that the created *.mat files don't get mixed in with the ones we're trying to pull in.  Select the flags that you want for specific outputs (if you didn't record it, then don't try to post process it). The output is a *.mat file that is, for example, a list of annual energy consumption for each feeder in tech 0, or a time-series for the peak day for each in tech 4.
+
+3) tech_study.m (tech = CVR, DR, etc.)
+These are created to create the plots/data tables for the final report.  It brings in specific *.mat files created in (2) and creates the desired outputs.  Please use the CVR and DR as examples - especially the code that formats the plots (set_defaults.m, set_figure_graphics.m, set_figure_size.m, xticklabel_rotate.m).  These should be highly individualized, depending on what you want to look at for your specific technology.
+
+4) set_figure_size.m
+Sets the figure sizing so that it prints out to be ~1/2 page.  Input is just the name of the figure.
+
+5) set_figure_graphics.m
+Also works with setting figure graphic sizing, text movements on the two axes, and putting in labels.  Inputs are 1) an array of the x-axis data lables, 2) name of the figure, and 3) formatting of the y-axis (i.e. 0.1 vs. 0.100) - if you set it to '0', then it will auto-set it.  Also prints the final graphic.
