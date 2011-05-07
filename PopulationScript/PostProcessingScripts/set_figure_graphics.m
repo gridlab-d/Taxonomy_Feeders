@@ -1,9 +1,10 @@
-function [] = set_figure_graphics(xlabels,my_name,yformat)
+function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
     % This file formats the graphics to match in all files
     % xlabels - an array of labels for the x-axis
     % my_name - name of the graphics file
     % yformat - lets you set format of text on y-axis; set to zero and it
     %           won't effect it; be careful with exponentials 
+    % my_leg - lets you add a legend; set to 'none' to provide no legend
     ca = gca;
     cf = gcf;
     
@@ -35,6 +36,10 @@ function [] = set_figure_graphics(xlabels,my_name,yformat)
         set(ca,'YTickLabel',{}); %clears the old ones   
         ticklabely = num2str(ticky',[yformat '\n']);
         set(ca,'YTickLabel',ticklabely);
+    end
+    
+    if (~strcmp(char(my_leg(1,:)),'none'))
+        legend(ca,my_leg);
     end
     
     % Resize the print-out image to only take up half a page minus a little

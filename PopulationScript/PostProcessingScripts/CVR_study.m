@@ -16,10 +16,15 @@ set_defaults();
 write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; %Jason
 %write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
+% flags for types of plots
 plot_energy = 0;
-plot_peak_power = 0;
+plot_peak_power = 1;
 plot_EOL = 0;
-plot_pf = 1;
+plot_pf = 0;
+
+% secondary flags for sub-plots
+plot_monthly = 1;
+    monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
 % the same name)
@@ -47,7 +52,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000,'barwidth',0.9);
     ylabel('Energy Consumption (MWh)');
     %title('Energy Consumption by Feeder');
-    set_figure_graphics(data_labels,fname,0);
+    set_figure_graphics(data_labels,fname,0,'none');
     legend('Base Case','w/CVR')
     hold off;
 
@@ -58,7 +63,7 @@ if (plot_energy == 1)
     bar(energy_reduction / 1000000);
     ylabel('Change in Energy Consumption (MWh)');
     %title('Energy Reduction by Feeder');
-    set_figure_graphics(data_labels,fname,0);
+    set_figure_graphics(data_labels,fname,0,'none');
     hold off;
     
     % Change in Energy Consumption (%)
@@ -68,7 +73,7 @@ if (plot_energy == 1)
     bar(percent_energy_reduction);
     ylabel('Change in Energy Consumption (%)');
     %title('Energy Reduction by Feeder');
-    set_figure_graphics(data_labels,fname,'%.2f');
+    set_figure_graphics(data_labels,fname,'%.2f','none');
     hold off;
 end
 
@@ -98,9 +103,10 @@ if (plot_peak_power == 1)
     bar(peak_power_data / 1000000,'barwidth',0.9);
     ylabel('Peak Load (MW)');
     %title('Peak Demand by Feeder');
-    set_figure_graphics(data_labels,fname,0);
-    legend('Base Case','w/CVR')
+    my_legend = {'Base Case';'w/CVR'};
+    set_figure_graphics(data_labels,fname,0,my_legend);
     hold off;
+    close(fname);
     
 %     %Peak Demand (MVA)
 %     fname = 'Peak Demand MVA';
@@ -128,9 +134,9 @@ if (plot_peak_power == 1)
     bar(peak_power_data(:,2)-peak_power_data(:,1));
     ylabel('Change in Peak Load (MW)');
     %title('Change in Peak Demand by Feeder (MW)');
-    set_figure_graphics(data_labels,fname,0);
+    set_figure_graphics(data_labels,fname,0,'none');
     hold off;  
-
+    close(fname);
 
     % Change in Peak Demand (%)
     fname = 'Delta Peak Demand %';
@@ -139,9 +145,9 @@ if (plot_peak_power == 1)
     bar(delta_peak_power);
     ylabel('Change in Peak Load (%)');
     %title('Change in Peak Demand by Feeder (MW)');
-    set_figure_graphics(data_labels,fname,0);
+    set_figure_graphics(data_labels,fname,0,'none');
     hold off; 
-    
+    close(fname);
 
 %     % Change in Peak Demand (MVA)
 %     fname = 'Delta Peak Demand MVA';
@@ -162,6 +168,53 @@ if (plot_peak_power == 1)
 %     xticklabel_rotate(1:length(data_labels),90,data_labels);
 %     print('-djpeg',fname);
 %     hold off;
+
+    % Plot the monthly peak demand
+    clear data_t0 data_t1;
+    
+    if (plot_monthly == 1)
+        load([write_dir,'peakiest_peak_monthly_t0.mat']);
+        data_t0 = peakiest_peakday_monthly;
+        load([write_dir,'peakiest_peak_monthly_t1.mat']);
+        data_t1 = peakiest_peakday_monthly;
+        
+        clear peakiest_peakday_monthly;
+        
+        [no_feeders cells] = size(data_t0);
+        
+        % forms an array of by feeder (rows) by month (cols) by tech (2
+        % different variables
+        
+        for kkind=1:no_feeders % by feeder
+            clear peak_power_data peak_va_data;
+            for jjind=1:12 % by month
+                peak_power_data(jjind,1) = data_t0{kkind,2}{jjind};
+                peak_power_data(jjind,2) = data_t1{kkind,2}{jjind};
+                peak_va_data(jjind,1) = data_t0{kkind,2}{jjind};
+                peak_va_data(jjind,2) = data_t1{kkind,2}{jjind};
+            end
+            
+            delta_peak_power = 100 * (peak_power_data(:,2) - peak_power_data(:,1)) ./ peak_power_data(:,1);
+            delta_peak_va = 100 * (peak_va_data(:,2) - peak_va_data(:,1)) ./ peak_va_data(:,1);
+            
+            % Peak Demand (MW)
+            fname = ['Peak Demand MW ' char(data_labels(kkind))];
+            set_figure_size(fname);
+            hold on;
+            bar(peak_power_data / 1000000,'barwidth',0.9);
+            ylabel('Peak Load (MW)');
+            %title('Peak Demand by Feeder');
+            my_legend = {'Base Case';'w/CVR'};
+            set_figure_graphics(monthly_labels,fname,0,my_legend);  
+            hold off;
+            close(fname);
+    
+        end
+        
+        
+        
+        
+    end
 
 end
 
@@ -207,7 +260,7 @@ if (plot_EOL == 1)
     data_labels = strrep(data_t0(:,1),'_t0','');
     data_labels = strrep(data_labels,'_','-');
 
-    scrsz = get(0,'ScreenSize');
+    my_legend = {'phase a';'phase b';'phase c'};
     
     % Minimum EOL Voltage Without CVR
     fname = 'Minimum Voltage Without CVR';
@@ -217,8 +270,7 @@ if (plot_EOL == 1)
     ylabel('Voltage (V)');
     %title('Minimum EOL Voltage Without CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0);
-    legend('phase a','phase b','phase c')
+    set_figure_graphics(data_labels,fname,0,my_legend);
     hold off;
 
     % Average EOL Voltage Without CVR
@@ -229,8 +281,7 @@ if (plot_EOL == 1)
     ylabel('Voltage (V)');
     %title('Average EOL Voltage Without CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0);
-    legend('phase a','phase b','phase c')
+    set_figure_graphics(data_labels,fname,0,my_legend);
     hold off;
     
     % Minimum EOL Voltage With CVR
@@ -241,8 +292,7 @@ if (plot_EOL == 1)
     ylabel('Voltage (V)');
    %title('Minimum EOL Voltage With CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0);
-    legend('phase a','phase b','phase c')
+    set_figure_graphics(data_labels,fname,0,my_legend);
     hold off;
     
     % Average EOL Voltage With CVR
@@ -253,8 +303,7 @@ if (plot_EOL == 1)
     ylabel('Voltage (V)');
     %title('Average EOL Voltage With CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0);
-    legend('phase a','phase b','phase c')
+    set_figure_graphics(data_labels,fname,0,my_legend);
     hold off;
 end
 
@@ -296,8 +345,8 @@ if plot_pf ==1
     ylabel('Power Factor');
     
     ylim([.5 1.0]);
-    set_figure_graphics(data_labels,fname,0);
-    legend('phase a','phase b','phase c','total')
+    my_legend = {'phase a';'phase b';'phase c';'total'};
+    set_figure_graphics(data_labels,fname,0,my_legend);
    
     hold off;
 

@@ -7,7 +7,7 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't1';
+tech = 't0';
 cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
 %cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
@@ -22,14 +22,17 @@ data_files = temp.mat;
 
 % flags for finding certain information - another script will plot
 find_peak_day = 0; % find the peak day and store day/time and value
-find_peakiest_peak = 0;
+find_peakiest_peak = 1;
 find_peak_15days = 0; % find the 15 peakiest days and store the time series power for each day
 find_peak_15wintdays = 0;
 find_total_energy_consumption = 0; % sum the annual energy consumption
 aggregate_bills = 0;
 find_voltages = 0; % get the average and minimum voltages 
-find_pf = 1; % min, max, and average
-find_monthly_values = 0;
+find_pf = 0; % min, max, and average
+
+% secondary flag which may cross multiple layers of information
+find_monthly_values = 1; % This grabs monthly values for each applicable data point
+
     
 % outer loop for opening each file
 for file_ind = 1:no_files
@@ -38,6 +41,37 @@ for file_ind = 1:no_files
     % load the current file into the workspace
     current_file = char(strrep(data_files(file_ind),'.mat',''));
     load(current_file);
+    
+    % find the indexes for the start and end of each month
+    %   we'll just do this once to save time, but this may need to be more
+    %   flexible later
+    if (find_monthly_values == 1 && file_ind == 1)
+        eval(['temp_var = ' current_file '.timestamp;']);
+        
+        % find all of the first days, then convert to a double matrix
+        temp_a = strfind(temp_var,'-01 00:00:00');
+        for kkind = 1:length(temp_a)
+            if (isempty(cell2mat(temp_a(kkind))) == 1)
+                temp_a(kkind) = {0};
+            end
+        end
+        
+        temp_b = cell2mat(temp_a);
+        
+        % get the indices of the first days
+        month_ind(:,1) = find(temp_b > 0);
+        
+        % now get the last day index
+        for jjind = 1:12
+            month_ind(jjind,2) = month_ind(jjind + 1,1) - 1;
+        end
+        
+        % get rid of the last one, since it's rolling over to a new year
+        month_ind(13,:) = [];      
+        
+        clear temp_var;
+    end
+    
     
     if (find_peak_day == 1)
         % put the needed data into a temporary variable
@@ -71,6 +105,17 @@ for file_ind = 1:no_files
         peakiest_peakday{file_ind,1} = current_file;
         peakiest_peakday{file_ind,2} = max_power;
         peakiest_peakday{file_ind,3} = max_VA;
+        
+        if (find_monthly_values == 1)
+            for jjind=1:12
+                max_power = max(temp_var_real(month_ind(jjind,1):month_ind(jjind,2)));
+                max_VA = max((month_ind(jjind,1):month_ind(jjind,2)));
+                
+                peakiest_peakday_monthly{file_ind,1} = current_file;   
+                peakiest_peakday_monthly{file_ind,2}{jjind} = max_power;
+                peakiest_peakday_monthly{file_ind,3}{jjind} = max_VA;
+            end
+        end
         
         % clean up my workspace a little
         clear temp_var_real temp_var_imag temp_VA;
@@ -123,6 +168,7 @@ for file_ind = 1:no_files
         eval(['temp_var = ' current_file '.transformerpower_power_out_real;']);
         eval(['temp_var2 = ' current_file '.timestamp;']);
         
+        %TODO: this was only temporary, should probably do it better
         temp_var(11517:29180) = [];
         temp_var2(11517:29180) = [];
         
@@ -371,6 +417,10 @@ end
 if (find_peakiest_peak == 1)
     write_file = [write_dir 'peakiest_peak_' tech '.mat'];
     save(write_file,'peakiest_peakday')
+    if (find_monthly_values == 1)
+        write_file = [write_dir 'peakiest_peak_monthly_' tech '.mat'];
+        save(write_file,'peakiest_peakday_monthly');
+    end
 end
 if (find_peak_15days == 1)
     write_file = [write_dir 'peak_15days_ ' tech '.mat'];

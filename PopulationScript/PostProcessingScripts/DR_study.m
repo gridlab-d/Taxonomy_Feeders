@@ -16,8 +16,11 @@ case_labels = {'Base Case';'CPP w/ Tech';'CPP w/o Tech';'TOU w/ Tech';'TOU w/o T
 % where to write the new data
 write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\test_ProcessedData\';
 
-plot_energy = 1;
-plot_peak_power = 0;
+% flags for type of plots
+plot_energy = 0;
+plot_peak_power = 1;
+
+% secondary flags for sub-plots
 
 % default bar width on two types of plots
 barwidth_4cases = 0.4;
