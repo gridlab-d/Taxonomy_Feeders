@@ -225,7 +225,7 @@ elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)
 elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)    
     data.nom_volt = 12470;
     data.feeder_rating = 1.15*3.435; 
-    data.avg_house = 15000;
+    data.avg_house = 5000;
     data.avg_commercial = 30000;
     data.EOL_points={'R2-12-47-3_node_36','A',1;
                      'R2-12-47-3_node_627','B',1;
