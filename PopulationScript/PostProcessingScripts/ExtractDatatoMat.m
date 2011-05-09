@@ -19,11 +19,11 @@ feeders_to_import = {'R1_1247_1';'R1_1247_2';'R1_1247_3';'R1_1247_4';'R1_2500_1'
 %feeders_to_import = {'R1_1247_1';'R1_1247_2'};
 
 % e.g. _t#_ in the name of the feeder
-technologies_to_import = {'0'};
+technologies_to_import = {'0:1:2'};
 
 % Set the base path for location of data
 %base_path = 'C:\Users\d3x289\Documents\GLD2011\PostAnalysis\(7) TOU without et\Simulation Results\Run1'; % Jason
-base_path = 'C:\Users\d3x289\Documents\GLD2011\PostAnalysis\(7) TOU without et\Simulation Results\Run1'; % Kevin
+base_path = 'C:\Users\d3p313\Desktop\Post Processing Script\Raw Data Files\'; % Kevin
 
 % Make a list of all of the files in the read folder
 file_list = ls(base_path);
@@ -306,4 +306,4 @@ end % end technology index
 
 % clean up everything I'm sure I forgot
 fclose('all');
-clear;
+%clear;
