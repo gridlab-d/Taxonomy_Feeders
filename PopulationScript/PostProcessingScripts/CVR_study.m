@@ -15,13 +15,13 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 1;
+plot_energy = 0;
 plot_peak_power = 1;
-plot_EOL = 1;
-plot_pf = 1;
+plot_EOL = 0;
+plot_pf = 0;
 
 % secondary flags for sub-plots
-plot_monthly = 1;
+plot_monthly = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -44,7 +44,7 @@ if (plot_energy == 1)
     percent_energy_reduction = 100 .* energy_reduction ./ energy_data(:,1);
     
     % Total Energy Consuption
-    fname = 'Total Energy Consumption';
+    fname = 'Annual Energy Consumption';
     set_figure_size(fname);
     hold on;
     bar(energy_data / 1000000,'barwidth',0.9);
@@ -55,7 +55,7 @@ if (plot_energy == 1)
     close(fname);
     
     % Change in Energy Consumption (MWh)
-    fname = 'Total Energy Reduction';
+    fname = 'Change in Annual Energy Consuption (MWh)';
     set_figure_size(fname);
     hold on;
     bar(energy_reduction / 1000000);
@@ -65,7 +65,7 @@ if (plot_energy == 1)
     close(fname);
     
     % Change in Energy Consumption (%)
-    fname = 'Percent Energy Reduction';
+    fname = 'Change in Annual Energy Consuption (%)';
     set_figure_size(fname);
     hold on;
     bar(percent_energy_reduction);
@@ -103,28 +103,28 @@ if (plot_peak_power == 1)
     my_legend = {'Base Case';'w/CVR'};
     set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     hold off;
-    close(fname);
+    %close(fname);
     
   
-    % Change in Peak Demand (kW)
-    fname = 'Change in Peak Demand kW';
-    set_figure_size(fname);
-    hold on;
-    bar((peak_power_data(:,2)-peak_power_data(:,1))/1000);
-    ylabel('Change in Peak Load (kW)');
-    set_figure_graphics(data_labels,fname,1,'none',1,'northeastoutside');
-    hold off;
-    close(fname);
-    
-    % Change in Peak Demand (%)
-    fname = 'Change in Peak Demand %';
-    set_figure_size(fname);
-    hold on;
-    bar(delta_peak_power);
-    ylabel('Change in Peak Load (%)');
-    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
-    hold off;
-    close(fname);
+%     % Change in Peak Demand (kW)
+%     fname = 'Change in Peak Demand kW';
+%     set_figure_size(fname);
+%     hold on;
+%     bar((peak_power_data(:,2)-peak_power_data(:,1))/1000);
+%     ylabel('Change in Peak Load (kW)');
+%     set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
+%     hold off;
+%     close(fname);
+%     
+%     % Change in Peak Demand (%)
+%     fname = 'Change in Peak Demand %';
+%     set_figure_size(fname);
+%     hold on;
+%     bar(delta_peak_power);
+%     ylabel('Change in Peak Load (%)');
+%     set_figure_graphics(data_labels,fname,2,'none',1.25,'northeastoutside');
+%     hold off;
+%     close(fname);
     
     % Plot the monthly peak demand
     clear data_t0 data_t1;
