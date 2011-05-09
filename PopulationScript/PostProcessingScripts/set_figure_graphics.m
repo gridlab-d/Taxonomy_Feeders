@@ -7,7 +7,6 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
     % my_leg - lets you add a legend; set to 'none' to provide no legend
     ca = gca;
     cf = gcf;
-    
     % turns on the y-grid lines
     set(ca,'XGrid','off','YGrid','on','ZGrid','off');
     
