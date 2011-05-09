@@ -21,7 +21,11 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
         ylab_pos_left = ylab_pos_orig(1)*2;
     end
     ylab_pos = [ylab_pos_left ylab_pos_orig(2) ylab_pos_orig(3)];
-    set(ylab,'position',ylab_pos);
+    if (yformat == 1)
+        set(ylab,'position',ylab_pos-2); % Move the label when the format changes
+    else
+        set(ylab,'position',ylab_pos)
+    end
     
     % This puts a border around the figure
     %  Note, this doesn't support sub-titles well
@@ -31,7 +35,10 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
     xticklabel_rotate(1:length(xlabels),90,xlabels);
     
     % This puts the "correct" no. of significant digits on the y-axis
-    if (yformat ~= 0)
+    if (yformat == 1) % Remoces the exponential foramting
+        set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.0f'));
+    elseif (yformat ~= 0)
+        
         ticky = get(ca,'YTick');
         set(ca,'YTickLabel',{}); %clears the old ones   
         ticklabely = num2str(ticky',[yformat '\n']);
