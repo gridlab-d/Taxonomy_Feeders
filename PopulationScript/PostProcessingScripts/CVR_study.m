@@ -4,8 +4,6 @@
 % create 4/02/2011 by Jason Fuller
 
 
-% TODO: Make Y-axis 2 digit precision
-
 clear;
 clc;
 
@@ -17,13 +15,13 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 0;
-plot_EOL = 0;
+plot_energy = 1;
+plot_peak_power = 1;
+plot_EOL = 1;
 plot_pf = 1;
 
 % secondary flags for sub-plots
-plot_monthly = 0;
+plot_monthly = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -62,7 +60,7 @@ if (plot_energy == 1)
     hold on;
     bar(energy_reduction / 1000000);
     ylabel('Change in Energy Consumption (MWh)');
-    set_figure_graphics(data_labels,fname,0,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
     hold off;
     close(fname);
     
@@ -72,7 +70,7 @@ if (plot_energy == 1)
     hold on;
     bar(percent_energy_reduction);
     ylabel('Change in Energy Consumption (%)');
-    set_figure_graphics(data_labels,fname,'%.2f','none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
     hold off;
     close(fname);
 end
@@ -103,7 +101,7 @@ if (plot_peak_power == 1)
     bar(peak_power_data / 1000,'barwidth',0.9);
     ylabel('Peak Load (kW)');
     my_legend = {'Base Case';'w/CVR'};
-    set_figure_graphics(data_labels,fname,1,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     hold off;
     close(fname);
     
@@ -114,7 +112,7 @@ if (plot_peak_power == 1)
     hold on;
     bar((peak_power_data(:,2)-peak_power_data(:,1))/1000);
     ylabel('Change in Peak Load (kW)');
-    set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,'none',1,'northeastoutside');
     hold off;
     close(fname);
     
@@ -124,7 +122,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(delta_peak_power);
     ylabel('Change in Peak Load (%)');
-    set_figure_graphics(data_labels,fname,0,'none',1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
     hold off;
     close(fname);
     
@@ -157,14 +155,14 @@ if (plot_peak_power == 1)
             delta_peak_va = 100 * (peak_va_data(:,2) - peak_va_data(:,1)) ./ peak_va_data(:,1);
             
             % Peak Demand (MW)
-            fname = ['Peak Demand MW ' char(data_labels(kkind))];
+            fname = ['Peak Demand kW ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
-            bar(peak_power_data / 1000000,'barwidth',0.9);
-            ylabel('Peak Load (MW)');
+            bar(peak_power_data / 1000,'barwidth',0.9);
+            ylabel('Peak Load (kW)');
             %title('Peak Demand by Feeder');
             my_legend = {'Base Case';'w/CVR'};
-            set_figure_graphics(monthly_labels,fname,0,my_legend,0);
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
             

@@ -2,8 +2,7 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc)
     % This file formats the graphics to match in all files
     % xlabels - an array of labels for the x-axis
     % my_name - name of the graphics file
-    % yformat - lets you set format of text on y-axis; set to zero and it
-    %           won't effect it; be careful with exponentials 
+    % yformat - 1-removes exponens, 2 set 2 decimal places
     % my_leg - lets you add a legend; set to 'none' to provide no legend
     % offset - moves the yaxis label to the left when the numbering on the
     %          yaxis is too large.
@@ -35,11 +34,9 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc)
     % This puts the "correct" no. of significant digits on the y-axis
     if (yformat == 1) % Remoces the exponential foramting
         set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.0f'));
-    elseif (yformat ~= 0)
-        ticky = get(ca,'YTick');
-        set(ca,'YTickLabel',{}); %clears the old ones   
-        ticklabely = num2str(ticky',[yformat '\n']);
-        set(ca,'YTickLabel',ticklabely);
+    elseif (yformat == 2)
+        set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.2f'));
+
     end
     
     if (~strcmp(char(my_leg(1,:)),'none'))
