@@ -1,15 +1,17 @@
-function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
+function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc)
     % This file formats the graphics to match in all files
     % xlabels - an array of labels for the x-axis
     % my_name - name of the graphics file
     % yformat - lets you set format of text on y-axis; set to zero and it
     %           won't effect it; be careful with exponentials 
     % my_leg - lets you add a legend; set to 'none' to provide no legend
+    % offset - moves the yaxis label to the left when the numbering on the
+    %          yaxis is too large.
+    % leg_loc - Location of the legend.
     ca = gca;
     cf = gcf;
     % turns on the y-grid lines
     set(ca,'XGrid','off','YGrid','on','ZGrid','off');
-    
     % this manually moves the y-axis labels over a little so when saving to
     % a jpg, the text doesn't overlap the axis
     ylab = get(ca,'Ylabel');
@@ -20,11 +22,8 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
         ylab_pos_left = ylab_pos_orig(1)*2;
     end
     ylab_pos = [ylab_pos_left ylab_pos_orig(2) ylab_pos_orig(3)];
-    if (yformat == 1)
-        set(ylab,'position',ylab_pos-2); % Move the label when the format changes
-    else
-        set(ylab,'position',ylab_pos)
-    end
+    set(ylab,'position',ylab_pos-offset); % Move the label when the format changes
+
     
     % This puts a border around the figure
     %  Note, this doesn't support sub-titles well
@@ -37,7 +36,6 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
     if (yformat == 1) % Remoces the exponential foramting
         set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.0f'));
     elseif (yformat ~= 0)
-        
         ticky = get(ca,'YTick');
         set(ca,'YTickLabel',{}); %clears the old ones   
         ticklabely = num2str(ticky',[yformat '\n']);
@@ -45,7 +43,7 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg)
     end
     
     if (~strcmp(char(my_leg(1,:)),'none'))
-        legend(ca,my_leg);
+        legend(ca,my_leg,'location',leg_loc);
     end
     
     % Resize the print-out image to only take up half a page minus a little
