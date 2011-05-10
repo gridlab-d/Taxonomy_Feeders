@@ -1,7 +1,7 @@
-% This script is intended to compare results for the CVR study for the 2011
+% This script is intended to compare results for the Capacitor Automation study for the 2011
 % ARRA Grant Analysis
 
-% create 4/02/2011 by Jason Fuller
+% create 5/10/2011 by Jason Kevin Schneider
 
 
 clear;
