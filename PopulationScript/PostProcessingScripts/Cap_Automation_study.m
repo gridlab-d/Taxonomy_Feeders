@@ -114,7 +114,7 @@ if (plot_peak_power == 1)
     ylabel('Change in Peak Load (kW)');
     set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
     hold off;
-    close(fname);
+    %close(fname);
     
     % Change in Peak Demand (%)
     fname = 'Change in Peak Demand %';
