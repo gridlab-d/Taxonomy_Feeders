@@ -7,13 +7,13 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't2';
-%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+tech = 't1';
+cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
+%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
+%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
 temp = what;
@@ -21,17 +21,17 @@ data_files = temp.mat;
 [no_files,junk] = size(data_files);
 
 % flags for finding certain information - another script will plot
-find_peak_day = 1;                  % find the peak day and store day/time and value
-find_peakiest_peak = 1;             % finds the absolute peak W and VA
-find_peak_15days = 1;               % find the 15 peakiest days and store the time series power for each day
-find_peak_15wintdays = 1;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 1;  % sum the annual energy consumption
-aggregate_bills = 1;                % adds all the bills together to determine total revenue for the utility
+find_peak_day = 0;                  % find the peak day and store day/time and value
+find_peakiest_peak = 0;             % finds the absolute peak W and VA
+find_peak_15days = 0;               % find the 15 peakiest days and store the time series power for each day
+find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
+find_total_energy_consumption = 0;  % sum the annual energy consumption
+aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
 find_voltages = 1;                  % get the average and minimum of the lowest EOL voltage per phase
     find_all_voltages = 1;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
-find_pf = 1;                        % min, max, and average
-find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month
-find_losses = 1;                    % gathers the system losses
+find_pf = 0;                        % min, max, and average
+find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month
+find_losses = 0;                    % gathers the system losses
 
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
@@ -92,7 +92,8 @@ for file_ind = 1:no_files
         % clean up my workspace a little
         clear temp_var temp_var2;
     end
-
+    % end peak day
+    
     %% Absolute system peak
     if (find_peakiest_peak == 1)
         % put the needed data into a temporary variable
@@ -123,6 +124,7 @@ for file_ind = 1:no_files
         % clean up my workspace a little
         clear temp_var_real temp_var_imag temp_VA;
     end
+    % end peakiest peak
     
     %% Peak days annual (15 of 'em)
     if (find_peak_15days == 1)
@@ -166,6 +168,7 @@ for file_ind = 1:no_files
         % clean up my workspace a little
         clear temp_var temp_var2;
     end
+    % end 15 peak
     
     %% Peak winter days (15 of 'em)
     if (find_peak_15wintdays == 1)
@@ -212,6 +215,7 @@ for file_ind = 1:no_files
         % clean up my workspace a little
         clear temp_var temp_var2;
     end
+    % end peak 15 winter
     
     %% Energy consumption
     if (find_total_energy_consumption == 1)
@@ -234,6 +238,7 @@ for file_ind = 1:no_files
         
         clear temp_var;
     end
+    % end energy consumption
     
     %% Bill Aggregation
     if (aggregate_bills == 1)
@@ -288,6 +293,7 @@ for file_ind = 1:no_files
         % now take out the "fee" ($25 for commercial, $10 residential)       
         total_annual_revenue{file_ind,2} = temp_total_ann_rev - 25*(a3p*b3p + a1p*b1p) - 10*asp*bsp;
     end
+    % end annual revenue
     
     %% EOL Voltages
     if (find_voltages == 1)
@@ -329,6 +335,11 @@ for file_ind = 1:no_files
             eval(['temp_var1 = ' current_file '.' char(field_names(temp_ind(1))) ';']);
             eval(['temp_var2 = ' current_file '.' char(field_names(temp_ind(2))) ';']);
             
+            my_name = strrep(char(field_names(temp_ind(1))),'_real','');
+            my_name(1:9)=''; %strip off the EOLVolt1
+            my_name_min = [my_name '_min'];
+            my_name_avg = [my_name '_avg'];
+            
             volt_mag = sqrt(temp_var1.^2 + temp_var2.^2);
             volt_ang_deg = tan(temp_var1./temp_var2) * 180 / pi;
             
@@ -344,7 +355,8 @@ for file_ind = 1:no_files
                 if (find_all_voltages == 1)
                     all_voltages(A_ind,1) = min_A_test;
                     all_voltages(A_ind,4) = avg_A_test;
-                    node_names{A_ind,1} = char(field_names(temp_ind(1)));
+                    node_names{A_ind,1} = my_name_min;
+                    node_names{A_ind,4} = my_name_avg;
                 end
                 A_ind = A_ind + 1;
             elseif (strfind(char(field_names(temp_ind(1))),'_B') ~= 0)
@@ -357,7 +369,8 @@ for file_ind = 1:no_files
                 if (find_all_voltages == 1)
                     all_voltages(B_ind,2) = min_B_test;
                     all_voltages(B_ind,5) = avg_B_test;
-                    node_names{B_ind,2} = char(field_names(temp_ind(1)));
+                    node_names{B_ind,2} = my_name_min;
+                    node_names{B_ind,5} = my_name_avg;
                 end
                 B_ind = B_ind + 1;
             elseif (strfind(char(field_names(temp_ind(1))),'_C') ~= 0)
@@ -371,7 +384,8 @@ for file_ind = 1:no_files
                 if (find_all_voltages == 1)
                     all_voltages(C_ind,3) = min_C_test;
                     all_voltages(C_ind,6) = avg_C_test;
-                    node_names{C_ind,3} = char(field_names(temp_ind(1)));
+                    node_names{C_ind,3} = my_name_min;
+                    node_names{C_ind,6} = my_name_avg;
                 end
                 C_ind = C_ind + 1;
             end
@@ -390,6 +404,7 @@ for file_ind = 1:no_files
         end
         clear min_A min_B min_C avg_A avg_B avg_C str_ind temp_str_ind volt_mag volt_ang_deg temp_var1 temp_var2 all_voltages;
     end
+    % end EOL voltages
     
     %% Power Factor
     if (find_pf ==1)
@@ -479,6 +494,7 @@ for file_ind = 1:no_files
         clear Temp1 Temp2 Temp3 Temp4 Temp5 Temp6
        
     end
+    % end power factor
     
     %% Emissions
     if (find_emissions == 1)
@@ -650,7 +666,7 @@ for file_ind = 1:no_files
         
         clear temp_var dtmp conv;
     end
-    
+    % end emissions
     %% Losses
     if (find_losses == 1)
         eval(['field_names = fieldnames(' current_file ');']);
@@ -729,6 +745,7 @@ for file_ind = 1:no_files
         clear temp_var temp_var_annual temp_var_monthly;
     end
     
+    % end losses
     
     % clear out the file we've opened
     eval(['clear ' current_file]);
