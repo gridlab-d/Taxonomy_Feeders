@@ -7,13 +7,13 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't0';
-cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+tech = 't2';
+%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
+cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
+write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
 temp = what;
@@ -21,24 +21,24 @@ data_files = temp.mat;
 [no_files,junk] = size(data_files);
 
 % flags for finding certain information - another script will plot
-find_peak_day = 0;                  % find the peak day and store day/time and value
-find_peakiest_peak = 0;             % finds the absolute peak W and VA
-find_peak_15days = 0;               % find the 15 peakiest days and store the time series power for each day
-find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 0;  % sum the annual energy consumption
-aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
-find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
-    find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
+find_peak_day = 1;                  % find the peak day and store day/time and value
+find_peakiest_peak = 1;             % finds the absolute peak W and VA
+find_peak_15days = 1;               % find the 15 peakiest days and store the time series power for each day
+find_peak_15wintdays = 1;           % excludes the summer and finds the 15 peakiest days in winter
+find_total_energy_consumption = 1;  % sum the annual energy consumption
+aggregate_bills = 1;                % adds all the bills together to determine total revenue for the utility
+find_voltages = 1;                  % get the average and minimum of the lowest EOL voltage per phase
+    find_all_voltages = 1;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
 find_pf = 1;                        % min, max, and average
-find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month
-find_losses = 0;                    % gathers the system losses
+find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month
+find_losses = 1;                    % gathers the system losses
 
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
 
     
 %% outer loop for opening each file
-for file_ind = 1:2%1:no_files
+for file_ind = 1:no_files
     voltage_ind = 1;
     
     % load the current file into the workspace
@@ -485,7 +485,7 @@ for file_ind = 1:2%1:no_files
         eval(['temp_var = ' current_file '.emissions_Total_energy_out;']);
         
         if (strfind(char(current_file),'GC') ~= 0)
-            token = strrep(char(current_file),'GC_1247_1_t0_r','');
+            token = strrep(char(current_file),['GC_1247_1_' tech '_r'],'');
             region = str2num(strrep(token,'_ts',''));
         else
             token = strtok(char(current_file),'_');
