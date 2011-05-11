@@ -7,7 +7,7 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't1';
+tech = 't0';
 cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
 %cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
@@ -115,7 +115,7 @@ for file_ind = 1:no_files
                 max_power = max(temp_var_real(month_ind(jjind,1):month_ind(jjind,2)));
                 max_VA = max((month_ind(jjind,1):month_ind(jjind,2)));
                 
-                peakiest_peakday_monthly{file_ind,1} = current_file;   
+                peakiest_peakday_monthly{file_ind,1} = current_file;
                 peakiest_peakday_monthly{file_ind,2}{jjind} = max_power;
                 peakiest_peakday_monthly{file_ind,3}{jjind} = max_VA;
             end
@@ -402,7 +402,7 @@ for file_ind = 1:no_files
             all_feeder_voltages{file_ind,2} = node_names;
             all_feeder_voltages{file_ind,3} = all_voltages;
         end
-        clear min_A min_B min_C avg_A avg_B avg_C str_ind temp_str_ind volt_mag volt_ang_deg temp_var1 temp_var2 all_voltages;
+        clear min_A min_B min_C avg_A avg_B avg_C str_ind temp_str_ind volt_mag volt_ang_deg temp_var1 temp_var2 all_voltages node_names;
     end
     % end EOL voltages
     
