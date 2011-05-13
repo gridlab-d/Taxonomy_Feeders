@@ -16,17 +16,17 @@ write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodat
 
 % flags for types of plots
 plot_energy = 0;
-plot_peak_power = 0;
+plot_peak_power = 1;
 plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 1;
+plot_losses = 0;
 plot_emissions = 0;
 
 % secondary flags for sub-plots
-plot_monthly_peak = 1;
-plot_monthly_energy = 1;
+plot_monthly_peak = 0;
+plot_monthly_energy = 0;
 plot_monthly_losses = 0;
-plot_monthly_emissions = 1;
+plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -196,13 +196,12 @@ if (plot_peak_power == 1)
             delta_peak_power = 100 * (peak_power_data(:,2) - peak_power_data(:,1)) ./ peak_power_data(:,1);
             delta_peak_va = 100 * (peak_va_data(:,2) - peak_va_data(:,1)) ./ peak_va_data(:,1);
             
-            % Peak Demand (MW)
-            fname = ['Peak Demand kW ' char(data_labels(kkind))];
+            % Monthly Peak Demand (MW)
+            fname = ['Monthly Peak Demand kW ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
             bar(peak_power_data / 1000,'barwidth',0.9);
             ylabel('Peak Load (kW)');
-            %title('Peak Demand by Feeder');
             my_legend = {'Base Case';'w/CVR'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
@@ -615,10 +614,13 @@ if (plot_losses == 1)
     
     data_labels = strrep(data_t0(:,1),'_t0','');
     data_labels = strrep(data_labels,'_','-');
-for i=1:no_feeders
-    loss_data(1,i) = data_t0{i,3}(6,1);
-    loss_data(2,i) = data_t1{i,3}(6,1);
-end
+    for i=1:no_feeders
+        loss_data(i,1) = data_t0{i,3}(6,1);
+        loss_data(i,2) = data_t1{i,3}(6,1);
+    end
+
+    loss_reduction= loss_data(:,2)-loss_data(:,1);
+    percent_loss_reduction=100.*(loss_reduction/loss_data(i,1));
 
     
     % Total Losses
@@ -626,12 +628,34 @@ end
     fname = 'Annual Losses';
     set_figure_size(fname);
     hold on;
-    bar(loss_data' / 1000000,'barwidth',0.9);
-    ylabel('Energy Consumption (MWh)');
+    bar(loss_data / 1000000,'barwidth',0.9);
+    ylabel('Losses (MWh)');
     set_figure_graphics(data_labels,fname,1,my_legend,0,'northeastoutside');
-    
     hold off;
     close(fname);
+    
+        
+    % Change in Annual Losses (MWh)
+    fname = 'Change in Annual Losses (MWh)';
+    set_figure_size(fname);
+    hold on;
+    bar(loss_reduction / 1000000,'barwidth',0.9);
+    ylabel('Change in Losses (MWh)');
+    set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
+    hold off;
+    close(fname);
+%     
+    % Change in Annual Losses (%)
+    fname = 'Change in Annual Losses (%)';
+    set_figure_size(fname);
+    hold on;
+    bar(percent_loss_reduction,'barwidth',0.9);
+    ylabel('Change in Losses (%)');
+    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+    hold off;
+    close(fname);
+    
+    
     
 
     if (plot_monthly_losses == 1)
@@ -680,12 +704,18 @@ end
 end % End of losses plots
 %% Emissions
 if (plot_emissions == 1)
+    load([write_dir,'emissions_t0.mat']);
+    data_t0 = emissions_totals;
+    load([write_dir,'emissions_t1.mat']);
+    data_t1 = emissions_totals;
+    clear emissions_totals
+    
     if (plot_monthly_emissions == 1)
         
-        load([write_dir,'emissions_t0.mat']);
-        data_t0 = emissions_totals;
-        load([write_dir,'emissions_t1.mat']);
-        data_t1 = emissions_totals;
+        load([write_dir,'emissions_monthly_t0.mat']);
+        data_t0 = emissions_totals_monthly;
+        load([write_dir,'emissions_monthly_t1.mat']);
+        data_t1 = emissions_totals_monthly;
         clear emissions_totals
     end
 end% End of emissions plots
