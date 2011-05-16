@@ -15,12 +15,15 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 1;
+plot_energy = 1;
+plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
 plot_losses = 0;
 plot_emissions = 0;
+
+% Flag for impact matrix
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
@@ -719,4 +722,90 @@ if (plot_emissions == 1)
         clear emissions_totals
     end
 end% End of emissions plots
+
+%% Impact Matrix
+
+if ( generate_impact_matrix == 1)
+    % Index 2 (Monthly end use customer electricty usage)
+    
+    % Index 3 (Peak generation and percentages)
+    load([write_dir,'peakiest_peak_t0.mat']);
+    data_t0 = peakiest_peakday;
+    load([write_dir,'peakiest_peak_t1.mat']);
+    data_t1 = peakiest_peakday;
+    
+    clear peakiest_peakday;
+    data_labels = strrep(data_t0(:,1),'_t0','');
+    data_labels = strrep(data_labels,'_','-');
+    peak_power_data(:,1) = cell2mat(data_t0(:,2));
+    peak_power_data(:,2) = cell2mat(data_t1(:,2));
+    peak_va_data(:,1) = cell2mat(data_t0(:,3));
+    peak_va_data(:,2) = cell2mat(data_t1(:,3));
+    
+    delta_peak_power_percent = 100 * (peak_power_data(:,2) - peak_power_data(:,1)) ./ peak_power_data(:,1);
+    delta_peak_power_kW = (peak_power_data(:,2) - peak_power_data(:,1))/1000;
+   
+    impact_matrix_R1(2,1)=delta_peak_power_kW(1,1);
+    impact_matrix_R1(2,2:6)=delta_peak_power_kW(6:10,1)';
+    impact_matrix_R2(2,1)=delta_peak_power_kW(2,1);
+    impact_matrix_R2(2,2:6)=delta_peak_power_kW(11:15,1)';
+    impact_matrix_R3(2,1)=delta_peak_power_kW(3,1);
+    impact_matrix_R3(2,2:4)=delta_peak_power_kW(16:18,1)';
+    impact_matrix_R4(2,1)=delta_peak_power_kW(4,1);
+    impact_matrix_R4(2,2:4)=delta_peak_power_kW(19:21,1)';
+    impact_matrix_R5(2,1)=delta_peak_power_kW(5,1);
+    impact_matrix_R5(2,2:8)=delta_peak_power_kW(22:28,1)';
+
+    clear data_t0 data_t1
+    
+    % Index 4 (Peak end use load and % controllable load)
+    
+    % Index 7 (Annual Electricty production)
+    load([write_dir,'total_energy_consumption_t0.mat']);
+    data_t0 = energy_consumption;
+    load([write_dir,'total_energy_consumption_t1.mat']);
+    data_t1 = energy_consumption;
+    
+    clear energy_consumption;
+    
+    data_labels = strrep(data_t0(:,1),'_t0','');
+    data_labels = strrep(data_labels,'_','-');
+    energy_data(:,1) = cell2mat(data_t0(:,2));
+    energy_data(:,2) = cell2mat(data_t1(:,2));
+    
+    energy_reduction_percent = 100 * (energy_data(:,2) - energy_data(:,1)) ./ energy_data(:,1);
+    energy_reduction_MWh = (energy_data(:,2) - energy_data(:,1))/1000000;
+    
+    impact_matrix_R1(7,1)=energy_reduction_MWh(1,1);
+    impact_matrix_R1(7,2:6)=energy_reduction_MWh(6:10,1)';
+    impact_matrix_R2(7,1)=energy_reduction_MWh(2,1);
+    impact_matrix_R2(7,2:6)=energy_reduction_MWh(11:15,1)';
+    impact_matrix_R3(7,1)=energy_reduction_MWh(3,1);
+    impact_matrix_R3(7,2:4)=energy_reduction_MWh(16:18,1)';
+    impact_matrix_R4(7,1)=energy_reduction_MWh(4,1);
+    impact_matrix_R4(7,2:4)=energy_reduction_MWh(19:21,1)';
+    impact_matrix_R5(7,1)=energy_reduction_MWh(5,1);
+    impact_matrix_R5(7,2:8)=energy_reduction_MWh(22:28,1)';
+    clear data_t0 data_t1
+       
+    % Index 12 (CO2-for end use loads)
+    
+    % Index 13 (SOx, NOx, and PM-10-for end use loads)
+    
+    % Index 20
+    
+    % Index 21 (Real and Reactive feeder load)
+    
+    % Index 29 (Distribution Losses)
+    
+    % Index 30 (Power Factor)
+    
+    % Index 39 (CO2-total feeder load)
+    
+    % Index 40 (SOx, NOx, and PM-10-total feeder load)
+    
+
+      
+else
+end % End of imapct matrix
 %clear;
