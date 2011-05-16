@@ -7,13 +7,13 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't0';
-cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+tech = 't1';
+%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
+cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
+write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
 temp = what;
@@ -25,10 +25,10 @@ find_peak_day = 0;                  % find the peak day and store day/time and v
 find_peakiest_peak = 0;             % finds the absolute peak W and VA
 find_peak_15days = 0;               % find the 15 peakiest days and store the time series power for each day
 find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 0;  % sum the annual energy consumption
+find_total_energy_consumption = 1;  % sum the annual energy consumption
 aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
-find_voltages = 1;                  % get the average and minimum of the lowest EOL voltage per phase
-    find_all_voltages = 1;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
+find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
+    find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
 find_pf = 0;                        % min, max, and average
 find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month
 find_losses = 0;                    % gathers the system losses
@@ -220,23 +220,28 @@ for file_ind = 1:no_files
     %% Energy consumption
     if (find_total_energy_consumption == 1)
         eval(['temp_var = ' current_file '.transformerpower_power_out_real;']);
-        
         sum_temp = sum(temp_var) / 4;
+        
+        eval(['temp_var2 = ' current_file '.transformerpower_power_out_imag;']);
+        sum_temp2 = sum(temp_var2) / 4;
         
         % store the the value into a energy variable
         energy_consumption{file_ind,1} = current_file;
         energy_consumption{file_ind,2} = sum_temp;
+        energy_consumption{file_ind,3} = sum_temp2;
         
         if (find_monthly_values == 1)
             for mind=1:12
                 temp_monthly_cons(mind) = sum(temp_var(month_ind(mind,1):month_ind(mind,2))) / 4;
+                temp_monthly_cons2(mind) = sum(temp_var2(month_ind(mind,1):month_ind(mind,2))) / 4;
             end
             
             monthly_energy_consumption{file_ind,1} = current_file;
             monthly_energy_consumption{file_ind,2} = temp_monthly_cons;
+            monthly_energy_consumption{file_ind,3} = temp_monthly_cons2;
         end
         
-        clear temp_var;
+        clear temp_var remp_var2;
     end
     % end energy consumption
     
