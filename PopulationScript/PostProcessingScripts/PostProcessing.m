@@ -7,13 +7,13 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't1';
-cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+tech = 't0';
+%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
+cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
+write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
 temp = what;
@@ -29,14 +29,14 @@ find_total_energy_consumption = 0;  % sum the annual energy consumption
 aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
 find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
     find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
-find_pf = 0;                        % min, max, and average
+find_pf = 1;                        % min, max, and average
 find_losses = 0;                    % gathers the system losses
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
 %       before this function can be applied to other techs 
 %       besides the base case (everything is scaled from base case)
-find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
+find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
     
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
@@ -420,88 +420,129 @@ for file_ind = 1:no_files
     if (find_pf ==1)
         
         
-        % power_factor_temp is a cell of power factor values
-        % each feeder has phase a,b,c, and total
+        % power_factor_temp is a cell of power factor values each feeder has phase a,b,c, and total
         
-        % phase a
+        % phase a (column 1)
         eval(['Temp1 = ' current_file '.reg1_power_in_A_real;']);
         eval(['Temp2 = ' current_file '.reg1_power_in_A_imag;']);
         power_factor_temp{1,file_ind}(:,1)=cos(atan(Temp2./Temp1));
+        power_factor_temp{1,file_ind}(:,5)= (Temp2(:,1) <= 0) .* -1+(Temp2(:,1) >= 0) .* 1; % determines if phase a is leading or lagging (1=lagging -1=leading)
 
-        % phase b
+        % phase b (column 2)
         eval(['Temp3 = ' current_file '.reg1_power_in_B_real;']);
         eval(['Temp4 = ' current_file '.reg1_power_in_B_imag;']);
         power_factor_temp{1,file_ind}(:,2)=cos(atan(Temp4./Temp3));
-
-        % phase c
+        power_factor_temp{1,file_ind}(:,6)= (Temp4(:,1) <= 0) .* -1+(Temp4(:,1) >= 0) .* 1; % determines if phase b is leading or lagging (1=lagging -1=leading)
+ 
+        % phase c (column 3)
         eval(['Temp5 = ' current_file '.reg1_power_in_C_real;']);
         eval(['Temp6 = ' current_file '.reg1_power_in_C_imag;']);
         power_factor_temp{1,file_ind}(:,3)=cos(atan(Temp6./Temp5));
+        power_factor_temp{1,file_ind}(:,7)= (Temp6(:,1) <= 0) .* -1+(Temp6(:,1) >= 0) .* 1; % determines if phase c is leading or lagging (1=lagging -1=leading)
                       
+        % total (column 4)
         power_factor_temp{1,file_ind}(:,4)=cos(atan((Temp2+Temp4+Temp6)./(Temp1+Temp3+Temp5)));
+        power_factor_temp{1,file_ind}(:,8)= ((Temp2+Temp4+Temp6) <= 0) .* -1+(Temp2+Temp4+Temp6 >= 0) .* 1; % determines if total is leading or lagging (1=lagging -1=leading)
+
         
-        % power_factor gives the min, mean, and max value for each feeder
-        % by phase and total.
+        % power_factor gives the min, mean, and max value for each feeder by phase and total.
    
         power_factor{file_ind,1} = current_file;
         
        
-        % phase a
-        power_factor{file_ind,2} = min(power_factor_temp{1,file_ind}(:,1)); 
-        power_factor{file_ind,3} = mean(power_factor_temp{1,file_ind}(:,1));
-        power_factor{file_ind,4} = max(power_factor_temp{1,file_ind}(:,1));
-        
-        % phase b
-        power_factor{file_ind,5} = min(power_factor_temp{1,file_ind}(:,2));
-        power_factor{file_ind,6} = mean(power_factor_temp{1,file_ind}(:,2));
-        power_factor{file_ind,7} = max(power_factor_temp{1,file_ind}(:,2));
-       
-        % phase c
-        power_factor{file_ind,8} = min(power_factor_temp{1,file_ind}(:,3));
-        power_factor{file_ind,9} = mean(power_factor_temp{1,file_ind}(:,3));
-        power_factor{file_ind,10} = max(power_factor_temp{1,file_ind}(:,3));
-        
-        % total
-        power_factor{file_ind,11} = min(power_factor_temp{1,file_ind}(:,4));
-        power_factor{file_ind,12} = mean(power_factor_temp{1,file_ind}(:,4));
-        power_factor{file_ind,13} = max(power_factor_temp{1,file_ind}(:,4));
-        
-        if (find_monthly_values == 1)
-            monthly_power_factor{file_ind,1} = current_file;
-            
-            for mind = 1:12
-                % phase a
-                if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1)));
-                    monthly_power_factor{file_ind,2}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1)); 
-                    monthly_power_factor{file_ind,3}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1));
-                    monthly_power_factor{file_ind,4}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1));
-                end
+        % Calaculte Minimum Power Factor
+        power_factor_temp2=power_factor_temp{1,file_ind};
+        power_factor_temp2(:,1)=power_factor_temp2(:,1).*power_factor_temp2(:,5);
+        power_factor_temp2(:,2)=power_factor_temp2(:,2).*power_factor_temp2(:,6);
+        power_factor_temp2(:,3)=power_factor_temp2(:,3).*power_factor_temp2(:,7);
+        power_factor_temp2(:,4)=power_factor_temp2(:,4).*power_factor_temp2(:,8);
 
-                % phase b
-                if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2)));
-                    monthly_power_factor{file_ind,5}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2));
-                    monthly_power_factor{file_ind,6}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2));
-                    monthly_power_factor{file_ind,7}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2));
-                end
-
-                % phase c
-                if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3)));
-                    monthly_power_factor{file_ind,8}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3));
-                    monthly_power_factor{file_ind,9}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3));
-                    monthly_power_factor{file_ind,10}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3));
-                end
-
-                % total
-                if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4)));
-                    monthly_power_factor{file_ind,11}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4));
-                    monthly_power_factor{file_ind,12}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4));
-                    monthly_power_factor{file_ind,13}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4)); 
-                end
-            end            
+        if (min(power_factor_temp2(:,5))==-1) % If there is leading and lagginf power factors
+            power_factor_temp2(:,5)=((power_factor_temp2(:,1)) <= 0) .* power_factor_temp2(:,1)+((power_factor_temp2(:,1)) >= 0) .* -50;
+            power_factor{file_ind,2} = max(power_factor_temp2(:,5));
+        else % If there is only lagging power factors
+            power_factor{file_ind,2} = min(power_factor_temp{1,file_ind}(:,1));
+        end 
+        
+        if (min(power_factor_temp2(:,6))==-1) % If there is leading and lagginf power factors
+            power_factor_temp2(:,6)=((power_factor_temp2(:,2)) <= 0) .* power_factor_temp2(:,2)+((power_factor_temp2(:,2)) >= 0) .* -50;
+            power_factor{file_ind,5} = max(power_factor_temp2(:,6));
+        else% If there is only lagging power factors
+            power_factor{file_ind,5} = min(power_factor_temp{1,file_ind}(:,2));
         end
         
+        if (min(power_factor_temp2(:,7))==-1) % If there is leading and lagginf power factors
+            power_factor_temp2(:,7)=((power_factor_temp2(:,3)) <= 0) .* power_factor_temp2(:,3)+((power_factor_temp2(:,3)) >= 0) .* -50;
+            power_factor{file_ind,8} = max(power_factor_temp2(:,7));
+        else% If there is only lagging power factors
+            power_factor{file_ind,8} = min(power_factor_temp{1,file_ind}(:,3));
+        end
         
-        clear Temp1 Temp2 Temp3 Temp4 Temp5 Temp6
+        if (min(power_factor_temp2(:,8))==-1) % If there is leading and lagginf power factors
+            power_factor_temp2(:,8)=((power_factor_temp2(:,4)) <= 0) .* power_factor_temp2(:,4)+((power_factor_temp2(:,4)) >= 0) .* -50;
+            power_factor{file_ind,11} = max(power_factor_temp2(:,8));
+        else% If there is only lagging power factors
+            power_factor{file_ind,11} = min(power_factor_temp{1,file_ind}(:,4));
+        end
+        clear power_factor_temp2
+  
+        
+        %Calculate Average Power Factor
+        power_factor_temp2(:,1:4)=1-abs(power_factor_temp{1,file_ind}(:,1:4));
+        
+        power_factor_temp2(:,5:8)=((power_factor_temp{1,file_ind}(:,5:8)) <= 0) .* (1-power_factor_temp2(:,1:4))+((power_factor_temp{1,file_ind}(:,5:8)) >= 0) .* (1+power_factor_temp2(:,1:4));
+        mean_pf=mean(power_factor_temp2(:,5:8));
+        
+        mean_pf2=((mean_pf) <= 1) .* 1+((mean_pf) >= 1) .* 1-abs(1-(mean_pf));
+        
+        power_factor{file_ind,3} = mean_pf2(1,1);
+        power_factor{file_ind,6} = mean_pf2(1,2);
+        power_factor{file_ind,9} = mean_pf2(1,3);
+        power_factor{file_ind,12} = mean_pf2(1,4);
+  
+        
+        % Calculate Maximum Power Factor
+        power_factor{file_ind,4} = max(power_factor_temp{1,file_ind}(:,1));
+        power_factor{file_ind,7} = max(power_factor_temp{1,file_ind}(:,2));
+        power_factor{file_ind,10} = max(power_factor_temp{1,file_ind}(:,3));
+        power_factor{file_ind,13} = max(power_factor_temp{1,file_ind}(:,4));
+        
+        clear power_factor_temp power_factor_temp 2 mean_pf mean_pf2
+        
+        %         if (find_monthly_values == 1)
+%             monthly_power_factor{file_ind,1} = current_file;
+%             
+%             for mind = 1:12
+%                 % phase a
+%                 if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1)));
+%                     monthly_power_factor{file_ind,2}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1));
+%                     monthly_power_factor{file_ind,3}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1));
+%                     monthly_power_factor{file_ind,4}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),1));
+%                 end
+%                 
+%                 % phase b
+%                 if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2)));
+%                     monthly_power_factor{file_ind,5}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2));
+%                     monthly_power_factor{file_ind,6}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2));
+%                     monthly_power_factor{file_ind,7}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),2));
+%                 end
+%                 
+%                 % phase c
+%                 if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3)));
+%                     monthly_power_factor{file_ind,8}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3));
+%                     monthly_power_factor{file_ind,9}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3));
+%                     monthly_power_factor{file_ind,10}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),3));
+%                 end
+%                 
+%                 % total
+%                 if (~isempty(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4)));
+%                     monthly_power_factor{file_ind,11}(mind) = min(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4));
+%                     monthly_power_factor{file_ind,12}(mind) = mean(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4));
+%                     monthly_power_factor{file_ind,13}(mind) = max(power_factor_temp{1,file_ind}(month_ind(mind,1):month_ind(mind,2),4));
+%                 end
+%             end
+%         end
+        
        
     end
     % end power factor
@@ -829,10 +870,10 @@ end
 if (find_pf == 1)
     write_file = [write_dir 'power_factors_' tech '.mat'];
     save(write_file,'power_factor');
-    if (find_monthly_values == 1)
-        write_file = [write_dir 'monthly_power_factors_' tech '.mat'];
-        save(write_file,'monthly_power_factor');
-    end
+%     if (find_monthly_values == 1)
+%         write_file = [write_dir 'monthly_power_factors_' tech '.mat'];
+%         save(write_file,'monthly_power_factor');
+%     end
 end 
 
 if (find_emissions == 1)
@@ -853,7 +894,7 @@ if (find_losses == 1)
     end
 end
 disp('All done!');
-clear;
+%clear;
 
 
 
