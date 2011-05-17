@@ -8,31 +8,36 @@ clc;
 
 % declare working directory - all the input .mat files should be located here
 tech = 't1';
-%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
+%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
+%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
 temp = what;
 data_files = temp.mat;
 [no_files,junk] = size(data_files);
 
-% flags for finding certain information - another script will plot
+%% flags for finding certain information - another script will plot
 find_peak_day = 0;                  % find the peak day and store day/time and value
 find_peakiest_peak = 0;             % finds the absolute peak W and VA
 find_peak_15days = 0;               % find the 15 peakiest days and store the time series power for each day
 find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 1;  % sum the annual energy consumption
+find_total_energy_consumption = 0;  % sum the annual energy consumption
 aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
 find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
     find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
 find_pf = 0;                        % min, max, and average
-find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month
 find_losses = 0;                    % gathers the system losses
 
+% This extraction must be run seperately from all others
+% NOTE: emissions_monthly_t0.mat must be available in the "write directory"
+%       before this function can be applied to other techs 
+%       besides the base case (everything is scaled from base case)
+find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
+    
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
 
@@ -513,6 +518,10 @@ for file_ind = 1:no_files
             region = str2num(strrep(token,'R',''));
         end
 
+        %TODO:  Add the PM-10 emission conversion factors
+        %TODO:  Store the peak percent penetration of each fuel type (for
+        %       metric analysis)
+        
         % get all the right penetration data for the particular region
         % and scale to the maxE for the month
         if (region == 1)
@@ -613,11 +622,21 @@ for file_ind = 1:no_files
         else
             error('Invalid region chosen');
         end
-            
+           
+        if (strcmp(tech,'t0') == 0 && file_ind == 1)
+            temp_filename = [write_dir 'emissions_monthly_t0.mat'];
+            load(temp_filename);
+            scalarE = emissions_totals_monthly;
+            clear emissions_totals_monthly;
+        end
         % wrap through each month
         for jjind=1:12
             % get the max energy value for the month
-            maxE = max(temp_var(month_ind(jjind,1):month_ind(jjind,2))) / 1000 / 4;
+            if (strcmp(tech,'t0') ~= 0)
+                maxE = max(temp_var(month_ind(jjind,1):month_ind(jjind,2))) / 1000 / 4;
+            else
+                maxE = scalarE{file_ind,6}{jjind}; %from base case
+            end
 
             perc_pen = dtmp(:,jjind);
             pen_scaled = perc_pen/100*maxE;
@@ -626,6 +645,7 @@ for file_ind = 1:no_files
             acc_CO2 = 0;
             acc_SO2 = 0;
             acc_NOx = 0;
+            acc_PM10 = 0;
             
             % wrap through each time step in the month and calc emissions
             for ts_ind=month_ind(jjind,1):month_ind(jjind,2)
@@ -657,10 +677,13 @@ for file_ind = 1:no_files
                 end %end while tempE > 0 loop
             end %end day loop
             
+            
             emissions_totals_monthly{file_ind,1} = current_file;
             emissions_totals_monthly{file_ind,2}{jjind} = acc_CO2;
             emissions_totals_monthly{file_ind,3}{jjind} = acc_SO2;
             emissions_totals_monthly{file_ind,4}{jjind} = acc_NOx;
+            emissions_totals_monthly{file_ind,5}{jjind} = acc_PM10;
+            emissions_totals_monthly{file_ind,6}{jjind} = maxE;
             
         end %end month loop
         
@@ -668,6 +691,7 @@ for file_ind = 1:no_files
         emissions_totals{file_ind,2}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,2}));
         emissions_totals{file_ind,3}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,3}));
         emissions_totals{file_ind,4}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,4}));
+        emissions_totals{file_ind,5}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,5}));
         
         clear temp_var dtmp conv;
     end
