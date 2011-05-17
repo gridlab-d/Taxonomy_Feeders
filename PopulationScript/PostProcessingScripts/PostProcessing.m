@@ -7,7 +7,7 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't0';
+tech = 't1';
 %cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
 cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
@@ -21,16 +21,16 @@ data_files = temp.mat;
 [no_files,junk] = size(data_files);
 
 %% flags for finding certain information - another script will plot
-find_peak_day = 0;                  % find the peak day and store day/time and value
-find_peakiest_peak = 0;             % finds the absolute peak W and VA
-find_peak_15days = 0;               % find the 15 peakiest days and store the time series power for each day
-find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 0;  % sum the annual energy consumption
-aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
-find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
-    find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
+find_peak_day = 1;                  % find the peak day and store day/time and value
+find_peakiest_peak = 1;             % finds the absolute peak W and VA
+find_peak_15days = 1;               % find the 15 peakiest days and store the time series power for each day
+find_peak_15wintdays = 1;           % excludes the summer and finds the 15 peakiest days in winter
+find_total_energy_consumption = 1;  % sum the annual energy consumption
+aggregate_bills = 1;                % adds all the bills together to determine total revenue for the utility
+find_voltages = 1;                  % get the average and minimum of the lowest EOL voltage per phase
+    find_all_voltages = 1;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
 find_pf = 1;                        % min, max, and average
-find_losses = 0;                    % gathers the system losses
+find_losses = 1;                    % gathers the system losses
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
@@ -93,15 +93,18 @@ for file_ind = 1:no_files
         peak_day{file_ind,1} = current_file;
         peak_day{file_ind,2} = temp_var2(ind_max_power);
         peak_day{file_ind,3} = max_power;
-        
+         
         % clean up my workspace a little
         clear temp_var temp_var2;
     end
     % end peak day
-    
+
     %% Absolute system peak
     if (find_peakiest_peak == 1)
         % put the needed data into a temporary variable
+        eval(['temp_var_real = ' current_file '.transformerpower_power_out_real;']);
+        eval(['temp_var_imag = ' current_file '.transformerpower_power_out_imag;']);
+        
         eval(['temp_var_real = ' current_file '.transformerpower_power_out_real;']);
         eval(['temp_var_imag = ' current_file '.transformerpower_power_out_imag;']);
         
@@ -110,10 +113,12 @@ for file_ind = 1:no_files
         max_power = max(temp_var_real);
         max_VA = max(temp_VA);
         
+        
         % store the two values into a peak day variable
         peakiest_peakday{file_ind,1} = current_file;
         peakiest_peakday{file_ind,2} = max_power;
         peakiest_peakday{file_ind,3} = max_VA;
+        
         
         if (find_monthly_values == 1)
             for jjind=1:12
@@ -130,7 +135,6 @@ for file_ind = 1:no_files
         clear temp_var_real temp_var_imag temp_VA;
     end
     % end peakiest peak
-    
     %% Peak days annual (15 of 'em)
     if (find_peak_15days == 1)
         % put the needed data into a temporary variable
@@ -444,7 +448,6 @@ for file_ind = 1:no_files
         power_factor_temp{1,file_ind}(:,4)=cos(atan((Temp2+Temp4+Temp6)./(Temp1+Temp3+Temp5)));
         power_factor_temp{1,file_ind}(:,8)= ((Temp2+Temp4+Temp6) <= 0) .* -1+(Temp2+Temp4+Temp6 >= 0) .* 1; % determines if total is leading or lagging (1=lagging -1=leading)
 
-        
         % power_factor gives the min, mean, and max value for each feeder by phase and total.
    
         power_factor{file_ind,1} = current_file;
@@ -484,7 +487,7 @@ for file_ind = 1:no_files
         else% If there is only lagging power factors
             power_factor{file_ind,11} = min(power_factor_temp{1,file_ind}(:,4));
         end
-        clear power_factor_temp2
+        %clear power_factor_temp2
   
         
         %Calculate Average Power Factor
@@ -507,7 +510,7 @@ for file_ind = 1:no_files
         power_factor{file_ind,10} = max(power_factor_temp{1,file_ind}(:,3));
         power_factor{file_ind,13} = max(power_factor_temp{1,file_ind}(:,4));
         
-        clear power_factor_temp power_factor_temp 2 mean_pf mean_pf2
+        %clear power_factor_temp power_factor_temp 2 mean_pf mean_pf2
         
         %         if (find_monthly_values == 1)
 %             monthly_power_factor{file_ind,1} = current_file;
@@ -780,9 +783,19 @@ for file_ind = 1:no_files
         end
         
         % sum up the phases into a single variable
+        peak_losses=0;
+        
         for jjind = 1:5
             temp_var_annual(jjind) = sum(temp_var{jjind,1}) + sum(temp_var{jjind,2}) + sum(temp_var{jjind,3});
+            if isempty(temp_var{jjind,1})==1 % Fill empty cells with zeros of equal lenght
+                temp_var{jjind,1}(1:35136,1)=0;
+                temp_var{jjind,2}(1:35136,2)=0;
+                temp_var{jjind,3}(1:35136,2)=0;
+            else          
+            end
+            peak_losses=peak_losses+temp_var{jjind,1}(ind_max_power,1)++temp_var{jjind,2}(ind_max_power,1)++temp_var{jjind,3}(ind_max_power,1);
         end
+        peakiest_peakday{file_ind,4} = peak_losses;
         
         temp_var_annual(6) = sum(temp_var_annual(1:5));
         
@@ -808,11 +821,12 @@ for file_ind = 1:no_files
         
         
         
+        
         monthly_losses{file_ind,1} = current_file;
         monthly_losses{file_ind,2} = {'Overhead Lines';'Underground Lines';'Secondary Transformers';'Triplex Lines';'Substation';'Total'};
         monthly_losses{file_ind,3} = temp_var_monthly/4;
         
-        clear temp_var temp_var_annual temp_var_monthly;
+        %clear  temp_var temp_var_annual temp_var_monthly;
     end
     
     % end losses
