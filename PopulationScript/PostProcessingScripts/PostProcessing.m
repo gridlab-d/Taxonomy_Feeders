@@ -8,12 +8,12 @@ clc;
 
 % declare working directory - all the input .mat files should be located here
 tech = 't1';
-%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+cd(['C:\Users\d3x289\Desktop\GLD_Analysis\' tech]); % Jason
+%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+write_dir = 'C:\Users\d3x289\Desktop\GLD_Analysis\ProcessedData\'; % Jason
+%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
 temp = what;
@@ -21,22 +21,22 @@ data_files = temp.mat;
 [no_files,junk] = size(data_files);
 
 %% flags for finding certain information - another script will plot
-find_peak_day = 1;                  % find the peak day and store day/time and value
-find_peakiest_peak = 1;             % finds the absolute peak W and VA
-find_peak_15days = 1;               % find the 15 peakiest days and store the time series power for each day
-find_peak_15wintdays = 1;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 1;  % sum the annual energy consumption
-aggregate_bills = 1;                % adds all the bills together to determine total revenue for the utility
-find_voltages = 1;                  % get the average and minimum of the lowest EOL voltage per phase
-    find_all_voltages = 1;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
-find_pf = 1;                        % min, max, and average
-find_losses = 1;                    % gathers the system losses
+find_peak_day = 0;                  % find the peak day and store day/time and value
+find_peakiest_peak = 0;             % finds the absolute peak W and VA
+find_peak_15days = 0;               % find the 15 peakiest days and store the time series power for each day
+find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
+find_total_energy_consumption = 0;  % sum the annual energy consumption
+aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
+find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
+    find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
+find_pf = 0;                        % min, max, and average
+find_losses = 0;                    % gathers the system losses
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
 %       before this function can be applied to other techs 
 %       besides the base case (everything is scaled from base case)
-find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
+find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
     
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
@@ -77,7 +77,7 @@ for file_ind = 1:no_files
         % get rid of the last one, since it's rolling over to a new year
         month_ind(13,:) = [];      
         
-        clear temp_var;
+        clear temp_var temp_a temp_b;
     end
     
     %% Peak day and time
@@ -510,7 +510,7 @@ for file_ind = 1:no_files
         power_factor{file_ind,10} = max(power_factor_temp{1,file_ind}(:,3));
         power_factor{file_ind,13} = max(power_factor_temp{1,file_ind}(:,4));
         
-        %clear power_factor_temp power_factor_temp 2 mean_pf mean_pf2
+        clear power_factor_temp power_factor_temp 2 mean_pf mean_pf2
         
         %         if (find_monthly_values == 1)
 %             monthly_power_factor{file_ind,1} = current_file;
@@ -552,7 +552,7 @@ for file_ind = 1:no_files
     
     %% Emissions
     if (find_emissions == 1)
-        eval(['temp_var = ' current_file '.emissions_Total_energy_out;']);
+       % eval(['temp_var = ' current_file '.emissions_Total_energy_out;']);
         
         if (strfind(char(current_file),'GC') ~= 0)
             token = strrep(char(current_file),['GC_1247_1_' tech '_r'],'');
@@ -561,10 +561,8 @@ for file_ind = 1:no_files
             token = strtok(char(current_file),'_');
             region = str2num(strrep(token,'R',''));
         end
-
-        %TODO:  Add the PM-10 emission conversion factors
-        %TODO:  Store the peak percent penetration of each fuel type (for
-        %       metric analysis)
+        
+        %TODO: Find a PM-10 value for Petro
         
         % get all the right penetration data for the particular region
         % and scale to the maxE for the month
@@ -578,15 +576,15 @@ for file_ind = 1:no_files
                     5.44	5.77	5.42	2.14	0.45	0.86	2.88	4.09	4.38	5.97	4.00	5.14;   %Coal
                     3.29	3.49	3.51	3.35	3.29	3.10	2.84	3.09	3.11	3.54	3.63	3.35;   %Geo
                     0.43	0.45	0.45	0.43	0.35	0.41	0.36	0.38	0.39	0.40	0.44	0.47];  %Petro
-            conv = [0           0       0;      %Nuc
-                    0           0       0;      %Sol
-                    2521.35     0       1.0344; %Bio
-                    0           0       0;      %Wind
-                    0           0       0;      %Hydro
-                    955.3728    .00816  .0612;  %NG
-                    2139.9837   1.041   .6246;  %Coal
-                    2522.4      4.204   0;      %Geo
-                    2476.43     1.1     0.44];  %Petro
+            conv = [0           0       0       0;      %Nuc
+                    0           0       0       0;      %Sol
+                    2521.35     0       1.0344  0.3;    %Bio
+                    0           0       0       0;      %Wind
+                    0           0       0       0;      %Hydro
+                    955.3728    .00816  .0612   0.14;   %NG
+                    2139.9837   1.041   .6246   0.32;   %Coal
+                    2522.4      4.204   0       0;      %Geo
+                    2476.43     1.1     0.44    0];     %Petro
         elseif (region == 2)
             dtmp = [26.47	26.90	27.74	25.27	28.52	27.95	26.33	24.75	27.04	25.09	25.63	25.42;  %Nuc
                     0.00	0.00	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.00	0.00;   %Sol
@@ -597,15 +595,15 @@ for file_ind = 1:no_files
                     6.11	5.99	6.92	9.11	9.51	9.05	7.42	6.08	5.98	6.13	6.34	6.43;   %Hydro
                     0.07	0.07	0.08	0.08	0.08	0.07	0.07	0.07	0.08	0.07	0.08	0.08;   %Geo
                     2.55	0.74	0.64	0.32	0.34	0.37	0.43	0.60	0.33	0.27	0.28	0.43];  %Petro
-            conv = [0           0       0;      %Nuc
-                    0           0       0;      %Sol
-                    2521.35     0       1.0344; %Bio
-                    0           0       0;      %Wind
-                    2139.9837   1.041   .6246;  %Coal
-                    955.3728    .00816  .0612;  %NG
-                    0           0       0;      %Hydro              
-                    2522.4      4.204   0;      %Geo
-                    2476.43     1.1     0.44];  %Petro
+            conv = [0           0       0       0;      %Nuc
+                    0           0       0       0;      %Sol
+                    2521.35     0       1.0344  0.3;    %Bio
+                    0           0       0       0;      %Wind
+                    2139.9837   1.041   .6246   0.32;   %Coal
+                    955.3728    .00816  .0612   0.14;   %NG
+                    0           0       0       0;      %Hydro              
+                    2522.4      4.204   0       0;      %Geo
+                    2476.43     1.1     0.44    0];     %Petro
         elseif (region == 3)
             dtmp = [9.82	8.88	10.24	11.60	10.83	9.72	8.65	8.50	7.13	8.62	9.63	9.38;   %Nuc
                     0.01	0.05	0.13	0.16	0.17	0.13	0.13	0.14	0.13	0.10	0.06	0.03;   %Sol
@@ -616,15 +614,15 @@ for file_ind = 1:no_files
                     2.89	4.75	4.95	6.72	6.68	6.40	5.58	4.59	4.47	4.74	3.76	4.60;   %Hydro
                     1.63	1.62	1.70	1.67	1.53	1.40	1.25	1.26	1.42	1.52	1.79	1.70;   %Geo
                     0.32	0.26	0.32	0.28	0.24	0.25	0.20	0.20	0.22	0.24	0.22	0.24];  %Petro
-            conv = [0           0       0;      %Nuc
-                    0           0       0;      %Sol
-                    2521.35     0       1.0344; %Bio
-                    0           0       0;      %Wind
-                    2139.9837   1.041   .6246;  %Coal
-                    955.3728    .00816  .0612;  %NG
-                    0           0       0;      %Hydro              
-                    2522.4      4.204   0;      %Geo
-                    2476.43     1.1     0.44];  %Petro
+            conv = [0           0       0       0;      %Nuc
+                    0           0       0       0;      %Sol
+                    2521.35     0       1.0344  0.3;    %Bio
+                    0           0       0       0;      %Wind
+                    2139.9837   1.041   .6246   0.32;   %Coal
+                    955.3728    .00816  .0612   0.14;   %NG
+                    0           0       0       0;      %Hydro              
+                    2522.4      4.204   0       0;      %Geo
+                    2476.43     1.1     0.44    0];     %Petro
         elseif (region == 4)
             dtmp = [23.16	23.97	23.95	24.40	24.92	22.45	23.15	21.91	23.58	24.33	23.99	22.77;  %Nuc
                     0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00;   %Sol
@@ -635,15 +633,15 @@ for file_ind = 1:no_files
                     3.37	2.67	3.71	4.21	4.73	3.32	2.05	2.20	3.09	5.09	5.96	5.51;   %Hydro
                     0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00;   %Geo
                     1.04	0.71	0.80	0.49	0.56	0.45	0.45	0.48	0.36	0.36	0.34	0.36];  %Petro
-            conv = [0           0       0;      %Nuc
-                    0           0       0;      %Sol
-                    2521.35     0       1.0344; %Bio
-                    0           0       0;      %Wind
-                    2139.9837   1.041   .6246;  %Coal
-                    955.3728    .00816  .0612;  %NG
-                    0           0       0;      %Hydro              
-                    2522.4      4.204   0;      %Geo
-                    2476.43     1.1     0.44];  %Petro
+            conv = [0           0       0       0;      %Nuc
+                    0           0       0       0;      %Sol
+                    2521.35     0       1.0344  0.3;    %Bio
+                    0           0       0       0;      %Wind
+                    2139.9837   1.041   .6246   0.32;   %Coal
+                    955.3728    .00816  .0612   0.14;   %NG
+                    0           0       0       0;      %Hydro              
+                    2522.4      4.204   0       0;      %Geo
+                    2476.43     1.1     0.44    0];     %Petro
         elseif (region == 5)
             dtmp = [18.26	18.55	18.53	17.36	14.67	13.53	13.74	13.85	13.65	12.70	14.94	16.41;  %Nuc
                     0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00;   %Sol
@@ -654,19 +652,27 @@ for file_ind = 1:no_files
                     1.42	0.86	1.57	1.51	1.61	0.78	0.58	0.63	0.99	1.75	2.12	2.35;   %Hydro
                     0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00;   %Geo
                     1.62	2.00	1.79	2.12	2.20	1.96	1.80	1.86	1.84	1.62	0.95	0.82];  %Petro
-            conv = [0           0       0;      %Nuc
-                    0           0       0;      %Sol
-                    2521.35     0       1.0344; %Bio
-                    0           0       0;      %Wind
-                    955.3728    .00816  .0612;  %NG
-                    2139.9837   1.041   .6246;  %Coal
-                    0           0       0;      %Hydro 
-                    2522.4      4.204   0;      %Geo
-                    2476.43     1.1     0.44];  %Petro
+            conv = [0           0       0       0;      %Nuc
+                    0           0       0       0;      %Sol
+                    2521.35     0       1.0344  0.3;    %Bio
+                    0           0       0       0;      %Wind
+                    955.3728    .00816  .0612   0.14;   %NG
+                    2139.9837   1.041   .6246   0.32;   %Coal
+                    0           0       0       0;      %Hydro 
+                    2522.4      4.204   0       0;      %Geo
+                    2476.43     1.1     0.44    0];     %Petro
         else
             error('Invalid region chosen');
-        end
+        end      
+
+        % put the needed data into a temporary variable
+        eval(['temp_var = ' current_file '.transformerpower_power_out_real;']);
+        
+        % grab the max power and the index
+        [max_power,ind_max_power] = max(temp_var);
            
+        % if this is the base case, then we only compare to ourselves,
+        % otherwise open up the base case to get the max scaling values
         if (strcmp(tech,'t0') == 0 && file_ind == 1)
             temp_filename = [write_dir 'emissions_monthly_t0.mat'];
             load(temp_filename);
@@ -675,13 +681,15 @@ for file_ind = 1:no_files
         end
         % wrap through each month
         for jjind=1:12
-            % get the max energy value for the month
+            % get the max energy value for the month - and convert to MWhs 
+            %  from Watts
             if (strcmp(tech,'t0') ~= 0)
-                maxE = max(temp_var(month_ind(jjind,1):month_ind(jjind,2))) / 1000 / 4;
+                maxE = max(temp_var(month_ind(jjind,1):month_ind(jjind,2))) / 1000000 / 4;
             else
                 maxE = scalarE{file_ind,6}{jjind}; %from base case
             end
 
+            % switch everything to scaled values
             perc_pen = dtmp(:,jjind);
             pen_scaled = perc_pen/100*maxE;
             
@@ -694,7 +702,12 @@ for file_ind = 1:no_files
             % wrap through each time step in the month and calc emissions
             for ts_ind=month_ind(jjind,1):month_ind(jjind,2)
                 % temporary accumulator E value, convert to MWh
-                temp_E = temp_var(ts_ind) / 1000 / 4;
+                temp_E = temp_var(ts_ind) / 1000000 / 4;
+                
+                % on the peak 15-minute period, lets grab the percent pen.
+                if (ts_ind == ind_max_power)
+                    peak_pen = [];
+                end
                 
                 disp_ind = 1;
                 while (temp_E > 0)
@@ -704,40 +717,59 @@ for file_ind = 1:no_files
                         acc_CO2 = acc_CO2 + temp_E * conv(9,1);
                         acc_SO2 = acc_SO2 + temp_E * conv(9,2);
                         acc_NOx = acc_NOx + temp_E * conv(9,3);
+                        acc_PM10 = acc_PM10 + temp_E * conv(9,4);
+                        
+                        if (ts_ind == ind_max_power)
+                            peak_pen(9) = peak_pen(9) + temp_E / maxE * 100;
+                        end
+                        
                         temp_E = 0;
                     % this is the last stop, so zero out temp E
                     elseif (temp_E - pen_scaled(disp_ind) < 0)
                         acc_CO2 = acc_CO2 + temp_E * conv(disp_ind,1);
                         acc_SO2 = acc_SO2 + temp_E * conv(disp_ind,2);
                         acc_NOx = acc_NOx + temp_E * conv(disp_ind,3);
+                        acc_PM10 = acc_PM10 + temp_E * conv(disp_ind,4);
+                        
+                        if (ts_ind == ind_max_power)
+                            peak_pen(disp_ind) = temp_E / maxE * 100;
+                        end
+                        
                         temp_E = 0;
                     else
                         acc_CO2 = acc_CO2 + pen_scaled(disp_ind) * conv(disp_ind,1);
                         acc_SO2 = acc_SO2 + pen_scaled(disp_ind) * conv(disp_ind,2);
                         acc_NOx = acc_NOx + pen_scaled(disp_ind) * conv(disp_ind,3);
+                        acc_PM10 = acc_PM10 + pen_scaled(disp_ind) * conv(disp_ind,4);
+                        
+                        if (ts_ind == ind_max_power)
+                            peak_pen(disp_ind) = perc_pen(disp_ind);
+                        end
+                        
                         temp_E = temp_E - pen_scaled(disp_ind);               
                     end
                     disp_ind = disp_ind + 1;
                 end %end while tempE > 0 loop
             end %end day loop
             
-            
+            % convert to tons and store
             emissions_totals_monthly{file_ind,1} = current_file;
-            emissions_totals_monthly{file_ind,2}{jjind} = acc_CO2;
-            emissions_totals_monthly{file_ind,3}{jjind} = acc_SO2;
-            emissions_totals_monthly{file_ind,4}{jjind} = acc_NOx;
-            emissions_totals_monthly{file_ind,5}{jjind} = acc_PM10;
+            emissions_totals_monthly{file_ind,2}{jjind} = acc_CO2 / 2000;
+            emissions_totals_monthly{file_ind,3}{jjind} = acc_SO2 / 2000;
+            emissions_totals_monthly{file_ind,4}{jjind} = acc_NOx / 2000;
+            emissions_totals_monthly{file_ind,5}{jjind} = acc_PM10 / 2000;
             emissions_totals_monthly{file_ind,6}{jjind} = maxE;
             
         end %end month loop
         
         emissions_totals{file_ind,1} = current_file;
-        emissions_totals{file_ind,2}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,2}));
-        emissions_totals{file_ind,3}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,3}));
-        emissions_totals{file_ind,4}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,4}));
-        emissions_totals{file_ind,5}{jjind} = sum(cell2mat(emissions_totals_monthly{file_ind,5}));
+        emissions_totals{file_ind,2} = sum(cell2mat(emissions_totals_monthly{file_ind,2}));
+        emissions_totals{file_ind,3} = sum(cell2mat(emissions_totals_monthly{file_ind,3}));
+        emissions_totals{file_ind,4} = sum(cell2mat(emissions_totals_monthly{file_ind,4}));
+        emissions_totals{file_ind,5} = sum(cell2mat(emissions_totals_monthly{file_ind,5}));
+        emissions_totals{file_ind,6} = peak_pen;
         
-        clear temp_var dtmp conv;
+        clear temp_var dtmp conv peak_pen;
     end
     % end emissions
     %% Losses
@@ -826,7 +858,7 @@ for file_ind = 1:no_files
         monthly_losses{file_ind,2} = {'Overhead Lines';'Underground Lines';'Secondary Transformers';'Triplex Lines';'Substation';'Total'};
         monthly_losses{file_ind,3} = temp_var_monthly/4;
         
-        %clear  temp_var temp_var_annual temp_var_monthly;
+        clear temp_var temp_var_annual temp_var_monthly;
     end
     
     % end losses
@@ -908,7 +940,7 @@ if (find_losses == 1)
     end
 end
 disp('All done!');
-%clear;
+clear;
 
 
 
