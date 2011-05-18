@@ -4,9 +4,9 @@
 % create 4/02/2011 by Jason Fuller
 
 
-clear;
+clear all;
 clc;
-
+format short g
 % Set the default text sizing
 set_defaults();
 
@@ -15,7 +15,7 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 1;
+plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
@@ -23,7 +23,7 @@ plot_losses = 0;
 plot_emissions = 0;
 
 % Flag for impact matrix
-generate_impact_matrix = 0;
+generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
@@ -443,119 +443,7 @@ if plot_pf ==1
     energy_data(:,1) = cell2mat(data_t0(:,2));
     energy_data(:,2) = cell2mat(data_t1(:,2));
     
-%     % Minimum power factor (Base Case)
-%     
-%     fname = 'Minimum Power Factor Base Case';
-%     set_figure_size(fname);
-%     hold on;
-%     
-%     pf(:,1)=cell2mat(data_t0(1:28,2:2)); % min phase a
-%     pf(:,2)=cell2mat(data_t0(1:28,5:5)); % min phase b
-%     pf(:,3)=cell2mat(data_t0(1:28,8:8)); % min phase c
-%     pf(:,4)=cell2mat(data_t0(1:28,11:11)); % min phase a, b, and c
-%     
-%     bar(pf,'barwidth',0.9,'barwidth',0.9);
-%     ylabel('Power Factor');
-%     ylim([.5 1.0]);
-%     my_legend = {'phase a';'phase b';'phase c';'total'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-%     
-%     hold off;
-%     close(fname);
-%     % Minimum power factor (CVR)
-%     
-%     fname = 'Minimum Power Factor CVR';
-%     set_figure_size(fname);
-%     hold on;
-%     
-%     pf(:,1)=cell2mat(data_t1(1:28,2:2)); % min phase a
-%     pf(:,2)=cell2mat(data_t1(1:28,5:5)); % min phase b
-%     pf(:,3)=cell2mat(data_t1(1:28,8:8)); % min phase c
-%     pf(:,4)=cell2mat(data_t1(1:28,11:11)); % min phase a, b, and c
-%     
-%     bar(pf,'barwidth',0.9,'barwidth',0.9);
-%     ylabel('Power Factor');
-%     ylim([.5 1.0]);
-%     my_legend = {'phase a';'phase b';'phase c';'total'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-%     
-%     hold off;
-%     close (fname);
-%     % Average power factor (Base Case)
-%     
-%     fname = 'Average Power Factor Base Case';
-%     set_figure_size(fname);
-%     hold on;
-%     
-%     pf(:,1)=cell2mat(data_t0(1:28,3:3)); % min phase a
-%     pf(:,2)=cell2mat(data_t0(1:28,6:6)); % min phase b
-%     pf(:,3)=cell2mat(data_t0(1:28,9:9)); % min phase c
-%     pf(:,4)=cell2mat(data_t0(1:28,12:12)); % min phase a, b, and c
-%     
-%     bar(pf,'barwidth',0.9,'barwidth',0.9);
-%     ylabel('Power Factor');
-%     ylim([.5 1.0]);
-%     my_legend = {'phase a';'phase b';'phase c';'total'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-%     
-%     hold off;
-%     
-%     close (fname);
-%     % Average power factor (CVR)
-%     fname = 'Average Power Factor CVR';
-%     set_figure_size(fname);
-%     hold on;
-%     
-%     pf(:,1)=cell2mat(data_t1(1:28,3:3)); % min phase a
-%     pf(:,2)=cell2mat(data_t1(1:28,6:6)); % min phase b
-%     pf(:,3)=cell2mat(data_t1(1:28,9:9)); % min phase c
-%     pf(:,4)=cell2mat(data_t1(1:28,12:12)); % min phase a, b, and c
-%     
-%     bar(pf,'barwidth',0.9,'barwidth',0.9);
-%     ylabel('Power Factor');
-%     ylim([.5 1.0]);
-%     my_legend = {'phase a';'phase b';'phase c';'total'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-%     
-%     hold off;
-%     close (fname);
-%     % Maximum power factor (Base Case)
-%     fname = 'Maximum Power Factor Base Case';
-%     set_figure_size(fname);
-%     hold on;
-%     
-%     pf(:,1)=cell2mat(data_t0(1:28,4:4)); % min phase a
-%     pf(:,2)=cell2mat(data_t0(1:28,7:7)); % min phase b
-%     pf(:,3)=cell2mat(data_t0(1:28,10:10)); % min phase c
-%     pf(:,4)=cell2mat(data_t0(1:28,13:13)); % min phase a, b, and c
-%     
-%     bar(pf,'barwidth',0.9,'barwidth',0.9);
-%     ylabel('Power Factor');
-%     ylim([.5 1.0]);
-%     my_legend = {'phase a';'phase b';'phase c';'total'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-%     
-%     hold off;
-%     close (fname);
-%     % Maximum power factor (CVR)
-%     fname = 'Maximum Power Factor CVR';
-%     set_figure_size(fname);
-%     hold on;
-%     
-%     pf(:,1)=cell2mat(data_t1(1:28,4:4)); % min phase a
-%     pf(:,2)=cell2mat(data_t1(1:28,7:7)); % min phase b
-%     pf(:,3)=cell2mat(data_t1(1:28,10:10)); % min phase c
-%     pf(:,4)=cell2mat(data_t1(1:28,13:13)); % min phase a, b, and c
-%     
-%     bar(pf,'barwidth',0.9,'barwidth',0.9);
-%     ylabel('Power Factor');
-%     ylim([.5 1.0]);
-%     my_legend = {'phase a';'phase b';'phase c';'total'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-%     
-%     hold off;
-%     close(fname)
-    
+   
     % Compare Minimum power factor
     fname = 'Compare Minimum Power Factor Comparison';
     set_figure_size(fname);
@@ -724,17 +612,94 @@ if (plot_emissions == 1)
 end% End of emissions plots
 
 %% Impact Matrix
+% The index numbers are set by the indicies of 'impact_matrix' are specific for CVR
 
 if ( generate_impact_matrix == 1)
-    % Index 2 (Monthly end use customer electricty usage)
+    % Index 1 & 2 (Hourly & Monthly end use customer electricty usage)
+    load([write_dir,'total_energy_consumption_t0.mat']);
+    data_t0 = energy_consumption;
+    load([write_dir,'total_energy_consumption_t1.mat']);
+    data_t1 = energy_consumption;
+
+    load([write_dir,'annual_losses_t0.mat']);
+    data_t2 = annual_losses;
+    load([write_dir,'annual_losses_t1.mat']);
+    data_t3 = annual_losses;
+    [no_feeders cells] = size(data_t0);
+    clear  energy_consumption anual_losses;
+
+    energy_data(:,1) = cell2mat(data_t0(:,2)); % t0 real power
+    energy_data(:,2) = cell2mat(data_t1(:,2)); % t1 real power
     
-    % Index 3 (Peak generation and percentages)
+    for i=1:length(data_t0)
+        temp=cell2mat(data_t2(i,3)); % t0 losses
+        temp2=cell2mat(data_t3(i,3)); % t1 losses
+        energy_data(i,3)= temp(6,1);
+        energy_data(i,4)= temp2(6,1);
+        % t1 losses
+    end
+    
+    hourly_customer_usage_t0(:,1)=(energy_data(:,1)-energy_data(:,3))/8760000; % Change in average hourly customer (kWh)
+    monthly_customer_usage_t0(:,1)=(energy_data(:,1)+energy_data(:,3))/12000; % Change in average monthly customer (kWh)
+   
+    hourly_customer_usage_t1(:,1)=(energy_data(:,2)-energy_data(:,4))/8760000; % Change in average hourly customer (kWh)
+    monthly_customer_usage_t1(:,1)=(energy_data(:,2)+energy_data(:,4))/12000; % Change in average monthly customer (kWh)
+    
+    impact_matrix_R1_t0(1,1)=hourly_customer_usage_t0(1,1);
+    impact_matrix_R1_t0(1,2:6)=hourly_customer_usage_t0(6:10,1)';
+    impact_matrix_R2_t0(1,1)=hourly_customer_usage_t0(2,1);
+    impact_matrix_R2_t0(1,2:6)=hourly_customer_usage_t0(11:15,1)';
+    impact_matrix_R3_t0(1,1)=hourly_customer_usage_t0(3,1);
+    impact_matrix_R3_t0(1,2:4)=hourly_customer_usage_t0(16:18,1)';
+    impact_matrix_R4_t0(1,1)=hourly_customer_usage_t0(4,1);
+    impact_matrix_R4_t0(1,2:4)=hourly_customer_usage_t0(19:21,1)';
+    impact_matrix_R5_t0(1,1)=hourly_customer_usage_t0(5,1);
+    impact_matrix_R5_t0(1,2:8)=hourly_customer_usage_t0(22:28,1)';
+    
+    impact_matrix_R1_t0(2,1)=monthly_customer_usage_t0(1,1);
+    impact_matrix_R1_t0(2,2:6)=monthly_customer_usage_t0(6:10,1)';
+    impact_matrix_R2_t0(2,1)=monthly_customer_usage_t0(2,1);
+    impact_matrix_R2_t0(2,2:6)=monthly_customer_usage_t0(11:15,1)';
+    impact_matrix_R3_t0(2,1)=monthly_customer_usage_t0(3,1);
+    impact_matrix_R3_t0(2,2:4)=monthly_customer_usage_t0(16:18,1)';
+    impact_matrix_R4_t0(2,1)=monthly_customer_usage_t0(4,1);
+    impact_matrix_R4_t0(2,2:4)=monthly_customer_usage_t0(19:21,1)';
+    impact_matrix_R5_t0(2,1)=monthly_customer_usage_t0(5,1);
+    impact_matrix_R5_t0(2,2:8)=monthly_customer_usage_t0(22:28,1)';
+    
+    impact_matrix_R1_t1(1,1)=hourly_customer_usage_t1(1,1);
+    impact_matrix_R1_t1(1,2:6)=hourly_customer_usage_t1(6:10,1)';
+    impact_matrix_R2_t1(1,1)=hourly_customer_usage_t1(2,1);
+    impact_matrix_R2_t1(1,2:6)=hourly_customer_usage_t1(11:15,1)';
+    impact_matrix_R3_t1(1,1)=hourly_customer_usage_t1(3,1);
+    impact_matrix_R3_t1(1,2:4)=hourly_customer_usage_t1(16:18,1)';
+    impact_matrix_R4_t1(1,1)=hourly_customer_usage_t1(4,1);
+    impact_matrix_R4_t1(1,2:4)=hourly_customer_usage_t1(19:21,1)';
+    impact_matrix_R5_t1(1,1)=hourly_customer_usage_t1(5,1);
+    impact_matrix_R5_t1(1,2:8)=hourly_customer_usage_t1(22:28,1)';
+    
+    impact_matrix_R1_t1(2,1)=monthly_customer_usage_t1(1,1);
+    impact_matrix_R1_t1(2,2:6)=monthly_customer_usage_t1(6:10,1)';
+    impact_matrix_R2_t1(2,1)=monthly_customer_usage_t1(2,1);
+    impact_matrix_R2_t1(2,2:6)=monthly_customer_usage_t1(11:15,1)';
+    impact_matrix_R3_t1(2,1)=monthly_customer_usage_t1(3,1);
+    impact_matrix_R3_t1(2,2:4)=monthly_customer_usage_t1(16:18,1)';
+    impact_matrix_R4_t1(2,1)=monthly_customer_usage_t1(4,1);
+    impact_matrix_R4_t1(2,2:4)=monthly_customer_usage_t1(19:21,1)';
+    impact_matrix_R5_t1(2,1)=monthly_customer_usage_t1(5,1);
+    impact_matrix_R5_t1(2,2:8)=monthly_customer_usage_t1(22:28,1)';
+
+    
+    clear data_t0 data_t1 data_t2 data_t3 hourly_customer_usage_t0 hourly_customer_usage_t1 monthly_customer_usage_t0 monthly_customer_usage_t1
+    
+    % Index 3 % 4(Peak generation % percentages and peak load)
     load([write_dir,'peakiest_peak_t0.mat']);
     data_t0 = peakiest_peakday;
     load([write_dir,'peakiest_peak_t1.mat']);
     data_t1 = peakiest_peakday;
-    
-    clear peakiest_peakday;
+
+    clear peakiest_peakday ;
+
     data_labels = strrep(data_t0(:,1),'_t0','');
     data_labels = strrep(data_labels,'_','-');
     peak_power_data(:,1) = cell2mat(data_t0(:,2));
@@ -742,25 +707,115 @@ if ( generate_impact_matrix == 1)
     peak_va_data(:,1) = cell2mat(data_t0(:,3));
     peak_va_data(:,2) = cell2mat(data_t1(:,3));
     
-    delta_peak_power_percent = 100 * (peak_power_data(:,2) - peak_power_data(:,1)) ./ peak_power_data(:,1);
-    delta_peak_power_kW = (peak_power_data(:,2) - peak_power_data(:,1))/1000;
-   
-    impact_matrix_R1(2,1)=delta_peak_power_kW(1,1);
-    impact_matrix_R1(2,2:6)=delta_peak_power_kW(6:10,1)';
-    impact_matrix_R2(2,1)=delta_peak_power_kW(2,1);
-    impact_matrix_R2(2,2:6)=delta_peak_power_kW(11:15,1)';
-    impact_matrix_R3(2,1)=delta_peak_power_kW(3,1);
-    impact_matrix_R3(2,2:4)=delta_peak_power_kW(16:18,1)';
-    impact_matrix_R4(2,1)=delta_peak_power_kW(4,1);
-    impact_matrix_R4(2,2:4)=delta_peak_power_kW(19:21,1)';
-    impact_matrix_R5(2,1)=delta_peak_power_kW(5,1);
-    impact_matrix_R5(2,2:8)=delta_peak_power_kW(22:28,1)';
+    peak_power_t0=peak_power_data(:,1); % Peak total demand for t0
+    peak_power_t1=peak_power_data(:,2); % Peak total demand for t1
+       
+    impact_matrix_R1_t0(3,1)=peak_power_t0(1,1);
+    impact_matrix_R1_t0(3,2:6)=peak_power_t0(6:10,1)';
+    impact_matrix_R2_t0(3,1)=peak_power_t0(2,1);
+    impact_matrix_R2_t0(3,2:6)=peak_power_t0(11:15,1)';
+    impact_matrix_R3_t0(3,1)=peak_power_t0(3,1);
+    impact_matrix_R3_t0(3,2:4)=peak_power_t0(16:18,1)';
+    impact_matrix_R4_t0(3,1)=peak_power_t0(4,1);
+    impact_matrix_R4_t0(3,2:4)=peak_power_t0(19:21,1)';
+    impact_matrix_R5_t0(3,1)=peak_power_t0(5,1);
+    impact_matrix_R5_t0(3,2:8)=peak_power_t0(22:28,1)';
+    
+    impact_matrix_R1_t1(3,1)=peak_power_data(1,1);
+    impact_matrix_R1_t1(3,2:6)=peak_power_data(6:10,1)';
+    impact_matrix_R2_t1(3,1)=peak_power_data(2,1);
+    impact_matrix_R2_t1(3,2:6)=peak_power_data(11:15,1)';
+    impact_matrix_R3_t1(3,1)=peak_power_data(3,1);
+    impact_matrix_R3_t1(3,2:4)=peak_power_data(16:18,1)';
+    impact_matrix_R4_t1(3,1)=peak_power_data(4,1);
+    impact_matrix_R4_t1(3,2:4)=peak_power_data(19:21,1)';
+    impact_matrix_R5_t1(3,1)=peak_power_data(5,1);
+    impact_matrix_R5_t1(3,2:8)=peak_power_data(22:28,1)';
+    
+    
+    
+    
+    
+    
+    for i=4:13
+        impact_matrix_R1_t0(i,1)=9999;%delta_peak_power_kW(1,1);
+        impact_matrix_R1_t0(i,2:6)=9999;%delta_peak_power_kW(6:10,1)';
+        impact_matrix_R2_t0(i,1)=9999;%delta_peak_power_kW(2,1);
+        impact_matrix_R2_t0(i,2:6)=9999;%delta_peak_power_kW(11:15,1)';
+        impact_matrix_R3_t0(i,1)=9999;%delta_peak_power_kW(3,1);
+        impact_matrix_R3_t0(i,2:4)=9999;%delta_peak_power_kW(16:18,1)';
+        impact_matrix_R4_t0(i,1)=9999;%delta_peak_power_kW(4,1);
+        impact_matrix_R4_t0(i,2:4)=9999;%delta_peak_power_kW(19:21,1)';
+        impact_matrix_R5_t0(i,1)=9999;%delta_peak_power_kW(5,1);
+        impact_matrix_R5_t0(i,2:8)=9999;%delta_peak_power_kW(22:28,1)';
+        
+        impact_matrix_R1_t1(i,1)=9999;%delta_peak_power_kW(1,1);
+        impact_matrix_R1_t1(i,2:6)=9999;%delta_peak_power_kW(6:10,1)';
+        impact_matrix_R2_t1(i,1)=9999;%delta_peak_power_kW(2,1);
+        impact_matrix_R2_t1(i,2:6)=9999;%delta_peak_power_kW(11:15,1)';
+        impact_matrix_R3_t1(i,1)=9999;%delta_peak_power_kW(3,1);
+        impact_matrix_R3_t1(i,2:4)=9999;%delta_peak_power_kW(16:18,1)';
+        impact_matrix_R4_t1(i,1)=9999;%delta_peak_power_kW(4,1);
+        impact_matrix_R4_t1(i,2:4)=9999;%delta_peak_power_kW(19:21,1)';
+        impact_matrix_R5_t1(i,1)=9999;%delta_peak_power_kW(5,1);
+        impact_matrix_R5_t1(i,2:8)=9999;%delta_peak_power_kW(22:28,1)';  
+    end
+    
 
-    clear data_t0 data_t1
+
+    peak_demand_t0=cell2mat(data_t0(:,2))-cell2mat(data_t0(:,4)); % Peak end use demand for t0
+    peak_demand_t1=cell2mat(data_t1(:,2))-cell2mat(data_t0(:,4)); % Peak end use demand for t1
     
-    % Index 4 (Peak end use load and % controllable load)
+    impact_matrix_R1_t0(14,1)=peak_demand_t0(1,1);
+    impact_matrix_R1_t0(14,2:6)=peak_demand_t0(6:10,1)';
+    impact_matrix_R2_t0(14,1)=peak_demand_t0(2,1);
+    impact_matrix_R2_t0(14,2:6)=peak_demand_t0(11:15,1)';
+    impact_matrix_R3_t0(14,1)=peak_demand_t0(3,1);
+    impact_matrix_R3_t0(14,2:4)=peak_demand_t0(16:18,1)';
+    impact_matrix_R4_t0(14,1)=peak_demand_t0(4,1);
+    impact_matrix_R4_t0(14,2:4)=peak_demand_t0(19:21,1)';
+    impact_matrix_R5_t0(14,1)=peak_demand_t0(5,1);
+    impact_matrix_R5_t0(14,2:8)=peak_demand_t0(22:28,1)';
     
-    % Index 7 (Annual Electricty production)
+    impact_matrix_R1_t1(14,1)=peak_demand_t1(1,1);
+    impact_matrix_R1_t1(14,2:6)=peak_demand_t1(6:10,1)';
+    impact_matrix_R2_t1(14,1)=peak_demand_t1(2,1);
+    impact_matrix_R2_t1(14,2:6)=peak_demand_t1(11:15,1)';
+    impact_matrix_R3_t1(14,1)=peak_demand_t1(3,1);
+    impact_matrix_R3_t1(14,2:4)=peak_demand_t1(16:18,1)';
+    impact_matrix_R4_t1(14,1)=peak_demand_t1(4,1);
+    impact_matrix_R4_t1(14,2:4)=peak_demand_t1(19:21,1)';
+    impact_matrix_R5_t1(14,1)=peak_demand_t1(5,1);
+    impact_matrix_R5_t1(14,2:8)=peak_demand_t1(22:28,1)';
+    
+    % Controllable load is 0% for CVR
+    impact_matrix_R1_t0(15,1)=0;
+    impact_matrix_R1_t0(15,2:6)=0';
+    impact_matrix_R2_t0(15,1)=0;
+    impact_matrix_R2_t0(15,2:6)=0;
+    impact_matrix_R3_t0(15,1)=0;
+    impact_matrix_R3_t0(15,2:4)=0;
+    impact_matrix_R4_t0(15,1)=0;
+    impact_matrix_R4_t0(15,2:4)=0;
+    impact_matrix_R5_t0(15,1)=0;
+    impact_matrix_R5_t0(15,2:8)=0;
+    
+    impact_matrix_R1_t1(15,1)=0;
+    impact_matrix_R1_t1(15,2:6)=0;
+    impact_matrix_R2_t1(15,1)=0;
+    impact_matrix_R2_t1(15,2:6)=0;
+    impact_matrix_R3_t1(15,1)=0;
+    impact_matrix_R3_t1(15,2:4)=0;
+    impact_matrix_R4_t1(15,1)=0;
+    impact_matrix_R4_t1(15,2:4)=0;
+    impact_matrix_R5_t1(15,1)=0;
+    impact_matrix_R5_t1(15,2:8)=0;
+    
+
+    clear data_t0 data_t1 peak_demand_t0 peak_demand_t1 peak_power_t0 peak_power_t1 peak_va_data peak_power_data
+    
+    
+    % Index 7 (Annual Electricty production) % Index 21 (Distribution Feeder Load)
     load([write_dir,'total_energy_consumption_t0.mat']);
     data_t0 = energy_consumption;
     load([write_dir,'total_energy_consumption_t1.mat']);
@@ -770,39 +825,183 @@ if ( generate_impact_matrix == 1)
     
     data_labels = strrep(data_t0(:,1),'_t0','');
     data_labels = strrep(data_labels,'_','-');
-    energy_data(:,1) = cell2mat(data_t0(:,2));
-    energy_data(:,2) = cell2mat(data_t1(:,2));
+    energy_data(:,1) = cell2mat(data_t0(:,2)); % t0 real power
+    energy_data(:,2) = cell2mat(data_t1(:,2)); % t1 real power
+    energy_data(:,3) = cell2mat(data_t0(:,3)); % t0 reactive power
+    energy_data(:,4) = cell2mat(data_t1(:,3)); % t1 reactive power
+
+    energy_consuption_t0=energy_data(:,1)/1000000;
+    energy_consuption_t1=energy_data(:,2)/1000000;
     
-    energy_reduction_percent = 100 * (energy_data(:,2) - energy_data(:,1)) ./ energy_data(:,1);
-    energy_reduction_MWh = (energy_data(:,2) - energy_data(:,1))/1000000;
+    impact_matrix_R1_t0(16,1)=energy_consuption_t0(1,1); %GC
+    impact_matrix_R1_t0(16,2:6)=energy_consuption_t0(6:10,1)';
+    impact_matrix_R2_t0(16,1)=energy_consuption_t0(2,1); %GC
+    impact_matrix_R2_t0(16,2:6)=energy_consuption_t0(11:15,1)';
+    impact_matrix_R3_t0(16,1)=energy_consuption_t0(3,1); %GC
+    impact_matrix_R3_t0(16,2:4)=energy_consuption_t0(16:18,1)';
+    impact_matrix_R4_t0(16,1)=energy_consuption_t0(4,1); %GC
+    impact_matrix_R4_t0(16,2:4)=energy_consuption_t0(19:21,1)';
+    impact_matrix_R5_t0(16,1)=energy_consuption_t0(5,1); %GC
+    impact_matrix_R5_t0(16,2:8)=energy_consuption_t0(22:28,1)';
     
-    impact_matrix_R1(7,1)=energy_reduction_MWh(1,1);
-    impact_matrix_R1(7,2:6)=energy_reduction_MWh(6:10,1)';
-    impact_matrix_R2(7,1)=energy_reduction_MWh(2,1);
-    impact_matrix_R2(7,2:6)=energy_reduction_MWh(11:15,1)';
-    impact_matrix_R3(7,1)=energy_reduction_MWh(3,1);
-    impact_matrix_R3(7,2:4)=energy_reduction_MWh(16:18,1)';
-    impact_matrix_R4(7,1)=energy_reduction_MWh(4,1);
-    impact_matrix_R4(7,2:4)=energy_reduction_MWh(19:21,1)';
-    impact_matrix_R5(7,1)=energy_reduction_MWh(5,1);
-    impact_matrix_R5(7,2:8)=energy_reduction_MWh(22:28,1)';
-    clear data_t0 data_t1
-       
-    % Index 12 (CO2-for end use loads)
+    impact_matrix_R1_t1(16,1)=energy_consuption_t1(1,1); %GC
+    impact_matrix_R1_t1(16,2:6)=energy_consuption_t1(6:10,1)';
+    impact_matrix_R2_t1(16,1)=energy_consuption_t1(2,1); %GC
+    impact_matrix_R2_t1(16,2:6)=energy_consuption_t1(11:15,1)';
+    impact_matrix_R3_t1(16,1)=energy_consuption_t1(3,1); %GC
+    impact_matrix_R3_t1(16,2:4)=energy_consuption_t1(16:18,1)';
+    impact_matrix_R4_t1(16,1)=energy_consuption_t1(4,1); %GC
+    impact_matrix_R4_t1(16,2:4)=energy_consuption_t1(19:21,1)';
+    impact_matrix_R5_t1(16,1)=energy_consuption_t1(5,1); %GC
+    impact_matrix_R5_t1(16,2:8)=energy_consuption_t1(22:28,1)';
     
-    % Index 13 (SOx, NOx, and PM-10-for end use loads)
     
-    % Index 20
+    % Average hourly feeder loading (Index 21)
+    energy_average_hourly_t0=energy_data(:,1)/8760000; % real power (kWH)
+    energy_average_hourly_t1=energy_data(:,2)/8760000; % real power (kWH)
     
-    % Index 21 (Real and Reactive feeder load)
+    energy_average_hourly_t0(:,2)=energy_data(:,3)/8760000; % reactive power (kVAR)
+    energy_average_hourly_t1(:,2)=energy_data(:,4)/8760000; % reactive power (kVAR)
     
+    
+    % real power
+    impact_matrix_R1_t0(22,1)=energy_average_hourly_t0(1,1); %GC
+    impact_matrix_R1_t0(22,2:6)=energy_average_hourly_t0(6:10,1)';
+    impact_matrix_R2_t0(22,1)=energy_average_hourly_t0(2,1); %GC
+    impact_matrix_R2_t0(22,2:6)=energy_average_hourly_t0(11:15,1)';
+    impact_matrix_R3_t0(22,1)=energy_average_hourly_t0(3,1); %GC
+    impact_matrix_R3_t0(22,2:4)=energy_average_hourly_t0(16:18,1)';
+    impact_matrix_R4_t0(22,1)=energy_average_hourly_t0(4,1); %GC
+    impact_matrix_R4_t0(22,2:4)=energy_average_hourly_t0(19:21,1)';
+    impact_matrix_R5_t0(22,1)=energy_average_hourly_t0(5,1); %GC
+    impact_matrix_R5_t0(22,2:8)=energy_average_hourly_t0(22:28,1)';
+    
+    impact_matrix_R1_t1(22,1)=energy_average_hourly_t1(1,1); %GC
+    impact_matrix_R1_t1(22,2:6)=energy_average_hourly_t1(6:10,1)';
+    impact_matrix_R2_t1(22,1)=energy_average_hourly_t1(2,1); %GC
+    impact_matrix_R2_t1(22,2:6)=energy_average_hourly_t1(11:15,1)';
+    impact_matrix_R3_t1(22,1)=energy_average_hourly_t1(3,1); %GC
+    impact_matrix_R3_t1(22,2:4)=energy_average_hourly_t1(16:18,1)';
+    impact_matrix_R4_t1(22,1)=energy_average_hourly_t1(4,1); %GC
+    impact_matrix_R4_t1(22,2:4)=energy_average_hourly_t1(19:21,1)';
+    impact_matrix_R5_t1(22,1)=energy_average_hourly_t1(5,1); %GC
+    impact_matrix_R5_t1(22,2:8)=energy_average_hourly_t1(22:28,1)';
+    
+    
+    % Reactive power
+    impact_matrix_R1_t0(23,1)=energy_average_hourly_t0(1,2); %GC
+    impact_matrix_R1_t0(23,2:6)=energy_average_hourly_t0(6:10,2)';
+    impact_matrix_R2_t0(23,1)=energy_average_hourly_t0(2,2); %GC
+    impact_matrix_R2_t0(23,2:6)=energy_average_hourly_t0(11:15,2)';
+    impact_matrix_R3_t0(23,1)=energy_average_hourly_t0(3,2); %GC
+    impact_matrix_R3_t0(23,2:4)=energy_average_hourly_t0(16:18,2)';
+    impact_matrix_R4_t0(23,1)=energy_average_hourly_t0(4,2); %GC
+    impact_matrix_R4_t0(23,2:4)=energy_average_hourly_t0(19:21,2)';
+    impact_matrix_R5_t0(23,1)=energy_average_hourly_t0(5,2); %GC
+    impact_matrix_R5_t0(23,2:8)=energy_average_hourly_t0(22:28,2)';
+    
+    impact_matrix_R1_t1(23,1)=energy_average_hourly_t1(1,2); %GC
+    impact_matrix_R1_t1(23,2:6)=energy_average_hourly_t1(6:10,2)';
+    impact_matrix_R2_t1(23,1)=energy_average_hourly_t1(2,2); %GC
+    impact_matrix_R2_t1(23,2:6)=energy_average_hourly_t1(11:15,2)';
+    impact_matrix_R3_t1(23,1)=energy_average_hourly_t1(3,2); %GC
+    impact_matrix_R3_t1(23,2:4)=energy_average_hourly_t1(16:18,2)';
+    impact_matrix_R4_t1(23,1)=energy_average_hourly_t1(4,2); %GC
+    impact_matrix_R4_t1(23,2:4)=energy_average_hourly_t1(19:21,2)';
+    impact_matrix_R5_t1(23,1)=energy_average_hourly_t1(5,2); %GC
+    impact_matrix_R5_t1(23,2:8)=energy_average_hourly_t1(22:28,2)';
+    
+    clear data_t0 data_t1 energy_average_hourly_t0 energy_average_hourly_t1 energy_average_hourly_t0 energy_average_hourly_t1 energy_consuption_t0 energy_consuption_t1
     % Index 29 (Distribution Losses)
+    load([write_dir,'total_energy_consumption_t0.mat']);
+    data_t0 = energy_consumption;
+    load([write_dir,'total_energy_consumption_t1.mat']);
+    data_t1 = energy_consumption;
     
+    
+    load([write_dir,'annual_losses_t0.mat']);
+    data_t2 = annual_losses;
+    load([write_dir,'annual_losses_t1.mat']);
+    data_t3 = annual_losses;
+    
+    [no_feeders cells] = size(data_t0);
+    clear  energy_consumption anual_losses;
+
+    energy_data(:,1) = cell2mat(data_t0(:,2)); % t0 real power
+    energy_data(:,2) = cell2mat(data_t1(:,2)); % t1 real power
+    
+    for i=1:length(data_t0)
+        temp=cell2mat(data_t2(i,3)); % t0 losses
+        temp2=cell2mat(data_t3(i,3)); % t1 losses
+        energy_data(i,3)= temp(6,1);
+        energy_data(i,4)= temp2(6,1);
+        % t1 losses
+    end
+    losses_t0=100*(energy_data(:,3)./energy_data(:,1)); % Losses t0 in %
+    losses_t1=100*(energy_data(:,4)./energy_data(:,2)); % Losses t1 in %
+
+    
+    impact_matrix_R1_t0(25,1)=losses_t0(1,1);
+    impact_matrix_R1_t0(25,2:6)=losses_t0(6:10,1)';
+    impact_matrix_R2_t0(25,1)=losses_t0(2,1);
+    impact_matrix_R2_t0(25,2:6)=losses_t0(11:15,1)';
+    impact_matrix_R3_t0(25,1)=losses_t0(3,1);
+    impact_matrix_R3_t0(25,2:4)=losses_t0(16:18,1)';
+    impact_matrix_R4_t0(25,1)=losses_t0(4,1);
+    impact_matrix_R4_t0(25,2:4)=losses_t0(19:21,1)';
+    impact_matrix_R5_t0(25,1)=losses_t0(5,1);
+    impact_matrix_R5_t0(25,2:8)=losses_t0(22:28,1)';
+    
+    impact_matrix_R1_t1(25,1)=losses_t1(1,1);
+    impact_matrix_R1_t1(25,2:6)=losses_t1(6:10,1)';
+    impact_matrix_R2_t1(25,1)=losses_t1(2,1);
+    impact_matrix_R2_t1(25,2:6)=losses_t1(11:15,1)';
+    impact_matrix_R3_t1(25,1)=losses_t1(3,1);
+    impact_matrix_R3_t1(25,2:4)=losses_t1(16:18,1)';
+    impact_matrix_R4_t1(25,1)=losses_t1(4,1);
+    impact_matrix_R4_t1(25,2:4)=losses_t1(19:21,1)';
+    impact_matrix_R5_t1(25,1)=losses_t1(5,1);
+    impact_matrix_R5_t1(25,2:8)=losses_t1(22:28,1)';
+    
+    clear data_t0 data_t1 data_t2 data_t3 energy_data losses_t0 losses_t1 temp tem2
+
     % Index 30 (Power Factor)
     
-    % Index 39 (CO2-total feeder load)
+    load([write_dir,'power_factors_t0.mat']);
+    data_t0 = power_factor;
+    load([write_dir,'power_factors_t1.mat']);
+    data_t1 = power_factor;
+    [no_feeders cells] = size(data_t0);
+    clear  energy_consuption anual_losses;
+    clear power_factor
     
-    % Index 40 (SOx, NOx, and PM-10-total feeder load)
+    power_factor_t0=cell2mat(data_t0(:,12)); % Average annual power factor for t0
+    power_factor_t1=cell2mat(data_t1(:,12)); % Average annual power factor for t1
+
+    
+    impact_matrix_R1_t0(26,1)=power_factor_t0(1,1);
+    impact_matrix_R1_t0(26,2:6)=power_factor_t0(6:10,1)';
+    impact_matrix_R2_t0(26,1)=power_factor_t0(2,1);
+    impact_matrix_R2_t0(26,2:6)=power_factor_t0(11:15,1)';
+    impact_matrix_R3_t0(26,1)=power_factor_t0(3,1);
+    impact_matrix_R3_t0(26,2:4)=power_factor_t0(16:18,1)';
+    impact_matrix_R4_t0(26,1)=power_factor_t0(4,1);
+    impact_matrix_R4_t0(26,2:4)=power_factor_t0(19:21,1)';
+    impact_matrix_R5_t0(26,1)=power_factor_t0(5,1);
+    impact_matrix_R5_t0(26,2:8)=power_factor_t0(22:28,1)';
+    
+    impact_matrix_R1_t1(26,1)=power_factor_t1(1,1);
+    impact_matrix_R1_t1(26,2:6)=power_factor_t1(6:10,1)';
+    impact_matrix_R2_t1(26,1)=power_factor_t1(2,1);
+    impact_matrix_R2_t1(26,2:6)=power_factor_t1(11:15,1)';
+    impact_matrix_R3_t1(26,1)=power_factor_t1(3,1);
+    impact_matrix_R3_t1(26,2:4)=power_factor_t1(16:18,1)';
+    impact_matrix_R4_t1(26,1)=power_factor_t1(4,1);
+    impact_matrix_R4_t1(26,2:4)=power_factor_t1(19:21,1)';
+    impact_matrix_R5_t1(26,1)=power_factor_t1(5,1);
+    impact_matrix_R5_t1(26,2:8)=power_factor_t1(22:28,1)';
+    
+    clear data_t0 data_t1 power_factor_t0 power_factor_t1
     
 
       
