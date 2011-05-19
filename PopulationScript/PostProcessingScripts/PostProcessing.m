@@ -8,11 +8,11 @@ clc;
 
 % declare working directory - all the input .mat files should be located here
 tech = 't1';
-cd(['C:\Users\d3x289\Desktop\GLD_Analysis\' tech]); % Jason
+cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
 %cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-write_dir = 'C:\Users\d3x289\Desktop\GLD_Analysis\ProcessedData\'; % Jason
+write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
 %write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % find all of the .mat files in the directory
@@ -750,6 +750,15 @@ for file_ind = 1:no_files
                     end
                     disp_ind = disp_ind + 1;
                 end %end while tempE > 0 loop
+                
+                if (ts_ind == ind_max_power)
+                    test_length = length(peak_pen);
+                    if (test_length < 9)
+                        for ttind=(test_length+1):9
+                            peak_pen(ttind) = 0;
+                        end
+                    end
+                end
             end %end day loop
             
             % convert to tons and store
