@@ -31,12 +31,13 @@ find_voltages = 0;                  % get the average and minimum of the lowest 
     find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
 find_pf = 0;                        % min, max, and average
 find_losses = 0;                    % gathers the system losses
+find_switching = 1;                 % gather all of the capacitor and regulator switching operations (sums all phases and objects)
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
 %       before this function can be applied to other techs 
 %       besides the base case (everything is scaled from base case)
-find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
+find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
     
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
@@ -868,9 +869,82 @@ for file_ind = 1:no_files
         monthly_losses{file_ind,3} = temp_var_monthly/4;
         
         clear temp_var temp_var_annual temp_var_monthly;
-    end
-    
+    end   
     % end losses
+    
+    % accumulate switching operations
+    if (find_switching == 1)
+        eval(['field_names = fieldnames(' current_file ');']);
+        cap_sw = 0;
+        reg_sw = 0;
+        
+        % Some of the capacitor data is "bad" - its measuring switching
+        %   operations of non-existent phases in capacitor.  In some case,
+        %   due to the changes for capacitor outtages, it was oscillating
+        %   states all year long even though the capacitor phase didn't
+        %   exist.  This just goes through and elimates all of those bad
+        %   data points.
+        exclusion_list = {['R1_1247_1_' tech '.cap3_switchA'];['R1_1247_1_' tech '.cap3_switchB'];...
+                          ['R2_1247_3_' tech '.cap1_switchB'];['R2_1247_3_' tech '.cap1_switchC'];...
+                          ['R2_3500_1_' tech '.cap9_switchA'];['R2_3500_1_' tech '.cap9_switchB'];...
+                          ['R2_3500_1_' tech '.cap10_switchA'];['R2_3500_3_' tech '.cap10_switchB'];...
+                          ['R2_3500_1_' tech '.cap11_switchA'];['R2_3500_1_' tech '.cap11_switchB'];...
+                          ['R2_3500_1_' tech '.cap12_switchA'];['R2_3500_3_' tech '.cap12_switchB'];...
+                          ['R2_3500_1_' tech '.cap12_switchB'];['R2_3500_3_' tech '.cap12_switchC'];...
+                          ['R4_1247_1_' tech '.cap3_switchA'];...
+                          ['R4_1247_1_' tech '.cap4_switchA'];['R4_1247_1_' tech '.cap4_switchB'];...
+                          ['R4_1247_1_' tech '.cap5_switchA'];['R4_1247_1_' tech '.cap5_switchB'];...
+                          ['R5_1247_3_' tech '.cap3_switchA'];['R5_1247_3_' tech '.cap3_switchC'];...
+                          ['R5_1247_3_' tech '.cap4_switchA'];['R5_1247_3_' tech '.cap4_switchC'];...
+                          ['R5_1247_3_' tech '.cap6_switchA'];['R5_1247_3_' tech '.cap6_switchC'];...
+                          ['R5_1247_3_' tech '.cap7_switchA'];['R5_1247_3_' tech '.cap7_switchC'];...
+                          ['R5_1247_3_' tech '.cap8_switchA'];['R5_1247_3_' tech '.cap8_switchC'];...
+                          ['R5_1247_3_' tech '.cap9_switchA'];['R5_1247_3_' tech '.cap9_switchC'];...
+                          ['R5_1247_3_' tech '.cap10_switchA'];['R5_1247_3_' tech '.cap10_switchC'];...
+                          ['R5_1247_3_' tech '.cap11_switchA'];['R5_1247_3_' tech '.cap11_switchB'];...
+                          ['R5_1247_3_' tech '.cap12_switchA'];['R5_1247_3_' tech '.cap12_switchC'];...
+                          ['R5_1247_3_' tech '.cap13_switchA'];['R5_1247_3_' tech '.cap13_switchB'];...
+                          ['R5_3500_1_' tech '.cap1_switchA'];['R5_3500_1_' tech '.cap1_switchB']};
+                      
+        for iind = 1:length(field_names)
+            if (strfind(char(field_names(iind)),'cap') ~=0)
+                if (strfind(char(field_names(iind)),'switch') ~=0)
+                    test_var = [char(current_file) '.' char(field_names(iind))];
+                    test_matrix = strfind(exclusion_list,test_var);
+                    
+                    if (sum(cell2mat(test_matrix)) > 0)
+                        % exclude it, because it has "bad" data
+                    else
+                        eval(['temp_var = ' test_var ';']);
+
+                        for jkind = 2:length(temp_var)
+                            if (strcmp(char(temp_var(jkind-1)),char(temp_var(jkind))) == 0)
+                                cap_sw = cap_sw + 1;
+                            end
+                        end
+                    end
+                end
+            elseif (strfind(char(field_names(iind)),'reg') ~=0)
+                if (strfind(char(field_names(iind)),'tap') ~=0)
+                    eval(['temp_var = ' char(current_file) '.' char(field_names(iind)) ';']);
+                    
+                    for jkind = 2:length(temp_var)
+                        if ( temp_var(jkind-1) ~= temp_var(jkind) )
+                            reg_sw = reg_sw + 1;
+                        end
+                    end
+                end
+            end
+            
+            clear temp_var;
+        end
+        
+        switch_ops{file_ind,1} = current_file;
+        switch_ops{file_ind,2} = cap_sw;
+        switch_ops{file_ind,3} = reg_sw;    
+        
+    end
+    % end switching operations
     
     % clear out the file we've opened
     eval(['clear ' current_file]);
@@ -948,6 +1022,12 @@ if (find_losses == 1)
         save(write_file,'monthly_losses');
     end
 end
+
+if (find_switching == 1)
+    write_file = [write_dir 'switching_operations_' tech '.mat'];
+    save(write_file,'switch_ops')
+end
+
 disp('All done!');
 clear;
 
