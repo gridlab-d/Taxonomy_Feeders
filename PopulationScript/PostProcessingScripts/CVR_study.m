@@ -20,16 +20,16 @@ plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
 plot_losses = 0;
-plot_emissions = 0;
+plot_emissions = 1;
 
 % Flag for impact matrix
-generate_impact_matrix = 1;
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
 plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
+plot_monthly_emissions = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -601,6 +601,48 @@ if (plot_emissions == 1)
     data_t1 = emissions_totals;
     clear emissions_totals
     
+    data_labels = strrep(data_t0(:,1),'_t0','');
+    data_labels = strrep(data_labels,'_','-');
+    
+    emissions_data(:,1)=cell2mat(data_t0(:,2));
+    emissions_data(:,2)=cell2mat(data_t1(:,2));
+    percent_emissions_change=100*(emissions_data(:,2)-emissions_data(:,1))./emissions_data(:,2);
+    
+    
+    % Total annual CO2 emissions
+    fname = 'Annual CO2 Emissions';
+    set_figure_size(fname);
+    hold on;
+    bar(emissions_data,'barwidth',0.9);
+    ylabel('CO2 Emissions (tons)');
+    my_legend = {'Base';'CVR'};
+    set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
+    
+    hold off;
+    close(fname);
+    
+    % Change annual CO2 emissions (tons)
+    fname = 'Change annual CO2 emissions (MWh)';
+    set_figure_size(fname);
+    hold on;
+    bar(emissions_data(:,2)-emissions_data(:,1));
+    ylabel('Change in CO2 Emissions (tons)');
+    set_figure_graphics(data_labels,fname,0,'none',0,'northeastoutside');
+    hold off;
+    close(fname);
+%     
+    % Change annual CO2 emissions (%)
+    fname = 'Change annual CO2 emissions(%)';
+    set_figure_size(fname);
+    hold on;
+    bar(percent_emissions_change);
+    ylabel('Change in CO2 Emissions (%)');
+    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+    hold off;
+    close(fname);
+    
+    
+    
     if (plot_monthly_emissions == 1)
         
         load([write_dir,'emissions_monthly_t0.mat']);
@@ -608,6 +650,35 @@ if (plot_emissions == 1)
         load([write_dir,'emissions_monthly_t1.mat']);
         data_t1 = emissions_totals_monthly;
         clear emissions_totals
+        [no_feeders cells] = size(data_t0);
+        
+        for kkind=1:no_feeders % by feeder
+            for jjind=1:12 % by month
+                monthly_emissions_data(jjind,1)=cell2mat(data_t0{kkind,2}(jjind)); % C02Base Case
+                %                 monthly_emissions_data(jjind,3)=cell2mat(data_t0{kkind,3}(jjind)); % SOX Base Case
+                %                 monthly_emissions_data(jjind,5)=cell2mat(data_t0{kkind,4}(jjind)); % NOX Base Case
+                %                 monthly_emissions_data(jjind,7)=cell2mat(data_t0{kkind,5}(jjind)); % PM-10 Base Case
+                
+                
+                monthly_emissions_data(jjind,2)=cell2mat(data_t1{kkind,2}(jjind)); % co2 cvr
+                %                 monthly_emissions_data(jjind,4)=cell2mat(data_t0{kkind,3}(jjind)); % sox cvr
+                %                 monthly_emissions_data(jjind,6)=cell2mat(data_t0{kkind,4}(jjind)); % nox cvr
+                %                 monthly_emissions_data(jjind,8)=cell2mat(data_t0{kkind,5}(jjind)); % pm-10cvr
+            end
+            
+            % energy consuption (mwh)
+            
+            fname = ['monthly emissions (tons) ' char(data_labels(kkind))];
+            set_figure_size(fname);
+            hold on;
+            bar(monthly_emissions_data,'barwidth',0.9);
+            ylabel('CO2 Emissions (tons)');
+            my_legend = {'Base';'CVR'};
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
+            hold off;
+            close(fname);
+        end
+        
     end
 end% End of emissions plots
 
@@ -1207,27 +1278,26 @@ if ( generate_impact_matrix == 1)
     
 
     
-        clear data_t0 data_t1 Temp_R1 Temp_R2 Temp_R3 Temp_R4 Temp_R5 Temp_R6 Temp_R7 Temp_R8 Temp_R9 Temp_R10 matrix_index_start matrix_index_stop temp1 temp2
+    clear data_t0 data_t1 Temp_R1 Temp_R2 Temp_R3 Temp_R4 Temp_R5 Temp_R6 Temp_R7 Temp_R8 Temp_R9 Temp_R10 matrix_index_start matrix_index_stop temp1 temp2
+    
+    
+    % Write t0 values to the Excel file
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t0,'Base','AP4:AV35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t0,'Base','AH4:AK35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t0,'Base','Z4:AC35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t0,'Base','P4:U35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t0,'Base','F4:K35')
+    
+    % Write t1 values to the Excel file
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t1,'For t1','AP4:AV32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t1,'For t1','AH4:AK32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t1,'For t1','Z4:AC32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t1,'For t1','P4:U32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t1,'For t1','F4:K32')
 else
-  % Will not calculate the impact matrices  
-
+    % Will not calculate the impact matrices
+    
 end % End of imapct matrix
-%% Write to Excel
-
-
-% Write t0 values to the Excel file
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t0,'Base','AP4:AV35')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t0,'Base','AH4:AK35')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t0,'Base','Z4:AC35')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t0,'Base','P4:U35')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t0,'Base','F4:K35')
-
-% Write t1 values to the Excel file
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t1,'For t1','AP4:AV32')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t1,'For t1','AH4:AK32')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t1,'For t1','Z4:AC32')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t1,'For t1','P4:U32')
-xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t1,'For t1','F4:K32')
 
 
 
