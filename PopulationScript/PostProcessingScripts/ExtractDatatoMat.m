@@ -47,7 +47,7 @@ for tind=1:tech_total
         name_to_find = [feeders_to_import{find,1},'_t',technologies_to_import{tind,1}];
         
         if (strfind(name_to_find,'GC_') ~= 0)
-            loop = 2; %TODO - this goes back to 5
+            loop = 5; 
         else
             loop = 1;
         end
