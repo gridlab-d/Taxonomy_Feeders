@@ -10,20 +10,20 @@ clear all;
 clc;
 
 % List feeders and technology numbers to import
-feeders_to_import = {'R1_1247_1';'R1_1247_2';'R1_1247_3';'R1_1247_4';'R1_2500_1';...
-    'R2_1247_1';'R2_1247_2';'R2_1247_3';'R2_2500_1';'R2_3500_1';...
-    'R3_1247_1';'R3_1247_2';'R3_1247_3';'R4_1247_1';'R4_1247_2';...
-    'R4_2500_1';'R5_1247_1';'R5_1247_2';'R5_1247_3';'R5_1247_4';...
-    'R5_1247_5';'R5_2500_1';'R5_3500_1';'GC_1247_1'};
-%feeders_to_import = {'GC_1247_1';'R2_2500_1';'R3_1247_2';'R4_2500_1'};
+% feeders_to_import = {'R1_1247_1';'R1_1247_2';'R1_1247_3';'R1_1247_4';'R1_2500_1';...
+%     'R2_1247_1';'R2_1247_2';'R2_1247_3';'R2_2500_1';'R2_3500_1';...
+%     'R3_1247_1';'R3_1247_2';'R3_1247_3';'R4_1247_1';'R4_1247_2';...
+%     'R4_2500_1';'R5_1247_1';'R5_1247_2';'R5_1247_3';'R5_1247_4';...
+%     'R5_1247_5';'R5_2500_1';'R5_3500_1';'GC_1247_1'};
+feeders_to_import = {'GC_1247_1'};
 %feeders_to_import = {'R1_1247_1';'R1_1247_2'};
 
 % e.g. _t#_ in the name of the feeder
-technologies_to_import = {'0:1:2'};
+technologies_to_import = {'2'};
 
 % Set the base path for location of data
 %base_path = 'C:\Users\d3x289\Documents\GLD2011\PostAnalysis\(7) TOU without et\Simulation Results\Run1'; % Jason
-base_path = 'C:\Users\d3p313\Desktop\Post Processing Script\Raw Data Files\'; % Kevin
+base_path = 'C:\Users\d3p313\Desktop\Post Processing Script\Raw Data Files\t2'; % Kevin
 
 % Make a list of all of the files in the read folder
 file_list = ls(base_path);
@@ -47,7 +47,7 @@ for tind=1:tech_total
         name_to_find = [feeders_to_import{find,1},'_t',technologies_to_import{tind,1}];
         
         if (strfind(name_to_find,'GC_') ~= 0)
-            loop = 5; 
+            loop = 5;
         else
             loop = 1;
         end
@@ -58,7 +58,7 @@ for tind=1:tech_total
                        
             if (loop > 1)
                 name_to_find = [feeders_to_import{find,1},'_t',technologies_to_import{tind,1},'_r',num2str(commind)];
-            end           
+             end           
                         
             % catch timestamps and only put them into the mat file once,
             % but check all of the timestamps to make sure they match up

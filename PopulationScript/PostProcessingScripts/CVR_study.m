@@ -18,9 +18,9 @@ write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodat
 plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
-plot_pf = 0;
+plot_pf = 1;
 plot_losses = 0;
-plot_emissions = 1;
+plot_emissions = 0;
 
 % Flag for impact matrix
 generate_impact_matrix = 0;
@@ -29,7 +29,7 @@ generate_impact_matrix = 0;
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
 plot_monthly_losses = 0;
-plot_monthly_emissions = 1;
+plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -52,7 +52,7 @@ if (plot_energy == 1)
     percent_energy_reduction = 100 .* energy_reduction ./ energy_data(:,1);
     
     % Total Energy Consuption
-    fname = 'Annual Energy Consumption';
+    fname = 't1_Comparison of annual energy consumption by feeder (MWh)';
     set_figure_size(fname);
     hold on;
     bar(energy_data / 1000000,'barwidth',0.9);
@@ -63,7 +63,7 @@ if (plot_energy == 1)
     close(fname);
     
     % Change in Energy Consumption (MWh)
-    fname = 'Change in Annual Energy Consuption (MWh)';
+    fname = 't1_Change in annual energy consumption by feeder (MWh)';
     set_figure_size(fname);
     hold on;
     bar(energy_reduction / 1000000);
@@ -73,7 +73,7 @@ if (plot_energy == 1)
     close(fname);
     
     % Change in Energy Consumption (%)
-    fname = 'Change in Annual Energy Consuption (%)';
+    fname = 't1_Change in annual energy consumption by feeder (%)';
     set_figure_size(fname);
     hold on;
     bar(percent_energy_reduction);
@@ -106,7 +106,7 @@ if (plot_energy == 1)
 
             
             % Energy Consuption (MWh)
-            fname = ['Monthly Energy MWh ' char(data_labels(kkind))];
+            fname = ['t1_Comparison of energy consumption by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
             bar(monthly_energy_data / 1000000,'barwidth',0.9);
@@ -140,7 +140,7 @@ if (plot_peak_power == 1)
     delta_peak_va = 100 * (peak_va_data(:,2) - peak_va_data(:,1)) ./ peak_va_data(:,1);
     
     % Peak Demand (kW)
-    fname = 'Peak Demand kW';
+    fname = 't1_Compassion of peak demand by feeder';
     set_figure_size(fname);
     hold on;
     bar(peak_power_data / 1000,'barwidth',0.9);
@@ -152,7 +152,7 @@ if (plot_peak_power == 1)
     
   
     % Change in Peak Demand (kW)
-    fname = 'Change in Peak Demand kW';
+    fname = 't1_Change in peak demand by feeder (kW)';
     set_figure_size(fname);
     hold on;
     bar((peak_power_data(:,2)-peak_power_data(:,1))/1000);
@@ -162,7 +162,7 @@ if (plot_peak_power == 1)
     close(fname);
     
     % Change in Peak Demand (%)
-    fname = 'Change in Peak Demand %';
+    fname = 't1_Change in peak demand by feeder (%)';
     set_figure_size(fname);
     hold on;
     bar(delta_peak_power);
@@ -200,7 +200,7 @@ if (plot_peak_power == 1)
             delta_peak_va = 100 * (peak_va_data(:,2) - peak_va_data(:,1)) ./ peak_va_data(:,1);
             
             % Monthly Peak Demand (MW)
-            fname = ['Monthly Peak Demand kW ' char(data_labels(kkind))];
+            fname = ['t1_Comparison of peak demand by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
             bar(peak_power_data / 1000,'barwidth',0.9);
@@ -316,7 +316,7 @@ for jind = 1:a
 % High Level EOL Plots
 
     % Minimum EOL Voltage Without CVR
-    fname = 'Minimum EOL Voltage Without CVR';
+    fname = 't1_Minimum EOL voltage without CVR';
     set_figure_size(fname);
     hold on;
     bar(voltage_data0_all(:,1:3),'barwidth',0.9);
@@ -328,7 +328,7 @@ for jind = 1:a
     close(fname);
     
     % Average EOL Voltage Without CVR
-    fname = 'Average EOL Voltage Without CVR';
+    fname = 't1_Average EOL voltage without CVR';
     set_figure_size(fname);
     hold on;
     bar(voltage_data0_all(:,4:6),'barwidth',0.9);
@@ -340,7 +340,7 @@ for jind = 1:a
     close(fname);
     
     % Minimum EOL Voltage With CVR
-    fname = 'Minimum EOL Voltage With CVR';
+    fname = 't1_Minimum EOL voltage with CVR';
     set_figure_size(fname);
     hold on;
     bar(voltage_data1_all(:,1:3),'barwidth',0.9);
@@ -352,7 +352,7 @@ for jind = 1:a
     close(fname);
     
     % Average EOL Voltage With CVR
-    fname = 'Average EOL Voltage With CVR';
+    fname = 't1_Average EOL voltage with CVR';
     set_figure_size(fname);
     hold on;
     bar(voltage_data1_all(:,4:6),'barwidth',0.9);
@@ -363,72 +363,69 @@ for jind = 1:a
     hold off;
     close(fname);
     
-    % Plots for R1-25.00-1, R2-12.47-2, R3-12.47-3, abd R5-12.47-3 (multiple regulators)
-    data_labels1={'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg'};
-    data_labels2= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg'};
-    data_labels3= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg','EOL3-Amin','EOL3-Bmin','EOL3-Cmin','EOL3-Aavg','EOL3-Bavg','EOL3-Cavg','EOL4-Amin','EOL4-Bmin','EOL4-Cmin','EOL4-Aavg','EOL4-Bavg','EOL1-Cavg','EOL5-Amin','EOL5-Bmin','EOL5-Cmin','EOL5-Aavg','EOL5-Bavg','EOL5-Cavg','EOL6-Amin','EOL6-Bmin','EOL6-Cmin','EOL6-Aavg','EOL6-Bavg','EOL1-Cavg'};
-    my_legend = {'Base';'CVR'};
-    
-    % R1-25.00-1 EOL measurements
-    fname = 'EOL for R1-2500-1';
-    EOL_10(:,1)=(voltage_data0_all(10,:));
-    EOL_10(:,2)=(voltage_data1_all(10,:));
-    set_figure_size(fname);
-    hold on;
-    bar(EOL_10,'barwidth',0.9);
-    ylabel('Voltage (V)');
-    %title('Minimum EOL Voltage Without CVR');
-    ylim([110 130]);
-    set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
-    hold off;
-    close(fname);
-    
-    % R2-12.47-2 EOL measurements
-    fname = 'EOL for R2-1247-2';
-    EOL_12(:,1)=(voltage_data0_all(12,:));
-    EOL_12(:,2)=(voltage_data1_all(12,:));
-    set_figure_size(fname);
-    hold on;
-    bar(EOL_12,'barwidth',0.9);
-    ylabel('Voltage (V)');
-    %title('Minimum EOL Voltage Without CVR');
-    ylim([110 130]);
-    set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
-    hold off;
-    close(fname);
-    
-    % R4-12.47-2 EOL measurements
-    fname = 'EOL for R4-1247-2';
-    EOL_20(:,1)=(voltage_data0_all(20,:));
-    EOL_20(:,2)=(voltage_data1_all(20,:));
-    set_figure_size(fname);
-    hold on;
-    bar(EOL_20,'barwidth',0.9);
-    ylabel('Voltage (V)');
-    %title('Minimum EOL Voltage Without CVR');
-    ylim([110 130]);
-    set_figure_graphics(data_labels1,fname,0,my_legend,0,'northeastoutside');
-    hold off;
-    close(fname); 
-    
-   
-    % R5-12.47-3 EOL measurements
-    fname = 'EOL for R5-1247-3';
-    EOL_24(:,1)=(voltage_data0_all(24,:));
-    EOL_24(:,2)=(voltage_data1_all(24,:));
-    set_figure_size(fname);
-    hold on;
-    bar(EOL_24,'barwidth',0.9);
-    ylabel('Voltage (V)');
-    %title('Minimum EOL Voltage Without CVR');
-    ylim([110 130]);
-    set_figure_graphics(data_labels3,fname,0,my_legend,0,'northeastoutside');
-    hold off;
-    close(fname);
-    
-
-    
-    
+%     % Plots for R1-25.00-1, R2-12.47-2, R3-12.47-3, abd R5-12.47-3 (multiple regulators)
+%     data_labels1={'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg'};
+%     data_labels2= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg'};
+%     data_labels3= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg','EOL3-Amin','EOL3-Bmin','EOL3-Cmin','EOL3-Aavg','EOL3-Bavg','EOL3-Cavg','EOL4-Amin','EOL4-Bmin','EOL4-Cmin','EOL4-Aavg','EOL4-Bavg','EOL1-Cavg','EOL5-Amin','EOL5-Bmin','EOL5-Cmin','EOL5-Aavg','EOL5-Bavg','EOL5-Cavg','EOL6-Amin','EOL6-Bmin','EOL6-Cmin','EOL6-Aavg','EOL6-Bavg','EOL1-Cavg'};
+%     my_legend = {'Base';'CVR'};
+%     
+%     % R1-25.00-1 EOL measurements
+%     fname = 't1_EOL for R1-2500-1';
+%     EOL_10(:,1)=(voltage_data0_all(10,:));
+%     EOL_10(:,2)=(voltage_data1_all(10,:));
+%     set_figure_size(fname);
+%     hold on;
+%     bar(EOL_10,'barwidth',0.9);
+%     ylabel('Voltage (V)');
+%     %title('Minimum EOL Voltage Without CVR');
+%     ylim([110 130]);
+%     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
+%     hold off;
+%     close(fname);
+%     
+%     % R2-12.47-2 EOL measurements
+%     fname = 't1_EOL for R2-1247-2';
+%     EOL_12(:,1)=(voltage_data0_all(12,:));
+%     EOL_12(:,2)=(voltage_data1_all(12,:));
+%     set_figure_size(fname);
+%     hold on;
+%     bar(EOL_12,'barwidth',0.9);
+%     ylabel('Voltage (V)');
+%     %title('Minimum EOL Voltage Without CVR');
+%     ylim([110 130]);
+%     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
+%     hold off;
+%     close(fname);
+%     
+%     % R4-12.47-2 EOL measurements
+%     fname = 't1_EOL for R4-1247-2';
+%     EOL_20(:,1)=(voltage_data0_all(20,:));
+%     EOL_20(:,2)=(voltage_data1_all(20,:));
+%     set_figure_size(fname);
+%     hold on;
+%     bar(EOL_20,'barwidth',0.9);
+%     ylabel('Voltage (V)');
+%     %title('Minimum EOL Voltage Without CVR');
+%     ylim([110 130]);
+%     set_figure_graphics(data_labels1,fname,0,my_legend,0,'northeastoutside');
+%     hold off;
+%     close(fname); 
+%     
+%    
+%     % R5-12.47-3 EOL measurements
+%     fname = 't1_EOL for R5-1247-3';
+%     EOL_24(:,1)=(voltage_data0_all(24,:));
+%     EOL_24(:,2)=(voltage_data1_all(24,:));
+%     set_figure_size(fname);
+%     hold on;
+%     bar(EOL_24,'barwidth',0.9);
+%     ylabel('Voltage (V)');
+%     %title('Minimum EOL Voltage Without CVR');
+%     ylim([110 130]);
+%     set_figure_graphics(data_labels3,fname,0,my_legend,0,'northeastoutside');
+%     hold off;
+%     close(fname);
+  
 end % End of EOL plots
 %% Power Factor
 if plot_pf ==1
@@ -445,7 +442,7 @@ if plot_pf ==1
     
    
     % Compare Minimum power factor
-    fname = 'Compare Minimum Power Factor Comparison';
+    fname = 't1_Comparison of minimum annual power factor';
     set_figure_size(fname);
     hold on;
     clear pf
@@ -454,14 +451,16 @@ if plot_pf ==1
     
     bar(pf,'barwidth',0.9,'barwidth',0.9);
     ylabel('Power Factor');
-    ylim([.5 1.0]);
+
+    ylim([-1.0 1.0]);
     my_legend = {'Base';'CVR'};
+
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
-    close(fname);
-    
+    %close(fname);
+    break
     % Compare Average power factor
-    fname = 'Compare Average Power Factor Comparison';
+    fname = 't1_Comparison of average annual power factor ';
     set_figure_size(fname);
     hold on;
     clear pf
@@ -476,21 +475,21 @@ if plot_pf ==1
     hold off;
     close(fname);
     
-    % Compare Maximum power factor
-    fname = 'Compare Maximum Power Factor Comparison';
-    set_figure_size(fname);
-    hold on;
-    clear pf
-    pf(:,1)=cell2mat(data_t0(1:28,13:13)); % min phase a, b, and c
-    pf(:,2)=cell2mat(data_t1(1:28,13:13)); % min phase a, b, and c
-    
-    bar(pf,'barwidth',0.9,'barwidth',0.9);
-    ylabel('Power Factor');
-    ylim([.9 1.0]);
-    my_legend = {'Base';'CVR'};
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
-    hold off;
-    close(fname);
+%     % Compare Maximum power factor
+%     fname = 't1_Compare Maximum Power Factor Comparison';
+%     set_figure_size(fname);
+%     hold on;
+%     clear pf
+%     pf(:,1)=cell2mat(data_t0(1:28,13:13)); % min phase a, b, and c
+%     pf(:,2)=cell2mat(data_t1(1:28,13:13)); % min phase a, b, and c
+%     
+%     bar(pf,'barwidth',0.9,'barwidth',0.9);
+%     ylabel('Power Factor');
+%     ylim([.9 1.0]);
+%     my_legend = {'Base';'CVR'};
+%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+%     hold off;
+%     close(fname);
     
 end % End of power factor plots
 %% Losses
@@ -516,7 +515,7 @@ if (plot_losses == 1)
     
     % Total Losses
     my_legend = {'Base';'CVR'};
-    fname = 'Annual Losses';
+    fname = 't1_Comparison of total annual losses by feeder';
     set_figure_size(fname);
     hold on;
     bar(loss_data / 1000000,'barwidth',0.9);
@@ -527,7 +526,7 @@ if (plot_losses == 1)
     
         
     % Change in Annual Losses (MWh)
-    fname = 'Change in Annual Losses (MWh)';
+    fname = 't1_Change in total annual losses by feeder (MWh)';
     set_figure_size(fname);
     hold on;
     bar(loss_reduction / 1000000,'barwidth',0.9);
@@ -537,7 +536,7 @@ if (plot_losses == 1)
     close(fname);
 %     
     % Change in Annual Losses (%)
-    fname = 'Change in Annual Losses (%)';
+    fname = 't1_Change in total annual losses by feeder (%)';
     set_figure_size(fname);
     hold on;
     bar(percent_loss_reduction,'barwidth',0.9);
@@ -577,7 +576,7 @@ if (plot_losses == 1)
             
             
             % Energy Consuption (MWh)
-            fname = ['Monthly Losses MWh ' char(data_labels(kkind))];
+            fname = ['t1_Comparison of losses by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
             bar(monthly_losses / 1000000,'barwidth',0.9);
@@ -610,7 +609,7 @@ if (plot_emissions == 1)
     
     
     % Total annual CO2 emissions
-    fname = 'Annual CO2 Emissions';
+    fname = 't1_Comparison of total annual CO2 emission by feeder';
     set_figure_size(fname);
     hold on;
     bar(emissions_data,'barwidth',0.9);
@@ -622,7 +621,7 @@ if (plot_emissions == 1)
     close(fname);
     
     % Change annual CO2 emissions (tons)
-    fname = 'Change annual CO2 emissions (MWh)';
+    fname = 't1_Change in total annual CO2 emissions by feeder (tons)';
     set_figure_size(fname);
     hold on;
     bar(emissions_data(:,2)-emissions_data(:,1));
@@ -632,7 +631,7 @@ if (plot_emissions == 1)
     close(fname);
 %     
     % Change annual CO2 emissions (%)
-    fname = 'Change annual CO2 emissions(%)';
+    fname = 't1_Change in total annual CO2 emissions by feeder (%)';
     set_figure_size(fname);
     hold on;
     bar(percent_emissions_change);
@@ -668,7 +667,7 @@ if (plot_emissions == 1)
             
             % energy consuption (mwh)
             
-            fname = ['monthly emissions (tons) ' char(data_labels(kkind))];
+            fname = ['t1_Comparison of CO2 emissions by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
             bar(monthly_emissions_data,'barwidth',0.9);
@@ -695,9 +694,9 @@ if ( generate_impact_matrix == 1)
     data_t1 = energy_consumption;
 
     load([write_dir,'annual_losses_t0.mat']);
-    data_t2 = annual_losses;
+    data_t0_2 = annual_losses;
     load([write_dir,'annual_losses_t1.mat']);
-    data_t3 = annual_losses;
+    data_t1_2 = annual_losses;
     [no_feeders cells] = size(data_t0);
     clear  energy_consumption anual_losses;
 
@@ -705,8 +704,8 @@ if ( generate_impact_matrix == 1)
     energy_data(:,2) = cell2mat(data_t1(:,2)); % t1 real power
     
     for i=1:length(data_t0)
-        temp=cell2mat(data_t2(i,3)); % t0 losses
-        temp2=cell2mat(data_t3(i,3)); % t1 losses
+        temp=cell2mat(data_t0_2(i,3)); % t0 losses
+        temp2=cell2mat(data_t1_2(i,3)); % t1 losses
         energy_data(i,3)= temp(6,1);
         energy_data(i,4)= temp2(6,1);
         % t1 losses
@@ -769,7 +768,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t1(matrix_index_t1,2:8)=monthly_customer_usage_t1(22:28,1)';
 
   
-    clear data_t0 data_t1 data_t2 data_t3 hourly_customer_usage_t0 hourly_customer_usage_t1 monthly_customer_usage_t0 monthly_customer_usage_t1 temp temp2
+    clear data_t0 data_t1 data_t0_2 data_t1_2 hourly_customer_usage_t0 hourly_customer_usage_t1 monthly_customer_usage_t0 monthly_customer_usage_t1 temp temp2
     
     % Index 3 % 4(Peak generation % percentages and peak load)
     load([write_dir,'peakiest_peak_t0.mat']);
@@ -815,15 +814,15 @@ if ( generate_impact_matrix == 1)
     
     % Generator percentages
     load([write_dir,'emissions_t0.mat']);
-    data_t2 = emissions_totals;
+    data_t0_2 = emissions_totals;
     load([write_dir,'emissions_t1.mat']);
-    data_t3 = emissions_totals;
+    data_t1_2 = emissions_totals;
     
     clear emissions_totals ;
     
     for i=1:length(data_labels)
-        temp1(i,:)=cell2mat(data_t2(i,6)); % t0 percent generation for each feeder
-        temp2(i,:)=cell2mat(data_t3(i,6)); % t1 percent generation for each feeder
+        temp1(i,:)=cell2mat(data_t0_2(i,6)); % t0 percent generation for each feeder
+        temp2(i,:)=cell2mat(data_t1_2(i,6)); % t1 percent generation for each feeder
     end
     
     % Seperate emissions by region
@@ -1119,9 +1118,9 @@ if ( generate_impact_matrix == 1)
     data_t1 = energy_consumption;
     
     load([write_dir,'annual_losses_t0.mat']);
-    data_t2 = annual_losses;
+    data_t0_2 = annual_losses;
     load([write_dir,'annual_losses_t1.mat']);
-    data_t3 = annual_losses;
+    data_t1_2 = annual_losses;
     
     [no_feeders cells] = size(data_t0);
     clear  energy_consumption anual_losses;
@@ -1130,8 +1129,8 @@ if ( generate_impact_matrix == 1)
     energy_data(:,2) = cell2mat(data_t1(:,2)); % t1 real power
     
     for i=1:length(data_t0)
-        temp=cell2mat(data_t2(i,3)); % t0 losses
-        temp2=cell2mat(data_t3(i,3)); % t1 losses
+        temp=cell2mat(data_t0_2(i,3)); % t0 losses
+        temp2=cell2mat(data_t1_2(i,3)); % t1 losses
         energy_data(i,3)= temp(6,1);
         energy_data(i,4)= temp2(6,1);
         % t1 losses
@@ -1163,7 +1162,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t1(matrix_index_t1,1)=losses_t1(5,1);
     impact_matrix_R5_t1(matrix_index_t1,2:8)=losses_t1(22:28,1)';
     
-    clear data_t0 data_t1 data_t2 data_t3 energy_data losses_t0 losses_t1 temp tem2
+    clear data_t0 data_t1 data_t0_2 data_t1_2 energy_data losses_t0 losses_t1 temp tem2
 
     % Index 30 (Power Factor)
     
