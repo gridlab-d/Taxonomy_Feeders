@@ -17,9 +17,9 @@ write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodat
 % flags for types of plots
 plot_energy = 0;
 plot_peak_power = 0;
-plot_EOL = 1;
+plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 0;
+plot_losses = 1;
 plot_emissions = 0;
 
 % Flag for impact matrix
@@ -28,7 +28,7 @@ generate_impact_matrix = 0;
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
-plot_monthly_losses = 0;
+plot_monthly_losses = 1;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -58,7 +58,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000,'barwidth',0.9);
     ylabel('Energy Consumption (MWh)');
     set_figure_graphics(data_labels,fname,1,'none',2,'northeastoutside');
-    legend('Base Case','w/CVR')
+    legend('Base Case','w/CA')
     hold off;
     close(fname);
     
@@ -101,7 +101,7 @@ if (plot_energy == 1)
             clear peak_power_data peak_va_data;
             for jjind=1:12 % by month
                 monthly_energy_data(jjind,1)=data_t0{kkind,2}(jjind); % Base Case
-                monthly_energy_data(jjind,2)=data_t2{kkind,2}(jjind); % CVR
+                monthly_energy_data(jjind,2)=data_t2{kkind,2}(jjind); % CA
             end
 
             
@@ -111,7 +111,7 @@ if (plot_energy == 1)
             hold on;
             bar(monthly_energy_data / 1000000,'barwidth',0.9);
             ylabel('Energy Consumption (MWh)');
-            my_legend = {'Base';'CVR'};
+            my_legend = {'Base';'CA'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -145,7 +145,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(peak_power_data / 1000,'barwidth',0.9);
     ylabel('Peak Load (kW)');
-    my_legend = {'Base Case';'w/CVR'};
+    my_legend = {'Base Case';'w/CA'};
     set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     hold off;
     close(fname);
@@ -205,7 +205,7 @@ if (plot_peak_power == 1)
             hold on;
             bar(peak_power_data / 1000,'barwidth',0.9);
             ylabel('Peak Load (kW)');
-            my_legend = {'Base Case';'w/CVR'};
+            my_legend = {'Base Case';'w/CA'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -315,7 +315,7 @@ for jind = 1:a
     end
 % High Level EOL Plots
 
-    % Minimum EOL Voltage Without CVR
+    % Minimum EOL Voltage Without CA
     fname = 't2_Minimum EOL voltage without CA';
     set_figure_size(fname);
     hold on;
@@ -337,25 +337,25 @@ for jind = 1:a
     hold off;
     close(fname);
     
-    % Minimum EOL Voltage With CVR
+    % Minimum EOL Voltage With CA
     fname = 't2_Minimum EOL voltage with CA';
     set_figure_size(fname);
     hold on;
     bar(voltage_data1_all(:,1:3),'barwidth',0.9);
     ylabel('Voltage (V)');
-    %title('Minimum EOL Voltage With CVR');
+    %title('Minimum EOL Voltage With CA');
     ylim([110 130]);
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
     close(fname);
     
-    % Average EOL Voltage With CVR
+    % Average EOL Voltage With CA
     fname = 't2_Average EOL voltage with CA';
     set_figure_size(fname);
     hold on;
     bar(voltage_data1_all(:,4:6),'barwidth',0.9);
     ylabel('Voltage (V)');
-    %title('Average EOL Voltage With CVR');
+    %title('Average EOL Voltage With CA');
     ylim([110 130]);
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
@@ -365,7 +365,7 @@ for jind = 1:a
 %     data_labels1={'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg'};
 %     data_labels2= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg'};
 %     data_labels3= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg','EOL3-Amin','EOL3-Bmin','EOL3-Cmin','EOL3-Aavg','EOL3-Bavg','EOL3-Cavg','EOL4-Amin','EOL4-Bmin','EOL4-Cmin','EOL4-Aavg','EOL4-Bavg','EOL1-Cavg','EOL5-Amin','EOL5-Bmin','EOL5-Cmin','EOL5-Aavg','EOL5-Bavg','EOL5-Cavg','EOL6-Amin','EOL6-Bmin','EOL6-Cmin','EOL6-Aavg','EOL6-Bavg','EOL1-Cavg'};
-%     my_legend = {'Base';'CVR'};
+%     my_legend = {'Base';'CA'};
 %     
 %     % R1-25.00-1 EOL measurements
 %     fname = 't2_EOL for R1-2500-1';
@@ -375,7 +375,7 @@ for jind = 1:a
 %     hold on;
 %     bar(EOL_10,'barwidth',0.9);
 %     ylabel('Voltage (V)');
-%     %title('Minimum EOL Voltage Without CVR');
+%     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
 %     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
 %     hold off;
@@ -389,7 +389,7 @@ for jind = 1:a
 %     hold on;
 %     bar(EOL_12,'barwidth',0.9);
 %     ylabel('Voltage (V)');
-%     %title('Minimum EOL Voltage Without CVR');
+%     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
 %     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
 %     hold off;
@@ -403,7 +403,7 @@ for jind = 1:a
 %     hold on;
 %     bar(EOL_20,'barwidth',0.9);
 %     ylabel('Voltage (V)');
-%     %title('Minimum EOL Voltage Without CVR');
+%     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
 %     set_figure_graphics(data_labels1,fname,0,my_legend,0,'northeastoutside');
 %     hold off;
@@ -418,7 +418,7 @@ for jind = 1:a
 %     hold on;
 %     bar(EOL_24,'barwidth',0.9);
 %     ylabel('Voltage (V)');
-%     %title('Minimum EOL Voltage Without CVR');
+%     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
 %     set_figure_graphics(data_labels3,fname,0,my_legend,0,'northeastoutside');
 %     hold off;
@@ -450,7 +450,7 @@ if plot_pf ==1
     bar(pf,'barwidth',0.9,'barwidth',0.9);
     ylabel('Power Factor');
     ylim([.5 1.0]);
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'CA'};
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
     close(fname);
@@ -466,7 +466,7 @@ if plot_pf ==1
     bar(pf,'barwidth',0.9,'barwidth',0.9);
     ylabel('Power Factor');
     ylim([.9 1.0]);
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'CA'};
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
     close(fname);
@@ -482,7 +482,7 @@ if plot_pf ==1
 %     bar(pf,'barwidth',0.9,'barwidth',0.9);
 %     ylabel('Power Factor');
 %     ylim([.9 1.0]);
-%     my_legend = {'Base';'CVR'};
+%     my_legend = {'Base';'CA'};
 %     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
 %     hold off;
 %     close(fname);
@@ -510,7 +510,7 @@ if (plot_losses == 1)
 
     
     % Total Losses
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'CA'};
     fname = 't2_Comparison of total annual losses by feeder';
     set_figure_size(fname);
     hold on;
@@ -558,7 +558,7 @@ if (plot_losses == 1)
  
         % forms an array of by feeder (rows) by month (cols) by tech (2 different variables)
         
-        for kkind=1:no_feeders % by feeder
+        for kkind=1:1no_feeders % by feeder
             for jjind=1:12 % by month
                 monthly_losses(jjind,1)=data_t0{kkind,3}(1,jjind); % Base Case OH
                 monthly_losses(jjind,2)=data_t2{kkind,3}(1,jjind); % Base Case OH
@@ -577,8 +577,7 @@ if (plot_losses == 1)
             hold on;
             bar(monthly_losses / 1000000,'barwidth',0.9);
             ylabel('Monthly Losses (MWh)');
-            %title('Peak Demand by Feeder');
-            my_legend = {'Overhead-Base';'Overhead-CVR';'Underground-Base';'Underground-CVR';'Transformer-Base';'Transformer-CVR';'Triplex-Base';'Triplex-CVR'};
+            my_legend = {'Base(OH)';'CA(OH)';'BASE(UG)';'CA(UG)';'Base(T)';'CA(T)';'Base(Tri)';'CA(Tri)       '};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -610,7 +609,7 @@ if (plot_emissions == 1)
     hold on;
     bar(emissions_data,'barwidth',0.9);
     ylabel('CO2 Emissions (tons)');
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'CA'};
     set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     
     hold off;
@@ -655,10 +654,10 @@ if (plot_emissions == 1)
                 %                 monthly_emissions_data(jjind,7)=cell2mat(data_t0{kkind,5}(jjind)); % PM-10 Base Case
                 
                 
-                monthly_emissions_data(jjind,2)=cell2mat(data_t2{kkind,2}(jjind)); % co2 cvr
-                %                 monthly_emissions_data(jjind,4)=cell2mat(data_t0{kkind,3}(jjind)); % sox cvr
-                %                 monthly_emissions_data(jjind,6)=cell2mat(data_t0{kkind,4}(jjind)); % nox cvr
-                %                 monthly_emissions_data(jjind,8)=cell2mat(data_t0{kkind,5}(jjind)); % pm-10cvr
+                monthly_emissions_data(jjind,2)=cell2mat(data_t2{kkind,2}(jjind)); % co2 CA
+                %                 monthly_emissions_data(jjind,4)=cell2mat(data_t0{kkind,3}(jjind)); % sox CA
+                %                 monthly_emissions_data(jjind,6)=cell2mat(data_t0{kkind,4}(jjind)); % nox CA
+                %                 monthly_emissions_data(jjind,8)=cell2mat(data_t0{kkind,5}(jjind)); % pm-10CA
             end
             
             % energy consuption (mwh)
@@ -668,7 +667,7 @@ if (plot_emissions == 1)
             hold on;
             bar(monthly_emissions_data,'barwidth',0.9);
             ylabel('CO2 Emissions (tons)');
-            my_legend = {'Base';'CVR'};
+            my_legend = {'Base';'CA'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -678,7 +677,7 @@ if (plot_emissions == 1)
 end% End of emissions plots
 
 %% Impact Matrix
-% The index numbers are set by the indicies of 'impact_matrix' are specific for CVR
+% The index numbers are set by the indicies of 'impact_matrix' are specific for CA
 
 if ( generate_impact_matrix == 1)
     
@@ -979,7 +978,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t2(matrix_index_t2,1)=peak_demand_t2(5,1);
     impact_matrix_R5_t2(matrix_index_t2,2:8)=peak_demand_t2(22:28,1)';
 
-    % Controllable load is 0% for CVR
+    % Controllable load is 0% for CA
     matrix_index_t0=16;
     impact_matrix_R1_t0(matrix_index_t0,1)=0;
     impact_matrix_R1_t0(matrix_index_t0,2:6)=0';
