@@ -15,10 +15,10 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 0;
+plot_energy = 1;
+plot_peak_power = 1;
 plot_EOL = 0;
-plot_pf = 1;
+plot_pf = 0;
 plot_losses = 0;
 plot_emissions = 0;
 
@@ -457,8 +457,7 @@ if plot_pf ==1
 
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
-    %close(fname);
-    break
+    close(fname);
     % Compare Average power factor
     fname = 't1_Comparison of average annual power factor ';
     set_figure_size(fname);
