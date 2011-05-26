@@ -15,15 +15,15 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 1;
-plot_peak_power = 1;
+plot_energy = 0;
+plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
 plot_losses = 0;
 plot_emissions = 0;
 
 % Flag for impact matrix
-generate_impact_matrix = 0;
+generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
@@ -849,7 +849,7 @@ if ( generate_impact_matrix == 1)
     
     
     % Switch some of the coulmns around to fit the final report format
-    
+    % Tech 0
     Temp_swap(1,:)=Temp_R1(5,:);
     Temp_R1(5,:)=Temp_R1(7,:);
     Temp_R1(7,:)=Temp_R1(6,:);
@@ -864,22 +864,22 @@ if ( generate_impact_matrix == 1)
     Temp_R3(6,:)=Temp_R3(7,:);
     Temp_R3(7,:)=Temp_swap(1,:);
     clear Temp_swap
-    Temp_swap(1,:)=Temp_R3(6,:);
-    Temp_R3(6,:)=Temp_R3(7,:);
-    Temp_R3(7,:)=Temp_swap(1,:);
+    Temp_swap(1,:)=Temp_R4(6,:);
+    Temp_R4(6,:)=Temp_R4(7,:);
+    Temp_R4(7,:)=Temp_swap(1,:);
     clear Temp_swap
     Temp_swap(1,:)=Temp_R5(5,:);
     Temp_R5(5,:)=Temp_R5(6,:);
     Temp_R5(6,:)=Temp_R5(7,:);
     Temp_R5(7,:)=Temp_swap(1,:);
     clear Temp_swap
-    
+    % Tech 1
     Temp_swap(1,:)=Temp_R6(5,:);
     Temp_R6(5,:)=Temp_R6(7,:);
     Temp_R6(7,:)=Temp_R6(6,:);
     Temp_R6(6,:)=Temp_swap(1,:);
     clear Temp_swap
-    
+     
     Temp_swap(1,:)=Temp_R7(6,:);
     Temp_R7(6,:)=Temp_R7(7,:);
     Temp_R7(7,:)=Temp_swap(1,:);
@@ -914,7 +914,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R3_t1(matrix_index_start_t1:matrix_index_stop_t1,1:4)=Temp_R8;
     impact_matrix_R4_t1(matrix_index_start_t1:matrix_index_stop_t1,1:4)=Temp_R9;
     impact_matrix_R5_t1(matrix_index_start_t1:matrix_index_stop_t1,1:8)=Temp_R10;
- 
+
     clear temp1 temp2 Temp_R1 Temp_R2 Temp_R3 Temp_R4 Temp_R5 Temp_R6 Temp_R7 Temp_R8 Temp_R9 Temp_R10 matrix_index_start matrix_index_stop
     
     % Fill in zero values for distributed solar and wind
@@ -1299,4 +1299,4 @@ end % End of imapct matrix
 
 
 
-%clear;
+clear;

@@ -19,16 +19,16 @@ plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 1;
+plot_losses = 0;
 plot_emissions = 0;
 
 % Flag for impact matrix
-generate_impact_matrix = 0;
+generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
-plot_monthly_losses = 1;
+plot_monthly_losses = 0;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -845,7 +845,7 @@ if ( generate_impact_matrix == 1)
     
     
     % Switch some of the coulmns around to fit the final report format
-    
+    % Tech 0
     Temp_swap(1,:)=Temp_R1(5,:);
     Temp_R1(5,:)=Temp_R1(7,:);
     Temp_R1(7,:)=Temp_R1(6,:);
@@ -860,16 +860,16 @@ if ( generate_impact_matrix == 1)
     Temp_R3(6,:)=Temp_R3(7,:);
     Temp_R3(7,:)=Temp_swap(1,:);
     clear Temp_swap
-    Temp_swap(1,:)=Temp_R3(6,:);
-    Temp_R3(6,:)=Temp_R3(7,:);
-    Temp_R3(7,:)=Temp_swap(1,:);
+    Temp_swap(1,:)=Temp_R4(6,:);
+    Temp_R4(6,:)=Temp_R4(7,:);
+    Temp_R4(7,:)=Temp_swap(1,:);
     clear Temp_swap
     Temp_swap(1,:)=Temp_R5(5,:);
     Temp_R5(5,:)=Temp_R5(6,:);
     Temp_R5(6,:)=Temp_R5(7,:);
     Temp_R5(7,:)=Temp_swap(1,:);
     clear Temp_swap
-    
+    % Tech 2
     Temp_swap(1,:)=Temp_R6(5,:);
     Temp_R6(5,:)=Temp_R6(7,:);
     Temp_R6(7,:)=Temp_R6(6,:);

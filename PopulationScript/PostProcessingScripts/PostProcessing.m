@@ -7,7 +7,7 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't1';
+tech = 't2';
 %cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
 cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
@@ -1029,7 +1029,7 @@ if (find_switching == 1)
 end
 
 disp('All done!');
-clear;
+%clear;
 
 
 
