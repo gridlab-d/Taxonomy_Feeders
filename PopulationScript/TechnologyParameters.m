@@ -343,18 +343,23 @@ if (use_flags.use_market ~= 0)
     % percent penetration,
     
     
-    
     if (use_flags.use_market == 1)
-        data.sub_elas_12 = 1; % TOU substitution elasticity
-        data.sub_elas_13 = 2; % CPP substitution elasticity
-        data.two_tier_cpp = 'false';     
+        data.two_tier_cpp = 'false';
     elseif (use_flags.use_market == 2)
-        data.sub_elas_12 = 1; % TOU substitution elasticity
-        data.sub_elas_13 = 2; % CPP substitution elasticity
         data.two_tier_cpp = 'true';
     elseif (use_flags.use_market == 3)
 
     end    
+                           
+    if (data.use_tech == 1)
+        data.daily_elasticity = {'daily_elasticity_wtech'};
+        data.sub_elas_12 = -0.152; % TOU substitution elasticity (average)
+        data.sub_elas_13 = -0.222; % CPP substitution elasticity (average)
+    else
+        data.daily_elasticity = {'daily_elasticity_wotech'}; %weekend vs. weekday schedules for daily elasticity
+        data.sub_elas_12 = -0.076; % TOU substitution elasticity (average)
+        data.sub_elas_13 = -0.111; % CPP substitution elasticity (average)
+    end
     
     % A lot of these values aren't used, except in an RTP market
     data.market_info = {'Market_1';
@@ -365,12 +370,6 @@ if (use_flags.use_market ~= 0)
                         'price_player';
                         1.0;
                         };
-                    
-    if (data.use_tech == 1)
-        data.daily_elasticity = {'daily_elasticity_wtech'};
-    else
-        data.daily_elasticity = {'daily_elasticity_wotech'}; %weekend vs. weekday schedules for daily elasticity
-    end
     
 end
 
@@ -430,7 +429,7 @@ elseif(use_flags.use_billing == 2) %TIERED RATE
 elseif(use_flags.use_billing == 3) %RTP/TOU RATE - market must be activated
     data.monthly_fee = 10; % $
     data.comm_monthly_fee = 25;
-    data.flat_price = 0.1; % $ / kWh
+    data.flat_price = [0.1243,0.1294,0.1012,0.1064,0.1064]; % $ / kWh
     if (use_flags.use_market == 0)
         disp('Error: Must use markets when applying use_billing == 3');
     end
