@@ -265,18 +265,141 @@ elseif data.tech_flag == 10
     
 % Solar Residential
 elseif data.tech_flag == 11
+    %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 0;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 0;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
+    
+    %Turn on solar residential
+ 
+    use_flags.use_solar_res = 1;
+    
     
 % Solar Commercial
 elseif data.tech_flag == 12
+    %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 0;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 0;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
     
-% Wind Residential
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
+    
+    %Turn on solar commercial
+    use_flags.use_solar_com = 1;
+
+    % Combined solar 
 elseif data.tech_flag == 13
+    %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 0;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 0;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
+    
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
+    
+    %Turn on solar combined (both comm & residential)
+    
+    use_flags.use_solar = 1; 
     
 % Wind Commercial
 elseif data.tech_flag == 14
+     %These will all be '1' for base case
+    % commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 1;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    use_flags.use_vvc = 0;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 0;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 0;    
+    data.measure_EOL_voltage = 0;
+    data.measure_loads = 1;
     
-% combined W&S 
-elseif data.tech_flag == 15
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 1;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 0;
+    data.get_IEEE_stats = 0;
+    
+    %Turn on commercial wind
+  
+    use_flags.use_wind = 1;  
+
+% elseif data.tech_flag == 15
     
 end
 
@@ -343,14 +466,14 @@ if (use_flags.use_market ~= 0)
     % percent penetration,
     
     
+    
     if (use_flags.use_market == 1)
-        data.two_tier_cpp = 'false';
+        data.two_tier_cpp = 'false';     
     elseif (use_flags.use_market == 2)
         data.two_tier_cpp = 'true';
     elseif (use_flags.use_market == 3)
 
     end    
-                           
     if (data.use_tech == 1)
         data.daily_elasticity = {'daily_elasticity_wtech'};
         data.sub_elas_12 = -0.152; % TOU substitution elasticity (average)
@@ -436,8 +559,15 @@ elseif(use_flags.use_billing == 3) %RTP/TOU RATE - market must be activated
 end
 
 %% Solar parameters
-if (use_flags.use_solar == 1)
+if (use_flags.use_solar ==1 || use_flags.use_solar_res ==1 || use_flags.use_solar_com ==1 )
 
+    data.Rated_Insolation = 92.902;%W/Sf for 1000 W/m2
+    data.efficiency_solar = 0.2; 
+    data.solar_averagepower = 4;%For solar residential
+    data.solar_averagepower_stripmall = 10;%For solar stripmall
+    data.solar_averagepower_office = 100;%For solar commercial (offices)
+    data.solar_averagepower_bigbox = 100;%For solar commercial (bigbox)
+    
 end
 
 %% PHEV parameters

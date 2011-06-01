@@ -185,6 +185,9 @@ data.over_sizing_factor = over_sizing_factor(region);
 data.dispatch_order = dispatch_order(region,:);
 
 data.ts_penetration = 10; %0-100, percent of buildings utilizing thermal storage - for all regions
+data.solar_penetration = [0.03;0.01;0.04;0.05;0.06]; % 1-5 % for different regions
+
+
 end
 
 

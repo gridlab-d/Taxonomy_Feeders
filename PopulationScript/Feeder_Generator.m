@@ -1,17 +1,17 @@
 clear;
 clc;
 % 
-% taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-%     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-%     'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-%     'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-%     'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-%     'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-taxonomy_files = {'R3-12.47-2.glm'};
-%taxonomy_files = {'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
+taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+   'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+%  taxonomy_files = {'GC-12.47-1.glm'};
+%taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 %Set technology to test
-TechnologyToTest=0;
+TechnologyToTest=12;
 % 0 - Base
 % 1 - CVR
 % 2 - Automation
@@ -34,17 +34,23 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
-    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+    %taxonomy_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+%     taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
+     taxonomy_directory = 'C:\Gridlab\branch\2.2\RI_analysis\population scripts\'; %Ruchi
     %taxonomy_directory = 'C:\Code\Taxonomy_Feeders\'; %Frank
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
 
+    countSOLAR = 0;
+    countSOLAR_stripmall = 0
+    countSOLAR_office = 0;
+    countSOLAR_bigbox = 0;
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-   output_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\x64\Release\';% Jason
-   %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+   %output_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\branch\2.2\VS2005\x64\Release\';% Jason
+%    output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
+    output_directory = 'C:\Gridlab\branch\2.2\RI_analysis\population scripts\Comm solar\'; % Ruchi
    %output_directory = 'C:\Code\Taxonomy_Feeders\Extracted\'; % Frank
    
     %% Get the region - this will only work with the taxonomy feeders
@@ -94,7 +100,10 @@ for tax_ind=1:no_of_tax
     use_flags.use_billing = 0; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
 
     % Solar? - NOT FINISHED
-    use_flags.use_solar = 0;
+    use_flags.use_solar = 0;  % for combined res & comm solar
+    use_flags.use_solar_res = 0;  % for residential solar
+    use_flags.use_solar_com = 0; % for commercial solar
+    
 
     % PHEV? - NOT FINISHED
     use_flags.use_phev = 0;
@@ -758,6 +767,7 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'#set relax_naming_rules=1;\n\n');
 
     fprintf(write_file,'module tape;\n');
+    fprintf(write_file,'module generators;\n');
     fprintf(write_file,'module climate;\n');
     fprintf(write_file,'module residential {\n');
     fprintf(write_file,'     implicit_enduses NONE;\n');
@@ -1501,6 +1511,13 @@ for tax_ind=1:no_of_tax
 
                         fl_area(count_house) = floor_area;
                         count_house = count_house + 1;
+                    if (use_flags.use_solar~=0 ||use_flags.use_solar_res~=0)
+                        %Create array of parents for residential solar
+                        solar_residential_array{jj}{kk} = ['house' num2str(kk) '_' parent2];
+                        solar_residential_array_fa{jj}{kk} = floor_area;
+                        solar_residential_array_parent{jj}{kk} = [parent2];
+                        solar_residential_array_phase{jj}{kk} = [phase];
+                    end
 
                     fprintf(write_file,'     floor_area %.0f;\n',floor_area);
                     fprintf(write_file,'     number_of_stories %.0f;\n',stories); 
@@ -1803,7 +1820,7 @@ for tax_ind=1:no_of_tax
                     pp_dutycycle = 1/6 + (1/2 - 1/6)*rand(1);
                     pp_period = 4 + 4*rand(1);
                     pp_init_phase = rand(1);
-                  
+
                     fprintf(write_file,'     object ZIPload {\n');
                     fprintf(write_file,'           name house%d_resp_%s\n',kk,parent);
                     fprintf(write_file,'           // Responsive load\n');           
@@ -2341,6 +2358,13 @@ for tax_ind=1:no_of_tax
                                     ts_office_array{iii}{jjj}{phind}{zoneind} = ['office' my_name '_' my_phases{phind} num2str(jjj) '_zone' num2str(zoneind)];
                                 end
                                 
+                                if (use_flags.use_solar~=0 || use_flags.use_solar_com ~=0)
+                                    %Create array of parents for office solar generators 
+                                    solar_office_array{iii}{jjj}{phind}{zoneind} = ['office' my_name '_' my_phases{phind} num2str(jjj) '_zone' num2str(zoneind)];
+                                    solar_office_array_parent{iii}{jjj}{phind} = [my_name '_tm_' my_phases{phind} '_' num2str(jjj)];
+                                    solar_office_array_phases{iii}{jjj}{phind} = [my_phases{phind}];
+                                end
+                                
                                 if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                     % pull in the slider response level
                                         slider = comm_slider_random(jjj);
@@ -2678,6 +2702,13 @@ for tax_ind=1:no_of_tax
                                     ts_bigbox_array{iii}{jjj}{phind}{zoneind} = ['bigbox' my_name '_' my_phases{phind} num2str(jjj) '_zone' num2str(zoneind)];
                                 end
                                 
+                                if (use_flags.use_solar~=0 ||use_flags.use_solar_com ~=0)
+                                    %Create array of parents for bigbox solar generators
+                                                                      
+                                    solar_bigbox_array{iii}{jjj}{phind}{zoneind} = ['bigbox' my_name '_' my_phases{phind} num2str(jjj) '_zone' num2str(zoneind)];
+                                    solar_bigbox_array_parent{iii}{jjj}{phind} = [my_name '_tm_' my_phases{phind} '_' num2str(jjj)];
+                                    solar_bigbox_array_phases{iii}{jjj}{phind} = [my_phases{phind}];
+                                end
                                 if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                     % pull in the slider response level
                                         slider = comm_slider_random(jjj);
@@ -3018,6 +3049,16 @@ for tax_ind=1:no_of_tax
                                 %Create array of parents for thermal storage devices
                                 ts_stripmall_array{iii}{jjj}{phind} = ['stripmall' my_name '_' my_phases{phind} num2str(jjj)];
                             end
+                            if (use_flags.use_solar~=0 || use_flags.use_solar_com ~=0)
+                                %Create array of parents for stripmall solar generators
+                                solar_stripmall_array{iii}{jjj}{phind} = ['stripmall' my_name '_' my_phases{phind} num2str(jjj)];
+                                solar_stripmall_array_fa{iii}{jjj}{phind} = floor_area;                                                                
+                                solar_stripmall_array_parent{iii}{jjj}{phind} = [my_name '_tn_' my_phases{phind} '_' num2str(jjj)];
+                                solar_stripmall_array_phases{iii}{jjj}{phind} = [my_phases{phind}];
+                            end
+                          
+                            
+                           
 
                             if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
                                 % pull in the slider response level
@@ -3242,6 +3283,362 @@ for tax_ind=1:no_of_tax
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
     RandStream.setDefaultStream(s4);
+          
+    %Populating solar as percentage of feeder peak load
+    
+    if (use_flags.use_solar~=0  ||use_flags.use_solar_com ~=0)
+        
+         if (exist('solar_bigbox_array','var') == 0) && (exist('solar_office_array','var') == 0)
+             
+            penetration_stripmall = regional_data.solar_penetration(region);
+            penetration_bigbox = 0;
+            penetration_office = 0;
+         elseif (exist('solar_bigbox_array','var')) && (exist('solar_office_array','var') == 0)
+             
+             penetration_stripmall = regional_data.solar_penetration(region)/2;
+             penetration_bigbox = regional_data.solar_penetration(region)/2;
+             penetration_office = 0;
+             
+         elseif (exist('solar_bigbox_array','var') == 0) && (exist('solar_office_array','var')) && (exist('solar_stripmall_array','var'))
+             
+             penetration_stripmall = regional_data.solar_penetration(region)/2;
+             penetration_bigbox = 0;
+             penetration_office = regional_data.solar_penetration(region)/2;
+         
+         elseif (exist('solar_office_array', 'var')) && (exist('solar_bigbox_array','var') == 0) && (exist('solar_stripmall_array','var') == 0)
+            penetration_stripmall = 0;
+            penetration_bigbox = 0;
+            penetration_office = regional_data.solar_penetration(region);
+         
+         else
+             penetration_stripmall = regional_data.solar_penetration(region)/3;
+             penetration_bigbox = regional_data.solar_penetration(region)/3;
+             penetration_office = regional_data.solar_penetration(region)/3;
+             
+         end
+        
+        if (exist('solar_office_array','var'))
+            total_no_office_length=length(solar_office_array);
+            total_no_office=0;
+            for solar_office_count_val=1:total_no_office_length
+                if (~isempty(solar_office_array{solar_office_count_val}))
+                    for small_loop_var=1:length(solar_office_array{solar_office_count_val})
+                        if (~isempty(solar_office_array{solar_office_count_val}{small_loop_var}))
+                            for small_1_loop_var=1:length(solar_office_array{solar_office_count_val}{small_loop_var})
+                                if (~isempty(solar_office_array{solar_office_count_val}{small_loop_var}{small_1_loop_var}))
+                                    total_no_office=total_no_office+sum(~cellfun('isempty',solar_office_array{solar_office_count_val}{small_loop_var}{small_1_loop_var}));
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            office_penetration = rand(total_no_office,1);
+            office_count=1;
+                     
+%             
+            for jj=1:total_no_office_length
+                if (~isempty(solar_office_array{jj}))
+                    if (use_flags.use_solar ~= 0 || use_flags.use_solar_com ~= 0 )
+                                                                     
+                            number_solar_office =  (taxonomy_data.emissions_peak * penetration_office)/(tech_data.solar_averagepower_office);
+                       
+                    end
+                    for jjj=1:length(solar_office_array{jj})
+                        
+                            for jjjj=1:length(solar_office_array{jj}{jjj})
+                                for jjjjj=1:length(solar_office_array{jj}{jjj}{jjjj})
+                                    if (~isempty(solar_office_array{jj}{jjj}{jjjj}{jjjjj}))
+                                            if  (office_penetration(office_count) < (number_solar_office/(total_no_office)))
+
+                                            parent = solar_office_array_parent{jj}{jjj}{jjjj};   
+                                            parent1 = solar_office_array{jj}{jjj}{jjjj}{jjjjj};
+                                            phase1 = solar_office_array_phases{jj}{jjj}{jjjj};                                             
+                                                                                       
+                                            countSOLAR_office = countSOLAR_office + 1   
+                                            fprintf(write_file,'object triplex_meter {\n');
+                                            fprintf(write_file,'      phases %sS;\n',phase1);
+                                            fprintf(write_file,'      parent %s;\n',parent);
+                                            fprintf(write_file,'      nominal_voltage 120;\n');
+                                            fprintf(write_file,'      groupid Commercial_tm_solar_office;\n\n');
+                    
+                                                    fprintf(write_file,'      object inverter {\n');
+                                                    fprintf(write_file,'      name inv_%s;\n',parent1);
+                                                    fprintf(write_file,'      phases %sS;\n',phase1);
+                                                    fprintf(write_file,'      generator_mode CONSTANT_PF;\n');
+                                                    fprintf(write_file,'      generator_status ONLINE;\n');
+                                                    fprintf(write_file,'      inverter_type PWM;\n');
+                                                    fprintf(write_file,'      power_factor 1.0;\n\n');
+                                               
+                                                            fprintf(write_file,'      object solar {\n');                    
+                                                            fprintf(write_file,'      name sol_inv_%s;\n',parent1);
+                                                            fprintf(write_file,'      generator_mode SUPPLY_DRIVEN;\n');
+                                                            fprintf(write_file,'      generator_status ONLINE;\n');
+                                                            fprintf(write_file,'      panel_type SINGLE_CRYSTAL_SILICON;\n');
+                                                            fprintf(write_file,'      efficiency 0.2;\n');
+                                                
+                                                            floor_area = 5382;
+                                                            
+                                                    
+                                                   fprintf(write_file,'      area %.0f;\n',floor_area);
+                                                        
+                                                   fprintf(write_file,'};\n');
+                            
+                                             fprintf(write_file,'};\n');
+                    
+                    fprintf(write_file,'}\n');
+                    
+                                             end
+                                     office_count = office_count + 1;
+
+                                    end
+                                end
+                            end
+                    
+                    end
+                end
+            end
+         end
+%         
+        if (exist('solar_bigbox_array','var'))
+            total_no_bigbox_length=length(solar_bigbox_array);
+            total_no_bigbox=0;
+            for solar_bigbox_count_val=1:total_no_bigbox_length
+                if (~isempty(solar_bigbox_array{solar_bigbox_count_val}))
+                    for small_loop_var=1:length(solar_bigbox_array{solar_bigbox_count_val})
+                        if (~isempty(solar_bigbox_array{solar_bigbox_count_val}{small_loop_var}))
+                            for small_1_loop_var=1:length(solar_bigbox_array{solar_bigbox_count_val}{small_loop_var})
+                                if (~isempty(solar_bigbox_array{solar_bigbox_count_val}{small_loop_var}{small_1_loop_var}))
+                                    total_no_bigbox=total_no_bigbox+sum(~cellfun('isempty',solar_bigbox_array{solar_bigbox_count_val}{small_loop_var}{small_1_loop_var}));
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            bigbox_penetration = rand(total_no_bigbox,1);
+            bigbox_count=1;
+
+            for jj=1:total_no_bigbox_length
+                if (~isempty(solar_bigbox_array{jj}))
+                    if (use_flags.use_solar ~= 0 || use_flags.use_solar_com ~= 0)
+                    number_solar_bigbox =  (taxonomy_data.emissions_peak * penetration_bigbox)/(tech_data.solar_averagepower_bigbox);
+                    end
+                    for jjj=1:length(solar_bigbox_array{jj})
+                        
+                            for jjjj=1:length(solar_bigbox_array{jj}{jjj})
+                                for jjjjj=1:length(solar_bigbox_array{jj}{jjj}{jjjj})
+                                    if (~isempty(solar_bigbox_array{jj}{jjj}{jjjj}{jjjjj}))
+                                            if  (bigbox_penetration(bigbox_count) < (number_solar_bigbox/(total_no_bigbox)))
+
+                                            parent = solar_bigbox_array_parent{jj}{jjj}{jjjj};   
+                                            parent1 = solar_bigbox_array{jj}{jjj}{jjjj}{jjjjj}; 
+                                            phase1 = solar_bigbox_array_phases{jj}{jjj}{jjjj}; 
+                                            
+                                            countSOLAR_bigbox = countSOLAR_bigbox + 1   
+                                            fprintf(write_file,'object triplex_meter {\n');
+                                            fprintf(write_file,'      phases %sS;\n',phase1);
+                                            fprintf(write_file,'      parent %s;\n',parent);
+                                            fprintf(write_file,'      nominal_voltage 120;\n');
+                                            fprintf(write_file,'      groupid Commercial_tm_solar_bigbox;\n\n');
+                    
+                                                    fprintf(write_file,'      object inverter {\n');
+                                                    fprintf(write_file,'      name inv_%s;\n',parent1);
+                                                    fprintf(write_file,'      phases %sS;\n',phase1);
+                                                    fprintf(write_file,'      generator_mode CONSTANT_PF;\n');
+                                                    fprintf(write_file,'      generator_status ONLINE;\n');
+                                                    fprintf(write_file,'      inverter_type PWM;\n');
+                                                    fprintf(write_file,'      power_factor 1.0;\n\n');
+                                               
+                                                            fprintf(write_file,'      object solar {\n');                    
+                                                            fprintf(write_file,'      name sol_inv_%s;\n',parent1);
+                                                            fprintf(write_file,'      generator_mode SUPPLY_DRIVEN;\n');
+                                                            fprintf(write_file,'      generator_status ONLINE;\n');
+                                                            fprintf(write_file,'      panel_type SINGLE_CRYSTAL_SILICON;\n');
+                                                            fprintf(write_file,'      efficiency 0.2;\n');
+                                                
+                                                            floor_area = 5382;
+                                                            
+                                                    
+                                                fprintf(write_file,'      area %.0f;\n',floor_area);
+                                                %fprintf(write_file,'      groupid Residential_Meter_Solar;\n\n');
+                    
+                                                    fprintf(write_file,'};\n');
+                            
+                                             fprintf(write_file,'};\n');
+                    
+                    fprintf(write_file,'}\n');
+                    
+                                             end
+                                     bigbox_count = bigbox_count + 1;
+
+                                    end
+                                end
+                            end
+                    
+                    end
+                end
+            end
+         end
+% 
+        if (exist('solar_stripmall_array','var'))
+            total_no_stripmall_length=length(solar_stripmall_array);
+            total_no_stripmall=0;
+            for solar_strip_count_val=1:total_no_stripmall_length
+                if (~isempty(solar_stripmall_array{solar_strip_count_val}))
+                    for small_loop_var=1:length(solar_stripmall_array{solar_strip_count_val})
+                        if (~isempty(solar_stripmall_array{solar_strip_count_val}{small_loop_var}))
+                            total_no_stripmall=total_no_stripmall+sum(~cellfun('isempty',solar_stripmall_array{solar_strip_count_val}{small_loop_var}));
+                        end
+                    end
+                end
+            end
+            stripmall_penetration = rand(total_no_stripmall,1);
+            stripmall_count=1;
+            
+            for jj=1:total_no_stripmall_length
+                    if (~isempty(solar_stripmall_array{jj}))
+                   
+                    if (use_flags.use_solar ~= 0 ||use_flags.use_solar_com ~= 0)
+                    number_solar_stripmall =  (taxonomy_data.emissions_peak * penetration_stripmall)/(tech_data.solar_averagepower_stripmall);
+                    end
+                                        
+                        for jjj=1:length(solar_stripmall_array{jj})
+                            for jjjj=1:length(solar_stripmall_array{jj}{jjj})
+                                if (~isempty(solar_stripmall_array{jj}{jjj}{jjjj}))
+                                    if  (stripmall_penetration(stripmall_count) < (number_solar_stripmall/(total_no_stripmall)))
+                                    
+                                    parent = solar_stripmall_array_parent{jj}{jjj}{jjjj};
+                                    parent1 = solar_stripmall_array{jj}{jjj}{jjjj};
+                                    phase1 = solar_stripmall_array_phases{jj}{jjj}{jjjj}; 
+                                   
+                                countSOLAR_stripmall = countSOLAR_stripmall + 1   
+                                fprintf(write_file,'object triplex_meter {\n');
+                                fprintf(write_file,'      phases %sS;\n',phase1);
+                                fprintf(write_file,'      parent %s;\n',parent);
+                                fprintf(write_file,'      nominal_voltage 120;\n');
+                                fprintf(write_file,'      groupid Commercial_tm_solar_stripmall;\n\n');
+                    
+                                        fprintf(write_file,'      object inverter {\n');
+                                        fprintf(write_file,'      name inv_%s;\n',parent1);
+                                        fprintf(write_file,'      phases %sS;\n',phase1);
+                                        fprintf(write_file,'      generator_mode CONSTANT_PF;\n');
+                                        fprintf(write_file,'      generator_status ONLINE;\n');
+                                        fprintf(write_file,'      inverter_type PWM;\n');
+                                        fprintf(write_file,'      power_factor 1.0;\n\n');
+                                               
+                                                fprintf(write_file,'      object solar {\n');                    
+                                                fprintf(write_file,'      name sol_inv_%s;\n',parent1);
+                                                fprintf(write_file,'      generator_mode SUPPLY_DRIVEN;\n');
+                                                fprintf(write_file,'      generator_status ONLINE;\n');
+                                                fprintf(write_file,'      panel_type SINGLE_CRYSTAL_SILICON;\n');
+                                                fprintf(write_file,'      efficiency 0.2;\n');
+                                                
+
+                                                    floor_area = 538;
+
+                                                    
+                                                fprintf(write_file,'      area %.0f;\n',floor_area);
+                                                fprintf(write_file,'};\n');
+                            
+                                             fprintf(write_file,'};\n');
+                    
+                                 fprintf(write_file,'}\n');
+                    
+                                    end
+                                     stripmall_count = stripmall_count + 1;
+                                end
+                            end
+                        end
+                    end                  
+             end
+        end
+    end
+
+      %populating solar residential houses 
+      
+        if (use_flags.use_solar ~=0 || use_flags.use_solar_res ~=0)
+         if (exist('solar_residential_array','var'))
+            total_no_residential_length=length(solar_residential_array);
+            total_no_residential=sum(cellfun('prodofsize',solar_residential_array));
+            residential_penetration = rand(total_no_residential,1);
+          
+           residential_count=1;
+            
+            for jj=1:total_no_residential_length
+                
+                if (~isempty(solar_residential_array{jj}))            
+                                  
+                    if (use_flags.use_solar ~= 0 ||use_flags.use_solar_res ~= 0)
+                    number_solar_house =  (taxonomy_data.emissions_peak * regional_data.solar_penetration(region))/(tech_data.solar_averagepower);
+                    end
+                                                                                  
+                    for jjj=1:length(solar_residential_array{jj})
+                        
+                        if (~isempty(solar_residential_array{jj}{jjj}))
+                            
+                            if  (residential_penetration(residential_count) < (number_solar_house/total_no_residential))
+                                
+                                parent = solar_residential_array_parent{jj}{jjj};  
+                                  parent1 = solar_residential_array{jj}{jjj}; 
+                                  phase1 = solar_residential_array_phase{jj}{jjj}; 
+                                countSOLAR = countSOLAR + 1   
+                                fprintf(write_file,'object triplex_meter {\n');
+                                fprintf(write_file,'      phases %s\n',phase1);
+                                fprintf(write_file,'      parent %s\n',parent);
+                                fprintf(write_file,'      nominal_voltage 120;\n');
+                                fprintf(write_file,'      groupid Residential_tm_solar;\n\n');
+                    
+                                        fprintf(write_file,'      object inverter {\n');
+                                        fprintf(write_file,'      name inv_%s\n',parent1);
+                                        fprintf(write_file,'      phases %s\n',phase1);
+                                        fprintf(write_file,'      generator_mode CONSTANT_PF;\n');
+                                        fprintf(write_file,'      generator_status ONLINE;\n');
+                                        fprintf(write_file,'      inverter_type PWM;\n');
+                                        fprintf(write_file,'      power_factor 1.0;\n\n');
+                                               
+                                                fprintf(write_file,'      object solar {\n');                    
+                                                fprintf(write_file,'      name sol_inv_%s\n',parent1);
+                                                fprintf(write_file,'      generator_mode SUPPLY_DRIVEN;\n');
+                                                fprintf(write_file,'      generator_status ONLINE;\n');
+                                                fprintf(write_file,'      panel_type SINGLE_CRYSTAL_SILICON;\n');
+                                                fprintf(write_file,'      efficiency 0.2;\n');
+                                                
+                                                floor_area = solar_residential_array_fa{jj}{jjj};
+                                                                                                
+                                                if ((0.1*floor_area > 162) && (0.1*floor_area < 270))
+                                                    floor_area = 0.1*floor_area;
+                                                elseif  0.1*floor_area < 162
+                                                    floor_area = 162;
+                                                else
+                                                    floor_area = 270;
+                                                end
+                                                    
+                                                fprintf(write_file,'      area %.0f;\n',floor_area);
+                                            
+                                                fprintf(write_file,'};\n');
+                            
+                                             fprintf(write_file,'};\n');
+                    
+                    fprintf(write_file,'}\n');
+                    
+                            end
+                            residential_count = residential_count + 1;
+                    
+                
+
+
+                        end
+                    end
+               
+                end
+            end
+         end
+       end
+    
+    % Initialize pseudo-random numbers - put this before each technology where 
+    % random numbers are needed, so they are not effected by other changes
+    % (s1-s6)
 
     if (use_flags.use_ts~=0)
         
@@ -3499,7 +3896,53 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
     fprintf(write_file,'     property power_out_A.real,power_out_A.imag,power_out_B.real,power_out_B.imag,power_out_C.real,power_out_C.imag,power_out.real,power_out.imag,power_losses_A.real,power_losses_A.imag,power_losses_B.real,power_losses_B.imag,power_losses_C.real,power_losses_C.imag;\n');
     fprintf(write_file,'}\n\n');
+            if (countSOLAR > 0)
+            % Solar collector for residential
+    fprintf(write_file,'object collector {\n');
+    fprintf(write_file,'     file %s_Solar.csv;\n',tech_file);
+    fprintf(write_file,'     group "class=triplex_meter AND groupid=Residential_tm_solar";\n');
+    fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+    fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+    fprintf(write_file,'     property sum(measured_real_energy),sum(measured_power.real);\n');
+    fprintf(write_file,'}\n\n');
+            end
+         % end of Solar residential collector
 
+            % Solar collector for Commercial (stripmall)
+            if (countSOLAR_stripmall > 0)
+    fprintf(write_file,'object collector {\n');
+    fprintf(write_file,'     file %s_Solar_stripmall.csv;\n',tech_file);
+    fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_tm_solar_stripmall";\n');
+    fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+    fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+    fprintf(write_file,'     property sum(power_1_real),sum(power_2_real);\n');
+    fprintf(write_file,'}\n\n');
+            end
+         % end of Solar Commercial collector (stripmall) 
+         
+         if (countSOLAR_office > 0)
+                     % Solar collector for Commercial (office)
+    fprintf(write_file,'object collector {\n');
+    fprintf(write_file,'     file %s_Solar_office.csv;\n',tech_file);
+    fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_tm_solar_office";\n');
+    fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+    fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+    fprintf(write_file,'     property sum(measured_real_energy),sum(measured_power.real);\n');
+    fprintf(write_file,'}\n\n');
+         end
+         % end of Solar commercial collector (office) 
+         
+         if (countSOLAR_bigbox > 0)
+                    % Solar collector for Commercial (bigbox)
+    fprintf(write_file,'object collector {\n');
+    fprintf(write_file,'     file %s_Solar_bigbox.csv;\n',tech_file);
+    fprintf(write_file,'     group "class=triplex_meter AND groupid=Commercial_tm_solar_bigbox";\n');
+    fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+    fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+    fprintf(write_file,'     property sum(measured_real_energy),sum(measured_power.real);\n');
+    fprintf(write_file,'}\n\n');
+         end
+         % end of Solar Commercial collector (bigbox) 
     if (tech_data.measure_market == 1 && use_flags.use_market ~= 0)
         fprintf(write_file,'object recorder {\n');
         fprintf(write_file,'     parent %s;\n',tech_data.market_info{1});
@@ -3802,6 +4245,27 @@ for tax_ind=1:no_of_tax
     clear phase_S_houses;
     clear load_houses;
     
+    if (use_flags.use_solar~=0 ||use_flags.use_solar_res~=0 ||use_flags.use_solar_com~=0)
+        if (exist('solar_residential_array','var'))
+            clear solar_residential_array;
+            clear solar_residential_array_parent;
+        end
+        
+        if (exist('solar_office_array','var'))
+            clear solar_office_array;
+            clear solar_office_array_parent;
+        end
+        
+        if (exist('solar_bigbox_array','var'))
+            clear solar_bigbox_array;
+            clear solar_bigbox_array_parent;
+        end
+        
+        if (exist('solar_stripmall_array','var'))
+            clear solar_stripmall_array;
+            clear solar_stripmall_array_parent;
+        end
+    end
     if (use_flags.use_ts~=0)
         if (exist('ts_residential_array','var'))
             clear ts_residential_array;
