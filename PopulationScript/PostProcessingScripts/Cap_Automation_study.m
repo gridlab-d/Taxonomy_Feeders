@@ -15,21 +15,21 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 0;
-plot_EOL = 0;
-plot_pf = 0;
-plot_losses = 0;
-plot_emissions = 0;
+plot_energy = 1;
+plot_peak_power = 1;
+plot_EOL = 1;
+plot_pf = 1;
+plot_losses = 1;
+plot_emissions = 1;
 
 % Flag for impact matrix
-generate_impact_matrix = 1;
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
-plot_monthly_peak = 0;
-plot_monthly_energy = 0;
-plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
+plot_monthly_peak = 1;
+plot_monthly_energy = 1;
+plot_monthly_losses = 1;
+plot_monthly_emissions = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -58,7 +58,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000,'barwidth',0.9);
     ylabel('Energy Consumption (MWh)');
     set_figure_graphics(data_labels,fname,1,'none',2,'northeastoutside');
-    legend('Base Case','w/CA')
+    legend('Base Case','CA')
     hold off;
     close(fname);
     
@@ -145,7 +145,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(peak_power_data / 1000,'barwidth',0.9);
     ylabel('Peak Load (kW)');
-    my_legend = {'Base Case';'w/CA'};
+    my_legend = {'Base Case';'CA'};
     set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     hold off;
     close(fname);
@@ -205,7 +205,7 @@ if (plot_peak_power == 1)
             hold on;
             bar(peak_power_data / 1000,'barwidth',0.9);
             ylabel('Peak Load (kW)');
-            my_legend = {'Base Case';'w/CA'};
+            my_legend = {'Base Case';'CA'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);

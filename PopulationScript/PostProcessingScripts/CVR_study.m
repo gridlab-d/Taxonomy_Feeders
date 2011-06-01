@@ -15,21 +15,21 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 0;
-plot_EOL = 0;
-plot_pf = 0;
-plot_losses = 0;
-plot_emissions = 0;
+plot_energy = 1;
+plot_peak_power = 1;
+plot_EOL = 1;
+plot_pf = 1;
+plot_losses = 1;
+plot_emissions = 1;
 
 % Flag for impact matrix
-generate_impact_matrix = 1;
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
-plot_monthly_peak = 0;
-plot_monthly_energy = 0;
-plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
+plot_monthly_peak = 1;
+plot_monthly_energy = 1;
+plot_monthly_losses = 1;
+plot_monthly_emissions = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -58,7 +58,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000,'barwidth',0.9);
     ylabel('Energy Consumption (MWh)');
     set_figure_graphics(data_labels,fname,1,'none',2,'northeastoutside');
-    legend('Base Case','w/CVR')
+    legend('Base','VVO')
     hold off;
     close(fname);
     
@@ -111,7 +111,7 @@ if (plot_energy == 1)
             hold on;
             bar(monthly_energy_data / 1000000,'barwidth',0.9);
             ylabel('Energy Consumption (MWh)');
-            my_legend = {'Base';'CVR'};
+            my_legend = {'Base';'VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -145,7 +145,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(peak_power_data / 1000,'barwidth',0.9);
     ylabel('Peak Load (kW)');
-    my_legend = {'Base Case';'w/CVR'};
+    my_legend = {'Base Case';'VVO'};
     set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     hold off;
     close(fname);
@@ -205,7 +205,7 @@ if (plot_peak_power == 1)
             hold on;
             bar(peak_power_data / 1000,'barwidth',0.9);
             ylabel('Peak Load (kW)');
-            my_legend = {'Base Case';'w/CVR'};
+            my_legend = {'Base Case';'VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -367,7 +367,7 @@ for jind = 1:a
 %     data_labels1={'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg'};
 %     data_labels2= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg'};
 %     data_labels3= {'EOL1-Amin','EOL1-Bmin','EOL1-Cmin','EOL1-Aavg','EOL1-Bavg','EOL1-Cavg','EOL2-Amin','EOL2-Bmin','EOL2-Cmin','EOL2-Aavg','EOL2-Bavg','EOL2-Cavg','EOL3-Amin','EOL3-Bmin','EOL3-Cmin','EOL3-Aavg','EOL3-Bavg','EOL3-Cavg','EOL4-Amin','EOL4-Bmin','EOL4-Cmin','EOL4-Aavg','EOL4-Bavg','EOL1-Cavg','EOL5-Amin','EOL5-Bmin','EOL5-Cmin','EOL5-Aavg','EOL5-Bavg','EOL5-Cavg','EOL6-Amin','EOL6-Bmin','EOL6-Cmin','EOL6-Aavg','EOL6-Bavg','EOL1-Cavg'};
-%     my_legend = {'Base';'CVR'};
+%     my_legend = {'Base';'VVO'};
 %     
 %     % R1-25.00-1 EOL measurements
 %     fname = 't1_EOL for R1-2500-1';
@@ -453,7 +453,7 @@ if plot_pf ==1
     ylabel('Power Factor');
 
     ylim([-1.0 1.0]);
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'VVO'};
 
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
@@ -469,7 +469,7 @@ if plot_pf ==1
     bar(pf,'barwidth',0.9,'barwidth',0.9);
     ylabel('Power Factor');
     ylim([.9 1.0]);
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'VVO'};
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
     close(fname);
@@ -485,7 +485,7 @@ if plot_pf ==1
 %     bar(pf,'barwidth',0.9,'barwidth',0.9);
 %     ylabel('Power Factor');
 %     ylim([.9 1.0]);
-%     my_legend = {'Base';'CVR'};
+%     my_legend = {'Base';'VVO'};
 %     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
 %     hold off;
 %     close(fname);
@@ -513,7 +513,7 @@ if (plot_losses == 1)
 
     
     % Total Losses
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'VVO'};
     fname = 't1_Comparison of total annual losses by feeder';
     set_figure_size(fname);
     hold on;
@@ -581,7 +581,7 @@ if (plot_losses == 1)
             bar(monthly_losses / 1000000,'barwidth',0.9);
             ylabel('Monthly Losses (MWh)');
             %title('Peak Demand by Feeder');
-            my_legend = {'Overhead-Base';'Overhead-CVR';'Underground-Base';'Underground-CVR';'Transformer-Base';'Transformer-CVR';'Triplex-Base';'Triplex-CVR'};
+            my_legend = {'Overhead-Base';'Overhead-VVO';'Underground-Base';'Underground-VVO';'Transformer-Base';'Transformer-VVO';'Triplex-Base';'Triplex-VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -613,7 +613,7 @@ if (plot_emissions == 1)
     hold on;
     bar(emissions_data,'barwidth',0.9);
     ylabel('CO2 Emissions (tons)');
-    my_legend = {'Base';'CVR'};
+    my_legend = {'Base';'VVO'};
     set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
     
     hold off;
@@ -671,7 +671,7 @@ if (plot_emissions == 1)
             hold on;
             bar(monthly_emissions_data,'barwidth',0.9);
             ylabel('CO2 Emissions (tons)');
-            my_legend = {'Base';'CVR'};
+            my_legend = {'Base';'VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
