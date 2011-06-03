@@ -642,8 +642,8 @@ end
     data.meas_limit = 20*ceil(meas2/data.meas_interval);
     
     % Skews
-    data.residential_skew_std = 1800;
-    data.residential_skew_max = 5400;
+    data.residential_skew_std = 2700;
+    data.residential_skew_max = 8100;
     data.commercial_skew_std = 1800; %These are in 30 minute blocks
     data.commercial_skew_max = 5400;
     
