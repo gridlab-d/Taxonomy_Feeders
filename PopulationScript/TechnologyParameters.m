@@ -25,6 +25,7 @@ if data.tech_flag == 0
     data.collect_setpoints = 1;    
     data.measure_EOL_voltage = 1;
     data.measure_loads = 1;
+    data.collect_setpoints = 1;
     
     %Prints stats at bottom of GLM
     data.include_stats = 1;
@@ -116,6 +117,7 @@ elseif data.tech_flag == 4
     data.collect_setpoints = 1;    
     data.measure_EOL_voltage = 0;
     data.measure_loads = 1;
+    data.collect_setpoints = 1;
     
     % adds in the market
     use_flags.use_market = 2;

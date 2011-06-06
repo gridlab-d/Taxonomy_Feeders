@@ -741,7 +741,7 @@ for tax_ind=1:no_of_tax
         fprintf(write_file,'#include "water_and_setpoint_schedule_v5.glm";\n');
     end
     if (use_flags.use_emissions ~= 0)
-        fprintf(write_file,'#include "emissions_schedules_r%d.glm";\n',region);
+        %fprintf(write_file,'#include "emissions_schedules_r%d.glm";\n',region);
     end
 
     if (use_flags.use_batt == 1 || use_flags.use_batt == 2)
