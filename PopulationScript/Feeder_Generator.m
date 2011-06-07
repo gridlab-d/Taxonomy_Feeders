@@ -1,5 +1,13 @@
 clear;
 clc;
+
+%LU solver for powerflow - note the KLU solver must be manually added to GridLAB-D
+%KLU is available at http://gridlab-d.svn.sourceforge.net/svnroot/gridlab-d/tools/solver_klu
+%0 = superLU (Default solver)
+%1 = KLU - 64 bit build
+%2 = KLU - 32 bit build
+LUSolverVal=1;
+
 % 
 taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
     'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
@@ -763,7 +771,9 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'#set relax_naming_rules=1;\n\n');
 
     fprintf(write_file,'module tape;\n');
-    fprintf(write_file,'module generators;\n');
+    if ((use_flags.use_solar~=0) || (use_flags.use_solar_res~=0) || (use_flags.use_solar_com~=0))
+        fprintf(write_file,'module generators;\n');
+    end
     fprintf(write_file,'module climate;\n');
     fprintf(write_file,'module residential {\n');
     fprintf(write_file,'     implicit_enduses NONE;\n');
@@ -776,6 +786,11 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'module powerflow {\n');
     fprintf(write_file,'     solver_method NR;\n');
     fprintf(write_file,'     NR_iteration_limit 50;\n');
+    if (LUSolverVal==1) %KLU 64-bit build
+        fprintf(write_file,'     lu_solver "KLU_x64";\n');
+    elseif (LUSolverVal==2) %KLU 32-bit build
+        fprintf(write_file,'     lu_solver "KLU";\n');
+    end
     fprintf(write_file,'};\n\n');
     
     % So people can use player transforms if needed
@@ -3946,6 +3961,17 @@ for tax_ind=1:no_of_tax
         fprintf(write_file,'     limit %.0f;\n',tech_data.meas_limit);
         fprintf(write_file,'     interval %.0f;\n',tech_data.meas_interval);
         fprintf(write_file,'     file %s_markets.csv;\n',tech_file);
+        fprintf(write_file,'}\n\n');
+    end
+    
+    %Thermal storage collector - for storage-specific metric
+    if (tech_data.tech_flag==9)    %Thermal storage
+        fprintf(write_file,'object collector {\n');
+        fprintf(write_file,'     group "class=thermal_storage";\n');
+        fprintf(write_file,'     property sum(stored_capacity),sum(total_capacity);\n');
+        fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
+        fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
+        fprintf(write_file,'     file %s_StorageValues.csv;\n',tech_file);
         fprintf(write_file,'}\n\n');
     end
 
