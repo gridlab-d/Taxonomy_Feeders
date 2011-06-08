@@ -33,9 +33,9 @@ TechnologyToTest=0;
 % 10 - PHEV
 % 11 - Solar Residential
 % 12 - Solar Commercial
-% 13 - Wind Residential
+% 13 - Solar Combined
 % 14 - Wind Commercial
-% 15 - combined W&S 
+
 
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
