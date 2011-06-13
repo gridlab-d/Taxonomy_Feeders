@@ -415,6 +415,7 @@ elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)
     data.TOU_price_player = {'R4_2500_1_t0_TOU.player'};
     data.CPP_price_player = {'R4_2500_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R4.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 100;   %Overrides ts_penetration for the region to ensure at least one gets populated - percentage 
     % 140 residential, 1 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)    
     data.nom_volt = 13800;

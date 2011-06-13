@@ -3665,7 +3665,13 @@ for tax_ind=1:no_of_tax
             for jj=1:no_ts_office_length
                 if (~isempty(ts_office_array{jj}))
                     for jjj=1:length(ts_office_array{jj})
-                        if (office_penetration(office_count) <= (regional_data.ts_penetration/100))
+                        if (isfield(taxonomy_data,'thermal_override'))
+                            thermal_storage_penetration_level=taxonomy_data.thermal_override/100;
+                        else %No exist, use regional value
+                            thermal_storage_penetration_level = regional_data.ts_penetration/100;
+                        end
+                        
+                        if (office_penetration(office_count) <= thermal_storage_penetration_level)
                             for jjjj=1:length(ts_office_array{jj}{jjj})
                                 for jjjjj=1:length(ts_office_array{jj}{jjj}{jjjj})
                                     if (~isempty(ts_office_array{jj}{jjj}{jjjj}{jjjjj}))
@@ -3701,7 +3707,13 @@ for tax_ind=1:no_of_tax
 
             for jj=1:no_ts_bigbox_length
                 if (~isempty(ts_bigbox_array{jj}))
-                    if (bigbox_penetration(bigbox_count) <= (regional_data.ts_penetration/100))
+                    if (isfield(taxonomy_data,'thermal_override'))
+                        thermal_storage_penetration_level=taxonomy_data.thermal_override/100;
+                    else %No exist, use regional value
+                        thermal_storage_penetration_level = regional_data.ts_penetration/100;
+                    end
+                    
+                    if (bigbox_penetration(bigbox_count) <= thermal_storage_penetration_level)
                         for jjj=1:length(ts_bigbox_array{jj})
                             for jjjj=1:length(ts_bigbox_array{jj}{jjj})
                                 for jjjjj=1:length(ts_bigbox_array{jj}{jjj}{jjjj})
@@ -3738,7 +3750,13 @@ for tax_ind=1:no_of_tax
             
             for jj=1:no_ts_stripmall_length
                 if (~isempty(ts_stripmall_array{jj}))
-                    if (stripmall_penetration(stripmall_count) <= (regional_data.ts_penetration/100))
+                    if (isfield(taxonomy_data,'thermal_override'))
+                        thermal_storage_penetration_level=taxonomy_data.thermal_override/100;
+                    else %No exist, use regional value
+                        thermal_storage_penetration_level = regional_data.ts_penetration/100;
+                    end
+
+                    if (stripmall_penetration(stripmall_count) <= thermal_storage_penetration_level)
                         for jjj=1:length(ts_stripmall_array{jj})
                             for jjjj=1:length(ts_stripmall_array{jj}{jjj})
                                 if (~isempty(ts_stripmall_array{jj}{jjj}{jjjj}))
@@ -3775,7 +3793,13 @@ for tax_ind=1:no_of_tax
                 if (~isempty(ts_residential_array{jj}))
                     for jjj=1:length(ts_residential_array{jj})
                         if (~isempty(ts_residential_array{jj}{jjj}))
-                            if (residential_penetration(residential_count) <= (regional_data.ts_penetration/100))
+                            if (isfield(taxonomy_data,'thermal_override'))
+                                thermal_storage_penetration_level=taxonomy_data.thermal_override/100;
+                            else %No exist, use regional value
+                                thermal_storage_penetration_level = regional_data.ts_penetration/100;
+                            end
+                            
+                            if (residential_penetration(residential_count) <= thermal_storage_penetration_level)
                                 parent = ts_residential_array{jj}{jjj};
                                 fprintf(write_file,'object thermal_storage {\n');
                                 fprintf(write_file,'	 parent %s;\n',parent);
