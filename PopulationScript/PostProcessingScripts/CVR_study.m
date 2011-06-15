@@ -23,7 +23,7 @@ plot_losses = 1;
 plot_emissions = 1;
 
 % Flag for impact matrix
-generate_impact_matrix = 0;
+generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 1;
@@ -150,6 +150,7 @@ if (plot_peak_power == 1)
     hold off;
     close(fname);
     
+    clear peak_va_data
   
     % Change in Peak Demand (kW)
     fname = 't1_Change in peak demand by feeder (kW)';
@@ -213,7 +214,7 @@ if (plot_peak_power == 1)
         end
       
     end
-   
+   clear peak_power_data peak_va_data
 end % End of peak power plots
 %% EOL Voltages
 if (plot_EOL == 1)
