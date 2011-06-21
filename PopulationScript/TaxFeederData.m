@@ -68,7 +68,10 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     data.TOU_price_player = {['GC_1247_1_t0_r' num2str(region) '_TOU.player']};
     data.CPP_price_player = {['GC_1247_1_t0_r' num2str(region) '_CPP.player']};
     data.CPP_flag = {['CPP_days_R' num2str(region) '.player']}; % player that specifies which day is a CPP day (critical_day)
-     
+
+    %Thermal override for commercial feeders - 1, 3, 4, and 5 at 10% still
+    comm_Thermal_override=[10; 18; 10; 10; 10];
+    data.thermal_override = comm_Thermal_override(region);
     % 0 residential, 0 commercial, 3 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)
     data.nom_volt = 12500;
@@ -350,6 +353,7 @@ elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
     data.TOU_price_player = {'R3_1247_3_t0_TOU.player'};
     data.CPP_price_player = {'R3_1247_3_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R3.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 20;   %Overrides ts_penetration for the feeder
     % 1625 residential, 0 commercial, 0 industrial, 107 agricultural
 elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)    
     data.nom_volt = 13800;
@@ -371,6 +375,7 @@ elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)
     data.TOU_price_player = {'R4_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R4_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R4.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 20;   %Overrides ts_penetration for the feeder
     % 476 residential, 75 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)    
     data.nom_volt = 12500;
@@ -436,6 +441,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)
     data.TOU_price_player = {'R5_1247_1_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_1_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 20;   %Overrides ts_penetration for the feeder
     % 185 residential, 48 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-2.glm')~=0)    
     data.nom_volt = 12470;
@@ -485,6 +491,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-3.glm')~=0)
     data.TOU_price_player = {'R5_1247_3_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_3_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 20;   %Overrides ts_penetration for the feeder
     % 1196 residential, 182 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-4.glm')~=0)    
     data.nom_volt = 12470;
@@ -505,6 +512,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-4.glm')~=0)
     data.TOU_price_player = {'R5_1247_4_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_4_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 20;   %Overrides ts_penetration for the feeder
     % 175 residential, 31 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-12.47-5.glm')~=0)    
     data.nom_volt = 12470;
@@ -527,6 +535,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-5.glm')~=0)
     data.TOU_price_player = {'R5_1247_5_t0_TOU.player'};
     data.CPP_price_player = {'R5_1247_5_t0_CPP.player'};
     data.CPP_flag = {'CPP_days_R5.player'}; % player that specifies which day is a CPP day (critical_day)
+    data.thermal_override = 20;   %Overrides ts_penetration for the feeder
     % 352 residential, 28 commercial, 0 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R5-25.00-1.glm')~=0)    
     data.nom_volt = 22900;

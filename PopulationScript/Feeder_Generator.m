@@ -4266,6 +4266,11 @@ for tax_ind=1:no_of_tax
             fprintf(write_file,'\n//Thermal Storage Mode = %d\n',use_flags.use_ts);
             fprintf(write_file,'//Thermal Storage SOC = %0.2f\n',tech_data.ts_SOC);
             fprintf(write_file,'//Thermal Storage k value = %0.2f\n',tech_data.k_ts);
+            if (isfield(taxonomy_data,'thermal_override'))
+                fprintf(write_file,'//Thermal Storage Penetration = %.1f\n',taxonomy_data.thermal_override);
+            else %No exist, use regional value
+                fprintf(write_file,'//Thermal Storage Penetration = %.1f\n',regional_data.ts_penetration);
+            end
         end
 
         fprintf(write_file,'\n//Residential skews +/-%.3f, max:%f\n',tech_data.residential_skew_std,tech_data.residential_skew_max);
