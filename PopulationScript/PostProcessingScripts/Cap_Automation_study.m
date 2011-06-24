@@ -15,7 +15,7 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 1;
+plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
@@ -23,7 +23,7 @@ plot_losses = 0;
 plot_emissions = 0;
 
 % Flag for impact matrix
-generate_impact_matrix = 0;
+generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
@@ -1277,14 +1277,14 @@ if ( generate_impact_matrix == 1)
     
     
     % Write t0 values to the Excel file
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t0,'Base','AP4:AV35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t0,'Base','AP4:AW35')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t0,'Base','AH4:AK35')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t0,'Base','Z4:AC35')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t0,'Base','P4:U35')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t0,'Base','F4:K35')
     
     % Write t2 values to the Excel file
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t2,'For t2','AP4:AV32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t2,'For t2','AP4:AW32')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t2,'For t2','AH4:AK32')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t2,'For t2','Z4:AC32')
     xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t2,'For t2','P4:U32')
@@ -1296,4 +1296,4 @@ end % End of imapct matrix
 
 
 
-%clear;
+clear;
