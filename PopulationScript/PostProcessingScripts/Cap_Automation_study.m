@@ -1,7 +1,7 @@
 % This script is intended to compare results for the Capacitor Automation study for the 2011
 % ARRA Grant Analysis
 
-% create 5/23/2011 by Jason Fuller
+% create 5/23/2011 by Kevin Schneider
 
 
 clear all;
@@ -15,21 +15,21 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 0;
-plot_EOL = 0;
-plot_pf = 0;
-plot_losses = 0;
-plot_emissions = 0;
+plot_energy = 1;
+plot_peak_power = 1;
+plot_EOL = 1;
+plot_pf = 1;
+plot_losses = 1;
+plot_emissions = 1;
 
 % Flag for impact matrix
 generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
-plot_monthly_peak = 0;
-plot_monthly_energy = 0;
-plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
+plot_monthly_peak = 1;
+plot_monthly_energy = 1;
+plot_monthly_losses = 1;
+plot_monthly_emissions = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
