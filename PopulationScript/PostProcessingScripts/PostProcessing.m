@@ -32,6 +32,7 @@ find_voltages = 1;                  % get the average and minimum of the lowest 
 find_pf = 1;                        % min, max, and average
 find_losses = 1;                    % gathers the system losses
 find_switching = 1;                 % gather all of the capacitor and regulator switching operations (sums all phases and objects)
+find_storage = 0;					% gather storage values
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
@@ -946,6 +947,82 @@ for file_ind = 1:no_files
     end
     % end switching operations
     
+    %% Storage information
+    if (find_storage == 1)
+        %Preallocate, for giggles
+        if (file_ind==1)
+            storage_values = cell(no_files,3);
+            
+            if (find_monthly_values == 1)
+                storage_values_monthly = cell(no_files,3);
+            end
+            
+            %Determine the time increment of the files
+            eval(['timeValues=datenum(' current_file '.timestamp,''yyyy-mm-dd HH:MM:SS'');']);
+            
+            storage_update_interval = mean(diff(timeValues*24));
+            
+            %Set flag
+            storage_present=0;
+        end
+        
+        %Make sure it exists first
+        eval(['StorageCheckVal=isfield(' current_file ',''StorageValues_sumstored_capacity'');']);
+        if (StorageCheckVal==1)
+            %Indicate storage was found
+            storage_present = 1;
+            
+            % put the needed data into a temporary variable
+            eval(['temp_var_storage_use = ' current_file '.StorageValues_sumstored_capacity;']);
+            eval(['temp_var_storage_cap = ' current_file '.StorageValues_sumtotal_capacity;']);
+
+            %Convert to MWh for the metric
+            storage_MWh_value = (sum(temp_var_storage_cap)-sum(temp_var_storage_use))*0.293071/1e6*storage_update_interval;
+            
+            %Grab a percent state of charge - just to see how things compare
+            storage_SOC = temp_var_storage_use./temp_var_storage_cap;
+            
+            %Store the values into the array
+            storage_values{file_ind,1} = current_file;
+            storage_values{file_ind,2} = storage_MWh_value;
+            storage_values{file_ind,3} = storage_SOC;
+            
+            if (find_monthly_values == 1)
+                
+                %Store file name
+                storage_values_monthly{file_ind,1} = current_file;
+                
+                %Preallocate
+                storage_values_monthly{file_ind,2}=zeros(12,1);
+                storage_values_monthly{file_ind,3}=zeros(12,1);
+                
+                for jjind=1:12
+                    
+                    %Monthly MWh dispatched
+                    storage_MWh_value_monthly = (sum(temp_var_storage_cap(month_ind(jjind,1):month_ind(jjind,2)))-sum(temp_var_storage_use(month_ind(jjind,1):month_ind(jjind,2))))*0.293071/1e6*storage_update_interval;
+                    
+                    %Get min SOC of the period, useful to see peak usage
+                    storage_SOC_min_monthly = min(temp_var_storage_use(month_ind(jjind,1):month_ind(jjind,2))./temp_var_storage_cap(month_ind(jjind,1):month_ind(jjind,2)));
+                                        
+                    %Store them
+                    storage_values_monthly{file_ind,2}(jjind) = storage_MWh_value_monthly;
+                    storage_values_monthly{file_ind,3}(jjind) = storage_SOC_min_monthly;
+                end
+                
+                %Clean up
+                clear storage_MWh_value_monthly storage_SOC_min_monthly;
+            end
+
+            % clean up my workspace a little
+            clear temp_var_storage_use temp_var_storage_cap  storage_MWh_value storage_SOC;
+        else %Not found, warn
+            disp(['Energy storage values not found for ' current_file]);
+        end
+        
+        %Clean up
+        clear StorageCheckVal;
+    end %End energy storage
+    
     % clear out the file we've opened
     eval(['clear ' current_file]);
     disp(['Finished ' current_file]);
@@ -1026,6 +1103,15 @@ end
 if (find_switching == 1)
     write_file = [write_dir 'switching_operations_' tech '.mat'];
     save(write_file,'switch_ops')
+end
+
+if ((find_storage == 1) && (storage_present == 1))
+    write_file = [write_dir 'storage_values_' tech '.mat'];
+    save(write_file,'storage_values')
+    if (find_monthly_values == 1)
+        write_file = [write_dir 'monthly_storage_values_' tech '.mat'];
+        save(write_file,'storage_values_monthly');
+    end
 end
 
 disp('All done!');
