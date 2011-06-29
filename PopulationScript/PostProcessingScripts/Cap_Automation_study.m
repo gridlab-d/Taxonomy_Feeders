@@ -1264,11 +1264,11 @@ if ( generate_impact_matrix == 1)
     matrix_index_start_t2=18;
     matrix_index_stop_t2=21;
     for i=matrix_index_start_t0:matrix_index_stop_t0
-        impact_matrix_R1_t2(i,1:6)=Temp_R6(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R1_t2(25,:)/100);
-        impact_matrix_R2_t2(i,1:6)=Temp_R7(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R2_t2(25,:)/100);
-        impact_matrix_R3_t2(i,1:4)=Temp_R8(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R3_t2(25,:)/100);
-        impact_matrix_R4_t2(i,1:4)=Temp_R9(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R4_t2(25,:)/100);
-        impact_matrix_R5_t2(i,1:8)=Temp_R10(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R5_t2(25,:)/100);
+        impact_matrix_R1_t2(i,1:6)=Temp_R6(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R1_t2(24,:)/100);
+        impact_matrix_R2_t2(i,1:6)=Temp_R7(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R2_t2(24,:)/100);
+        impact_matrix_R3_t2(i,1:4)=Temp_R8(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R3_t2(24,:)/100);
+        impact_matrix_R4_t2(i,1:4)=Temp_R9(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R4_t2(24,:)/100);
+        impact_matrix_R5_t2(i,1:8)=Temp_R10(i-matrix_index_start_t2+1,:).*(1-impact_matrix_R5_t2(24,:)/100);
     end
     
 

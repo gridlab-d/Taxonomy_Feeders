@@ -1214,8 +1214,9 @@ if ( generate_impact_matrix == 1)
     temp1=cell2mat(data_t0(1:28,2:5)');
     temp2=cell2mat(data_t1(1:28,2:5)');
     
-    Temp_R1(:,1)=temp1(:,1);
-    Temp_R1(:,2:6)=temp1(:,6:10);
+    % Base Case
+    Temp_R1(:,1)=temp1(:,1); %CO2
+    Temp_R1(:,2:6)=temp1(:,6:10); %SoX, NoX, PM-10 
     Temp_R2(:,1)=temp1(:,2);
     Temp_R2(:,2:6)=temp1(:,11:15);
     Temp_R3(:,1)=temp1(:,3);
@@ -1225,8 +1226,9 @@ if ( generate_impact_matrix == 1)
     Temp_R5(:,1)=temp1(:,5);
     Temp_R5(:,2:8)=temp1(:,22:28);
     
-    Temp_R6(:,1)=temp2(:,1);
-    Temp_R6(:,2:6)=temp2(:,6:10);
+    % t1
+    Temp_R6(:,1)=temp2(:,1); %CO2
+    Temp_R6(:,2:6)=temp2(:,6:10); %SoX, NoX, PM-10 
     Temp_R7(:,1)=temp2(:,2);
     Temp_R7(:,2:6)=temp2(:,11:15);
     Temp_R8(:,1)=temp2(:,3);
@@ -1236,6 +1238,7 @@ if ( generate_impact_matrix == 1)
     Temp_R10(:,1)=temp2(:,5);
     Temp_R10(:,2:8)=temp2(:,22:28);
     
+    % Emission to supply all load (including losses)
     matrix_index_start_t0=29;
     matrix_index_stop_t0=32;
     
@@ -1254,7 +1257,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R4_t1(matrix_index_start_t1:matrix_index_stop_t1,1:4)=Temp_R9;
     impact_matrix_R5_t1(matrix_index_start_t1:matrix_index_stop_t1,1:8)=Temp_R10;
     
-    
+    % Emission to supply the end user
     matrix_index_start_t0=18;
     matrix_index_stop_t0=21;
     for i=matrix_index_start_t0:matrix_index_stop_t0
@@ -1268,15 +1271,15 @@ if ( generate_impact_matrix == 1)
     matrix_index_start_t1=18;
     matrix_index_stop_t1=21;
     for i=matrix_index_start_t0:matrix_index_stop_t0
-        impact_matrix_R1_t1(i,1:6)=Temp_R6(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R1_t1(25,:)/100);
-        impact_matrix_R2_t1(i,1:6)=Temp_R7(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R2_t1(25,:)/100);
-        impact_matrix_R3_t1(i,1:4)=Temp_R8(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R3_t1(25,:)/100);
-        impact_matrix_R4_t1(i,1:4)=Temp_R9(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R4_t1(25,:)/100);
-        impact_matrix_R5_t1(i,1:8)=Temp_R10(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R5_t1(25,:)/100);
+        impact_matrix_R1_t1(i,1:6)=Temp_R6(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R1_t1(24,:)/100);
+        impact_matrix_R2_t1(i,1:6)=Temp_R7(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R2_t1(24,:)/100);
+        impact_matrix_R3_t1(i,1:4)=Temp_R8(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R3_t1(24,:)/100);
+        impact_matrix_R4_t1(i,1:4)=Temp_R9(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R4_t1(24,:)/100);
+        impact_matrix_R5_t1(i,1:8)=Temp_R10(i-matrix_index_start_t1+1,:).*(1-impact_matrix_R5_t1(24,:)/100);
     end
     
 
-    
+
     clear data_t0 data_t1 Temp_R1 Temp_R2 Temp_R3 Temp_R4 Temp_R5 Temp_R6 Temp_R7 Temp_R8 Temp_R9 Temp_R10 matrix_index_start matrix_index_stop temp1 temp2
     
     
@@ -1300,4 +1303,4 @@ end % End of imapct matrix
 
 
 
-clear;
+%clear;
