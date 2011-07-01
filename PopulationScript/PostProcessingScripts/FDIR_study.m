@@ -14,74 +14,110 @@ set_defaults();
 % where to write the new data
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
-% The input data is mannualy inserted because of the method of collection
-Base2_r1=[1.30	1.17	1.18	1.17	1.16	1.17
-106.05	90.32	97.20	92.49	104.12	90.74
-81.75	77.22	82.52	78.84	89.76	77.88
-0	2	1	3	0	1];
-
-Base2_r2=[1.30	1.29	1.14	1.16	1.16	1.18
-106.05	98.39	93.38	90.43	91.75	100.39
-81.75	76.02	82.25	78.06	79.17	84.72
-0	1	1	1	0	1];
-
-Base2_r3=[1.30	1.21	1.17	1.19
-106.05	95.53	101.37	97.68
-81.75	79.06	86.96	82.42
-0	2	1	0];
-    
-Base2_r4=[1.30	1.16	1.19	1.15
-106.05	91.84	95.77	90.18
-81.75	79.28	80.25	78.70
-0	0	1	1];
-
-Base2_r5=[1.30	1.17	1.18	1.19	1.18	1.17	1.17	1.19
-106.05	90.88	91.81	93.70	95.44	102.06	94.82	93.88
-81.75	77.73	77.77	78.87	80.63	87.50	80.98	79.20
-0	0	1	1	1	1	1	1];
+%% Read in the reliability numbers from the SGIG Metrics.xlsx file
+% Base Case 2 values
+Base2_r1=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','Base 2','F4:K7');
+Base2_r2=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','Base 2','P4:U7');
+Base2_r3=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','Base 2','Z4:AC7');
+Base2_r4=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','Base 2','AH4:AK7');
+Base2_r5=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','Base 2','AP4:AW7');
 	
-t3_r1=0;
-t3_r2=0;
-t3_r3=0;
-t3_r4=0;
-t3_r5=0;
+% t3 values
+t3_r1=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t3','F4:K7');
+t3_r2=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t3','P4:U7');
+t3_r3=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t3','Z4:AC7');
+t3_r4=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t3','AH4:AK7');
+t3_r5=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t3','AP4:AW7');
 
-t4_r1=0;
-t4_r2=0;
-t4_r3=0;
-t4_r4=0;
-t4_r5=0;
+% t4 values
+t4_r1=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t4','F4:K7');
+t4_r2=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t4','P4:U7');
+t4_r3=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t4','Z4:AC7');
+t4_r4=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t4','AH4:AK7');
+t4_r5=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t4','AP4:AW7');
 
-t5_r1=0;
-t5_r2=0;
-t5_r3=0;
-t5_r4=0;
-t5_r5=0;
+% t5 values
+t5_r1=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t5','F4:K7');
+t5_r2=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t5','P4:U7');
+t5_r3=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t5','Z4:AC7');
+t5_r4=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t5','AH4:AK7');
+t5_r5=xlsread('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx','For t5','AP4:AW7');
 
 
 %Base2_data=[Base2_r1 Base2_r2 Base2_r3 Base2_r4 Base2_r5];
 
 % Reorganize so that the GC feeders are the first five.
 Base2_data(:,1)=Base2_r1(:,1);
-Base2_data(:,2)=Base2_r1(:,1);
-Base2_data(:,3)=Base2_r1(:,1);
-Base2_data(:,4)=Base2_r1(:,1);
-Base2_data(:,5)=Base2_r1(:,1);
+Base2_data(:,2)=Base2_r2(:,1);
+Base2_data(:,3)=Base2_r3(:,1);
+Base2_data(:,4)=Base2_r4(:,1);
+Base2_data(:,5)=Base2_r5(:,1);
 Base2_data(:,6:10)=Base2_r1(:,2:6);
 Base2_data(:,11:15)=Base2_r2(:,2:6);
 Base2_data(:,16:18)=Base2_r3(:,2:4);
 Base2_data(:,19:21)=Base2_r4(:,2:4);
 Base2_data(:,22:28)=Base2_r5(:,2:8);
 
+Data_t3(:,1)=t3_r1(:,1);
+Data_t3(:,2)=t3_r2(:,1);
+Data_t3(:,3)=t3_r3(:,1);
+Data_t3(:,4)=t3_r4(:,1);
+Data_t3(:,5)=t3_r5(:,1);
+Data_t3(:,6:10)=t3_r1(:,2:6);
+Data_t3(:,11:15)=t3_r2(:,2:6);
+Data_t3(:,16:18)=t3_r3(:,2:4);
+Data_t3(:,19:21)=t3_r4(:,2:4);
+Data_t3(:,22:28)=t3_r5(:,2:8);
 
+Data_t4(:,1)=t4_r1(:,1);
+Data_t4(:,2)=t4_r2(:,1);
+Data_t4(:,3)=t4_r3(:,1);
+Data_t4(:,4)=t4_r4(:,1);
+Data_t4(:,5)=t4_r5(:,1);
+Data_t4(:,6:10)=t4_r1(:,2:6);
+Data_t4(:,11:15)=t4_r2(:,2:6);
+Data_t4(:,16:18)=t4_r3(:,2:4);
+Data_t4(:,19:21)=t4_r4(:,2:4);
+Data_t4(:,22:28)=t4_r5(:,2:8);
+
+Data_t5(:,1)=t5_r1(:,1);
+Data_t5(:,2)=t5_r2(:,1);
+Data_t5(:,3)=t5_r3(:,1);
+Data_t5(:,4)=t5_r4(:,1);
+Data_t5(:,5)=t5_r5(:,1);
+Data_t5(:,6:10)=t5_r1(:,2:6);
+Data_t5(:,11:15)=t5_r2(:,2:6);
+Data_t5(:,16:18)=t5_r3(:,2:4);
+Data_t5(:,19:21)=t5_r4(:,2:4);
+Data_t5(:,22:28)=t5_r5(:,2:8);
+
+% Generate the specific index matrices
 SAIFI_t3(1,:)=Base2_data(1,:);
-SAIFI_t3(2,:)=Base2_data(1,:)*.65;
+SAIFI_t3(2,:)=Data_t3(1,:);
 SAIDI_t3(1,:)=Base2_data(2,:);
-SAIDI_t3(2,:)=Base2_data(2,:)*.65;
+SAIDI_t3(2,:)=Data_t3(2,:);
 CAIDI_t3(1,:)=Base2_data(3,:);
-CAIDI_t3(2,:)=Base2_data(3,:)*.65;
+CAIDI_t3(2,:)=Data_t3(3,:);
 MAIFI_t3(1,:)=Base2_data(4,:);
-MAIFI_t3(2,:)=Base2_data(4,:)*.65;
+MAIFI_t3(2,:)=Data_t3(4,:);
+
+SAIFI_t4(1,:)=Base2_data(1,:);
+SAIFI_t4(2,:)=Data_t4(1,:);
+SAIDI_t4(1,:)=Base2_data(2,:);
+SAIDI_t4(2,:)=Data_t4(2,:);
+CAIDI_t4(1,:)=Base2_data(3,:);
+CAIDI_t4(2,:)=Data_t4(3,:);
+MAIFI_t4(1,:)=Base2_data(4,:);
+MAIFI_t4(2,:)=Data_t4(4,:);
+
+SAIFI_t5(1,:)=Base2_data(1,:);
+SAIFI_t5(2,:)=Data_t5(1,:);
+SAIDI_t5(1,:)=Base2_data(2,:);
+SAIDI_t5(2,:)=Data_t5(2,:);
+CAIDI_t5(1,:)=Base2_data(3,:);
+CAIDI_t5(2,:)=Data_t5(3,:);
+MAIFI_t5(1,:)=Base2_data(4,:);
+MAIFI_t5(2,:)=Data_t5(4,:);
 
 % Bring in the feeder names from the annual losses files
 load([write_dir,'annual_losses_t0.mat']);
@@ -93,18 +129,30 @@ data_labels = strrep(data_labels,'_','-');
 
 
 
-
+%% t3 plots
 % t3 SAIFI
 fname = 't3_SAIFI';
 set_figure_size(fname);
 hold on;
 bar(SAIFI_t3','barwidth',0.9);
-ylabel('                  Interrputions per year');
-ylim([.5 1.5]);
+ylabel('                                                          Interrputions per year');
+ylim([0 1.5]);
 my_legend = {'Base';'R&S'};
-set_figure_graphics(data_labels,fname,2,my_legend,.35,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
 hold off;
 close(fname);
+
+% t3 delta SAIFI
+fname = 't3_delta_SAIFI';
+set_figure_size(fname);
+hold on;
+bar((SAIFI_t3(2,:)-SAIFI_t3(1,:))','barwidth',0.9);
+ylabel('Interrputions per year');
+ylim([-1 0]);
+set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
+hold off;
+close(fname);
+
 
 % t3 SAIDI
 fname = 't3_SAIDI';
@@ -112,10 +160,23 @@ set_figure_size(fname);
 hold on;
 bar(SAIDI_t3','barwidth',0.9);
 ylabel('Minutes');
-ylim([40 120]);
-set_figure_graphics(data_labels,fname,2,my_legend,.35,'northeastoutside');
+ylim([20 120]);
+my_legend = {'Base';'R&S'};
+set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
 hold off;
 close(fname);
+
+% t3 SAIDI
+fname = 't3_delta_SAIDI';
+set_figure_size(fname);
+hold on;
+bar((SAIDI_t3(2,:)-SAIDI_t3(1,:))','barwidth',0.9);
+ylabel('Minutes');
+%ylim([-80 00]);
+set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+hold off;
+close(fname);
+
 
 % t3 CAIDI
 fname = 't3_CAIDI';
@@ -123,10 +184,23 @@ set_figure_size(fname);
 hold on;
 bar(CAIDI_t3','barwidth',0.9);
 ylabel('Minutes');
-ylim([40 100]);
-set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+ylim([40 140]);
+set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
 hold off;
 close(fname);
+
+% t3 CAIDI
+fname = 't3_delta_CAIDI';
+set_figure_size(fname);
+hold on;
+bar((CAIDI_t3(2,:)-CAIDI_t3(1,:))','barwidth',0.9);
+ylabel('Minutes');
+ylim([-40 50]);
+set_figure_graphics(data_labels,fname,2,'none',.75,'northeastoutside');
+hold off;
+close(fname);
+
+
 
 % t3 MAIFI
 fname = 't3_MAIFI';
@@ -134,9 +208,208 @@ set_figure_size(fname);
 hold on;
 bar(MAIFI_t3','barwidth',0.9);
 ylabel('Momentary Interruptions');
+ylim([0 15]);
+set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+hold off;
+close(fname);
+
+% t3 MAIFI
+fname = 't3_delta_MAIFI';
+set_figure_size(fname);
+hold on;
+bar((MAIFI_t3(2,:)-MAIFI_t3(1,:))','barwidth',0.9);
+ylabel('Momentary Interruptions');
+ylim([-5 15]);
+set_figure_graphics(data_labels,fname,2,'none',.5,'northeastoutside');
+hold off;
+close(fname);
+
+%% t4 plots
+% t4 SAIFI
+fname = 't4_SAIFI';
+set_figure_size(fname);
+hold on;
+bar(SAIFI_t4','barwidth',0.9);
+ylabel('                                                          Interrputions per year');
+ylim([1.1 1.4]);
+my_legend = {'Base';'R&S'};
+set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+hold off;
+close(fname);
+
+% t4 delta SAIFI
+fname = 't4_delta_SAIFI';
+set_figure_size(fname);
+hold on;
+bar((SAIFI_t4(2,:)-SAIFI_t4(1,:))','barwidth',0.9);
+ylabel('Interrputions per year');
+ylim([-1 0]);
+set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
+hold off;
+close(fname);
+
+
+% t4 SAIDI
+fname = 't4_SAIDI';
+set_figure_size(fname);
+hold on;
+bar(SAIDI_t4','barwidth',0.9);
+ylabel('Minutes');
+ylim([40 120]);
+my_legend = {'Base';'R&S'};
+set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
+hold off;
+close(fname);
+
+% t4 SAIDI
+fname = 't4_delta_SAIDI';
+set_figure_size(fname);
+hold on;
+bar((SAIDI_t4(2,:)-SAIDI_t4(1,:))','barwidth',0.9);
+ylabel('Minutes');
+ylim([-25 5]);
+set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+hold off;
+close(fname);
+
+
+% t4 CAIDI
+fname = 't4_CAIDI';
+set_figure_size(fname);
+hold on;
+bar(CAIDI_t4','barwidth',0.9);
+ylabel('Minutes');
+ylim([40 100]);
+set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
+hold off;
+close(fname);
+
+% t4 CAIDI
+fname = 't4_delta_CAIDI';
+set_figure_size(fname);
+hold on;
+bar((CAIDI_t4(2,:)-CAIDI_t4(1,:))','barwidth',0.9);
+ylabel('Minutes');
+ylim([-25 5]);
+set_figure_graphics(data_labels,fname,2,'none',.75,'northeastoutside');
+hold off;
+close(fname);
+
+
+% t4 MAIFI
+fname = 't4_MAIFI';
+set_figure_size(fname);
+hold on;
+bar(MAIFI_t4','barwidth',0.9);
+ylabel('Momentary Interruptions');
 ylim([0 5]);
 set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
 hold off;
 close(fname);
 
-clear;
+% t4 MAIFI
+fname = 't4_delta_MAIFI';
+set_figure_size(fname);
+hold on;
+bar((MAIFI_t4(2,:)-MAIFI_t4(1,:))','barwidth',0.9);
+ylabel('Momentary Interruptions');
+ylim([-5 5]);
+set_figure_graphics(data_labels,fname,2,'none',.5,'northeastoutside');
+hold off;
+close(fname);
+
+
+%% t5 plots
+% t5 SAIFI
+fname = 't5_SAIFI';
+set_figure_size(fname);
+hold on;
+bar(SAIFI_t5','barwidth',0.9);
+ylabel('                                                          Interrputions per year');
+ylim([0 1.5]);
+my_legend = {'Base';'R&S'};
+set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+hold off;
+close(fname);
+
+% t5 delta SAIFI
+fname = 't5_delta_SAIFI';
+set_figure_size(fname);
+hold on;
+bar((SAIFI_t5(2,:)-SAIFI_t5(1,:))','barwidth',0.9);
+ylabel('Interrputions per year');
+ylim([-1 0]);
+set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
+hold off;
+close(fname);
+
+
+% t5 SAIDI
+fname = 't5_SAIDI';
+set_figure_size(fname);
+hold on;
+bar(SAIDI_t5','barwidth',0.9);
+ylabel('Minutes');
+ylim([10 120]);
+my_legend = {'Base';'R&S'};
+set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
+hold off;
+close(fname);
+
+% t5 SAIDI
+fname = 't5_delta_SAIDI';
+set_figure_size(fname);
+hold on;
+bar((SAIDI_t5(2,:)-SAIDI_t5(1,:))','barwidth',0.9);
+ylabel('Minutes');
+ylim([-80 0]);
+set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+hold off;
+close(fname);
+
+
+% t5 CAIDI
+fname = 't5_CAIDI';
+set_figure_size(fname);
+hold on;
+bar(CAIDI_t5','barwidth',0.9);
+ylabel('Minutes');
+ylim([20 100]);
+set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
+hold off;
+close(fname);
+
+% t5 CAIDI
+fname = 't5_delta_CAIDI';
+set_figure_size(fname);
+hold on;
+bar((CAIDI_t5(2,:)-CAIDI_t5(1,:))','barwidth',0.9);
+ylabel('Minutes');
+ylim([-60 20]);
+set_figure_graphics(data_labels,fname,2,'none',.75,'northeastoutside');
+hold off;
+close(fname);
+
+
+% t5 MAIFI
+fname = 't5_MAIFI';
+set_figure_size(fname);
+hold on;
+bar(MAIFI_t5','barwidth',0.9);
+ylabel('Momentary Interruptions');
+ylim([0 15]);
+set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+hold off;
+close(fname);
+
+% t5 MAIFI
+fname = 't5_delta_MAIFI';
+set_figure_size(fname);
+hold on;
+bar((MAIFI_t5(2,:)-MAIFI_t5(1,:))','barwidth',0.9);
+ylabel('Momentary Interruptions');
+ylim([-5 15]);
+set_figure_graphics(data_labels,fname,2,'none',.5,'northeastoutside');
+hold off;
+close(fname);
+%clear;

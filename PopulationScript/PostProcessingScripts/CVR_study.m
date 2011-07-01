@@ -19,16 +19,16 @@ plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 0;
+plot_losses = 1;
 plot_emissions = 0;
 
 % Flag for impact matrix
-generate_impact_matrix = 1;
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
-plot_monthly_losses = 0;
+plot_monthly_losses = 1;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -57,8 +57,8 @@ if (plot_energy == 1)
     hold on;
     bar(energy_data / 1000000,'barwidth',0.9);
     ylabel('Energy Consumption (MWh)');
-    set_figure_graphics(data_labels,fname,1,'none',2,'northeastoutside');
-    legend('Base','VVO')
+    my_legend={'Base','VVO'};
+    set_figure_graphics(data_labels,fname,1,my_legend,2,'northeastoutside');
     hold off;
     close(fname);
     
@@ -582,7 +582,7 @@ if (plot_losses == 1)
             bar(monthly_losses / 1000000,'barwidth',0.9);
             ylabel('Monthly Losses (MWh)');
             %title('Peak Demand by Feeder');
-            my_legend = {'Overhead-Base';'Overhead-VVO';'Underground-Base';'Underground-VVO';'Transformer-Base';'Transformer-VVO';'Triplex-Base';'Triplex-VVO'};
+            my_legend = {'OHL-Base';'OHL-VVO';'UGL-Base';'UGL-VVO';'TFR-Base';'TFR-VVO';'TPL-Base';'TPL-VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);

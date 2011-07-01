@@ -19,16 +19,16 @@ plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 0;
+plot_losses = 1;
 plot_emissions = 0;
 
 % Flag for impact matrix
-generate_impact_matrix = 1;
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
-plot_monthly_losses = 0;
+plot_monthly_losses = 1;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -146,7 +146,7 @@ if (plot_peak_power == 1)
     bar(peak_power_data / 1000,'barwidth',0.9);
     ylabel('Peak Load (kW)');
     my_legend = {'Base Case';'CA'};
-    set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,1.25,'northeastoutside');
     hold off;
     close(fname);
     
@@ -168,7 +168,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(delta_peak_power);
     ylabel('Change in Peak Load (%)');
-    set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,2,'none',1.25,'northeastoutside');
     hold off;
     close(fname);
     
@@ -546,7 +546,7 @@ if (plot_losses == 1)
     
 
     if (plot_monthly_losses == 1)
-        
+
         load([write_dir,'monthly_losses_t0.mat']);
         data_t0 = monthly_losses;
         load([write_dir,'monthly_losses_t2.mat']);
@@ -556,10 +556,10 @@ if (plot_losses == 1)
         data_labels = strrep(data_t0(:,1),'_t0','');
         data_labels = strrep(data_labels,'_','-');
         
- 
+        
         % forms an array of by feeder (rows) by month (cols) by tech (2 different variables)
         
-        for kkind=1:1no_feeders % by feeder
+        for kkind=1:no_feeders % by feeder
             for jjind=1:12 % by month
                 monthly_losses(jjind,1)=data_t0{kkind,3}(1,jjind); % Base Case OH
                 monthly_losses(jjind,2)=data_t2{kkind,3}(1,jjind); % Base Case OH
@@ -578,7 +578,7 @@ if (plot_losses == 1)
             hold on;
             bar(monthly_losses / 1000000,'barwidth',0.9);
             ylabel('Monthly Losses (MWh)');
-            my_legend = {'Base(OH)';'CA(OH)';'BASE(UG)';'CA(UG)';'Base(T)';'CA(T)';'Base(Tri)';'CA(Tri)       '};
+            my_legend = {'OHL-Base';'OHL-VVO';'UGL-Base';'UGL-VVO';'TFR-Base';'TFR-VVO';'TPL-Base';'TPL-VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
             hold off;
             close(fname);
@@ -586,7 +586,7 @@ if (plot_losses == 1)
         end
         
     end
-
+    
 end % End of losses plots
 %% Emissions
 if (plot_emissions == 1)
@@ -1296,4 +1296,4 @@ end % End of imapct matrix
 
 
 
-clear;
+%clear;
