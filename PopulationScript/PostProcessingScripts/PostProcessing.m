@@ -39,6 +39,7 @@ find_storage = 0;					% gather storage values
 %       before this function can be applied to other techs 
 %       besides the base case (everything is scaled from base case)
 find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
+find_emissions_ts = 0;              % extracts time series information from emissions runs - requires find_emissions to be set to 1
     
 % secondary flag which may cross multiple layers of information
 find_monthly_values = 1;            % This grabs monthly values for each applicable data point
@@ -681,6 +682,12 @@ for file_ind = 1:no_files
             scalarE = emissions_totals_monthly;
             clear emissions_totals_monthly;
         end
+        
+        if (find_emissions_ts == 1)
+            % Create a variable to store the different emissions outputs
+            emissions_ts_output = zeros(size(temp_var,1),4); %[CO2 SO2 NOx PM10]
+        end
+        
         % wrap through each month
         for jjind=1:12
             % get the max energy value for the month - and convert to MWhs 
@@ -712,6 +719,15 @@ for file_ind = 1:no_files
                 end
                 
                 disp_ind = 1;
+                
+                if (find_emissions_ts == 1)
+                    %Reset per-time accumulators
+                    ts_CO2 = 0;
+                    ts_SO2 = 0;
+                    ts_NOx = 0;
+                    ts_PM10 = 0;
+                end
+
                 while (temp_E > 0)
                     % we exceeded the original base power, so dump all of
                     % the excess into the last dispatched (usually petro)
@@ -720,6 +736,14 @@ for file_ind = 1:no_files
                         acc_SO2 = acc_SO2 + temp_E * conv(9,2);
                         acc_NOx = acc_NOx + temp_E * conv(9,3);
                         acc_PM10 = acc_PM10 + temp_E * conv(9,4);
+                        
+                        if (find_emissions_ts == 1)
+                            %individual quantities for TS plot
+                            ts_CO2 = ts_CO2 + temp_E * conv(9,1);
+                            ts_SO2 = ts_SO2 + temp_E * conv(9,2);
+                            ts_NOx = ts_NOx + temp_E * conv(9,3);
+                            ts_PM10 = ts_PM10 + temp_E * conv(9,4);
+                        end
                         
                         if (ts_ind == ind_max_power)
                             peak_pen(9) = peak_pen(9) + temp_E / maxE * 100;
@@ -733,6 +757,14 @@ for file_ind = 1:no_files
                         acc_NOx = acc_NOx + temp_E * conv(disp_ind,3);
                         acc_PM10 = acc_PM10 + temp_E * conv(disp_ind,4);
                         
+                        if (find_emissions_ts == 1)
+                            %individual quantities for TS plot
+                            ts_CO2 = ts_CO2 + temp_E * conv(disp_ind,1);
+                            ts_SO2 = ts_SO2 + temp_E * conv(disp_ind,2);
+                            ts_NOx = ts_NOx + temp_E * conv(disp_ind,3);
+                            ts_PM10 = ts_PM10 + temp_E * conv(disp_ind,4);
+                        end
+                        
                         if (ts_ind == ind_max_power)
                             peak_pen(disp_ind) = temp_E / maxE * 100;
                         end
@@ -743,6 +775,14 @@ for file_ind = 1:no_files
                         acc_SO2 = acc_SO2 + pen_scaled(disp_ind) * conv(disp_ind,2);
                         acc_NOx = acc_NOx + pen_scaled(disp_ind) * conv(disp_ind,3);
                         acc_PM10 = acc_PM10 + pen_scaled(disp_ind) * conv(disp_ind,4);
+
+                        if (find_emissions_ts == 1)
+                            %individual quantities for TS plot
+                            ts_CO2 = ts_CO2 + pen_scaled(disp_ind) * conv(disp_ind,1);
+                            ts_SO2 = ts_SO2 + pen_scaled(disp_ind) * conv(disp_ind,2);
+                            ts_NOx = ts_NOx + pen_scaled(disp_ind) * conv(disp_ind,3);
+                            ts_PM10 = ts_PM10 + pen_scaled(disp_ind) * conv(disp_ind,4);
+                        end
                         
                         if (ts_ind == ind_max_power)
                             peak_pen(disp_ind) = perc_pen(disp_ind);
@@ -761,6 +801,12 @@ for file_ind = 1:no_files
                         end
                     end
                 end
+                
+                if (find_emissions_ts == 1)
+                    %Store the result - convert to tons as well
+                    emissions_ts_output(ts_ind,:) = [ts_CO2 ts_SO2 ts_NOx ts_PM10]/2000;
+                end
+                
             end %end day loop
             
             % convert to tons and store
@@ -780,7 +826,15 @@ for file_ind = 1:no_files
         emissions_totals{file_ind,5} = sum(cell2mat(emissions_totals_monthly{file_ind,5}));
         emissions_totals{file_ind,6} = peak_pen;
         
+        if (find_emissions_ts == 1)
+            %Tack time series onto the end of these
+            emissions_totals{file_ind,7} = emissions_ts_output;
+        end
+        
         clear temp_var dtmp conv peak_pen;
+        if (find_emissions_ts == 1)
+            clear emissions_ts_output;
+        end
     end
     % end emissions
     %% Losses
