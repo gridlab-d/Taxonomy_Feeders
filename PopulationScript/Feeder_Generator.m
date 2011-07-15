@@ -8,18 +8,17 @@ clc;
 %2 = KLU - 32 bit build
 LUSolverVal=1;
 
-% 
-taxonomy_files = {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-    'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-    'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-    'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-    'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-    'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R3-12.47-2.glm'};
+taxonomy_files =   {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+   'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+   'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+   'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+   'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+   'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+%taxonomy_files = {'R4-12.47-1.glm'};
 %taxonomy_files = {'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
 
 %Set technology to test
-TechnologyToTest=0;
+TechnologyToTest=8;
 % 0 - Base
 % 1 - CVR
 % 2 - Automation
@@ -42,7 +41,7 @@ region_count = 0; % for commercial feeders
 
 for tax_ind=1:no_of_tax
     %% File to extract
-    taxonomy_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\'; %Jason
+    taxonomy_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\'; %Jason
     %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
     %taxonomy_directory = 'C:\Gridlab\branch\2.2\RI_analysis\population scripts\'; %Ruchi
     %taxonomy_directory = 'C:\Code\Taxonomy_Feeders\'; %Frank
@@ -52,7 +51,7 @@ for tax_ind=1:no_of_tax
     % Select where you want the file written to: 
     %   can be left as '' to write in the working directory 
     %   make sure and end the line with a '\' if pointing to a directory
-   output_directory = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\GLMS\';% Jason
+   output_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\GLMS\';% Jason
    %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
    %output_directory = 'C:\Gridlab\branch\2.2\RI_analysis\population scripts\Comm solar\'; % Ruchi
    %output_directory = 'C:\Code\Taxonomy_Feeders\Extracted\'; % Frank
@@ -825,7 +824,7 @@ for tax_ind=1:no_of_tax
         if (use_flags.use_market == 1) %TOU
             temp_avg = taxonomy_data.TOU_stats(1);
             temp_std = taxonomy_data.TOU_stats(2);
-        elseif (use_flags.use_market == 2) %TOU/CPP
+        elseif (use_flags.use_market == 2 || use_flags.use_market == 3) %TOU/CPP
             temp_avg = taxonomy_data.CPP_stats(1);
             temp_std = taxonomy_data.CPP_stats(2);
         end
@@ -836,12 +835,11 @@ for tax_ind=1:no_of_tax
         
         if (use_flags.use_market == 1) %TOU
             fprintf(write_file,'          file %s;\n',char(taxonomy_data.TOU_price_player));
-        elseif (use_flags.use_market == 2) %TOU/CPP
+        elseif (use_flags.use_market == 2 || use_flags.use_market == 3) %TOU/CPP or DLC
             fprintf(write_file,'          file %s;\n',char(taxonomy_data.CPP_price_player));    
         end
         
         fprintf(write_file,'          loop 10;\n');
-		fprintf(write_file,'          rank 6;\n');  %TODO:hard override to make the player sync before the auction - a bug that will be fixed in later versions
         fprintf(write_file,'          property current_market.clearing_price;\n');
         fprintf(write_file,'     };\n');
         fprintf(write_file,'}\n\n');
@@ -853,10 +851,6 @@ for tax_ind=1:no_of_tax
     fprintf(write_file,'     interpolate QUADRATIC;\n');
     fprintf(write_file,'};\n\n');
     
-    
-    
-    
-
     fprintf(write_file,'//Configurations\n\n');
 
     for i=1:(mm-1)
@@ -1348,14 +1342,17 @@ for tax_ind=1:no_of_tax
         if (total_houses ~= 0)
             [aa,junk] = size(phase_S_houses);
 
-            market_penetration_random = rand(aa,1);            
-            increased_therm_offset_random = rand(aa,1);
+            % Make a big array so we don't run out
+            bb = total_houses * aa;
+            
+            market_penetration_random = rand(bb,1);            
+            dlc_rand = rand(bb,1); % used for dlc randomization
             
             % 10 - 25% increase over normal cycle
-            pool_pump_recovery_random = 0.1 + 0.15.*rand(aa,1);
+            pool_pump_recovery_random = 0.1 + 0.15.*rand(bb,1);
             
             % limit slider randomization to Olypen style
-            slider_random = 0.45 + (0.2).*randn(aa,1);
+            slider_random = 0.45 + (0.2).*randn(bb,1);
                 sl1 = find(slider_random > tech_data.market_info{5});
             slider_random(sl1) = tech_data.market_info{5};
                 sl2 = find(slider_random < 0);
@@ -1368,13 +1365,13 @@ for tax_ind=1:no_of_tax
             sigma=1.2;
             mu = 0.7;
             multiplier = 3.6;
-            xval = rand(aa,1);
+            xval = rand(bb,1);
             elasticity_random = multiplier * 1 ./ ( xval * sigma * sqrt(2*pi)) .* exp( -1/(2*sigma^2) .* (log(xval) - mu).^2);
         end
         
         if (no_loads ~= 0)
             [bb,junk] = size(no_loads);
-            aa = 15*bb;
+            aa = 15*bb*100;
             
              % limit slider randomization to Olypen style
             comm_slider_random = 0.45 + (0.2).*randn(aa,1);
@@ -1382,6 +1379,9 @@ for tax_ind=1:no_of_tax
             comm_slider_random(sl1) = tech_data.market_info{5};
                 sl2 = find(comm_slider_random < 0);
             comm_slider_random(sl1) = 0; 
+            
+            dlc_c_rand = rand(aa,1); % used for dlc randomization
+            dlc_c_rand2 = rand(aa,1); % used for dlc randomization
         end
     end
     
@@ -1670,14 +1670,32 @@ for tax_ind=1:no_of_tax
                         heat_night_diff = heatsp(heat_bin,2) * 2 * rand(1);
 
                     % If we have markets, put in a controller (maybe)
-                    if (use_flags.use_market == 0)
+                    if (use_flags.use_market == 0 || use_flags.use_market == 3) % normal and dlc
                         fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff,cool_night);
                         fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff,heat_night);
-                    elseif ( (use_flags.use_market == 1 || use_flags.use_market == 2) && market_penetration_random(jj) <= tech_data.market_info{7} && tech_data.use_tech == 1)
+                        
+                        if (use_flags.use_market == 3)
+                            fprintf(write_file,'     dlc_offset 6;\n');
+                            fprintf(write_file,'     object passive_controller {\n');
+                            fprintf(write_file,'          control_mode DIRECT_LOAD_CONTROL;\n');
+                            fprintf(write_file,'          dlc_mode CYCLING;\n');
+                                c_on = 300 + 600*dlc_rand((kk-1)*aS + jj);
+                                    temp_c = 0.3+0.4*xval((kk-1)*aS + jj);
+                                c_off = c_on * ( temp_c / (1 - temp_c) ); % 30-70% of the total time should be "off"
+                            fprintf(write_file,'          cycle_length_on %.0f;\n',c_on);
+                            fprintf(write_file,'          cycle_length_off %.0f;\n',c_off);
+                            fprintf(write_file,'          period 0;\n');
+                            fprintf(write_file,'          state_property override;\n');
+                            fprintf(write_file,'          observation_object %s;\n',tech_data.market_info{1});
+                            fprintf(write_file,'          observation_property past_market.clearing_price;\n');
+                            fprintf(write_file,'          second_tier_price %f;\n',taxonomy_data.CPP_prices(3));
+                            fprintf(write_file,'     };\n');
+                        end
+                    elseif ( (use_flags.use_market == 1 || use_flags.use_market == 2) && market_penetration_random((kk-1)*aS + jj) <= tech_data.market_info{7} && tech_data.use_tech == 1)
                         % TOU or TOU/CPP with technology
                                                 
                         % pull in the slider response level
-                        slider = slider_random(jj);
+                        slider = slider_random((kk-1)*aS + jj);
                         
                         % set the pre-cool / pre-heat range to really small
                         % to get rid of it.
@@ -1812,12 +1830,9 @@ for tax_ind=1:no_of_tax
                     elseif ( (use_flags.use_market == 1 || use_flags.use_market == 2) && tech_data.use_tech == 0)
                         % TOU/CPP w/o technology - assumes people offset
                         % their thermostats a little more
-                        new_rand = 1 + slider_random(jj);
+                        new_rand = 1 + slider_random((kk-1)*aS + jj);
                         fprintf(write_file,'     cooling_setpoint cooling%d*%.2f+%.2f;\n',cooling_set,cool_night_diff*new_rand,cool_night);
                         fprintf(write_file,'     heating_setpoint heating%d*%.2f+%.2f;\n',heating_set,heat_night_diff/new_rand,heat_night);
-                    elseif ( use_flags.use_market == 3) %DLC
-                        %TODO
-                        error('use_flags.use_market == 3 is not ready');
                     end
 
                     % scale all of the end-use loads
@@ -1851,13 +1866,13 @@ for tax_ind=1:no_of_tax
                     fprintf(write_file,'           impedance_fraction %f;\n',tech_data.zfrac);
                     fprintf(write_file,'           current_fraction %f;\n',tech_data.ifrac);
                     fprintf(write_file,'           power_fraction %f;\n',tech_data.pfrac);
-                    if (use_flags.use_market ~= 0)                        
+                    if (use_flags.use_market == 1 || use_flags.use_market == 2)                        
                         fprintf(write_file,'           object passive_controller {\n');
                         fprintf(write_file,'                period %.0f;\n',tech_data.market_info{2});
                         fprintf(write_file,'                control_mode ELASTICITY_MODEL;\n');
                         fprintf(write_file,'                two_tier_cpp %s;\n',tech_data.two_tier_cpp);
                         fprintf(write_file,'                observation_object %s;\n',tech_data.market_info{1});
-                        fprintf(write_file,'                observation_property current_market.clearing_price;\n');
+                        fprintf(write_file,'                observation_property past_market.clearing_price;\n');
                         fprintf(write_file,'                state_property multiplier;\n');
                         fprintf(write_file,'                linearize_elasticity true;\n');
                         if (use_flags.use_market == 2) %CPP
@@ -1880,9 +1895,9 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'                old_first_tier_price %.6f;\n',tech_data.flat_price(region));
                             fprintf(write_file,'                old_second_tier_price %.6f;\n',tech_data.flat_price(region));
                         end
-                        fprintf(write_file,'                daily_elasticity %s*%.4f;\n',char(tech_data.daily_elasticity),elasticity_random(jj));
-                        fprintf(write_file,'                sub_elasticity_first_second %.4f;\n',tech_data.sub_elas_12*elasticity_random(jj));
-                        fprintf(write_file,'                sub_elasticity_first_third %.4f;\n',tech_data.sub_elas_13*elasticity_random(jj));                       
+                        fprintf(write_file,'                daily_elasticity %s*%.4f;\n',char(tech_data.daily_elasticity),elasticity_random((kk-1)*aS + jj));
+                        fprintf(write_file,'                sub_elasticity_first_second %.4f;\n',tech_data.sub_elas_12*elasticity_random((kk-1)*aS + jj));
+                        fprintf(write_file,'                sub_elasticity_first_third %.4f;\n',tech_data.sub_elas_13*elasticity_random((kk-1)*aS + jj));                       
                         fprintf(write_file,'            };\n');
                     end
                     fprintf(write_file,'     };\n');
@@ -1920,13 +1935,13 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'           is_240 TRUE;\n');
                         
                         if ( (use_flags.use_market == 1 || use_flags.use_market == 2) && tech_data.use_tech == 1) % TOU
-                            fprintf(write_file,'           recovery_duty_cycle %.2f;\n',pp_dutycycle*(1+pool_pump_recovery_random(jj)));
+                            fprintf(write_file,'           recovery_duty_cycle %.2f;\n',pp_dutycycle*(1+pool_pump_recovery_random((kk-1)*aS + jj)));
                             fprintf(write_file,'           object passive_controller {\n');
                             fprintf(write_file,'                period %.0f;\n',tech_data.market_info{2});
                             fprintf(write_file,'                control_mode DUTYCYCLE;\n');
                             fprintf(write_file,'                pool_pump_model true;\n');
                             fprintf(write_file,'                observation_object %s;\n',tech_data.market_info{1});
-                            fprintf(write_file,'                observation_property current_market.clearing_price;\n');
+                            fprintf(write_file,'                observation_property past_market.clearing_price;\n');
                             fprintf(write_file,'                state_property override;\n');
                             fprintf(write_file,'                base_duty_cycle %.2f;\n',pp_dutycycle);
                             fprintf(write_file,'                setpoint duty_cycle;\n');
@@ -1945,9 +1960,17 @@ for tax_ind=1:no_of_tax
                             end
                             fprintf(write_file,'           };\n');
                         elseif (use_flags.use_market == 3) % DLC
-                            %TODO - set duty cycle to 0.001 ?
-                            error('use_flags.use_market == 3 not implemented yet');
+                            fprintf(write_file,'          object passive_controller {\n');
+                            fprintf(write_file,'               control_mode DIRECT_LOAD_CONTROL;\n');
+                            fprintf(write_file,'               dlc_mode OFF;\n');
+                            fprintf(write_file,'               period 0;\n');
+                            fprintf(write_file,'               state_property override;\n');
+                            fprintf(write_file,'               observation_object %s;\n',tech_data.market_info{1});
+                            fprintf(write_file,'               observation_property past_market.clearing_price;\n');
+                            fprintf(write_file,'               second_tier_price %f;\n',taxonomy_data.CPP_prices(3));
+                            fprintf(write_file,'         };\n');
                         end
+                        
                         fprintf(write_file,'     };\n');
 
                         no_pool_pumps = no_pool_pumps - 1;
@@ -2002,17 +2025,31 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'	            control_mode PROBABILITY_OFF;\n');
                             fprintf(write_file,'	            distribution_type NORMAL;\n');
                             fprintf(write_file,'	            observation_object %s;\n',tech_data.market_info{1});
-                            fprintf(write_file,'	            observation_property current_market.clearing_price;\n');
+                            fprintf(write_file,'	            observation_property past_market.clearing_price;\n');
                             fprintf(write_file,'	            stdev_observation_property %s;\n','my_std');
                             fprintf(write_file,'	            expectation_object %s;\n',tech_data.market_info{1});
                             fprintf(write_file,'	            expectation_property %s;\n','my_avg');
                             if (use_flags.use_market == 3) %DLC
                                 fprintf(write_file,'	            comfort_level %.2f;\n',9999);
                             else
-                            	fprintf(write_file,'	            comfort_level %.2f;\n',slider_random(jj));
+                            	fprintf(write_file,'	            comfort_level %.2f;\n',slider_random((kk-1)*aS + jj));
                             end
                             fprintf(write_file,'	            state_property override;\n');
-                            fprintf(write_file,'          };\n');                
+                            fprintf(write_file,'          };\n');     
+                        elseif (use_flags.use_market == 3)
+                            fprintf(write_file,'          object passive_controller {\n');
+                            fprintf(write_file,'               control_mode DIRECT_LOAD_CONTROL;\n');
+                            fprintf(write_file,'               dlc_mode CYCLING;\n');
+                                c_on = 180 + 120*dlc_rand((kk-1)*aS + jj);
+                                c_off = 1080 + 720*xval((kk-1)*aS + jj); % 30-70% of the total time should be "off"
+                            fprintf(write_file,'               cycle_length_on %.0f;\n',c_on);
+                            fprintf(write_file,'               cycle_length_off %.0f;\n',c_off);
+                            fprintf(write_file,'               period 0;\n');
+                            fprintf(write_file,'               state_property override;\n');
+                            fprintf(write_file,'               observation_object %s;\n',tech_data.market_info{1});
+                            fprintf(write_file,'               observation_property past_market.clearing_price;\n');
+                            fprintf(write_file,'               second_tier_price %f;\n',taxonomy_data.CPP_prices(3));
+                            fprintf(write_file,'          };\n');
                         end
                         fprintf(write_file,'     };\n\n');
                     end
@@ -2025,6 +2062,9 @@ for tax_ind=1:no_of_tax
         %disp(['Mean floor area = ',num2str(mean(fl_area))]);
     end
 
+    % clean up some variables
+    clear elasticity_random slider_random market_penetration_random dlc_rand pool_pump_recovery_random
+    
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
@@ -2383,7 +2423,7 @@ for tax_ind=1:no_of_tax
                                     solar_office_array_phases{iii}{jjj}{phind} = [my_phases{phind}];
                                 end
                                 
-                                if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
+                                if ( (use_flags.use_market == 1 || use_flags.use_market == 2) && tech_data.use_tech == 1)
                                     % pull in the slider response level
                                         slider = comm_slider_random(jjj);
 
@@ -2421,6 +2461,22 @@ for tax_ind=1:no_of_tax
                                     fprintf(write_file,'     cooling_setpoint 85;\n');
                                 else
                                     fprintf(write_file,'     cooling_setpoint office_cooling;\n');
+                                    if (use_flags.use_market == 3)    
+                                        fprintf(write_file,'          object passive_controller {\n');
+                                        fprintf(write_file,'               control_mode DIRECT_LOAD_CONTROL;\n');
+                                        fprintf(write_file,'               dlc_mode CYCLING;\n');
+                                            c_on = 600 + 600*dlc_c_rand( (iii-1) * no_of_offices + jjj );
+                                                temp_c = 0.2+0.3*dlc_c_rand2((iii-1)*no_of_offices + jjj);
+                                            c_off = c_on * ( temp_c / (1 - temp_c) ); % 30-50% of the total time should be "off"
+                                        fprintf(write_file,'               cycle_length_on %.0f;\n',c_on);
+                                        fprintf(write_file,'               cycle_length_off %.0f;\n',c_off);
+                                        fprintf(write_file,'               period 0;\n');
+                                        fprintf(write_file,'               state_property override;\n');
+                                        fprintf(write_file,'               observation_object %s;\n',tech_data.market_info{1});
+                                        fprintf(write_file,'               observation_property past_market.clearing_price;\n');
+                                        fprintf(write_file,'               second_tier_price %f;\n',taxonomy_data.CPP_prices(3));
+                                        fprintf(write_file,'          };\n');
+                                    end
                                 end
 
                                 fprintf(write_file,'     heating_setpoint office_heating;\n');
@@ -2727,7 +2783,7 @@ for tax_ind=1:no_of_tax
                                     solar_bigbox_array_parent{iii}{jjj}{phind} = [my_name '_tm_' my_phases{phind} '_' num2str(jjj)];
                                     solar_bigbox_array_phases{iii}{jjj}{phind} = [my_phases{phind}];
                                 end
-                                if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
+                                if ( (use_flags.use_market == 1 || use_flags.use_market == 2) && tech_data.use_tech == 1)
                                     % pull in the slider response level
                                         slider = comm_slider_random(jjj);
 
@@ -2765,6 +2821,23 @@ for tax_ind=1:no_of_tax
                                     fprintf(write_file,'     cooling_setpoint 85;\n');
                                 else
                                     fprintf(write_file,'     cooling_setpoint bigbox_cooling;\n');
+                                    if (use_flags.use_market == 3)    
+                                        fprintf(write_file,'          object passive_controller {\n');
+                                        fprintf(write_file,'               control_mode DIRECT_LOAD_CONTROL;\n');
+                                        fprintf(write_file,'               dlc_mode CYCLING;\n');
+                                            c_on = 600 + 600*dlc_c_rand( (iii-1) * no_of_bigboxes + jjj + phind);
+                                                temp_c = 0.2+0.3*dlc_c_rand2((iii-1)*no_of_bigboxes + jjj +phind);
+                                            c_off = c_on * ( temp_c / (1 - temp_c) ); % 30-50% of the total time should be "off"
+                                        fprintf(write_file,'               cycle_length_on %.0f;\n',c_on);
+                                        fprintf(write_file,'               cycle_length_off %.0f;\n',c_off);
+                                        fprintf(write_file,'               period 0;\n');
+                                        fprintf(write_file,'               state_property override;\n');
+                                        fprintf(write_file,'               observation_object %s;\n',tech_data.market_info{1});
+                                        fprintf(write_file,'               observation_property past_market.clearing_price;\n');
+                                        fprintf(write_file,'               second_tier_price %f;\n',taxonomy_data.CPP_prices(3));
+                                        fprintf(write_file,'          };\n');
+                                    end
+                                        
                                 end
 
                                 fprintf(write_file,'     heating_setpoint bigbox_heating;\n');
@@ -3075,7 +3148,7 @@ for tax_ind=1:no_of_tax
                                 solar_stripmall_array_phases{iii}{jjj}{phind} = [my_phases{phind}];
                             end
 
-                            if (use_flags.use_market ~= 0 && tech_data.use_tech == 1)
+                            if ( (use_flags.use_market == 1 || use_flags.use_market == 2) && tech_data.use_tech == 1)
                                 % pull in the slider response level
                                     slider = comm_slider_random(jjj);
 
@@ -3113,6 +3186,22 @@ for tax_ind=1:no_of_tax
                                 fprintf(write_file,'     cooling_setpoint 85;\n');
                             else
                                 fprintf(write_file,'     cooling_setpoint stripmall_cooling;\n');
+                                if (use_flags.use_market == 3)    
+                                    fprintf(write_file,'          object passive_controller {\n');
+                                    fprintf(write_file,'               control_mode DIRECT_LOAD_CONTROL;\n');
+                                    fprintf(write_file,'               dlc_mode CYCLING;\n');
+                                        c_on = 600 + 600*dlc_c_rand( (iii-1) * strip_per_phase + jjj + phind );
+                                            temp_c = 0.2+0.3*dlc_c_rand2((iii-1)*strip_per_phase + jjj + phind);
+                                        c_off = c_on * ( temp_c / (1 - temp_c) ); % 30-50% of the total time should be "off"
+                                    fprintf(write_file,'               cycle_length_on %.0f;\n',c_on);
+                                    fprintf(write_file,'               cycle_length_off %.0f;\n',c_off);
+                                    fprintf(write_file,'               period 0;\n');
+                                    fprintf(write_file,'               state_property override;\n');
+                                    fprintf(write_file,'               observation_object %s;\n',tech_data.market_info{1});
+                                    fprintf(write_file,'               observation_property past_market.clearing_price;\n');
+                                    fprintf(write_file,'               second_tier_price %f;\n',taxonomy_data.CPP_prices(3));
+                                    fprintf(write_file,'          };\n');
+                                end
                             end
 
                             fprintf(write_file,'     heating_setpoint stripmall_heating;\n');
@@ -3981,7 +4070,7 @@ for tax_ind=1:no_of_tax
     if (tech_data.measure_market == 1 && use_flags.use_market ~= 0)
         fprintf(write_file,'object recorder {\n');
         fprintf(write_file,'     parent %s;\n',tech_data.market_info{1});
-        fprintf(write_file,'     property current_market.clearing_price,%s,%s;\n','my_avg','my_std');
+        fprintf(write_file,'     property past_market.clearing_price,%s,%s;\n','my_avg','my_std');
         fprintf(write_file,'     limit %.0f;\n',tech_data.meas_limit);
         fprintf(write_file,'     interval %.0f;\n',tech_data.meas_interval);
         fprintf(write_file,'     file %s_markets.csv;\n',tech_file);
