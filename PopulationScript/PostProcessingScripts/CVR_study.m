@@ -11,14 +11,14 @@ format short g
 set_defaults();
 
 % where to write the new data
-%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; %Jason
-write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; %Jason
+%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 1;
+plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
-plot_pf = 0;
+plot_pf = 1;
 plot_losses = 0;
 plot_emissions = 0;
 
@@ -450,15 +450,56 @@ if plot_pf ==1
     pf(:,1)=cell2mat(data_t0(1:28,11:11)); % min phase a, b, and c
     pf(:,2)=cell2mat(data_t1(1:28,11:11)); % min phase a, b, and c
     
-    bar(pf,'barwidth',0.9,'barwidth',0.9);
+    %%%%%%%%%%%%%%%%%%%%%%%
+    
+    [aaa,bbb]=size(pf);
+    
+    % Transform the power factor values from 0:1:-1:0 to -1:1
+    trans_pf = zeros(aaa,bbb);    
+    for pf_ind=1:aaa
+        for pf_ind2 = 1:bbb
+            if (pf(pf_ind,pf_ind2) > 0)
+                trans_pf(pf_ind,pf_ind2) = 1 - pf(pf_ind,pf_ind2);
+            elseif (pf(pf_ind,pf_ind2) < 0)
+                trans_pf(pf_ind,pf_ind2) = -(1 + pf(pf_ind,pf_ind2));
+            else
+                trans_pf(pf_ind,pf_ind2) = 0;
+            end
+        end
+    end
+    
+    bar(trans_pf,'barwidth',0.9,'barwidth',0.9);
     ylabel('Power Factor');
-
-    ylim([-1.0 1.0]);
+    
+    %%%%%%%%%%%%%%%%%%%%%%%
+    
+    % Now transform the ylabels to represent the transformation correctly
+    % You can change limits and/or tick sizes between limits
+    ylim([-0.5 0.5]); % make sure and use a [negative positive]
+    tick_steps = 0.25; % looks really odd if this doesn't divide evenly into the range
+    yy = ylim;
+    my_ticks = yy(1):tick_steps:yy(2);
+    count = 1;
+    for m_ind = 1:length(my_ticks)
+        if (my_ticks(m_ind) < 0)
+            my_ticks2(m_ind) = -(1+my_ticks(m_ind));
+            count = count + 1;
+        elseif (my_ticks(m_ind) > 0)
+            my_ticks2(m_ind) = 1-my_ticks(m_ind);
+        else
+            my_ticks2(m_ind) = 0;
+        end
+    end
+    set(gca,'YTick',my_ticks);
+    set(gca,'YTickLabel',num2str(my_ticks2'));
+    
+    %%%%%%%%%%%%%%%%%%%%%%%
+    
     my_legend = {'Base';'VVO'};
 
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
-    close(fname);
+    % close(fname);
     % Compare Average power factor
     fname = 't1_Comparison of average annual power factor ';
     set_figure_size(fname);
@@ -469,11 +510,11 @@ if plot_pf ==1
     
     bar(pf,'barwidth',0.9,'barwidth',0.9);
     ylabel('Power Factor');
-    ylim([.9 1.0]);
+    ylim([0.9 1]);
     my_legend = {'Base';'VVO'};
     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
     hold off;
-    close(fname);
+    % close(fname);
     
 %     % Compare Maximum power factor
 %     fname = 't1_Compare Maximum Power Factor Comparison';
