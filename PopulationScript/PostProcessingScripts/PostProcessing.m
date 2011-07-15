@@ -15,6 +15,9 @@ cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 %write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
+%Climate regions temperatures file - used for thermal storage efficiency calculations
+ClimateRegionsTempFile='C:\temp\SGIGRun\outputs\Region_Temperatures.mat';
+
 % find all of the .mat files in the directory
 temp = what;
 data_files = temp.mat;
@@ -1005,10 +1008,10 @@ for file_ind = 1:no_files
     if (find_storage == 1)
         %Preallocate, for giggles
         if (file_ind==1)
-            storage_values = cell(no_files,3);
+            storage_values = cell(no_files,4);
             
             if (find_monthly_values == 1)
-                storage_values_monthly = cell(no_files,3);
+                storage_values_monthly = cell(no_files,4);
             end
             
             %Determine the time increment of the files
@@ -1030,16 +1033,60 @@ for file_ind = 1:no_files
             eval(['temp_var_storage_use = ' current_file '.StorageValues_sumstored_capacity;']);
             eval(['temp_var_storage_cap = ' current_file '.StorageValues_sumtotal_capacity;']);
 
+            %Determine size to reshape towards
+            NumDaysInSimulation=length(temp_var_storage_use)*storage_update_interval/24;
+            
+            %Reshape both
+            temp_var_storage_cap_reshape=reshape(temp_var_storage_cap,(24/storage_update_interval),NumDaysInSimulation);
+            temp_var_storage_use_reshape=reshape(temp_var_storage_use,(24/storage_update_interval),NumDaysInSimulation);
+            
+            %Find minimum value of use - represents low point of charge
+            [minValStorage,minIdxStorage]=min(temp_var_storage_use_reshape,[],1);
+            
+            %Extract the capacity (use indices)
+            %Make indices
+            ExtractIndices=(0:(NumDaysInSimulation-1))*(24/storage_update_interval)+minIdxStorage;
+
+            %Make it a column
+            temp_var_storage_cap_extracted=temp_var_storage_cap(ExtractIndices);
+            
             %Convert to MWh for the metric
-            storage_MWh_value = (sum(temp_var_storage_cap)-sum(temp_var_storage_use))*0.293071/1e6*storage_update_interval;
+            storage_MWh_value = sum(temp_var_storage_cap_extracted-minValStorage.')*0.293071/1e6*storage_update_interval;
             
             %Grab a percent state of charge - just to see how things compare
-            storage_SOC = temp_var_storage_use./temp_var_storage_cap;
+            storage_SOC = minValStorage.'./temp_var_storage_cap_extracted;
+            
+            %Compute an overall "Accumulation" vector
+            %Load the weather file - this probably needs to be integrated at some point
+            load(ClimateRegionsTempFile);
+            
+            %Determine the region
+            if (strfind(char(current_file),'GC') ~= 0)
+                token = strrep(char(current_file),['GC_1247_1_' tech '_r'],'');
+                region = str2num(strrep(token,'_ts',''));
+            else
+                token = strtok(char(current_file),'_');
+                region = str2num(strrep(token,'R',''));
+            end
+
+            %Calculate the "incremental" values
+            OverallAccumulationValue=(temp_var_storage_cap/30)./(3*WeatherInformation(:,(region+1))+705)*(storage_update_interval*3600);
+            
+            %Diff the storage capacity - this will be used to map discharge vs. charge time
+            DiffStorage=[0; diff(temp_var_storage_use)];
+            
+            %Map out
+            DischargeTimes=(DiffStorage<0);
+            ChargeTimes=(DiffStorage>0);
+            
+            %Calculate an overall efficiency
+            OverallStorageEfficiency=mean(OverallAccumulationValue(ChargeTimes))/mean(OverallAccumulationValue(DischargeTimes))*100;
             
             %Store the values into the array
             storage_values{file_ind,1} = current_file;
             storage_values{file_ind,2} = storage_MWh_value;
             storage_values{file_ind,3} = storage_SOC;
+            storage_values{file_ind,4} = OverallStorageEfficiency;
             
             if (find_monthly_values == 1)
                 
@@ -1052,23 +1099,38 @@ for file_ind = 1:no_files
                 
                 for jjind=1:12
                     
-                    %Monthly MWh dispatched
-                    storage_MWh_value_monthly = (sum(temp_var_storage_cap(month_ind(jjind,1):month_ind(jjind,2)))-sum(temp_var_storage_use(month_ind(jjind,1):month_ind(jjind,2))))*0.293071/1e6*storage_update_interval;
+                    %Extract the indices valid for that month
+                    Temp_Extracted_Indices=ExtractIndices((ExtractIndices>=month_ind(jjind,1)) & (ExtractIndices<=month_ind(jjind,2)));
                     
-                    %Get min SOC of the period, useful to see peak usage
-                    storage_SOC_min_monthly = min(temp_var_storage_use(month_ind(jjind,1):month_ind(jjind,2))./temp_var_storage_cap(month_ind(jjind,1):month_ind(jjind,2)));
-                                        
+                    %Extract the values
+                    minValMonthlyStorage=temp_var_storage_use(Temp_Extracted_Indices);
+                    temp_var_storage_cap_extracted_monthly=temp_var_storage_cap(Temp_Extracted_Indices);
+                    temp_var_storage_overall_accumulation_monthly=OverallAccumulationValue(month_ind(jjind,1):month_ind(jjind,2));
+                    
+                    MonthlyDischargeTimes=DischargeTimes(month_ind(jjind,1):month_ind(jjind,2));
+                    MonthlyChargeTimes=ChargeTimes(month_ind(jjind,1):month_ind(jjind,2));
+                    
+                    %Get the mean efficiency for the month
+                    storage_efficiency_monthly=mean(temp_var_storage_overall_accumulation_monthly(MonthlyChargeTimes))/mean(temp_var_storage_overall_accumulation_monthly(MonthlyDischargeTimes))*100;
+                    
+                    %Convert to MWh for the metric
+                    storage_MWh_value_monthly = sum(temp_var_storage_cap_extracted_monthly-minValMonthlyStorage)*0.293071/1e6*storage_update_interval;
+
+                    %Grab a percent state of charge - just to see how things compare
+                    storage_SOC_min_monthly = min(minValMonthlyStorage./temp_var_storage_cap_extracted_monthly);
+
                     %Store them
                     storage_values_monthly{file_ind,2}(jjind) = storage_MWh_value_monthly;
                     storage_values_monthly{file_ind,3}(jjind) = storage_SOC_min_monthly;
+                    storage_values_monthly{file_ind,4}(jjind) = storage_efficiency_monthly;
                 end
                 
                 %Clean up
-                clear storage_MWh_value_monthly storage_SOC_min_monthly;
+                clear storage_MWh_value_monthly storage_SOC_min_monthly Temp_Extracted_Indices minValMonthlyStorage temp_var_storage_cap_extracted_monthly temp_var_storage_overall_accumulation_monthly MonthlyDischargeTimes MonthlyChargeTimes storage_efficiency_monthly;
             end
 
             % clean up my workspace a little
-            clear temp_var_storage_use temp_var_storage_cap  storage_MWh_value storage_SOC;
+            clear temp_var_storage_use temp_var_storage_cap storage_MWh_value storage_SOC NumDaysInSimulation temp_var_storage_cap_reshape temp_var_storage_use_reshape minValStorage minIdxStorage ExtractIndices temp_var_storage_cap_extracted OverallAccumulationValue DiffStorage DischargeTimes ChargeTimes OverallStorageEfficiency;
         else %Not found, warn
             disp(['Energy storage values not found for ' current_file]);
         end

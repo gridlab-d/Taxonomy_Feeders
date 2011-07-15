@@ -18,3 +18,6 @@ Sets the figure sizing so that it prints out to be ~1/2 page.  Input is just the
 
 5) set_figure_graphics.m
 Also works with setting figure graphic sizing, text movements on the two axes, and putting in labels.  Inputs are 1) an array of the x-axis data lables, 2) name of the figure, and 3) formatting of the y-axis (i.e. 0.1 vs. 0.100) - if you set it to '0', then it will auto-set it.  Also prints the final graphic.
+
+6) set_figure_graphics_time_series.m
+Works with setting figure graphic sizing and many defaults in set_figure_graphics.m, but incorporates them for a time-series plot, instead of a bar graph.
