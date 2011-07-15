@@ -15,11 +15,11 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
+plot_energy = 1;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 1;
+plot_losses = 0;
 plot_emissions = 0;
 
 % Flag for impact matrix
@@ -28,7 +28,7 @@ generate_impact_matrix = 0;
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
-plot_monthly_losses = 1;
+plot_monthly_losses = 0;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -168,7 +168,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(delta_peak_power);
     ylabel('Change in Peak Load (%)');
-    set_figure_graphics(data_labels,fname,2,'none',1.25,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,'none',.75,'northeastoutside');
     hold off;
     close(fname);
     

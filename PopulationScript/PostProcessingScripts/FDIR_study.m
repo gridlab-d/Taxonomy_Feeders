@@ -135,10 +135,10 @@ fname = 't3_SAIFI';
 set_figure_size(fname);
 hold on;
 bar(SAIFI_t3','barwidth',0.9);
-ylabel('                                    Interrputions per year');
+ylabel('                                                                             Interrputions per year');
 ylim([0 1.5]);
 my_legend = {'Base';'R&S'};
-set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,my_legend,1,'northeastoutside');
 hold off;
 close(fname);
 
@@ -147,9 +147,9 @@ fname = 't3_delta_SAIFI';
 set_figure_size(fname);
 hold on;
 bar((SAIFI_t3(2,:)-SAIFI_t3(1,:))','barwidth',0.9);
-ylabel('Interrputions per year');
+ylabel('                                                   Interrputions per year');
 ylim([-1 0]);
-set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,'none',.5,'northeastoutside');
 hold off;
 close(fname);
 
@@ -162,7 +162,7 @@ bar(SAIDI_t3','barwidth',0.9);
 ylabel('Minutes');
 ylim([20 120]);
 my_legend = {'Base';'R&S'};
-set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,my_legend,1.25,'northeastoutside');
 hold off;
 close(fname);
 
@@ -173,7 +173,7 @@ hold on;
 bar((SAIDI_t3(2,:)-SAIDI_t3(1,:))','barwidth',0.9);
 ylabel('Minutes');
 %ylim([-80 00]);
-set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,'none',1.5,'northeastoutside');
 hold off;
 close(fname);
 
@@ -185,7 +185,8 @@ hold on;
 bar(CAIDI_t3','barwidth',0.9);
 ylabel('Minutes');
 ylim([40 140]);
-set_figure_graphics(data_labels,fname,2,my_legend,.75,'northeastoutside');
+my_legend = {'Base';'R&S'};
+set_figure_graphics(data_labels,fname,2,my_legend,1.5,'northeastoutside');
 hold off;
 close(fname);
 
@@ -209,7 +210,7 @@ hold on;
 bar(MAIFI_t3','barwidth',0.9);
 ylabel('Momentary Interruptions');
 ylim([0 15]);
-set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,my_legend,1,'northeastoutside');
 hold off;
 close(fname);
 
@@ -220,7 +221,7 @@ hold on;
 bar((MAIFI_t3(2,:)-MAIFI_t3(1,:))','barwidth',0.9);
 ylabel('Momentary Interruptions');
 ylim([-5 15]);
-set_figure_graphics(data_labels,fname,2,'none',.5,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
 hold off;
 close(fname);
 
