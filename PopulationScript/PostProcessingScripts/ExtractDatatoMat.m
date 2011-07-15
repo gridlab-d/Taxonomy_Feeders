@@ -15,15 +15,15 @@ clc;
 %     'R3_1247_1';'R3_1247_2';'R3_1247_3';'R4_1247_1';'R4_1247_2';...
 %     'R4_2500_1';'R5_1247_1';'R5_1247_2';'R5_1247_3';'R5_1247_4';...
 %     'R5_1247_5';'R5_2500_1';'R5_3500_1';'GC_1247_1'};
-%feeders_to_import = {'GC_1247_1'};
-feeders_to_import = {'R5_1247_3'};
+feeders_to_import = {'GC_1247_1'};
+%feeders_to_import = {'R5_1247_3'};
 
 % e.g. _t#_ in the name of the feeder
-technologies_to_import = {'1'};
+technologies_to_import = {'6'};
 
 % Set the base path for location of data
-%base_path = 'C:\Users\d3x289\D1cuments\GLD2011\PostAnalysis\(7) TOU without et\Simulation Results\Run1'; % Jason
-base_path = 'C:\Users\d3p313\Desktop\Post Processing Script\Raw Data Files\t1'; % Kevin
+base_path = 'C:\Users\d3x289\Desktop\DR_Runs_7_1'; % Jason
+%base_path = 'C:\Users\d3p313\Desktop\Post Processing Script\Raw Data Files\t1'; % Kevin
 
 % Make a list of all of the files in the read folder
 file_list = ls(base_path);

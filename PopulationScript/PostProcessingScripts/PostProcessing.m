@@ -7,13 +7,13 @@ clear;
 clc;
 
 % declare working directory - all the input .mat files should be located here
-tech = 't2';
-%cd(['C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\ExtractionScript\' tech]); % Jason
-cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
+tech = 't7';
+cd(['C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\PopulationScript\PostProcessingScripts\ProcessedFeeders\' tech]); % Jason
+%cd(['C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\' tech]); % Kevin
 
 % where to write the new data - use a different location, or it gets ugly
-%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; % Jason
-write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+write_dir = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\PopulationScript\PostProcessingScripts\ProcessedData\'; % Jason
+%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 %Climate regions temperatures file - used for thermal storage efficiency calculations
 ClimateRegionsTempFile='C:\temp\SGIGRun\outputs\Region_Temperatures.mat';
@@ -24,24 +24,26 @@ data_files = temp.mat;
 [no_files,junk] = size(data_files);
 
 %% flags for finding certain information - another script will plot
-find_peak_day = 1;                  % find the peak day and store day/time and value
-find_peakiest_peak = 1;             % finds the absolute peak W and VA
+find_peak_day = 0;                  % find the peak day and store day/time and value
+find_peakiest_peak = 0;             % finds the absolute peak W and VA
 find_peak_15days = 1;               % find the 15 peakiest days and store the time series power for each day
-find_peak_15wintdays = 1;           % excludes the summer and finds the 15 peakiest days in winter
-find_total_energy_consumption = 1;  % sum the annual energy consumption
+find_peak_15wintdays = 0;           % excludes the summer and finds the 15 peakiest days in winter
+find_total_energy_consumption = 0;  % sum the annual energy consumption
 aggregate_bills = 0;                % adds all the bills together to determine total revenue for the utility
-find_voltages = 1;                  % get the average and minimum of the lowest EOL voltage per phase
-    find_all_voltages = 1;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
-find_pf = 1;                        % min, max, and average
-find_losses = 1;                    % gathers the system losses
-find_switching = 1;                 % gather all of the capacitor and regulator switching operations (sums all phases and objects)
+    bill_statistics = 1;            % finds key characteristics of bills: avg, std, # of each class
+    bill_differences = 1;           % only works for non-t0 after t0 has been processed
+find_voltages = 0;                  % get the average and minimum of the lowest EOL voltage per phase
+    find_all_voltages = 0;          % this will only work if previous flag is set to 1, finds the average and minimum of every recorded voltage
+find_pf = 0;                        % min, max, and average
+find_losses = 0;                    % gathers the system losses
+find_switching = 0;                 % gather all of the capacitor and regulator switching operations (sums all phases and objects)
 find_storage = 0;					% gather storage values
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
 %       before this function can be applied to other techs 
 %       besides the base case (everything is scaled from base case)
-find_emissions = 1;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
+find_emissions = 0;                 % performs emissions calculations - scales the pre-defined percentages to the peak for each month 
 find_emissions_ts = 0;              % extracts time series information from emissions runs - requires find_emissions to be set to 1
     
 % secondary flag which may cross multiple layers of information
@@ -312,6 +314,79 @@ for file_ind = 1:no_files
         
         % now take out the "fee" ($25 for commercial, $10 residential)       
         total_annual_revenue{file_ind,2} = temp_total_ann_rev - 25*(a3p*b3p + a1p*b1p) - 10*asp*bsp;
+        
+        if (bill_statistics == 1)
+            bill_stats{file_ind,1} = current_file;
+            bill_stats{file_ind,2}{1} = '3 phase commercial';
+            bill_stats{file_ind,3}{1} = '1 phase commercial';
+            bill_stats{file_ind,4}{1} = 'Residential';
+            
+            annual_bill_3p = sum(temp_var3p');
+            annual_bill_1p = sum(temp_var1p');
+            annual_bill_sp = sum(temp_varsp');
+            
+            bill_stats{file_ind,2}{2} = mean(annual_bill_3p);
+            bill_stats{file_ind,3}{2} = mean(annual_bill_1p);
+            bill_stats{file_ind,4}{2} = mean(annual_bill_sp);
+            
+            bill_stats{file_ind,2}{3} = std(annual_bill_3p);
+            bill_stats{file_ind,3}{3} = std(annual_bill_1p);
+            bill_stats{file_ind,4}{3} = std(annual_bill_sp);
+            
+            bill_stats{file_ind,2}{4} = length(annual_bill_3p);
+            bill_stats{file_ind,3}{4} = length(annual_bill_1p);
+            bill_stats{file_ind,4}{4} = length(annual_bill_sp);
+        end
+        
+        % calculate the delta's off all the bills from the base case
+        if (bill_differences == 1)
+            
+            if (strcmp(tech,'t0') == 0 && file_ind == 1)
+                temp_filename = [write_dir 'all_bills_t0.mat'];
+                load(temp_filename);
+                all_bills_t0 = all_bills;
+                clear all_bills;               
+            end
+            
+                % temporarily offset for missing R5_1247_3
+                if (file_ind > 23)
+                    t_offset = 0;
+                else
+                    t_offset = 0;
+                end
+                
+            all_bills{file_ind + t_offset,1} = temp_var3p;
+            all_bills{file_ind + t_offset,2} = temp_var1p;
+            all_bills{file_ind + t_offset,3} = temp_varsp;
+            
+            if (strcmp(tech,'t0') == 0)
+                [a1,b1] = size(all_bills_t0{file_ind + t_offset,1});
+                [a2,b2] = size(all_bills_t0{file_ind + t_offset,2});
+                [a3,b3] = size(all_bills_t0{file_ind + t_offset,3});
+                
+                [aa1,bb1] = size(all_bills{file_ind + t_offset,1});
+                [aa2,bb2] = size(all_bills{file_ind + t_offset,2});
+                [aa3,bb3] = size(all_bills{file_ind + t_offset,3});
+                
+                % test to make sure they're all the same size
+                test1 = a1 + b1 + a2 + b2 + a3 + b3;
+                test2 = aa1 + bb1 + aa2 + bb2 + aa3 + bb3;
+                
+                if (test1 == test2)
+                    delta_all_bills{file_ind + t_offset,1} = all_bills{file_ind + t_offset,1} - all_bills_t0{file_ind + t_offset,1};
+                    delta_all_bills{file_ind + t_offset,2} = all_bills{file_ind + t_offset,2} - all_bills_t0{file_ind + t_offset,2};
+                    delta_all_bills{file_ind + t_offset,3} = all_bills{file_ind + t_offset,3} - all_bills_t0{file_ind + t_offset,3};
+                    
+                    delta_all_bills{file_ind + t_offset,4} = delta_all_bills{file_ind + t_offset,1} ./ all_bills_t0{file_ind + t_offset,1};
+                    delta_all_bills{file_ind + t_offset,5} = delta_all_bills{file_ind + t_offset,2} ./ all_bills_t0{file_ind + t_offset,2};
+                    delta_all_bills{file_ind + t_offset,6} = delta_all_bills{file_ind + t_offset,3} ./ all_bills_t0{file_ind + t_offset,3};
+                else
+                    error(['Bill #s or sizes didn''t add up ',current_file]);
+                end
+            end
+        end
+        
+        clear temp_var1p temp_varsp temp_var3p annual_bill_1p annual_bill_sp annual_bill_3p a1 a2 a3 b1 b2 b3 aa1 aa2 aa3 bb1 bb2 bb3 test1 test2;
     end
     % end annual revenue
     
@@ -562,7 +637,8 @@ for file_ind = 1:no_files
         
         if (strfind(char(current_file),'GC') ~= 0)
             token = strrep(char(current_file),['GC_1247_1_' tech '_r'],'');
-            region = str2num(strrep(token,'_ts',''));
+            region = str2num(token);
+            %region = str2num(strrep(token,'_ts',''));
         else
             token = strtok(char(current_file),'_');
             region = str2num(strrep(token,'R',''));
@@ -1160,7 +1236,7 @@ if (find_peakiest_peak == 1)
     end
 end
 if (find_peak_15days == 1)
-    write_file = [write_dir 'peak_15days_ ' tech '.mat'];
+    write_file = [write_dir 'peak_15days_' tech '.mat'];
     save(write_file,'peak_15days')
 end
 if (find_peak_15wintdays == 1)
@@ -1178,6 +1254,18 @@ end
 if (aggregate_bills == 1)
     write_file = [write_dir 'total_annual_revenue_' tech '.mat'];
     save(write_file,'total_annual_revenue');
+    if (bill_statistics == 1)
+        write_file = [write_dir 'bill_statistics_' tech '.mat'];
+        save(write_file,'bill_stats');
+    end
+    if (bill_differences == 1)
+        write_file = [write_dir 'all_bills_' tech '.mat'];
+        save(write_file,'all_bills');
+        if (strcmp(tech,'t0') == 0)
+            write_file = [write_dir 'delta_all_bills_' tech '.mat'];
+            save(write_file,'delta_all_bills');   
+        end
+    end
 end
 
 if (find_voltages == 1)
@@ -1192,10 +1280,6 @@ end
 if (find_pf == 1)
     write_file = [write_dir 'power_factors_' tech '.mat'];
     save(write_file,'power_factor');
-%     if (find_monthly_values == 1)
-%         write_file = [write_dir 'monthly_power_factors_' tech '.mat'];
-%         save(write_file,'monthly_power_factor');
-%     end
 end 
 
 if (find_emissions == 1)
@@ -1231,7 +1315,7 @@ if ((find_storage == 1) && (storage_present == 1))
 end
 
 disp('All done!');
-%clear;
+clear;
 
 
 
