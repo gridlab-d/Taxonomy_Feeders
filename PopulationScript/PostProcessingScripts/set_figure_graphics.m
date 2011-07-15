@@ -51,8 +51,10 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,
     cf = gcf;
 
     % This rotates the x-axis labels and positions them correctly
-    xticklabel_rotate(1:length(xlabels),90,xlabels);
-
+    if (strcmp(xlabels,'none') ~= 1)
+        xticklabel_rotate(1:length(xlabels),90,xlabels);
+    end
+    
     if (isempty(plotHands))
         if (~strcmp(char(my_leg(1,:)),'none'))
             if (isempty(leg_orientation))
