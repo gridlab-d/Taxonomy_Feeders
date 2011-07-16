@@ -197,7 +197,7 @@ hold on;
 bar((CAIDI_t3(2,:)-CAIDI_t3(1,:))','barwidth',0.9);
 ylabel('Minutes');
 ylim([-40 50]);
-set_figure_graphics(data_labels,fname,2,'none',.75,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
 hold off;
 close(fname);
 
@@ -328,7 +328,7 @@ fname = 't5_SAIFI';
 set_figure_size(fname);
 hold on;
 bar(SAIFI_t5','barwidth',0.9);
-ylabel('                                                          Interrputions per year');
+ylabel('                             Interrputions per year');
 ylim([0 1.5]);
 my_legend = {'Base';'FDIR'};
 set_figure_graphics(data_labels,fname,2,my_legend,.5,'northeastoutside');
@@ -340,9 +340,9 @@ fname = 't5_delta_SAIFI';
 set_figure_size(fname);
 hold on;
 bar((SAIFI_t5(2,:)-SAIFI_t5(1,:))','barwidth',0.9);
-ylabel('Interrputions per year');
+ylabel('                            Interrputions per year');
 ylim([-1 0]);
-set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,'none',.25,'northeastoutside');
 hold off;
 close(fname);
 
@@ -390,7 +390,7 @@ hold on;
 bar((CAIDI_t5(2,:)-CAIDI_t5(1,:))','barwidth',0.9);
 ylabel('Minutes');
 ylim([-60 20]);
-set_figure_graphics(data_labels,fname,2,'none',.75,'northeastoutside');
+set_figure_graphics(data_labels,fname,2,'none',0,'northeastoutside');
 hold off;
 close(fname);
 
