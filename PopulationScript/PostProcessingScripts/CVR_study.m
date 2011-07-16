@@ -475,19 +475,19 @@ if plot_pf ==1
     
     % Now transform the ylabels to represent the transformation correctly
     % You can change limits and/or tick sizes between limits
-    ylim([-0.5 0.5]); % make sure and use a [negative positive]
-    tick_steps = 0.25; % looks really odd if this doesn't divide evenly into the range
+    ylim([-0.4 0.4]); % make sure and use a [negative positive]
+                      % this is a little odd, but these represent the
+                      % differential from 1/-1, so [-.3,.3] is pf=-.7 to .7
+    tick_steps = 0.1; % looks really odd if this doesn't divide evenly into the range
     yy = ylim;
     my_ticks = yy(1):tick_steps:yy(2);
-    count = 1;
     for m_ind = 1:length(my_ticks)
         if (my_ticks(m_ind) < 0)
             my_ticks2(m_ind) = -(1+my_ticks(m_ind));
-            count = count + 1;
         elseif (my_ticks(m_ind) > 0)
             my_ticks2(m_ind) = 1-my_ticks(m_ind);
         else
-            my_ticks2(m_ind) = 0;
+            my_ticks2(m_ind) = 1;
         end
     end
     set(gca,'YTick',my_ticks);
