@@ -102,10 +102,14 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,
     
     % This puts the "correct" no. of significant digits on the y-axis
     if (yformat == 1) % Removes the exponential foramting
+        %format short g
+        num2str(get(gca,'YTick'));
         set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.0f'));
     elseif (yformat == 2)
+        num2str(get(gca,'YTick'));
         set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.2f'));
     elseif (yformat == 3)
+        num2str(get(gca,'YTick'));
         set(gca,'YTickLabel',num2str(get(gca,'YTick').','%0.1f'));
     end
     

@@ -11,16 +11,16 @@ format short g
 set_defaults();
 
 % where to write the new data
-write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; %Jason
-%write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
+%write_dir = 'C:\Users\D3X289\Documents\GLD_Analysis_2011\Gridlabd\Taxonomy_Feeders\PostAnalysis\ProcessedData\'; %Jason
+write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
 plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
-plot_pf = 1;
+plot_pf = 0;
 plot_losses = 0;
-plot_emissions = 0;
+plot_emissions = 1;
 
 % Flag for impact matrix
 generate_impact_matrix = 0;
@@ -58,7 +58,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000,'barwidth',0.9);
     ylabel('Energy Consumption (MWh)');
     my_legend={'Base','VVO'};
-    set_figure_graphics(data_labels,fname,1,my_legend,2,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,.07,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -68,7 +68,7 @@ if (plot_energy == 1)
     hold on;
     bar(energy_reduction / 1000000);
     ylabel('Change in Energy Consumption (MWh)');
-    set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -146,7 +146,7 @@ if (plot_peak_power == 1)
     bar(peak_power_data / 1000,'barwidth',0.9);
     ylabel('Peak Load (kW)');
     my_legend = {'Base Case';'VVO'};
-    set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,.03,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -324,7 +324,7 @@ for jind = 1:a
     ylabel('Voltage (V)');
     %title('Minimum EOL Voltage Without CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -336,7 +336,7 @@ for jind = 1:a
     ylabel('Voltage (V)');
     %title('Average EOL Voltage Without CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -348,7 +348,7 @@ for jind = 1:a
     ylabel('Voltage (V)');
     %title('Minimum EOL Voltage With CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -360,7 +360,7 @@ for jind = 1:a
     ylabel('Voltage (V)');
     %title('Average EOL Voltage With CVR');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -497,9 +497,9 @@ if plot_pf ==1
     
     my_legend = {'Base';'VVO'};
 
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
-    % close(fname);
+    close(fname);
     % Compare Average power factor
     fname = 't1_Comparison of average annual power factor ';
     set_figure_size(fname);
@@ -512,9 +512,9 @@ if plot_pf ==1
     ylabel('Power Factor');
     ylim([0.9 1]);
     my_legend = {'Base';'VVO'};
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
-    % close(fname);
+    close(fname);
     
 %     % Compare Maximum power factor
 %     fname = 't1_Compare Maximum Power Factor Comparison';
@@ -561,7 +561,7 @@ if (plot_losses == 1)
     hold on;
     bar(loss_data / 1000000,'barwidth',0.9);
     ylabel('Losses (MWh)');
-    set_figure_graphics(data_labels,fname,1,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -572,7 +572,7 @@ if (plot_losses == 1)
     hold on;
     bar(loss_reduction / 1000000,'barwidth',0.9);
     ylabel('Change in Losses (MWh)');
-    set_figure_graphics(data_labels,fname,1,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
 %     
@@ -582,7 +582,7 @@ if (plot_losses == 1)
     hold on;
     bar(percent_loss_reduction,'barwidth',0.9);
     ylabel('Change in Losses (%)');
-    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,2,'none',.03,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -656,7 +656,7 @@ if (plot_emissions == 1)
     bar(emissions_data,'barwidth',0.9);
     ylabel('CO2 Emissions (tons)');
     my_legend = {'Base';'VVO'};
-    set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,.03,'northoutside',1,0,'horizontal');
     
     hold off;
     close(fname);
@@ -667,7 +667,7 @@ if (plot_emissions == 1)
     hold on;
     bar(emissions_data(:,2)-emissions_data(:,1));
     ylabel('Change in CO2 Emissions (tons)');
-    set_figure_graphics(data_labels,fname,0,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
 %     
@@ -677,7 +677,7 @@ if (plot_emissions == 1)
     hold on;
     bar(percent_emissions_change);
     ylabel('Change in CO2 Emissions (%)');
-    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,2,'none',.03,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
