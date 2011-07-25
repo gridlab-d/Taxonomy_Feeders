@@ -28,7 +28,7 @@ generate_impact_matrix = 0;
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
-plot_monthly_losses = 0;
+plot_monthly_losses = 1;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -113,7 +113,7 @@ if (plot_energy == 1)
             bar(monthly_energy_data / 1000000,'barwidth',0.9);
             ylabel('Energy Consumption (MWh)');
             my_legend = {'Base';'CA'};
-            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
             hold off;
             close(fname);
             
@@ -208,7 +208,7 @@ if (plot_peak_power == 1)
             bar(peak_power_data / 1000,'barwidth',0.9);
             ylabel('Peak Load (kW)');
             my_legend = {'Base Case';'CA'};
-            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
             hold off;
             close(fname);
             
@@ -324,7 +324,7 @@ for jind = 1:a
     bar(voltage_data0_all(:,1:3),'barwidth',0.9);
     ylabel('Voltage (V)');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -335,7 +335,7 @@ for jind = 1:a
     bar(voltage_data0_all(:,4:6),'barwidth',0.9);
     ylabel('Voltage (V)');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -347,7 +347,7 @@ for jind = 1:a
     ylabel('Voltage (V)');
     %title('Minimum EOL Voltage With CA');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -359,7 +359,7 @@ for jind = 1:a
     ylabel('Voltage (V)');
     %title('Average EOL Voltage With CA');
     ylim([110 130]);
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -379,7 +379,7 @@ for jind = 1:a
 %     ylabel('Voltage (V)');
 %     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
-%     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
+%     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
 %     hold off;
 %     close(fname);
 %     
@@ -393,7 +393,7 @@ for jind = 1:a
 %     ylabel('Voltage (V)');
 %     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
-%     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northeastoutside');
+%     set_figure_graphics(data_labels2,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
 %     hold off;
 %     close(fname);
 %     
@@ -407,7 +407,7 @@ for jind = 1:a
 %     ylabel('Voltage (V)');
 %     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
-%     set_figure_graphics(data_labels1,fname,0,my_legend,0,'northeastoutside');
+%     set_figure_graphics(data_labels1,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
 %     hold off;
 %     close(fname); 
 %     
@@ -422,7 +422,7 @@ for jind = 1:a
 %     ylabel('Voltage (V)');
 %     %title('Minimum EOL Voltage Without CA');
 %     ylim([110 130]);
-%     set_figure_graphics(data_labels3,fname,0,my_legend,0,'northeastoutside');
+%     set_figure_graphics(data_labels3,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
 %     hold off;
 %     close(fname);
   
@@ -453,7 +453,7 @@ if plot_pf ==1
     ylabel('Power Factor');
     ylim([.5 1.0]);
     my_legend = {'Base';'CA'};
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -469,7 +469,7 @@ if plot_pf ==1
     ylabel('Power Factor');
     ylim([.9 1.0]);
     my_legend = {'Base';'CA'};
-    set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -485,7 +485,7 @@ if plot_pf ==1
 %     ylabel('Power Factor');
 %     ylim([.9 1.0]);
 %     my_legend = {'Base';'CA'};
-%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northeastoutside');
+%     set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal');
 %     hold off;
 %     close(fname);
     
@@ -577,10 +577,10 @@ if (plot_losses == 1)
             fname = ['t2_Comparison of losses by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
-            bar(monthly_losses / 1000000,'barwidth',0.9);
+            loss_plot=bar(monthly_losses / 1000000,'barwidth',0.9);
             ylabel('Monthly Losses (MWh)');
             my_legend = {'OHL-Base';'OHL-VVO';'UGL-Base';'UGL-VVO';'TFR-Base';'TFR-VVO';'TPL-Base';'TPL-VVO'};
-            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0.138,[],loss_plot,4);
             hold off;
             close(fname);
             
@@ -612,7 +612,7 @@ if (plot_emissions == 1)
     bar(emissions_data,'barwidth',0.9);
     ylabel('CO2 Emissions (tons)');
     my_legend = {'Base';'CA'};
-    set_figure_graphics(data_labels,fname,1,my_legend,1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,1,my_legend,1,'northoutside',1,0,'horizontal');
     
     hold off;
     close(fname);
@@ -623,7 +623,7 @@ if (plot_emissions == 1)
     hold on;
     bar(emissions_data(:,2)-emissions_data(:,1));
     ylabel('Change in CO2 Emissions (tons)');
-    set_figure_graphics(data_labels,fname,0,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,fname,0,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
 %     
@@ -633,7 +633,7 @@ if (plot_emissions == 1)
     hold on;
     bar(percent_emissions_change);
     ylabel('Change in CO2 Emissions (%)');
-    set_figure_graphics(data_labels,fname,2,'none',1,'northeastoutside');
+    set_figure_graphics(data_labels,fname,2,'none',1,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -670,7 +670,7 @@ if (plot_emissions == 1)
             bar(monthly_emissions_data,'barwidth',0.9);
             ylabel('CO2 Emissions (tons)');
             my_legend = {'Base';'CA'};
-            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northeastoutside');
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
             hold off;
             close(fname);
         end
