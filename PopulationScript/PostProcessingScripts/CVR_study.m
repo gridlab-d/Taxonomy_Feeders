@@ -15,11 +15,11 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
+plot_energy = 1;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
-plot_losses = 1;
+plot_losses = 0;
 plot_emissions = 0;
 
 % Flag for impact matrix
@@ -27,8 +27,8 @@ generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
-plot_monthly_energy = 0;
-plot_monthly_losses = 1;
+plot_monthly_energy = 1;
+plot_monthly_losses = 0;
 plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
@@ -55,10 +55,10 @@ if (plot_energy == 1)
     fname = 't1_Comparison of annual energy consumption by feeder (MWh)';
     set_figure_size(fname);
     hold on;
-    bar(energy_data / 1000000,'barwidth',0.9);
-    ylabel('Energy Consumption (MWh)');
+    bar(energy_data / 1000000000,'barwidth',0.9);
+    ylabel('Energy Consumption (GWh)');
     my_legend={'Base','VVO'};
-    set_figure_graphics(data_labels,fname,1,my_legend,.07,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,1,my_legend,.00,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -66,8 +66,8 @@ if (plot_energy == 1)
     fname = 't1_Change in annual energy consumption by feeder (MWh)';
     set_figure_size(fname);
     hold on;
-    bar(energy_reduction / 1000000);
-    ylabel('Change in Energy Consumption (MWh)');
+    bar(energy_reduction / 1000000000);
+    ylabel('Change in Energy Consumption (GWh)');
     set_figure_graphics(data_labels,fname,1,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
@@ -78,7 +78,7 @@ if (plot_energy == 1)
     hold on;
     bar(percent_energy_reduction);
     ylabel('Change in Energy Consumption (%)');
-    set_figure_graphics(data_labels,fname,2,'none',0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',0.02,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -143,10 +143,10 @@ if (plot_peak_power == 1)
     fname = 't1_Compassion of peak demand by feeder';
     set_figure_size(fname);
     hold on;
-    bar(peak_power_data / 1000,'barwidth',0.9);
-    ylabel('Peak Load (kW)');
+    bar(peak_power_data / 1000000,'barwidth',0.9);
+    ylabel('Peak Load (MW)');
     my_legend = {'Base Case';'VVO'};
-    set_figure_graphics(data_labels,fname,1,my_legend,.03,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -168,7 +168,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(delta_peak_power);
     ylabel('Change in Peak Load (%)');
-    set_figure_graphics(data_labels,fname,0,'none',.75,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',.03,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -204,8 +204,8 @@ if (plot_peak_power == 1)
             fname = ['t1_Comparison of peak demand by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
-            bar(peak_power_data / 1000,'barwidth',0.9);
-            ylabel('Peak Load (kW)');
+            bar(peak_power_data / 1000000,'barwidth',0.9);
+            ylabel('Peak Load (MW)');
             my_legend = {'Base Case';'VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
             hold off;
@@ -559,8 +559,8 @@ if (plot_losses == 1)
     fname = 't1_Comparison of total annual losses by feeder';
     set_figure_size(fname);
     hold on;
-    bar(loss_data / 1000000,'barwidth',0.9);
-    ylabel('Losses (MWh)');
+    bar(loss_data / 1000000000,'barwidth',0.9);
+    ylabel('Losses (GWh)');
     set_figure_graphics(data_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
