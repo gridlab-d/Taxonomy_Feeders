@@ -24,11 +24,11 @@ output_dir = 'C:\SGIGLinks';
 plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
-plot_losses = 0;
+plot_losses = 1;
 plot_emissions = 0;
 plot_emissions_diff = []; %Type in a specific day to compare (yyyy-mm-dd), set to [] for none, or set to 1 for peak day of base compare
-plot_storage = 1;
-plot_storage_perc=1;    %Plot storage as a % of total feeder consumption
+plot_storage = 0;
+plot_storage_perc=0;    %Plot storage as a % of total feeder consumption
 
 % Flag for impact matrix
 generate_impact_matrix = 0;
@@ -38,7 +38,7 @@ plot_monthly_peak = 0;
 plot_monthly_energy = 0;
 plot_monthly_losses = 0;
 plot_monthly_emissions = 0;
-plot_monthly_storage = 1;
+plot_monthly_storage = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -67,7 +67,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000000,'barwidth',0.9);
     ylabel('Energy Consumption (GWh)');
     my_legend={'Base'; 'w/TES'};
-    set_figure_graphics(data_labels,[output_dir '\' fname],2,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -77,10 +77,10 @@ if (plot_energy == 1)
     hold on;
     bar(energy_reduction / 1000000);
     ylabel('Change in Energy Consumption (MWh)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,[output_dir '\' fname],1,'none',0,'northeastoutside',1,0,'horizontal',[],[],[min(energy_reduction(:)) max(energy_reduction(:))]/1000000);
     hold off;
     close(fname);
-    
+
     % Change in Energy Consumption (%)
     fname = 't9_Change in annual energy consumption by feeder (%)';
     set_figure_size(fname);
@@ -118,10 +118,10 @@ if (plot_energy == 1)
             fname = ['t9_Comparison of energy consumption by month for ' char(data_labels(kkind))];
             set_figure_size(fname);
             hold on;
-            bar(monthly_energy_data / 1000000,'barwidth',0.9);
-            ylabel('Energy Consumption (MWh)');
+            bar(monthly_energy_data / 1000000000,'barwidth',0.9);
+            ylabel('Energy Consumption (GWh)');
             my_legend = {'Base';'w/TES'};
-            set_figure_graphics(monthly_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal');
+            set_figure_graphics(monthly_labels,[output_dir '\' fname],3,my_legend,0.02,'northoutside',1,0,'horizontal',[],[],[min(monthly_energy_data(:)) max(monthly_energy_data(:))]/1000000000);
             hold off;
             close(fname);
             
@@ -401,9 +401,9 @@ if (plot_losses == 1)
     fname = 't9_Comparison of total annual losses by feeder';
     set_figure_size(fname);
     hold on;
-    bar(loss_data / 1000000,'barwidth',0.9);
-    ylabel('Losses (MWh)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal');
+    bar(loss_data / 1000000000,'barwidth',0.9);
+    ylabel('Losses (GWh)');
+    set_figure_graphics(data_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
             

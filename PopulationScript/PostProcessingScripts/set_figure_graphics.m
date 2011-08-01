@@ -1,9 +1,9 @@
-function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,pos_mod,legOffset,leg_orientation,plotHands,numCols)
+function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,pos_mod,legOffset,leg_orientation,plotHands,numCols,DataLims)
     % This file formats the graphics to match in all files for the SGIG
     % analysis
     %
     % set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,...
-    %                 ...,pos_mod,legOffset,leg_orientation,plotHands,numCols)
+    %                 ...,pos_mod,legOffset,leg_orientation,plotHands,numCols,DataLims)
     %
     % xlabels - an array of labels for the x-axis
     % my_name - name of the graphics file
@@ -18,6 +18,7 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,
     % leg_orientation - orientation of the legend ('horizontal' or 'vertical')
     % plotHands - handles to the various plots in a figure - needed for numCols to work
     % numCols - number of columns for a legend
+    % DataLims - [min max] of data - if non-empty, enables tick rescaling
     %
     %
     % started 5/1/2011 by J. Fuller
@@ -31,20 +32,27 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,
         leg_orientation=[];
         plotHands=[];
         numCols=1;
+        DataLims=[];
     elseif (nargin==7)
         legOffset=0;
         leg_orientation=[];
         plotHands=[];
         numCols=1;
+        DataLims=[];
     elseif (nargin==8)
         leg_orientation=[];
         plotHands=[];
         numCols=1;
+        DataLims=[];
     elseif (nargin==9)
         plotHands=[];
         numCols=1;
+        DataLims=[];
     elseif (nargin==10)
         numCols=1;
+        DataLims=[];
+    elseif (nargin==11)
+        DataLims=[];
     end
     
     ca = gca;
@@ -79,7 +87,96 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,
             set(legHandle,'position',posLeg);
         end
     end
-    
+
+    % Adjust y-axis tick marks, if desired
+    if (~isempty(DataLims))
+        %Make sure limit values is a 2x1
+        if (length(DataLims)~=2)
+            disp('Data Limits not utilized');
+        else
+            %Inward
+            
+            %If it is above zero (no negative values), tie it to zero, for our purposes
+            if (DataLims(1)>0)
+                DataLims(1)=0;
+            end
+            
+            %See if there are more than set value, if so, fix them
+            NumTickLimit=7;
+
+            %Find range
+            YAxisRange=DataLims(2)-DataLims(1);
+
+            %Figure out "expected" delta
+            ExpectedDelta=YAxisRange/(NumTickLimit-1);
+
+            %Check to see what we want to make it - do this manually since I can't figure out a clever way to check it
+            if (ExpectedDelta<=0.01)
+                BaseIncrement=0.01;
+            elseif (ExpectedDelta<=0.02)
+                BaseIncrement=0.02;
+            elseif (ExpectedDelta<=0.05)
+                BaseIncrement=0.05;
+            elseif (ExpectedDelta<=0.1)
+                BaseIncrement=0.1;
+            elseif (ExpectedDelta<=0.2)
+                BaseIncrement=0.2;
+            elseif (ExpectedDelta<=0.25)
+                BaseIncrement=0.25;
+            elseif (ExpectedDelta<=0.5)
+                BaseIncrement=0.5;
+            elseif (ExpectedDelta<=1)
+                BaseIncrement=1;
+            elseif (ExpectedDelta<=1.5)
+                BaseIncrement=1.5;
+            elseif (ExpectedDelta<=2)
+                BaseIncrement=2;
+            elseif (ExpectedDelta<=2.5)
+                BaseIncrement=2.5;
+            elseif (ExpectedDelta<=5)
+                BaseIncrement=5;
+            elseif (ExpectedDelta<=10)
+                BaseIncrement=10;
+            elseif (ExpectedDelta<=20)
+                BaseIncrement=20;
+            elseif (ExpectedDelta<=25)
+                BaseIncrement=25;
+            elseif (ExpectedDelta<=50)
+                BaseIncrement=50;
+            elseif (ExpectedDelta<=100)
+                BaseIncrement=100;
+            elseif (ExpectedDelta<=200)
+                BaseIncrement=200;
+            elseif (ExpectedDelta<=250);
+                BaseIncrement=250;
+            elseif (ExpectedDelta<=500)
+                BaseIncrement=500;
+            else
+                BaseIncrement=-1;
+            end
+
+            if (BaseIncrement>0)    %Make sure it is valid
+                %Find the starting point
+                StartingAxisPoint=floor(DataLims(1)/BaseIncrement);
+
+                %Determine number of ticks necessary - for some odd reason, purely graph based fails sometimes
+                NumTicks=1;
+                while((BaseIncrement*(NumTicks+StartingAxisPoint))<DataLims(2))
+                    NumTicks=NumTicks+1;
+                end
+                
+                %Create Grid Points
+                AxisGridPoints=BaseIncrement*((0:NumTicks)+StartingAxisPoint);
+
+                %Set axis
+                ylim([AxisGridPoints(1) AxisGridPoints(end)]);
+
+                %Set it
+                set(gca,'YTick',AxisGridPoints);
+            end
+        end
+    end
+
     % turns on the y-grid lines
     set(ca,'XGrid','off','YGrid','on','ZGrid','off');
     
@@ -110,7 +207,7 @@ function [] = set_figure_graphics(xlabels,my_name,yformat,my_leg,offset,leg_loc,
         set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.2f'));
     elseif (yformat == 3)
         num2str(get(gca,'YTick'));
-        set(gca,'YTickLabel',num2str(get(gca,'YTick').','%0.1f'));
+        set(gca,'YTickLabel',num2str(get(gca,'YTick').','%2.1f'));
     end
     
     % Resize the print-out image to only take up half a page minus a little
