@@ -38,6 +38,7 @@ find_pf = 0;                        % min, max, and average
 find_losses = 0;                    % gathers the system losses
 find_switching = 0;                 % gather all of the capacitor and regulator switching operations (sums all phases and objects)
 find_storage = 0;					% gather storage values
+find_solar = 1;                     % gather and combine solar values
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
@@ -1214,6 +1215,169 @@ for file_ind = 1:no_files
         %Clean up
         clear StorageCheckVal;
     end %End energy storage
+
+    %% Solar information
+    if (find_solar == 1)
+        
+        %Preallocate, for giggles
+        if (file_ind==1)
+            solar_values = cell(no_files,7); %name, res en, office en, stripmall en, bigbox en, accumulated en, accumulated TS
+            
+            if (find_monthly_values == 1)
+                solar_values_monthly = cell(no_files,7);
+            end
+            
+            %Determine the length of the files - assumes all are the same (should be)
+            eval(['solar_length=size(' current_file '.timestamp,1);'])
+            
+            %Set flag
+            solar_present=0;
+        end
+        
+        %Make sure it exists first
+        eval(['SolarCheckValRes=isfield(' current_file ',''Solar_summeasured_real_energy'');']);
+        eval(['SolarCheckValOffice=isfield(' current_file ',''Solar_office_summeasured_real_energy'');']);
+        eval(['SolarCheckValStripmall=isfield(' current_file ',''Solar_stripmall_summeasured_real_energy'');']);
+        eval(['SolarCheckValBigbox=isfield(' current_file ',''Solar_bigbox_summeasured_real_energy'');']);
+        
+        %Consolidate
+        SolarCheckVal = (SolarCheckValRes || SolarCheckValOffice || SolarCheckValStripmall || SolarCheckValBigbox);
+        
+        if (SolarCheckVal==1)
+            %Indicate solar was found - at least once
+            solar_present = 1;
+            
+            %Zero the accumulator
+            Accumulated_Solar_Energy=zeros(solar_length,1);
+            
+            %Store data appropriately
+            solar_values{file_ind,1} = current_file;
+
+            %Extract the indices valid for December - last value will be the full year accumulation
+            Extracted_Indices_Limit=month_ind(12,2);
+            
+            %Actual "data" depends on what was present
+            
+            %Residential solar
+            if (SolarCheckValRes==1)
+                %Solar residential present - extract as incremental energies - easier for montly below
+                eval(['intermed_solar_res=[0; diff(' current_file '.Solar_summeasured_real_energy)];']);
+                
+                %Solar residential "end point" - yearly accumulation
+                eval(['intermed_solar_res_val=' current_file '.Solar_summeasured_real_energy(Extracted_Indices_Limit);']);
+                
+                %Add to the accumulator
+                Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_res;
+            else
+                %No residential solar - zero it
+               intermed_solar_res=zeros(solar_length,1);
+               intermed_solar_res_val = 0;
+            end
+            
+            %Store the value - residential - sum up (semi-silly, but meh)
+            solar_values{file_ind,2}=intermed_solar_res_val;
+
+            %Office solar
+            if (SolarCheckValOffice==1)
+                %Solar office present - extract as incremental energies - easier for montly below
+                eval(['intermed_solar_off=[0; diff(' current_file '.Solar_office_summeasured_real_energy)];']);
+                
+                %Solar office "end point" - yearly accumulation
+                eval(['intermed_solar_off_val=' current_file '.Solar_office_summeasured_real_energy(Extracted_Indices_Limit);']);
+                
+                %Add to the accumulator
+                Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_off;
+            else
+                %No residential solar - zero it
+               intermed_solar_off=zeros(solar_length,1);
+               intermed_solar_off_val = 0;
+            end
+            
+            %Store the value - office
+            solar_values{file_ind,3}=intermed_solar_off_val;
+
+            %Stripmall solar
+            if (SolarCheckValStripmall==1)
+                %Solar stripmall present - extract as incremental energies - easier for montly below
+                eval(['intermed_solar_strip=[0; diff(' current_file '.Solar_stripmall_summeasured_real_energy)];']);
+                
+                %Solar stripmall "end point" - yearly accumulation
+                eval(['intermed_solar_strip_val=' current_file '.Solar_stripmall_summeasured_real_energy(Extracted_Indices_Limit);']);
+                
+                %Add to the accumulator
+                Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_strip;
+            else
+                %No stripmall solar - zero it
+               intermed_solar_strip=zeros(solar_length,1);
+               intermed_solar_strip_val = 0;
+            end
+            
+            %Store the value - stripmall
+            solar_values{file_ind,4}=intermed_solar_strip_val;
+
+            %Bigbox solar
+            if (SolarCheckValBigbox==1)
+                %Solar bigbox present - extract as incremental energies - easier for montly below
+                eval(['intermed_solar_big=[0; diff(' current_file '.Solar_bigbox_summeasured_real_energy)];']);
+                
+                %Solar bigbox "end point" - yearly accumulation
+                eval(['intermed_solar_big_val=' current_file '.Solar_bigbox_summeasured_real_energy(Extracted_Indices_Limit);']);
+                
+                %Add to the accumulator
+                Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_big;
+            else
+                %No bigbox solar - zero it
+               intermed_solar_big=zeros(solar_length,1);
+               intermed_solar_big_val = 0;
+            end
+            
+            %Store the value - Bigbox
+            solar_values{file_ind,5}=intermed_solar_big_val;
+            
+            %Store the accumulated value - sum intermediates
+            solar_values{file_ind,6}=intermed_solar_res_val + intermed_solar_off_val + intermed_solar_strip_val + intermed_solar_big_val;
+            
+            %Store the accumulated time series value
+            solar_values{file_ind,7}=Accumulated_Solar_Energy;
+
+            if (find_monthly_values == 1)
+                
+                %Store file name
+                solar_values_monthly{file_ind,1} = current_file;
+                
+                %Preallocate
+                solar_values_monthly{file_ind,2}=zeros(12,1);
+                solar_values_monthly{file_ind,3}=zeros(12,1);
+                solar_values_monthly{file_ind,4}=zeros(12,1);
+                solar_values_monthly{file_ind,5}=zeros(12,1);
+                solar_values_monthly{file_ind,6}=zeros(12,1);
+                solar_values_monthly{file_ind,7}=cell(12,1);
+                                
+                for jjind=1:12
+                    
+                    %Accumulate the various energies and store
+                    solar_values_monthly{file_ind,2}(jjind)=sum(intermed_solar_res(month_ind(jjind,1):month_ind(jjind,2)));
+                    solar_values_monthly{file_ind,3}(jjind)=sum(intermed_solar_off(month_ind(jjind,1):month_ind(jjind,2)));
+                    solar_values_monthly{file_ind,4}(jjind)=sum(intermed_solar_strip(month_ind(jjind,1):month_ind(jjind,2)));
+                    solar_values_monthly{file_ind,5}(jjind)=sum(intermed_solar_big(month_ind(jjind,1):month_ind(jjind,2)));
+                    solar_values_monthly{file_ind,6}(jjind)=sum(Accumulated_Solar_Energy(month_ind(jjind,1):month_ind(jjind,2)));
+                    
+                    %Raw storage of time values
+                    solar_values_monthly{file_ind,7}{jjind}=Accumulated_Solar_Energy(month_ind(jjind,1):month_ind(jjind,2));
+                end
+                
+                %No Clean up for monthly
+            end
+
+            % clean up my workspace a little
+            clear Extracted_Indices_Limit Accumulated_Solar_Energy intermed_solar_res intermed_solar_res_val intermed_solar_off intermed_solar_off_val intermed_solar_strip intermed_solar_strip_val intermed_solar_big intermed_solar_big_val;
+        else %Not found, warn
+            disp(['No solar values not found for ' current_file]);
+        end
+        
+        %Clean up
+        clear SolarCheckVal SolarCheckValRes SolarCheckValOffice SolarCheckValStripmall SolarCheckValBigbox;
+    end %End solar
     
     % clear out the file we've opened
     eval(['clear ' current_file]);
@@ -1311,6 +1475,15 @@ if ((find_storage == 1) && (storage_present == 1))
     if (find_monthly_values == 1)
         write_file = [write_dir 'monthly_storage_values_' tech '.mat'];
         save(write_file,'storage_values_monthly');
+    end
+end
+
+if ((find_solar == 1) && (solar_present == 1))
+    write_file = [write_dir 'solar_values_' tech '.mat'];
+    save(write_file,'solar_values')
+    if (find_monthly_values == 1)
+        write_file = [write_dir 'monthly_solar_values_' tech '.mat'];
+        save(write_file,'solar_values_monthly');
     end
 end
 
