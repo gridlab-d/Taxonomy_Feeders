@@ -119,24 +119,26 @@ for file_ind = 1:no_files
         
         % grab the max power and the index
         temp_VA = sqrt(temp_var_real.^2 + temp_var_imag.^2);
-        max_power = max(temp_var_real);
+        [max_power,max_p_idx] = max(temp_var_real);
         max_VA = max(temp_VA);
         
         
-        % store the two values into a peak day variable
+        % store the two values into a peak day variable - third added to store the day
         peakiest_peakday{file_ind,1} = current_file;
         peakiest_peakday{file_ind,2} = max_power;
         peakiest_peakday{file_ind,3} = max_VA;
+        peakiest_peakday{file_ind,5} = max_p_idx;   %4 used below for losses
         
         
         if (find_monthly_values == 1)
             for jjind=1:12
-                max_power = max(temp_var_real(month_ind(jjind,1):month_ind(jjind,2)));
+                [max_power,max_p_month_idx] = max(temp_var_real(month_ind(jjind,1):month_ind(jjind,2)));
                 max_VA = max((month_ind(jjind,1):month_ind(jjind,2)));
                 
                 peakiest_peakday_monthly{file_ind,1} = current_file;
                 peakiest_peakday_monthly{file_ind,2}{jjind} = max_power;
                 peakiest_peakday_monthly{file_ind,3}{jjind} = max_VA;
+                peakiest_peakday_monthly{file_ind,5}{jjind} = max_p_month_idx;
             end
         end
         
@@ -1372,7 +1374,16 @@ for file_ind = 1:no_files
             % clean up my workspace a little
             clear Extracted_Indices_Limit Accumulated_Solar_Energy intermed_solar_res intermed_solar_res_val intermed_solar_off intermed_solar_off_val intermed_solar_strip intermed_solar_strip_val intermed_solar_big intermed_solar_big_val;
         else %Not found, warn
-            disp(['No solar values not found for ' current_file]);
+            disp(['No solar values found for ' current_file]);
+            
+            %Make empty
+            solar_values{file_ind,1} = current_file;
+            solar_values{file_ind,2} = 0;
+            solar_values{file_ind,3} = 0;
+            solar_values{file_ind,4} = 0;
+            solar_values{file_ind,5} = 0;
+            solar_values{file_ind,6} = 0;
+            solar_values{file_ind,7} = zeros(solar_length,1);
         end
         
         %Clean up
