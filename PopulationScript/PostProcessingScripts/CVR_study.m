@@ -15,21 +15,21 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 1;
+plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_pf = 0;
 plot_losses = 0;
-plot_emissions = 0;
+plot_emissions = 1;
 
 % Flag for impact matrix
 generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
-plot_monthly_energy = 1;
+plot_monthly_energy = 0;
 plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
+plot_monthly_emissions = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -654,7 +654,7 @@ if (plot_emissions == 1)
     set_figure_size(fname);
     hold on;
     bar(emissions_data,'barwidth',0.9);
-    ylabel('CO2 Emissions (tons)');
+    ylabel('CO_2 Emissions (tons)');
     my_legend = {'Base';'VVO'};
     set_figure_graphics(data_labels,fname,1,my_legend,.03,'northoutside',1,0,'horizontal');
     
@@ -666,7 +666,7 @@ if (plot_emissions == 1)
     set_figure_size(fname);
     hold on;
     bar(emissions_data(:,2)-emissions_data(:,1));
-    ylabel('Change in CO2 Emissions (tons)');
+    ylabel('Change in CO_2 Emissions (tons)');
     set_figure_graphics(data_labels,fname,0,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
@@ -676,7 +676,7 @@ if (plot_emissions == 1)
     set_figure_size(fname);
     hold on;
     bar(percent_emissions_change);
-    ylabel('Change in CO2 Emissions (%)');
+    ylabel('Change in CO_2 Emissions (%)');
     set_figure_graphics(data_labels,fname,2,'none',.03,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
@@ -712,7 +712,7 @@ if (plot_emissions == 1)
             set_figure_size(fname);
             hold on;
             bar(monthly_emissions_data,'barwidth',0.9);
-            ylabel('CO2 Emissions (tons)');
+            ylabel('CO_2 Emissions (tons)');
             my_legend = {'Base';'VVO'};
             set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
             hold off;
