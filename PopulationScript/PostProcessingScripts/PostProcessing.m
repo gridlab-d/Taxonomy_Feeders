@@ -39,6 +39,7 @@ find_losses = 0;                    % gathers the system losses
 find_switching = 0;                 % gather all of the capacitor and regulator switching operations (sums all phases and objects)
 find_storage = 0;					% gather storage values
 find_solar = 1;                     % gather and combine solar values
+find_wind = 1;                      % gather and combine wind values
 
 % This extraction must be run seperately from all others
 % NOTE: emissions_monthly_t0.mat must be available in the "write directory"
@@ -767,7 +768,7 @@ for file_ind = 1:no_files
         
         if (find_emissions_ts == 1)
             % Create a variable to store the different emissions outputs
-            emissions_ts_output = zeros(size(temp_var,1),4); %[CO2 SO2 NOx PM10]
+            emissions_ts_output = zeros(size(temp_var,1),7); %[CO2 SO2 NOx PM10 CO2-Intensity marg_gen type]
         end
         
         % wrap through each month
@@ -808,6 +809,11 @@ for file_ind = 1:no_files
                     ts_SO2 = 0;
                     ts_NOx = 0;
                     ts_PM10 = 0;
+                    
+                    %Start a CO2 intensity track
+                    ts_CO2_intense = 0;
+                    ts_Marg_gen = 0;
+                    ts_Marg_gen_type = 0;
                 end
 
                 while (temp_E > 0)
@@ -825,6 +831,11 @@ for file_ind = 1:no_files
                             ts_SO2 = ts_SO2 + temp_E * conv(9,2);
                             ts_NOx = ts_NOx + temp_E * conv(9,3);
                             ts_PM10 = ts_PM10 + temp_E * conv(9,4);
+                            
+                            %Determine the current intensity
+                            ts_CO2_intense = conv(9,1);
+                            ts_Marg_gen = temp_E;
+                            ts_Marg_gen_type = 9;
                         end
                         
                         if (ts_ind == ind_max_power)
@@ -845,6 +856,11 @@ for file_ind = 1:no_files
                             ts_SO2 = ts_SO2 + temp_E * conv(disp_ind,2);
                             ts_NOx = ts_NOx + temp_E * conv(disp_ind,3);
                             ts_PM10 = ts_PM10 + temp_E * conv(disp_ind,4);
+                            
+                            %Determine the current intensity
+                            ts_CO2_intense = conv(disp_ind,1);
+                            ts_Marg_gen = temp_E;
+                            ts_Marg_gen_type = disp_ind;
                         end
                         
                         if (ts_ind == ind_max_power)
@@ -864,6 +880,11 @@ for file_ind = 1:no_files
                             ts_SO2 = ts_SO2 + pen_scaled(disp_ind) * conv(disp_ind,2);
                             ts_NOx = ts_NOx + pen_scaled(disp_ind) * conv(disp_ind,3);
                             ts_PM10 = ts_PM10 + pen_scaled(disp_ind) * conv(disp_ind,4);
+                            
+                            %Determine the current intensity
+                            ts_CO2_intense = conv(disp_ind,1);
+                            ts_Marg_gen = temp_E;
+                            ts_Marg_gen_type = disp_ind;
                         end
                         
                         if (ts_ind == ind_max_power)
@@ -886,7 +907,7 @@ for file_ind = 1:no_files
                 
                 if (find_emissions_ts == 1)
                     %Store the result - convert to tons as well
-                    emissions_ts_output(ts_ind,:) = [ts_CO2 ts_SO2 ts_NOx ts_PM10]/2000;
+                    emissions_ts_output(ts_ind,:) = [[ts_CO2 ts_SO2 ts_NOx ts_PM10 ts_CO2_intense]/2000 ts_Marg_gen ts_Marg_gen_type];
                 end
                 
             end %end day loop
@@ -1238,9 +1259,9 @@ for file_ind = 1:no_files
         
         %Make sure it exists first
         eval(['SolarCheckValRes=isfield(' current_file ',''Solar_summeasured_real_energy'');']);
-        eval(['SolarCheckValOffice=isfield(' current_file ',''Solar_office_summeasured_real_energy'');']);
-        eval(['SolarCheckValStripmall=isfield(' current_file ',''Solar_stripmall_summeasured_real_energy'');']);
-        eval(['SolarCheckValBigbox=isfield(' current_file ',''Solar_bigbox_summeasured_real_energy'');']);
+        eval(['SolarCheckValOffice=isfield(' current_file ',''Solaroffice_summeasured_real_energy'');']);
+        eval(['SolarCheckValStripmall=isfield(' current_file ',''Solarstripmall_summeasured_real_energy'');']);
+        eval(['SolarCheckValBigbox=isfield(' current_file ',''Solarbigbox_summeasured_real_energy'');']);
         
         %Consolidate
         SolarCheckVal = (SolarCheckValRes || SolarCheckValOffice || SolarCheckValStripmall || SolarCheckValBigbox);
@@ -1282,10 +1303,10 @@ for file_ind = 1:no_files
             %Office solar
             if (SolarCheckValOffice==1)
                 %Solar office present - extract as incremental energies - easier for montly below
-                eval(['intermed_solar_off=[0; diff(' current_file '.Solar_office_summeasured_real_energy)];']);
+                eval(['intermed_solar_off=[0; diff(' current_file '.Solaroffice_summeasured_real_energy)];']);
                 
                 %Solar office "end point" - yearly accumulation
-                eval(['intermed_solar_off_val=' current_file '.Solar_office_summeasured_real_energy(Extracted_Indices_Limit);']);
+                eval(['intermed_solar_off_val=' current_file '.Solaroffice_summeasured_real_energy(Extracted_Indices_Limit);']);
                 
                 %Add to the accumulator
                 Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_off;
@@ -1301,10 +1322,10 @@ for file_ind = 1:no_files
             %Stripmall solar
             if (SolarCheckValStripmall==1)
                 %Solar stripmall present - extract as incremental energies - easier for montly below
-                eval(['intermed_solar_strip=[0; diff(' current_file '.Solar_stripmall_summeasured_real_energy)];']);
+                eval(['intermed_solar_strip=[0; diff(' current_file '.Solarstripmall_summeasured_real_energy)];']);
                 
                 %Solar stripmall "end point" - yearly accumulation
-                eval(['intermed_solar_strip_val=' current_file '.Solar_stripmall_summeasured_real_energy(Extracted_Indices_Limit);']);
+                eval(['intermed_solar_strip_val=' current_file '.Solarstripmall_summeasured_real_energy(Extracted_Indices_Limit);']);
                 
                 %Add to the accumulator
                 Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_strip;
@@ -1320,10 +1341,10 @@ for file_ind = 1:no_files
             %Bigbox solar
             if (SolarCheckValBigbox==1)
                 %Solar bigbox present - extract as incremental energies - easier for montly below
-                eval(['intermed_solar_big=[0; diff(' current_file '.Solar_bigbox_summeasured_real_energy)];']);
+                eval(['intermed_solar_big=[0; diff(' current_file '.Solarbigbox_summeasured_real_energy)];']);
                 
                 %Solar bigbox "end point" - yearly accumulation
-                eval(['intermed_solar_big_val=' current_file '.Solar_bigbox_summeasured_real_energy(Extracted_Indices_Limit);']);
+                eval(['intermed_solar_big_val=' current_file '.Solarbigbox_summeasured_real_energy(Extracted_Indices_Limit);']);
                 
                 %Add to the accumulator
                 Accumulated_Solar_Energy=Accumulated_Solar_Energy+intermed_solar_big;
@@ -1389,7 +1410,86 @@ for file_ind = 1:no_files
         %Clean up
         clear SolarCheckVal SolarCheckValRes SolarCheckValOffice SolarCheckValStripmall SolarCheckValBigbox;
     end %End solar
-    
+
+    %% wind information
+    if (find_wind == 1)
+        
+        %Preallocate, for giggles
+        if (file_ind==1)
+            wind_values = cell(no_files,3); %name, energy, power TS
+            
+            if (find_monthly_values == 1)
+                wind_values_monthly = cell(no_files,3);
+            end
+            
+            %Determine the length of the files - assumes all are the same (should be)
+            eval(['wind_length=size(' current_file '.timestamp,1);'])
+            
+            %Set flag
+            wind_present=0;
+        end
+        
+        %Make sure it exists first
+        eval(['WindCheckVal=isfield(' current_file ',''windpower_TotalRealPow'');']);
+        
+        if (WindCheckVal==1)
+            %Indicate solar was found - at least once
+            wind_present = 1;
+            
+            %Zero the accumulator
+            Accumulated_Solar_Energy=zeros(solar_length,1);
+            
+            %Store data appropriately
+            wind_values{file_ind,1} = current_file;
+
+            %Extract the indices valid for December - last value will be the full year accumulation
+            Extracted_Indices_Limit=month_ind(12,2);
+            
+            %Extract the time series, directly
+            eval(['wind_power_TS=' current_file '.windpower_TotalRealPow(1:Extracted_Indices_Limit);']);
+            
+            %Store it
+            wind_values{file_ind,3}=wind_power_TS;
+            
+            %Translate the power values into energy
+            wind_values{file_ind,2}=sum(wind_power_TS)/4;
+            
+            if (find_monthly_values == 1)
+                
+                %Store file name
+                wind_values_monthly{file_ind,1} = current_file;
+                
+                %Preallocate
+                wind_values_monthly{file_ind,2}=zeros(12,1);
+                wind_values_monthly{file_ind,3}=cell(12,1);
+                                
+                for jjind=1:12
+                    
+                    %Accumulate the various energies and store
+                    wind_values_monthly{file_ind,2}(jjind)=sum(wind_power_TS(month_ind(jjind,1):month_ind(jjind,2)))/4;
+                    
+                    %Raw storage of time values
+                    wind_values_monthly{file_ind,3}{jjind}=wind_power_TS(month_ind(jjind,1):month_ind(jjind,2));
+                end
+                
+                %No Clean up for monthly
+            end
+
+            % clean up my workspace a little
+            clear Extracted_Indices_Limit wind_power_TS;
+        else %Not found, warn
+            disp(['No wind values found for ' current_file]);
+            
+            %Make empty
+            wind_values{file_ind,1} = current_file;
+            wind_values{file_ind,2} = 0;
+            wind_values{file_ind,3} = zeros(wind_length,1);
+        end
+        
+        %Clean up
+        clear SolarCheckVal SolarCheckValRes SolarCheckValOffice SolarCheckValStripmall SolarCheckValBigbox;
+    end %End wind
+
     % clear out the file we've opened
     eval(['clear ' current_file]);
     disp(['Finished ' current_file]);
@@ -1495,6 +1595,15 @@ if ((find_solar == 1) && (solar_present == 1))
     if (find_monthly_values == 1)
         write_file = [write_dir 'monthly_solar_values_' tech '.mat'];
         save(write_file,'solar_values_monthly');
+    end
+end
+
+if ((find_wind == 1) && (wind_present == 1))
+    write_file = [write_dir 'wind_values_' tech '.mat'];
+    save(write_file,'wind_values')
+    if (find_monthly_values == 1)
+        write_file = [write_dir 'monthly_wind_values_' tech '.mat'];
+        save(write_file,'wind_values_monthly');
     end
 end
 

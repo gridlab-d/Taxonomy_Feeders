@@ -25,13 +25,13 @@ plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_losses = 0;
-plot_emissions = 0;
-plot_emissions_diff = []; %Type in a specific day to compare (yyyy-mm-dd), set to [] for none, or set to 1 for peak day of base compare
+plot_emissions = 1;
+plot_emissions_diff = 1; %Type in a specific day to compare (yyyy-mm-dd), set to [] for none, or set to 1 for peak day of base compare
 plot_storage = 0;
 plot_storage_perc=0;    %Plot storage as a % of total feeder consumption
 
 % Flag for impact matrix
-generate_impact_matrix = 1;
+generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
 plot_monthly_peak = 0;
@@ -594,6 +594,16 @@ if (~isempty(plot_emissions_diff))
         %Determine number of locations (feeders)
         NumLocations=size(data_t0,1);
         
+        %Form marginal generation list
+        MarginalGenList=[   {' Nuclear'	' Nuclear'	' Nuclear'	' Nuclear'	' Nuclear'};
+                            {'   Solar'	'   Solar'	'   Solar'	'   Solar'	'   Solar'};
+                            {' Biomass'	' Biomass'	' Biomass'	' Biomass'	' Biomass'};
+                            {'    Wind'	'    Wind'	'    Wind'	'    Wind'	'    Wind'};
+                            {'   Hydro'	'    Coal'	'    Coal'	'    Coal'	' Nat Gas'};
+                            {' Nat Gas'	' Nat Gas'	' Nat Gas'	' Nat Gas'	'    Coal'};
+                            {'    Coal'  '   Hydro'	'   Hydro'	'   Hydro'	'   Hydro'};
+                            {'GeoTherm'	'GeoTherm'	'GeoTherm'	'GeoTherm'	'GeoTherm'};
+                            {'   Petro'	'   Petro'	'   Petro'	'   Petro'	'   Petro'}];
         %Loop it
         for feederNum=1:NumLocations
             
@@ -620,7 +630,7 @@ if (~isempty(plot_emissions_diff))
             %Plot the values
             fname = ['t9_difference of CO2 emission by feeder ' data_labels{feederNum}];
             set_figure_size(fname);
-            PLData=plot(TimeStampPlots,dataValA(startDateIndex:endDateIndex),TimeStampPlots,dataValB(startDateIndex:endDateIndex),'LineWidth',2);
+            PLData=plot(TimeStampPlots,dataValA(startDateIndex:endDateIndex,1),TimeStampPlots,dataValB(startDateIndex:endDateIndex,1),'LineWidth',2);
             set(PLData(2),'Color',[0.5 0 0]);
             xlabel(['Time, hours - ' datestr(startDateIndexValue,'mmmm dd,yyyy')]);
             set(gca,'XTick',[0 6 12 18 24])
@@ -629,6 +639,37 @@ if (~isempty(plot_emissions_diff))
             my_legend = {'Base';'w/TES'};
 
             set_figure_graphics_time_series([output_dir '\' fname],2,my_legend,0,'northoutside','horizontal');
+            close(fname);
+            
+            %Set regional number
+            if (feederNum==1) || ((feederNum>=6) && (feederNum<=10))
+                RegionalNum=1;
+            elseif (feederNum==2) || ((feederNum>=11) && (feederNum<=15))
+                RegionalNum=2;
+            elseif (feederNum==3) || ((feederNum>=16) && (feederNum<=18))
+                RegionalNum=3;
+            elseif (feederNum==4) || ((feederNum>=19) && (feederNum<=21))
+                RegionalNum=4;
+            elseif (feederNum==5) || ((feederNum>=22) && (feederNum<=28))
+                RegionalNum=5;
+            else
+                error('Unknown region');
+            end
+            
+            %Marginal generation plots
+            fname = ['t9_Marginal Generator at feeder ' data_labels{feederNum}];
+            set_figure_size(fname);
+            PLData=plot(TimeStampPlots,dataValA(startDateIndex:endDateIndex,7),TimeStampPlots,dataValB(startDateIndex:endDateIndex,7),'LineWidth',2);
+            ylim([1 9]);
+            set(gca,'YTick',(1:9));
+            set(gca,'YTickLabel',MarginalGenList(:,RegionalNum));
+            set(PLData(2),'Color',[0.5 0 0]);
+            xlabel(['Time, hours - ' datestr(startDateIndexValue,'mmmm dd,yyyy')]);
+            set(gca,'XTick',[0 6 12 18 24])
+            xlim([0 24]);
+            my_legend = {'Base';'w/TES'};
+
+            set_figure_graphics_time_series([output_dir '\' fname],0,my_legend,0,'northoutside','horizontal');
             close(fname);
 
             
@@ -684,7 +725,7 @@ if (~isempty(plot_emissions_diff))
             %Plot the values
             fname = ['t9_difference of CO2 emission by feeder ' data_labels{feederNum}];
             set_figure_size(fname);
-            PLData=plot(TimeStampPlots,dataValA(startDateIndex:endDateIndex),TimeStampPlots,dataValB(startDateIndex:endDateIndex),'LineWidth',2);
+            PLData=plot(TimeStampPlots,dataValA(startDateIndex:endDateIndex,1),TimeStampPlots,dataValB(startDateIndex:endDateIndex,1),'LineWidth',2);
             set(PLData(2),'Color',[0.5 0 0]);
             xlabel('Time, hours');
             ylabel('Tons');
