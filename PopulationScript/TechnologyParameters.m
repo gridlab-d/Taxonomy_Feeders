@@ -204,18 +204,18 @@ elseif data.tech_flag == 8
     use_flags.use_homes = 1;
     use_flags.use_commercial = 1;
     use_flags.use_billing = 1;
-    use_flags.use_emissions = 0;
+    use_flags.use_emissions = 1;
     use_flags.use_capacitor_outtages = 1;
     use_flags.use_vvc = 0;
     data.measure_losses = 1; 
     data.dump_bills = 1;
-    data.measure_capacitors = 0;
+    data.measure_capacitors = 1;
     data.measure_regulators = 1;   
     data.collect_setpoints = 1;    
     data.measure_EOL_voltage = 0;
     data.measure_loads = 1;
     data.include_stats = 1;
-    use_flags.use_market = 3;
+    use_flags.use_market = 1;
     data.meter_consumption = 2;
     data.dump_voltage = 0;   
     data.measure_market = 1;
@@ -280,8 +280,8 @@ elseif data.tech_flag == 11
     data.dump_bills = 1;
     data.measure_capacitors = 0;
     data.measure_regulators = 1;   
-    data.collect_setpoints = 0;    
-    data.measure_EOL_voltage = 0;
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 1;
     data.measure_loads = 1;
     
     %Prints stats at bottom of GLM
@@ -315,8 +315,8 @@ elseif data.tech_flag == 12
     data.dump_bills = 1;
     data.measure_capacitors = 0;
     data.measure_regulators = 1;   
-    data.collect_setpoints = 0;    
-    data.measure_EOL_voltage = 0;
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 1;
     data.measure_loads = 1;
     
     %Prints stats at bottom of GLM
@@ -348,8 +348,8 @@ elseif data.tech_flag == 13
     data.dump_bills = 1;
     data.measure_capacitors = 0;
     data.measure_regulators = 1;   
-    data.collect_setpoints = 0;    
-    data.measure_EOL_voltage = 0;
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 1;
     data.measure_loads = 1;
     
     %Prints stats at bottom of GLM
@@ -382,7 +382,7 @@ elseif data.tech_flag == 14
     data.dump_bills = 1;
     data.measure_capacitors = 0;
     data.measure_regulators = 1;   
-    data.collect_setpoints = 0;    
+    data.collect_setpoints = 1;    
     data.measure_EOL_voltage = 0;
     data.measure_loads = 1;
     
@@ -474,8 +474,8 @@ if (use_flags.use_market ~= 0)
     elseif (use_flags.use_market == 2)
         data.two_tier_cpp = 'true';
     elseif (use_flags.use_market == 3)
-        
-    end
+
+    end    
     if (data.use_tech == 1)
         data.daily_elasticity = {'daily_elasticity_wtech'};
         data.sub_elas_12 = -0.152; % TOU substitution elasticity (average)
@@ -487,13 +487,13 @@ if (use_flags.use_market ~= 0)
     end
     
     % A lot of these values aren't used, except in an RTP market
-    data.market_info = {'Market_1'; % name of market - this IS used
-                        900; % period of market - this IS used
+    data.market_info = {'Market_1';
+                        900;
                         'avg24';
                         'std24';
                         1.0;
                         'price_player';
-                        1.0; % percent penetration - this IS used
+                        1.0;
                         };
     
 end
