@@ -3911,7 +3911,34 @@ for tax_ind=1:no_of_tax
             end
         end
     end
+ if (use_flags.use_wind == 1)
+       disp('Adding Wind Generator')
+       % TODO: pull all of these out and put into tech parameters
+      fprintf(write_file, 'object meter { \n');    
+      fprintf(write_file, 'parent GC-12-47-1_node_16;\n');
+	  fprintf(write_file, 'name GC-12-47-1_meter_16;\n');     
+      fprintf(write_file, 'phases ABCN;\n');     
+      fprintf(write_file, 'nominal_voltage 7200;\n');     
+      fprintf(write_file, 'voltage_A 7200+0.0j; \n');    
+      fprintf(write_file, 'voltage_B -3600-6235j;\n');     
+      fprintf(write_file, 'voltage_C -3600+6235j;\n'); 
+      fprintf(write_file, '} \n');
 
+       fprintf(write_file,'object windturb_dg { \n');
+       fprintf(write_file,'parent GC-12-47-1_meter_16;\n');
+       fprintf(write_file,'name GC-12-47-1_node_16_wdg; \n');
+       fprintf(write_file,'phases "ABCN"; \n');
+       fprintf(write_file,'Gen_status ONLINE;\n');
+       fprintf(write_file,'Gen_type SYNCHRONOUS; \n');
+       fprintf(write_file,'Gen_mode CONSTANTP; \n');
+       fprintf(write_file,'Turbine_Model VESTAS_V82;\n');
+       fprintf(write_file,'     object recorder { \n');
+       fprintf(write_file,'     file %s_wind_power.csv;\n',tech_file);
+       fprintf(write_file,'     interval 900; \n');
+       fprintf(write_file,'     property TotalRealPow; \n');
+       fprintf(write_file,'     }; \n');
+       fprintf(write_file,'  } \n');
+ end
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
@@ -4132,7 +4159,7 @@ for tax_ind=1:no_of_tax
         if (total_houses > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=house AND groupid=Residential";\n');
-            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint,avg(air_temperature));\n');
+            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint,avg(air_temperature),sum(is_AUX_on),sum(is_HEAT_on),sum(is_COOL_on));\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_res_setpoints.csv;\n',tech_file);
@@ -4142,7 +4169,7 @@ for tax_ind=1:no_of_tax
         if (ph3_meter + ph1_meter > 0)
             fprintf(write_file,'object collector {\n');
             fprintf(write_file,'     group "class=house AND groupid=Commercial";\n');
-            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint,avg(air_temperature));\n');
+            fprintf(write_file,'     property avg(cooling_setpoint),avg(heating_setpoint,avg(air_temperature),sum(is_AUX_on),sum(is_HEAT_on),sum(is_COOL_on));\n');
             fprintf(write_file,'     interval %d;\n',tech_data.meas_interval);
             fprintf(write_file,'     limit %d;\n',tech_data.meas_limit);
             fprintf(write_file,'     file %s_comm_setpoints.csv;\n',tech_file);
