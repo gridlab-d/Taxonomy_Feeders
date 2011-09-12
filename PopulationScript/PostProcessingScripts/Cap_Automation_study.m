@@ -29,7 +29,7 @@ generate_impact_matrix = 0;
 plot_monthly_peak = 0;
 plot_monthly_energy = 0;
 plot_monthly_losses = 0;
-plot_monthly_emissions = 1;
+plot_monthly_emissions = 0;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -58,7 +58,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000000,'barwidth',0.9);
     ylabel('Energy Consumption (GWh)');
     my_legend = {'Base Case';'CA'};
-    set_figure_graphics(data_labels,fname,1,my_legend,2,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
     legend('Base Case','CA')
     hold off;
     close(fname);
@@ -79,7 +79,7 @@ if (plot_energy == 1)
     hold on;
     bar(percent_energy_reduction);
     ylabel('Change in Energy Consumption (%)');
-    set_figure_graphics(data_labels,fname,2,'none',.03,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -540,7 +540,7 @@ if (plot_losses == 1)
     hold on;
     bar(percent_loss_reduction,'barwidth',0.9);
     ylabel('Change in Losses (%)');
-    set_figure_graphics(data_labels,fname,2,'none',.03,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',.00,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -613,7 +613,7 @@ if (plot_emissions == 1)
     bar(emissions_data,'barwidth',0.9);
     ylabel('CO_2 Emissions (tons)');
     my_legend = {'Base';'CA'};
-    set_figure_graphics(data_labels,fname,1,my_legend,.02,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,1,my_legend,.00,'northoutside',1,0,'horizontal');
     
     hold off;
     close(fname);
@@ -634,7 +634,7 @@ if (plot_emissions == 1)
     hold on;
     bar(percent_emissions_change);
     ylabel('Change in CO_2 Emissions (%)');
-    set_figure_graphics(data_labels,fname,2,'none',1,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',0,'northoutside',1,0,'horizontal');
     hold off;
     close(fname);
     
@@ -1279,18 +1279,18 @@ if ( generate_impact_matrix == 1)
     
     
     % Write t0 values to the Excel file
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t0,'Base','AP4:AW35')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t0,'Base','AH4:AK35')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t0,'Base','Z4:AC35')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t0,'Base','P4:U35')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t0,'Base','F4:K35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t0,'Base','AP4:AW35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t0,'Base','AH4:AK35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t0,'Base','Z4:AC35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t0,'Base','P4:U35')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t0,'Base','F4:K35')
     
     % Write t2 values to the Excel file
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t2,'For t2','AP4:AW32')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t2,'For t2','AH4:AK32')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t2,'For t2','Z4:AC32')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t2,'For t2','P4:U32')
-    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t2,'For t2','F4:K32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R5_t2,'For t2','AP4:AW32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R4_t2,'For t2','AH4:AK32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R3_t2,'For t2','Z4:AC32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R2_t2,'For t2','P4:U32')
+    xlswrite('C:\PNNL Work\Current Projects\Grid Lab-D\2011\Analysis\Completed Reports\DA Report\Excel Sheets for Report\SGIG Metrics.xlsx',impact_matrix_R1_t2,'For t2','F4:K32')
 else
     % Will not calculate the impact matrices
     
