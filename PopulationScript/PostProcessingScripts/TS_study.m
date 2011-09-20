@@ -25,20 +25,20 @@ plot_energy = 0;
 plot_peak_power = 0;
 plot_EOL = 0;
 plot_losses = 0;
-plot_emissions = 1;
-plot_emissions_diff = 1; %Type in a specific day to compare (yyyy-mm-dd), set to [] for none, or set to 1 for peak day of base compare
-plot_storage = 0;
-plot_storage_perc=0;    %Plot storage as a % of total feeder consumption
+plot_emissions = 0;
+plot_emissions_diff = 0; %Type in a specific day to compare (yyyy-mm-dd), set to [] for none, or set to 1 for peak day of base compare
+plot_storage = 1;
+plot_storage_perc=1;    %Plot storage as a % of total feeder consumption
 
 % Flag for impact matrix
 generate_impact_matrix = 0;
 
 % secondary flags for sub-plots
-plot_monthly_peak = 0;
-plot_monthly_energy = 0;
-plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
-plot_monthly_storage = 0;
+plot_monthly_peak = 1;
+plot_monthly_energy = 1;
+plot_monthly_losses = 1;
+plot_monthly_emissions = 1;
+plot_monthly_storage = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -67,7 +67,7 @@ if (plot_energy == 1)
     bar(energy_data / 1000000000,'barwidth',0.9);
     ylabel('Energy Consumption (GWh)');
     my_legend={'Base'; 'w/TES'};
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal',[],[],[min(energy_data(:)) max(energy_data(:))]/1000000000);
     hold off;
     close(fname);
     
@@ -87,7 +87,7 @@ if (plot_energy == 1)
     hold on;
     bar(percent_energy_reduction);
     ylabel('Change in Energy Consumption (%)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0.05,'northeastoutside');
+    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0,'northeastoutside',1,0,'horizontal',[],[],[min(percent_energy_reduction(:)) max(percent_energy_reduction(:))]);
     hold off;
     close(fname);
     
@@ -155,7 +155,7 @@ if (plot_peak_power == 1)
     bar(peak_power_data / 1000000,'barwidth',0.9);
     ylabel('Peak Load (MW)');
     my_legend = {'Base';'w/TES'};
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal',[],[],[min(peak_power_data(:)) max(peak_power_data(:))]/1000000);
     hold off;
     close(fname);
     
@@ -167,7 +167,7 @@ if (plot_peak_power == 1)
     hold on;
     bar((peak_power_data(:,2)-peak_power_data(:,1))/1000);
     ylabel('Change in Peak Load (kW)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,[output_dir '\' fname],1,'none',0,'northeastoutside',1,0,'horizontal',[],[],[min((peak_power_data(:,2)-peak_power_data(:,1))) max((peak_power_data(:,2)-peak_power_data(:,1)))]/1000);
     hold off;
     close(fname);
     
@@ -178,7 +178,7 @@ if (plot_peak_power == 1)
     hold on;
     bar(delta_peak_power);
     ylabel('Change in Peak Load (%)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0.05,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0.05,'northoutside',1,0,'horizontal',[],[],[min(delta_peak_power) max(delta_peak_power)]);
     hold off;
     close(fname);
 
@@ -217,7 +217,7 @@ if (plot_peak_power == 1)
             bar(peak_power_data / 1000000,'barwidth',0.9);
             ylabel('Peak Load (MW)');
             my_legend = {'Base';'w/TES'};
-            set_figure_graphics(monthly_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0,'horizontal');
+            set_figure_graphics(monthly_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0,'horizontal',[],[],[min(peak_power_data(:)) max(peak_power_data(:))]/1000000);
             hold off;
             close(fname);
             
@@ -403,7 +403,7 @@ if (plot_losses == 1)
     hold on;
     bar(loss_data / 1000000000,'barwidth',0.9);
     ylabel('Losses (GWh)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0,'horizontal',[],[],[min(loss_data) max(loss_data)]/1000000000);
     hold off;
     close(fname);
             
@@ -413,7 +413,7 @@ if (plot_losses == 1)
     hold on;
     bar(loss_reduction / 1000000,'barwidth',0.9);
     ylabel('Change in Losses (MWh)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,'none',0,'northeastoutside',1);
+    set_figure_graphics(data_labels,[output_dir '\' fname],3,'none',0.01,'northeastoutside',1,0,'horizontal',[],[],[min(loss_reduction) max(loss_reduction)]/1000000);
     hold off;
     close(fname);
     
@@ -423,7 +423,7 @@ if (plot_losses == 1)
     hold on;
     bar(percent_loss_reduction,'barwidth',0.9);
     ylabel('Change in Losses (%)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0,'northeastoutside',1);
+    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0,'northeastoutside',1,0,'horizontal',[],[],[min(percent_loss_reduction) max(percent_loss_reduction)]);
     hold off;
     close(fname);
 
@@ -460,8 +460,7 @@ if (plot_losses == 1)
             tVals=bar(monthly_losses / 1000000,'barwidth',0.9);
             ylabel('Monthly Losses (MWh)');
             my_legend = {'OHL-Base';'OHL-TES';'UGL-Base';'UGL-TES';'TFR-Base';'TFR-TES';'TPL-Base';'TPL-TES'};
-%             set_figure_graphics_test(monthly_labels,[output_dir '\' fname],3,my_legend,0.5,'northoutside',1,tVals,4,0.138);
-            set_figure_graphics(monthly_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0.138,[],tVals,4);
+            set_figure_graphics(monthly_labels,[output_dir '\' fname],3,my_legend,0,'northoutside',1,0.138,[],tVals,4,[min(monthly_losses) max(monthly_losses)]/1000000);
             hold off;
             close(fname);
 
@@ -493,7 +492,7 @@ if (plot_emissions == 1)
     bar(emissions_data/1000,'barwidth',0.9);
     ylabel('CO_2 Emissions (kilotons)');
     my_legend = {'Base';'w/TES'};
-    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],1,my_legend,0,'northoutside',1,0,'horizontal',[],[],[min(emissions_data) max(emissions_data)]/1000);
     
     hold off;
     close(fname);
@@ -504,7 +503,7 @@ if (plot_emissions == 1)
     hold on;
     bar(emissions_data(:,2)-emissions_data(:,1));
     ylabel('Change in CO_2 Emissions (tons)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',-0.05,'northeastoutside',1);
+    set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0.0,'northeastoutside',1,0,'horizontal',[],[],[min((emissions_data(:,2)-emissions_data(:,1))) max((emissions_data(:,2)-emissions_data(:,1)))]);
     hold off;
     close(fname);
 %     
@@ -514,7 +513,7 @@ if (plot_emissions == 1)
     hold on;
     bar(percent_emissions_change);
     ylabel('Change in CO_2 Emissions (%)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0.025,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,[output_dir '\' fname],2,'none',0.025,'northoutside',1,0,'horizontal',[],[],[min(percent_emissions_change) max(percent_emissions_change)]);
     hold off;
     close(fname);
     
@@ -549,7 +548,8 @@ if (plot_emissions == 1)
             bar(monthly_emissions_data,'barwidth',0.9);
             ylabel('CO_2 Emissions (tons)');
             my_legend = {'Base';'w/TES'};
-            set_figure_graphics(monthly_labels,[output_dir '\' fname],0,my_legend,0,'northoutside',1,0,'horizontal');
+%             set_figure_graphics(monthly_labels,[output_dir '\' fname],0,my_legend,0,'northoutside',1,0,'horizontal');
+            set_figure_graphics(monthly_labels,[output_dir '\' fname],0,my_legend,0,'northoutside',1,0,'horizontal',[],[],[min(monthly_emissions_data) max(monthly_emissions_data)]);
             hold off;
             close(fname);
         end
@@ -558,12 +558,20 @@ if (plot_emissions == 1)
 end% End of emissions plots
 
 %% Emissions difference plot
+
+%Extra check to stop my own stupidity
+if (~isempty(plot_emissions_diff))
+    if (plot_emissions_diff==0)
+        plot_emissions_diff=[];
+    end
+end
+
 if (~isempty(plot_emissions_diff))
     
     %If set to 1, just use peak value
     if (plot_emissions_diff==1)
         %Load in the peak values - do from t0
-        load([write_dir,'peak_15days_ t0.mat']);
+        load([write_dir,'peak_15days_t0.mat']);
         
         %Load in emissions information
         load([write_dir,'emissions_t0.mat']);
@@ -638,7 +646,8 @@ if (~isempty(plot_emissions_diff))
             xlim([0 24]);
             my_legend = {'Base';'w/TES'};
 
-            set_figure_graphics_time_series([output_dir '\' fname],2,my_legend,0,'northoutside','horizontal');
+            disp([fname ' - ' num2str(max([dataValA(startDateIndex:endDateIndex,1); dataValB(startDateIndex:endDateIndex,1)]))]);
+            set_figure_graphics_time_series([output_dir '\' fname],2,my_legend,0,'northoutside','horizontal',[min([dataValA(startDateIndex:endDateIndex,1); dataValB(startDateIndex:endDateIndex,1)]) max([dataValA(startDateIndex:endDateIndex,1); dataValB(startDateIndex:endDateIndex,1)])]);
             close(fname);
             
             %Set regional number
@@ -732,7 +741,7 @@ if (~isempty(plot_emissions_diff))
             xlim([0 24]);
             my_legend = {'Base';'w/TES'};
 
-            set_figure_graphics_time_series([output_dir '\' fname],2,my_legend,0.5,'northeastoutside');
+            set_figure_graphics_time_series([output_dir '\' fname],2,my_legend,0.5,'northeastoutside',[],[min([dataValA(startDateIndex:endDateIndex,1); dataValB(startDateIndex:endDateIndex,1)]) max([dataValA(startDateIndex:endDateIndex,1); dataValB(startDateIndex:endDateIndex,1)])]);
             close(fname);
         end
 
@@ -771,7 +780,7 @@ if (plot_storage == 1)
     hold on;
     bar(storage_MWh_data,'barwidth',0.9);
     ylabel('Storage Dispatch (MWh)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1,0,[],[],[],[min(storage_MWh_data) max(storage_MWh_data)]);
     hold off;
     close(fname);
     
@@ -781,7 +790,7 @@ if (plot_storage == 1)
     hold on;
     bar(storage_SOC_min,'barwidth',0.9);
     ylabel('Storage Minimum SOC (%)');
-    set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0,'northeastoutside');
+    set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1,0,[],[],[],[0 100]);
     hold off;
     close(fname);
     
@@ -804,7 +813,7 @@ if (plot_storage == 1)
         hold on;
         bar(percent_storage_energy,'barwidth',0.9);
         ylabel('Storage Dispatch (% feeder energy)');
-        set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0,'northeastoutside');
+        set_figure_graphics(data_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1,0,[],[],[],[min(percent_storage_energy) max(percent_storage_energy)]);
         hold off;
         close(fname);
         
@@ -845,7 +854,7 @@ if (plot_storage == 1)
             hold on;
             bar(monthly_storage_MWh_data(fIndex,:),'barwidth',0.9);
             ylabel('Storage Dispatch (MWh)');
-            set_figure_graphics(monthly_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1);
+            set_figure_graphics(monthly_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1,0,[],[],[],[min(monthly_storage_MWh_data(fIndex,:)) max(monthly_storage_MWh_data(fIndex,:))]);
             hold off;
             close(fname);
             
@@ -855,7 +864,7 @@ if (plot_storage == 1)
             hold on;
             bar(monthly_storage_SOC_data(fIndex,:),'barwidth',0.9);
             ylabel('Storage Minimum SOC (%)');
-            set_figure_graphics(monthly_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1);
+            set_figure_graphics(monthly_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1,0,[],[],[],[0 100]);
             hold off;
             close(fname);
             
@@ -873,7 +882,7 @@ if (plot_storage == 1)
                 hold on;
                 bar(percent_energy_storage_monthly,'barwidth',0.9);
                 ylabel('Storage Dispatch (% of feeder energy)');
-                set_figure_graphics(monthly_labels,[output_dir '\' fname],0,'none',0,'northeastoutside');
+                set_figure_graphics(monthly_labels,[output_dir '\' fname],0,'none',0,'northeastoutside',1,0,[],[],[],[min(percent_energy_storage_monthly) max(percent_energy_storage_monthly)]);
                 hold off;
                 close(fname);
                 
@@ -888,24 +897,18 @@ end % End of storage plots
 if ( generate_impact_matrix == 1)
     
     %Create the impact matrices
-    impact_matrix_R1_t0=zeros(32,6);
-    impact_matrix_R2_t0=zeros(32,6);
-    impact_matrix_R3_t0=zeros(32,4);
-    impact_matrix_R4_t0=zeros(32,4);
-    impact_matrix_R5_t0=zeros(32,8);
+    impact_matrix_R1_t0=zeros(27,6);
+    impact_matrix_R2_t0=zeros(27,6);
+    impact_matrix_R3_t0=zeros(27,4);
+    impact_matrix_R4_t0=zeros(27,4);
+    impact_matrix_R5_t0=zeros(27,8);
 
-    impact_matrix_R1_t9=zeros(30,6);
-    impact_matrix_R2_t9=zeros(30,6);
-    impact_matrix_R3_t9=zeros(30,4);
-    impact_matrix_R4_t9=zeros(30,4);
-    impact_matrix_R5_t9=zeros(30,8);
+    impact_matrix_R1_t9=zeros(27,6);
+    impact_matrix_R2_t9=zeros(27,6);
+    impact_matrix_R3_t9=zeros(27,4);
+    impact_matrix_R4_t9=zeros(27,4);
+    impact_matrix_R5_t9=zeros(27,8);
 
-    impact_matrix_R1_diff_t9=zeros(28,6);
-    impact_matrix_R2_diff_t9=zeros(28,6);
-    impact_matrix_R3_diff_t9=zeros(28,4);
-    impact_matrix_R4_diff_t9=zeros(28,4);
-    impact_matrix_R5_diff_t9=zeros(28,8);
-    
     %Load in storage values
     load([write_dir,'storage_values_t9.mat']);
     data_t9 = storage_values;
@@ -917,34 +920,22 @@ if ( generate_impact_matrix == 1)
     clear storage_values storage_values;
     
     %Put storage into t9 impact - Annual storage dispatch
-    matrix_index_t9=22;
+    matrix_index_t9=19;
     impact_matrix_R1_t9(matrix_index_t9,:)=[storage_MWh_data(1) storage_MWh_data(6:10).'];
     impact_matrix_R2_t9(matrix_index_t9,:)=[storage_MWh_data(2) storage_MWh_data(11:15).'];
     impact_matrix_R3_t9(matrix_index_t9,:)=[storage_MWh_data(3) storage_MWh_data(16:18).'];
     impact_matrix_R4_t9(matrix_index_t9,:)=[storage_MWh_data(4) storage_MWh_data(19:21).'];
     impact_matrix_R5_t9(matrix_index_t9,:)=[storage_MWh_data(5) storage_MWh_data(22:28).'];
     
-    matrix_index_diff_t9=21;
-    impact_matrix_R1_diff_t9(matrix_index_diff_t9,:)=impact_matrix_R1_t9(matrix_index_t9,:);
-    impact_matrix_R2_diff_t9(matrix_index_diff_t9,:)=impact_matrix_R2_t9(matrix_index_t9,:);
-    impact_matrix_R3_diff_t9(matrix_index_diff_t9,:)=impact_matrix_R3_t9(matrix_index_t9,:);
-    impact_matrix_R4_diff_t9(matrix_index_diff_t9,:)=impact_matrix_R4_t9(matrix_index_t9,:);
-    impact_matrix_R5_diff_t9(matrix_index_diff_t9,:)=impact_matrix_R5_t9(matrix_index_t9,:);
-    
     %Annual storage efficiency - based on equivalent production during discharge times
     
-    matrix_index_t9=23;
-%     impact_matrix_R1_t9(matrix_index_t9,:)=100*ones(1,6);
-%     impact_matrix_R2_t9(matrix_index_t9,:)=100*ones(1,6);
-%     impact_matrix_R3_t9(matrix_index_t9,:)=100*ones(1,4);
-%     impact_matrix_R4_t9(matrix_index_t9,:)=100*ones(1,4);
-%     impact_matrix_R5_t9(matrix_index_t9,:)=100*ones(1,8);
+    matrix_index_t9=20;
     impact_matrix_R1_t9(matrix_index_t9,:)=[storage_efficiency_data(1) storage_efficiency_data(6:10).'];
     impact_matrix_R2_t9(matrix_index_t9,:)=[storage_efficiency_data(2) storage_efficiency_data(11:15).'];
     impact_matrix_R3_t9(matrix_index_t9,:)=[storage_efficiency_data(3) storage_efficiency_data(16:18).'];
     impact_matrix_R4_t9(matrix_index_t9,:)=[storage_efficiency_data(4) storage_efficiency_data(19:21).'];
     impact_matrix_R5_t9(matrix_index_t9,:)=[storage_efficiency_data(5) storage_efficiency_data(22:28).'];
-    
+
     % Index 1 & 2 (Hourly & Monthly end use customer electricty usage)
     load([write_dir,'total_energy_consumption_t0.mat']);
     data_t0 = energy_consumption;
@@ -999,12 +990,6 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t9(matrix_index_t9,1)=hourly_customer_usage_t9(5,1);
     impact_matrix_R5_t9(matrix_index_t9,2:8)=hourly_customer_usage_t9(22:28,1)';
 
-    impact_matrix_R1_diff_t9(matrix_index_t9,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
-    
     matrix_index_t0=2;
     matrix_index_t9=2;
     impact_matrix_R1_t0(matrix_index_t0,1)=monthly_customer_usage_t0(1,1);
@@ -1029,12 +1014,6 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t9(matrix_index_t9,1)=monthly_customer_usage_t9(5,1);
     impact_matrix_R5_t9(matrix_index_t9,2:8)=monthly_customer_usage_t9(22:28,1)';
     
-    impact_matrix_R1_diff_t9(matrix_index_t9,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
-  
     clear data_t0 data_t9 data_t0_2 data_t9_2 hourly_customer_usage_t0 hourly_customer_usage_t9 monthly_customer_usage_t0 monthly_customer_usage_t9 temp temp2
     
     % Index 3 % 4(Peak generation % percentages and peak load)
@@ -1078,12 +1057,6 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R4_t9(matrix_index_t9,2:4)=peak_power_t9(19:21,1)';
     impact_matrix_R5_t9(matrix_index_t9,1)=peak_power_t9(5,1);
     impact_matrix_R5_t9(matrix_index_t9,2:8)=peak_power_t9(22:28,1)';
-    
-    impact_matrix_R1_diff_t9(matrix_index_t9,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
     
     % Generator percentages
     load([write_dir,'emissions_t0.mat']);
@@ -1190,63 +1163,11 @@ if ( generate_impact_matrix == 1)
     
     clear temp1 temp2 Temp_R1 Temp_R2 Temp_R3 Temp_R4 Temp_R5 Temp_R6 Temp_R7 Temp_R8 Temp_R9 Temp_R10 matrix_index_start matrix_index_stop
     
-    % Fill in zero values for distributed solar and wind
-    matrix_index_start_t0=13;
-    matrix_index_stop_t0=14;
-    for i=matrix_index_start_t0:matrix_index_stop_t0
-        matrix_index=i;
-        impact_matrix_R1_t0(matrix_index,1)=0;
-        impact_matrix_R1_t0(matrix_index,2:6)=0;
-        impact_matrix_R2_t0(matrix_index,1)=0;
-        impact_matrix_R2_t0(matrix_index,2:6)=0;
-        impact_matrix_R3_t0(matrix_index,1)=0;
-        impact_matrix_R3_t0(matrix_index,2:4)=0;
-        impact_matrix_R4_t0(matrix_index,1)=0;
-        impact_matrix_R4_t0(matrix_index,2:4)=0;
-        impact_matrix_R5_t0(matrix_index,1)=0;
-        impact_matrix_R5_t0(matrix_index,2:8)=0;
-        
-        
-    end
-    
-    matrix_index_start_t9=13;
-    matrix_index_stop_t9=14;
-    for i=matrix_index_start_t9:matrix_index_stop_t9
-        matrix_index=i;
-        impact_matrix_R1_t9(matrix_index,1)=0;
-        impact_matrix_R1_t9(matrix_index,2:6)=0;
-        impact_matrix_R2_t9(matrix_index,1)=0;
-        impact_matrix_R2_t9(matrix_index,2:6)=0;
-        impact_matrix_R3_t9(matrix_index,1)=0;
-        impact_matrix_R3_t9(matrix_index,2:4)=0;
-        impact_matrix_R4_t9(matrix_index,1)=0;
-        impact_matrix_R4_t9(matrix_index,2:4)=0;
-        impact_matrix_R5_t9(matrix_index,1)=0;
-        impact_matrix_R5_t9(matrix_index,2:8)=0;
-        
-    end
-
-    %Diff of dispatch
-    matrix_index_start_t0=4;
-    matrix_index_stop_t0=19;
-    
-    matrix_index_start_t9=4;
-    matrix_index_stop_t9=19;
-    
-    matrix_index_start_diff_t9=4;
-    matrix_index_stop_diff_t9=19;
-
-    impact_matrix_R1_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R1_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R1_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R2_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R2_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R3_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R3_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R4_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R4_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R5_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R5_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    
     peak_demand_t0=(cell2mat(data_t0(:,2))-cell2mat(data_t0(:,4)))/1000; % Peak end use demand for t0
     peak_demand_t9=(cell2mat(data_t9(:,2))-cell2mat(data_t0(:,4)))/1000; % Peak end use demand for t9
     % Convert to kW
     
-    matrix_index_t0=15;
+    matrix_index_t0=13;
     impact_matrix_R1_t0(matrix_index_t0,1)=peak_demand_t0(1,1);
     impact_matrix_R1_t0(matrix_index_t0,2:6)=peak_demand_t0(6:10,1)';
     impact_matrix_R2_t0(matrix_index_t0,1)=peak_demand_t0(2,1);
@@ -1258,7 +1179,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t0(matrix_index_t0,1)=peak_demand_t0(5,1);
     impact_matrix_R5_t0(matrix_index_t0,2:8)=peak_demand_t0(22:28,1)';
    
-    matrix_index_t9=15;
+    matrix_index_t9=13;
     impact_matrix_R1_t9(matrix_index_t9,1)=peak_demand_t9(1,1);
     impact_matrix_R1_t9(matrix_index_t9,2:6)=peak_demand_t9(6:10,1)';
     impact_matrix_R2_t9(matrix_index_t9,1)=peak_demand_t9(2,1);
@@ -1270,37 +1191,6 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t9(matrix_index_t9,1)=peak_demand_t9(5,1);
     impact_matrix_R5_t9(matrix_index_t9,2:8)=peak_demand_t9(22:28,1)';
 
-    impact_matrix_R1_diff_t9(matrix_index_t9,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
-    
-    % Controllable load is 0% for TES
-    matrix_index_t0=16;
-    impact_matrix_R1_t0(matrix_index_t0,1)=0;
-    impact_matrix_R1_t0(matrix_index_t0,2:6)=0';
-    impact_matrix_R2_t0(matrix_index_t0,1)=0;
-    impact_matrix_R2_t0(matrix_index_t0,2:6)=0;
-    impact_matrix_R3_t0(matrix_index_t0,1)=0;
-    impact_matrix_R3_t0(matrix_index_t0,2:4)=0;
-    impact_matrix_R4_t0(matrix_index_t0,1)=0;
-    impact_matrix_R4_t0(matrix_index_t0,2:4)=0;
-    impact_matrix_R5_t0(matrix_index_t0,1)=0;
-    impact_matrix_R5_t0(matrix_index_t0,2:8)=0;
-    
-    matrix_index_t9=16;
-    impact_matrix_R1_t9(matrix_index_t9,1)=0;
-    impact_matrix_R1_t9(matrix_index_t9,2:6)=0;
-    impact_matrix_R2_t9(matrix_index_t9,1)=0;
-    impact_matrix_R2_t9(matrix_index_t9,2:6)=0;
-    impact_matrix_R3_t9(matrix_index_t9,1)=0;
-    impact_matrix_R3_t9(matrix_index_t9,2:4)=0;
-    impact_matrix_R4_t9(matrix_index_t9,1)=0;
-    impact_matrix_R4_t9(matrix_index_t9,2:4)=0;
-    impact_matrix_R5_t9(matrix_index_t9,1)=0;
-    impact_matrix_R5_t9(matrix_index_t9,2:8)=0;
-    
     clear data_t0 data_t9 data_t0 data_t9 peak_demand_t0 peak_demand_t9 peak_power_t0 peak_power_t9 peak_va_data peak_power_data
     
     % Index 7 (Annual Electricty production) % Index 21 (Distribution Feeder Load)
@@ -1321,7 +1211,7 @@ if ( generate_impact_matrix == 1)
     energy_consuption_t0=energy_data(:,1)/1000000;
     energy_consuption_t9=energy_data(:,2)/1000000;
     
-    matrix_index_t0=17;
+    matrix_index_t0=14;
     impact_matrix_R1_t0(matrix_index_t0,1)=energy_consuption_t0(1,1); %GC
     impact_matrix_R1_t0(matrix_index_t0,2:6)=energy_consuption_t0(6:10,1)';
     impact_matrix_R2_t0(matrix_index_t0,1)=energy_consuption_t0(2,1); %GC
@@ -1333,7 +1223,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t0(matrix_index_t0,1)=energy_consuption_t0(5,1); %GC
     impact_matrix_R5_t0(matrix_index_t0,2:8)=energy_consuption_t0(22:28,1)';
     
-    matrix_index_t9=17;
+    matrix_index_t9=14;
     impact_matrix_R1_t9(matrix_index_t9,1)=energy_consuption_t9(1,1); %GC
     impact_matrix_R1_t9(matrix_index_t9,2:6)=energy_consuption_t9(6:10,1)';
     impact_matrix_R2_t9(matrix_index_t9,1)=energy_consuption_t9(2,1); %GC
@@ -1345,12 +1235,6 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t9(matrix_index_t9,1)=energy_consuption_t9(5,1); %GC
     impact_matrix_R5_t9(matrix_index_t9,2:8)=energy_consuption_t9(22:28,1)';
 
-    impact_matrix_R1_diff_t9(matrix_index_t9-1,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9-1,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9-1,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9-1,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9-1,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
-    
     % Average hourly feeder loading (Index 21)
     energy_average_hourly_t0=energy_data(:,1)/8760000; % real power (kWH)
     energy_average_hourly_t9=energy_data(:,2)/8760000; % real power (kWH)
@@ -1359,7 +1243,7 @@ if ( generate_impact_matrix == 1)
     energy_average_hourly_t9(:,2)=energy_data(:,4)/8760000; % reactive power (kVAR)
     
     % real power
-    matrix_index_t0=25;
+    matrix_index_t0=21;
     impact_matrix_R1_t0(matrix_index_t0,1)=energy_average_hourly_t0(1,1); %GC
     impact_matrix_R1_t0(matrix_index_t0,2:6)=energy_average_hourly_t0(6:10,1)';
     impact_matrix_R2_t0(matrix_index_t0,1)=energy_average_hourly_t0(2,1); %GC
@@ -1371,7 +1255,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t0(matrix_index_t0,1)=energy_average_hourly_t0(5,1); %GC
     impact_matrix_R5_t0(matrix_index_t0,2:8)=energy_average_hourly_t0(22:28,1)';
     
-    matrix_index_t9=24;
+    matrix_index_t9=21;
     impact_matrix_R1_t9(matrix_index_t9,1)=energy_average_hourly_t9(1,1); %GC
     impact_matrix_R1_t9(matrix_index_t9,2:6)=energy_average_hourly_t9(6:10,1)';
     impact_matrix_R2_t9(matrix_index_t9,1)=energy_average_hourly_t9(2,1); %GC
@@ -1383,14 +1267,8 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t9(matrix_index_t9,1)=energy_average_hourly_t9(5,1); %GC
     impact_matrix_R5_t9(matrix_index_t9,2:8)=energy_average_hourly_t9(22:28,1)';
     
-    impact_matrix_R1_diff_t9(matrix_index_t9-2,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9-2,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9-2,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9-2,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9-2,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
-    
     % Reactive power
-    matrix_index_t0=26;
+    matrix_index_t0=22;
     impact_matrix_R1_t0(matrix_index_t0,1)=energy_average_hourly_t0(1,2); %GC
     impact_matrix_R1_t0(matrix_index_t0,2:6)=energy_average_hourly_t0(6:10,2)';
     impact_matrix_R2_t0(matrix_index_t0,1)=energy_average_hourly_t0(2,2); %GC
@@ -1402,7 +1280,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t0(matrix_index_t0,1)=energy_average_hourly_t0(5,2); %GC
     impact_matrix_R5_t0(matrix_index_t0,2:8)=energy_average_hourly_t0(22:28,2)';
     
-    matrix_index_t9=25;
+    matrix_index_t9=22;
     impact_matrix_R1_t9(matrix_index_t9,1)=energy_average_hourly_t9(1,2); %GC
     impact_matrix_R1_t9(matrix_index_t9,2:6)=energy_average_hourly_t9(6:10,2)';
     impact_matrix_R2_t9(matrix_index_t9,1)=energy_average_hourly_t9(2,2); %GC
@@ -1413,12 +1291,6 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R4_t9(matrix_index_t9,2:4)=energy_average_hourly_t9(19:21,2)';
     impact_matrix_R5_t9(matrix_index_t9,1)=energy_average_hourly_t9(5,2); %GC
     impact_matrix_R5_t9(matrix_index_t9,2:8)=energy_average_hourly_t9(22:28,2)';
-    
-    impact_matrix_R1_diff_t9(matrix_index_t9-2,:)= impact_matrix_R1_t9(matrix_index_t9,:) - impact_matrix_R1_t0(matrix_index_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_t9-2,:)= impact_matrix_R2_t9(matrix_index_t9,:) - impact_matrix_R2_t0(matrix_index_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_t9-2,:)= impact_matrix_R3_t9(matrix_index_t9,:) - impact_matrix_R3_t0(matrix_index_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_t9-2,:)= impact_matrix_R4_t9(matrix_index_t9,:) - impact_matrix_R4_t0(matrix_index_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_t9-2,:)= impact_matrix_R5_t9(matrix_index_t9,:) - impact_matrix_R5_t0(matrix_index_t0,:);
     
     clear data_t0 data_t9 energy_average_hourly_t0 energy_average_hourly_t9 energy_average_hourly_t0 energy_average_hourly_t9 energy_consuption_t0 energy_consuption_t9
     
@@ -1451,7 +1323,7 @@ if ( generate_impact_matrix == 1)
     
     impact_losses_t9=100*((energy_data(:,3)-energy_data(:,4))./energy_data(:,1));
 
-    matrix_index_t0=27;
+    matrix_index_t0=23;
     impact_matrix_R1_t0(matrix_index_t0,1)=losses_t0(1,1);
     impact_matrix_R1_t0(matrix_index_t0,2:6)=losses_t0(6:10,1)';
     impact_matrix_R2_t0(matrix_index_t0,1)=losses_t0(2,1);
@@ -1463,7 +1335,7 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R5_t0(matrix_index_t0,1)=losses_t0(5,1);
     impact_matrix_R5_t0(matrix_index_t0,2:8)=losses_t0(22:28,1)';
     
-    matrix_index_t9=26;
+    matrix_index_t9=23;
     impact_matrix_R1_t9(matrix_index_t9,1)=losses_t9(1,1);
     impact_matrix_R1_t9(matrix_index_t9,2:6)=losses_t9(6:10,1)';
     impact_matrix_R2_t9(matrix_index_t9,1)=losses_t9(2,1);
@@ -1474,39 +1346,9 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R4_t9(matrix_index_t9,2:4)=losses_t9(19:21,1)';
     impact_matrix_R5_t9(matrix_index_t9,1)=losses_t9(5,1);
     impact_matrix_R5_t9(matrix_index_t9,2:8)=losses_t9(22:28,1)';
-
-    impact_matrix_R1_diff_t9(matrix_index_t9-2,:)=[impact_losses_t9(1,1) impact_losses_t9(6:10,1).'];
-    impact_matrix_R2_diff_t9(matrix_index_t9-2,:)=[impact_losses_t9(2,1) impact_losses_t9(11:15,1).'];
-    impact_matrix_R3_diff_t9(matrix_index_t9-2,:)=[impact_losses_t9(3,1) impact_losses_t9(16:18,1).'];
-    impact_matrix_R4_diff_t9(matrix_index_t9-2,:)=[impact_losses_t9(4,1) impact_losses_t9(19:21,1).'];
-    impact_matrix_R5_diff_t9(matrix_index_t9-2,:)=[impact_losses_t9(5,1) impact_losses_t9(22:28,1).'];
     
     clear data_t0 data_t9 data_t0_2 data_t9_2 energy_data losses_t0 losses_t9 temp tem2
 
-    % Index 30 (Power Factor)
-    
-    load([write_dir,'power_factors_t0.mat']);
-    data_t0 = power_factor;
-    [no_feeders cells] = size(data_t0);
-    clear  energy_consuption anual_losses;
-    clear power_factor
-
-    power_factor_t0=cell2mat(data_t0(:,12)); % Average annual power factor for t0
-    
-    matrix_index_t0=28;
-    impact_matrix_R1_t0(matrix_index_t0,1)=power_factor_t0(1,1);
-    impact_matrix_R1_t0(matrix_index_t0,2:6)=power_factor_t0(6:10,1)';
-    impact_matrix_R2_t0(matrix_index_t0,1)=power_factor_t0(2,1);
-    impact_matrix_R2_t0(matrix_index_t0,2:6)=power_factor_t0(11:15,1)';
-    impact_matrix_R3_t0(matrix_index_t0,1)=power_factor_t0(3,1);
-    impact_matrix_R3_t0(matrix_index_t0,2:4)=power_factor_t0(16:18,1)';
-    impact_matrix_R4_t0(matrix_index_t0,1)=power_factor_t0(4,1);
-    impact_matrix_R4_t0(matrix_index_t0,2:4)=power_factor_t0(19:21,1)';
-    impact_matrix_R5_t0(matrix_index_t0,1)=power_factor_t0(5,1);
-    impact_matrix_R5_t0(matrix_index_t0,2:8)=power_factor_t0(22:28,1)';
-    
-    clear data_t0 power_factor_t0
-   
 % Index 12, 13, 39 & 40 (end use emissions & total emissions)
     load([write_dir,'emissions_t0.mat']);
     data_t0 = emissions_totals;
@@ -1542,8 +1384,8 @@ if ( generate_impact_matrix == 1)
     Temp_R10(:,2:8)=temp2(:,22:28);
     
     % Emission to supply all load (including losses)
-    matrix_index_start_t0=29;
-    matrix_index_stop_t0=32;
+    matrix_index_start_t0=24;
+    matrix_index_stop_t0=27;
     
     impact_matrix_R1_t0(matrix_index_start_t0:matrix_index_stop_t0,1:6)=Temp_R1;
     impact_matrix_R2_t0(matrix_index_start_t0:matrix_index_stop_t0,1:6)=Temp_R2;
@@ -1551,8 +1393,8 @@ if ( generate_impact_matrix == 1)
     impact_matrix_R4_t0(matrix_index_start_t0:matrix_index_stop_t0,1:4)=Temp_R4;
     impact_matrix_R5_t0(matrix_index_start_t0:matrix_index_stop_t0,1:8)=Temp_R5;
     
-    matrix_index_start_t9=27;
-    matrix_index_stop_t9=30;
+    matrix_index_start_t9=24;
+    matrix_index_stop_t9=27;
     
     impact_matrix_R1_t9(matrix_index_start_t9:matrix_index_stop_t9,1:6)=Temp_R6;
     impact_matrix_R2_t9(matrix_index_start_t9:matrix_index_stop_t9,1:6)=Temp_R7;
@@ -1563,65 +1405,63 @@ if ( generate_impact_matrix == 1)
     matrix_index_start_diff_t9=matrix_index_start_t9-2;
     matrix_index_stop_diff_t9=matrix_index_stop_t9-2;
 
-    impact_matrix_R1_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R1_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R1_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R2_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R2_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R3_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R3_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R4_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R4_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R5_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R5_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    
     % Emission to supply the end user
-    matrix_index_start_t0=18;
-    matrix_index_stop_t0=21;
+    matrix_index_start_t0=15;
+    matrix_index_stop_t0=18;
     for i=matrix_index_start_t0:matrix_index_stop_t0
-        impact_matrix_R1_t0(i,1:6)=Temp_R1(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R1_t0(27,:)/100);
-        impact_matrix_R2_t0(i,1:6)=Temp_R2(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R2_t0(27,:)/100);
-        impact_matrix_R3_t0(i,1:4)=Temp_R3(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R3_t0(27,:)/100);
-        impact_matrix_R4_t0(i,1:4)=Temp_R4(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R4_t0(27,:)/100);
-        impact_matrix_R5_t0(i,1:8)=Temp_R5(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R5_t0(27,:)/100);
+        impact_matrix_R1_t0(i,1:6)=Temp_R1(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R1_t0(23,:)/100);
+        impact_matrix_R2_t0(i,1:6)=Temp_R2(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R2_t0(23,:)/100);
+        impact_matrix_R3_t0(i,1:4)=Temp_R3(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R3_t0(23,:)/100);
+        impact_matrix_R4_t0(i,1:4)=Temp_R4(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R4_t0(23,:)/100);
+        impact_matrix_R5_t0(i,1:8)=Temp_R5(i-matrix_index_start_t0+1,:).*(1-impact_matrix_R5_t0(23,:)/100);
     end
     
-    matrix_index_start_t9=18;
-    matrix_index_stop_t9=21;
+    matrix_index_start_t9=15;
+    matrix_index_stop_t9=18;
     for i=matrix_index_start_t0:matrix_index_stop_t0
-        impact_matrix_R1_t9(i,1:6)=Temp_R6(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R1_t9(26,:)/100);
-        impact_matrix_R2_t9(i,1:6)=Temp_R7(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R2_t9(26,:)/100);
-        impact_matrix_R3_t9(i,1:4)=Temp_R8(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R3_t9(26,:)/100);
-        impact_matrix_R4_t9(i,1:4)=Temp_R9(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R4_t9(26,:)/100);
-        impact_matrix_R5_t9(i,1:8)=Temp_R10(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R5_t9(26,:)/100);
+        impact_matrix_R1_t9(i,1:6)=Temp_R6(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R1_t9(23,:)/100);
+        impact_matrix_R2_t9(i,1:6)=Temp_R7(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R2_t9(23,:)/100);
+        impact_matrix_R3_t9(i,1:4)=Temp_R8(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R3_t9(23,:)/100);
+        impact_matrix_R4_t9(i,1:4)=Temp_R9(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R4_t9(23,:)/100);
+        impact_matrix_R5_t9(i,1:8)=Temp_R10(i-matrix_index_start_t9+1,:).*(1-impact_matrix_R5_t9(23,:)/100);
     end
 
-    matrix_index_start_diff_t9=matrix_index_start_t9-1;
-    matrix_index_stop_diff_t9=matrix_index_stop_t9-1;
-
-    impact_matrix_R1_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R1_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R1_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R2_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R2_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R2_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R3_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R3_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R3_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R4_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R4_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R4_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    impact_matrix_R5_diff_t9(matrix_index_start_diff_t9:matrix_index_stop_diff_t9,:)= impact_matrix_R5_t9(matrix_index_start_t9:matrix_index_stop_t9,:) - impact_matrix_R5_t0(matrix_index_start_t0:matrix_index_stop_t0,:);
-    
     clear data_t0 data_t9 Temp_R1 Temp_R2 Temp_R3 Temp_R4 Temp_R5 Temp_R6 Temp_R7 Temp_R8 Temp_R9 Temp_R10 matrix_index_start matrix_index_stop temp1 temp2
     
+    %Create differential matrix - easier now that all aligns
+    impact_matrix_R1_diff_t9 = impact_matrix_R1_t9 - impact_matrix_R1_t0;
+    impact_matrix_R2_diff_t9 = impact_matrix_R2_t9 - impact_matrix_R2_t0;
+    impact_matrix_R3_diff_t9 = impact_matrix_R3_t9 - impact_matrix_R3_t0;
+    impact_matrix_R4_diff_t9 = impact_matrix_R4_t9 - impact_matrix_R4_t0;
+    impact_matrix_R5_diff_t9 = impact_matrix_R5_t9 - impact_matrix_R5_t0;
+    
+    %Put losses back in - percentages don't scale well
+    impact_matrix_R1_diff_t9(23,:)=[impact_losses_t9(1,1) impact_losses_t9(6:10,1).'];
+    impact_matrix_R2_diff_t9(23,:)=[impact_losses_t9(2,1) impact_losses_t9(11:15,1).'];
+    impact_matrix_R3_diff_t9(23,:)=[impact_losses_t9(3,1) impact_losses_t9(16:18,1).'];
+    impact_matrix_R4_diff_t9(23,:)=[impact_losses_t9(4,1) impact_losses_t9(19:21,1).'];
+    impact_matrix_R5_diff_t9(23,:)=[impact_losses_t9(5,1) impact_losses_t9(22:28,1).'];
     
     % Write t0 values to the Excel file
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R5_t0,'Base','AP4:AW35')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R4_t0,'Base','AH4:AK35')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R3_t0,'Base','Z4:AC35')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R2_t0,'Base','P4:U35')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R1_t0,'Base','F4:K35')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R5_t0,'Base','AP4:AW30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R4_t0,'Base','AH4:AK30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R3_t0,'Base','Z4:AC30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R2_t0,'Base','P4:U30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R1_t0,'Base','F4:K30')
     
     % Write t9 values to the Excel file
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R5_t9,'For t9','AP4:AW33')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R4_t9,'For t9','AH4:AK33')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R3_t9,'For t9','Z4:AC33')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R2_t9,'For t9','P4:U33')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R1_t9,'For t9','F4:K33')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R5_t9,'For t9','AP4:AW30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R4_t9,'For t9','AH4:AK30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R3_t9,'For t9','Z4:AC30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R2_t9,'For t9','P4:U30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R1_t9,'For t9','F4:K30')
     
     % Write t9 values to the Excel file
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R5_diff_t9,'Diff t9','AP4:AW31')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R4_diff_t9,'Diff t9','AH4:AK31')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R3_diff_t9,'Diff t9','Z4:AC31')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R2_diff_t9,'Diff t9','P4:U31')
-    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R1_diff_t9,'Diff t9','F4:K31')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R5_diff_t9,'Diff t9','AP4:AW30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R4_diff_t9,'Diff t9','AH4:AK30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R3_diff_t9,'Diff t9','Z4:AC30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R2_diff_t9,'Diff t9','P4:U30')
+    xlswrite([output_dir '\SGIG Metrics.xlsx'],impact_matrix_R1_diff_t9,'Diff t9','F4:K30')
 else
     % Will not calculate the impact matrices
     
