@@ -15,21 +15,21 @@ set_defaults();
 write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodated MAT Files\'; %Kevin
 
 % flags for types of plots
-plot_energy = 0;
-plot_peak_power = 0;
-plot_EOL = 0;
-plot_pf = 0;
-plot_losses = 0;
+plot_energy = 1;
+plot_peak_power = 1;
+plot_EOL = 1;
+plot_pf = 1;
+plot_losses = 1;
 plot_emissions = 1;
 
 % Flag for impact matrix
-generate_impact_matrix = 0;
+generate_impact_matrix = 1;
 
 % secondary flags for sub-plots
-plot_monthly_peak = 0;
-plot_monthly_energy = 0;
-plot_monthly_losses = 0;
-plot_monthly_emissions = 0;
+plot_monthly_peak = 1;
+plot_monthly_energy = 1;
+plot_monthly_losses = 1;
+plot_monthly_emissions = 1;
 monthly_labels = {'Jan';'Feb';'Mar';'April';'May';'June';'July';'Aug';'Sept';'Oct';'Nov';'Dec'};
 
 % load the energy consumption variable and save to a temp (since they have
@@ -68,7 +68,7 @@ if (plot_energy == 1)
     hold on;
     bar(energy_reduction / 1000000000);
     ylabel('Change in Energy Consumption (GWh)');
-    set_figure_graphics(data_labels,fname,1,'none',0,'northoutside',.5,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',0,'northoutside',.5,0,'horizontal',[],[],[-2 0 ]);
     hold off;
     close(fname);
     
@@ -561,7 +561,7 @@ if (plot_losses == 1)
     hold on;
     bar(loss_data / 1000000000,'barwidth',0.9);
     ylabel('Losses (GWh)');
-    set_figure_graphics(data_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,0,my_legend,0,'northoutside',1,0,'horizontal',[],[],[0 2]);
     hold off;
     close(fname);
     
@@ -624,7 +624,7 @@ if (plot_losses == 1)
             ylabel('Monthly Losses (MWh)');
             %title('Peak Demand by Feeder');
             my_legend = {'OHL-Base';'OHL-VVO';'UGL-Base';'UGL-VVO';'TFR-Base';'TFR-VVO';'TPL-Base';'TPL-VVO'};
-            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0.138,[],loss_plot,4);
+            set_figure_graphics(monthly_labels,fname,1,my_legend,0,'northoutside',1,0.138,[],loss_plot,4,[0 max(max(monthly_losses))]);
             hold off;
             close(fname);
             

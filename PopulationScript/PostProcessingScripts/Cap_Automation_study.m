@@ -16,11 +16,11 @@ write_dir = 'C:\Users\d3p313\Desktop\Post Processing Script\MAT Files\Consolodat
 
 % flags for types of plots
 plot_energy = 0;
-plot_peak_power = 0;
+plot_peak_power = 1;
 plot_EOL = 0;
 plot_pf = 0;
 plot_losses = 0;
-plot_emissions = 1;
+plot_emissions = 0;
 
 % Flag for impact matrix
 generate_impact_matrix = 0;
@@ -134,8 +134,11 @@ if (plot_peak_power == 1)
     data_labels = strrep(data_labels,'_','-');
     peak_power_data(:,1) = cell2mat(data_t0(:,2));
     peak_power_data(:,2) = cell2mat(data_t2(:,2));
+
     peak_va_data(:,1) = cell2mat(data_t0(:,3));
     peak_va_data(:,2) = cell2mat(data_t2(:,3));
+    
+
     
     delta_peak_power = 100 * (peak_power_data(:,2) - peak_power_data(:,1)) ./ peak_power_data(:,1);
     delta_peak_va = 100 * (peak_va_data(:,2) - peak_va_data(:,1)) ./ peak_va_data(:,1);
@@ -215,7 +218,7 @@ if (plot_peak_power == 1)
         end
       
     end
-   clear peak_power_data peak_va_data
+   %clear peak_power_data peak_va_data
 end % End of peak power plots
 %% EOL Voltages
 if (plot_EOL == 1)
@@ -519,7 +522,7 @@ if (plot_losses == 1)
     bar(loss_data / 1000000000,'barwidth',0.9);
     ylabel('Losses (GWh)');
     my_legend = {'Base';'CA'};
-    set_figure_graphics(data_labels,fname,1,my_legend,0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,my_legend,0,'northoutside',1,0,'horizontal',[],[],[0 2]);
     hold off;
     close(fname);
     
@@ -530,7 +533,7 @@ if (plot_losses == 1)
     hold on;
     bar(loss_reduction / 1000000,'barwidth',0.9);
     ylabel('Change in Losses (MWh)');
-    set_figure_graphics(data_labels,fname,1,'none',0,'northoutside',1,0,'horizontal');
+    set_figure_graphics(data_labels,fname,2,'none',0,'northoutside',1,0,'horizontal',[],[],[0 1]);
     hold off;
     close(fname);
     
