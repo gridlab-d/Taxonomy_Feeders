@@ -1391,6 +1391,14 @@ for tax_ind=1:no_of_tax
     RandStream.setDefaultStream(s2);
     count_house = 1;
     
+    %Store solar information for EOF dump calculations - set accumulators
+    if (use_flags.use_solar~=0 || use_flags.use_solar_res~=0 || use_flags.use_solar_com~=0)
+        ResSolarArea=0;
+        ComSolarAreaStripMall=0;
+        ComSolarAreaBigBox=0;
+        ComSolarAreaOffice=0;
+    end
+    
     % Phase S - residential homes
     if (use_flags.use_homes == 1 && total_houses ~= 0)
         [aS,bS] = size(phase_S_houses);
@@ -3485,7 +3493,10 @@ for tax_ind=1:no_of_tax
                                                             
                                                     
                                                    fprintf(write_file,'                  area %.0f;\n',floor_area);
-                                                        
+                                                   
+                                                            %Add the size to the accumulator
+                                                            ComSolarAreaOffice=ComSolarAreaOffice+floor_area;
+
                                                    fprintf(write_file,'            };\n');
                             
                                              fprintf(write_file,'      };\n');
@@ -3566,6 +3577,9 @@ for tax_ind=1:no_of_tax
                                                     
                                                 fprintf(write_file,'                  area %.0f;\n',floor_area);
                                                 %fprintf(write_file,'      groupid Residential_Meter_Solar;\n\n');
+                                                
+                                                            %Add the size to the accumulator
+                                                            ComSolarAreaBigBox=ComSolarAreaBigBox+floor_area;
                     
                                                     fprintf(write_file,'            };\n');
                             
@@ -3642,6 +3656,10 @@ for tax_ind=1:no_of_tax
 
                                                     
                                                 fprintf(write_file,'                  area %.0f;\n',floor_area);
+                                                
+                                                %Add the size to the accumulator
+                                                ComSolarAreaStripMall=ComSolarAreaStripMall+floor_area;
+
                                                 fprintf(write_file,'            };\n');
                             
                                              fprintf(write_file,'      };\n');
@@ -3718,7 +3736,10 @@ for tax_ind=1:no_of_tax
                                                 end
                                                     
                                                 fprintf(write_file,'                 area %.0f;\n',floor_area);
-                                            
+                                                
+                                                %Add the size to the accumulator
+                                                ResSolarArea=ResSolarArea+floor_area;
+
                                                 fprintf(write_file,'          };\n');
                             
                                              fprintf(write_file,'     };\n');
@@ -4386,6 +4407,34 @@ for tax_ind=1:no_of_tax
                 fprintf(write_file,'//Thermal Storage Penetration = %.1f\n',taxonomy_data.thermal_override);
             else %No exist, use regional value
                 fprintf(write_file,'//Thermal Storage Penetration = %.1f\n',regional_data.ts_penetration);
+            end
+        end
+        
+        %Write some solar information
+        if ((use_flags.use_solar~=0) || (use_flags.use_solar_res~=0) || (use_flags.use_solar_com~=0))
+            fprintf(write_file,'\n//Solar Size Information\n');
+            if (use_flags.use_solar_res~=0)
+                fprintf(write_file,'//Residential solar = %.1f ft^2\n',ResSolarArea);
+            end
+            
+            if (use_flags.use_solar_com~=0)
+                fprintf(write_file,'//Office solar    = %.1f ft^2\n',ComSolarAreaOffice);
+                fprintf(write_file,'//Bigbox solar    = %.1f ft^2\n',ComSolarAreaBigBox);
+                fprintf(write_file,'//Stripmall solar = %.1f ft^2\n',ComSolarAreaStripMall);
+            end
+            
+            %Now convert to an ideal power rating - all were fixed at 0.2
+            %efficiency and 92.902 W/Sf
+            fprintf(write_file,'\n//Solar Output Information\n');
+
+            if (use_flags.use_solar_res~=0)
+                fprintf(write_file,'//Residential solar = %.2f kW\n',ResSolarArea*0.2*92.902/1000);
+            end
+            
+            if (use_flags.use_solar_com~=0)
+                fprintf(write_file,'//Office solar    = %.2f kW\n',ComSolarAreaOffice*0.2*92.902/1000);
+                fprintf(write_file,'//Bigbox solar    = %.2f kW\n',ComSolarAreaBigBox*0.2*92.902/1000);
+                fprintf(write_file,'//Stripmall solar = %.2f kW\n',ComSolarAreaStripMall*0.2*92.902/1000);
             end
         end
 
