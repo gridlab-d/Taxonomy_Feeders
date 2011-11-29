@@ -1596,6 +1596,8 @@ for tax_ind=1:no_of_tax
                         if (cool_type <= regional_data.perc_AC)
                             fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
                             ct = 'ELEC';
+						else
+							fprintf(write_file,'     cooling_system_type NONE;\n');
                         end
                         ht = 'GAS';           
                     elseif (heat_type <= (regional_data.perc_gas + regional_data.perc_pump))
@@ -1613,6 +1615,8 @@ for tax_ind=1:no_of_tax
                         if (cool_type <= regional_data.perc_AC)
                             fprintf(write_file,'     cooling_system_type ELECTRIC;\n');
                             ct = 'ELEC';
+						else
+							fprintf(write_file,'     cooling_system_type NONE;\n');
                         end
                         ht = 'GAS';
                     else
@@ -1622,6 +1626,8 @@ for tax_ind=1:no_of_tax
                             fprintf(write_file,'     motor_model BASIC;\n');
                             fprintf(write_file,'     motor_efficiency GOOD;\n');
                             ct = 'ELEC';
+						else
+							fprintf(write_file,'     cooling_system_type NONE;\n');
                         end
                         ht = 'ELEC';
                     end
