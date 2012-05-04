@@ -1,63 +1,38 @@
 clear;
 clc;
 
-%LU solver for powerflow - note the KLU solver must be manually added to GridLAB-D
-%KLU is available at http://gridlab-d.svn.sourceforge.net/svnroot/gridlab-d/tools/solver_klu
-%0 = superLU (Default solver)
-%1 = KLU - 64 bit build
-%2 = KLU - 32 bit build
-LUSolverVal=1;
+% Set technology to test
+TechnologyToTest=4;
+    % 0 - Base
+    % 1 - CVR
+    % 2 - Automation
+    % 3 - FDIR
+    % 4 - TOU/CPP w/ tech
+    % 5 - TOU/CPP w/o tech
+    % 6 - TOU w/ tech
+    % 7 - TOU w/o tech
+    % 8 - DLC
+    % 9 - Thermal
+    % 10 - PHEV
+    % 11 - Solar Residential
+    % 12 - Solar Commercial
+    % 13 - Solar Combined
+    % 14 - Wind Commercial
 
-taxonomy_files =   {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
-   'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
-   'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
-   'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
-   'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
-   'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
-%taxonomy_files = {'R4-12.47-1.glm'};
-%taxonomy_files = {'R1-12.47-4.glm';'R2-25.00-1.glm';'R3-12.47-2.glm';'R4-12.47-1.glm';'R4-25.00-1.glm';'R5-12.47-2.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};%};%'R1-12.47-4.glm';'R2-12.47-1.glm';;'R4-25.00-1.glm';'R5-12.47-2.glm'};
+% Load the user configuration for different files, flags, etc.
+[LUSolverVal,taxonomy_files,taxonomy_directory,output_directory,my_region] = user_configuration('Jason');
 
-%Set technology to test
-TechnologyToTest=8;
-% 0 - Base
-% 1 - CVR
-% 2 - Automation
-% 3 - FDIR
-% 4 - TOU/CPP w/ tech
-% 5 - TOU/CPP w/o tech
-% 6 - TOU w/ tech
-% 7 - TOU w/o tech
-% 8 - DLC
-% 9 - Thermal
-% 10 - PHEV
-% 11 - Solar Residential
-% 12 - Solar Commercial
-% 13 - Solar Combined
-% 14 - Wind Commercial
-
-
+%% Start extraction
 [no_of_tax,junk] = size(taxonomy_files);
 region_count = 0; % for commercial feeders
 
-for tax_ind=1:no_of_tax
-    %% File to extract
-    taxonomy_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\'; %Jason
-    %taxonomy_directory = 'C:\Users\d3p313\Desktop\Base_Case\'; %Kevin
-    %taxonomy_directory = 'C:\Gridlab\branch\2.2\RI_analysis\population scripts\'; %Ruchi
-    %taxonomy_directory = 'C:\Code\Taxonomy_Feeders\'; %Frank
+for tax_ind=1:no_of_tax 
+    % File to extract   
     file_to_extract = taxonomy_files{tax_ind};
     extraction_file = [taxonomy_directory,file_to_extract];
-
-    % Select where you want the file written to: 
-    %   can be left as '' to write in the working directory 
-    %   make sure and end the line with a '\' if pointing to a directory
-   output_directory = 'C:\Users\d3x289\Documents\GLD2011\Code\Taxonomy\GLMS\';% Jason
-   %output_directory = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\'; % Kevin
-   %output_directory = 'C:\Gridlab\branch\2.2\RI_analysis\population scripts\Comm solar\'; % Ruchi
-   %output_directory = 'C:\Code\Taxonomy_Feeders\Extracted\'; % Frank
-   
-    %% Get the region - this will only work with the taxonomy feeders
     
+    % Get the region - this will only work automatically with the taxonomy feeders
+    %    otherwise, use the my_region flag     
     token = strtok(file_to_extract,'-');
     token2 = strrep(token,'R','');
     if (strcmp(token2,'GC') ~= 0) %commercial
@@ -66,7 +41,12 @@ for tax_ind=1:no_of_tax
     else
         region = str2double(token2);
     end
-
+    
+    if (my_region ~= 0)
+        old_region = region;
+        region = my_region;
+    end
+    
     % Load in the regional information
     regional_data = regionalization(region);
 
@@ -79,7 +59,7 @@ for tax_ind=1:no_of_tax
     %% These are the default flag settings 
     %  They get overridden inside of TechnologyParameters.m, if a tech_flag is set
 
-    % Residential Homes? - NOT FINISHED
+    % Residential Homes? - FINISHED
     use_flags.use_homes = 1;
 
     % Batteries? - FINISHED
@@ -96,13 +76,13 @@ for tax_ind=1:no_of_tax
     % these may be used to represent large 3-ph loads as ziploads (0) or buildings (1)
     use_flags.use_commercial = 1; 
 
-    % VVC? - NOT FINISHED
+    % VVC? - FINISHED
     use_flags.use_vvc = 0; % 0 = NONE, 1 = TRUE
 
     % Customer Billing? - NOT FINISHED
     use_flags.use_billing = 0; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
 
-    % Solar? - NOT FINISHED
+    % Solar? - FINISHED
     use_flags.use_solar = 0;  % for combined res & comm solar
     use_flags.use_solar_res = 0;  % for residential solar
     use_flags.use_solar_com = 0; % for commercial solar
@@ -111,19 +91,19 @@ for tax_ind=1:no_of_tax
     % PHEV? - NOT FINISHED
     use_flags.use_phev = 0;
 
-    % Distribution Automation? - NOT FINISHED
+    % Distribution Automation? - FINISHED
     use_flags.use_da = 0;
 
     % Wind turbines - NOT FINISHED
     use_flags.use_wind = 0;
     
-    % Use the emissions object?
+    % Use the emissions object? - FINISHED
     use_flags.use_emissions = 0;
     
-    % Use the Thermal Storage object?
+    % Use the Thermal Storage object? - FINISHED
     use_flags.use_ts = 0;
     %1 = add thermal storage using the defaults, 2 = add thermal storage with a randomized schedule, 0 = none
-    %3 = add thermal storage to all houses using defaults, 4 = ass thermal storage to all houses with a randomized schedule
+    %3 = add thermal storage to all houses using defaults, 4 = add thermal storage to all houses with a randomized schedule
 
     %% Get the technical parameters
     [tech_data,use_flags] = TechnologyParameters(use_flags,TechnologyToTest);
@@ -135,8 +115,11 @@ for tax_ind=1:no_of_tax
 
     if (strcmp(token2,'GC') ~= 0) %commercial
         tech_file = [file4,'_t',num2str(tech_data.tech_flag),'_r',num2str(region)];
-    else
+    elseif (my_region == 0)
         tech_file = [file4,'_t',num2str(tech_data.tech_flag)];
+    else
+        file5 = strrep(file4,['R' num2str(old_region)],'R6');
+        tech_file = [file5,'_t',num2str(tech_data.tech_flag)];
     end
     filename = [tech_file,'.glm'];
 
@@ -1889,6 +1872,7 @@ for tax_ind=1:no_of_tax
                         fprintf(write_file,'                observation_property past_market.clearing_price;\n');
                         fprintf(write_file,'                state_property multiplier;\n');
                         fprintf(write_file,'                linearize_elasticity true;\n');
+                        fprintf(write_file,'                price_offset 0.01;\n');
                         if (use_flags.use_market == 2) %CPP
                             fprintf(write_file,'                critical_day %s.value;\n',char(CPP_flag_name));
                             fprintf(write_file,'                first_tier_hours %.0f;\n',taxonomy_data.TOU_hours(1)); 

@@ -30,36 +30,43 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
         
     % Peak power of the feeder in kVA
     % these first values are special to GC since it spans 5 regions
-    emissions_p = [5363;5754;6637;6321;5916];
+    %  TODO: R6 values are not correct
+    emissions_p = [5363;5754;6637;6321;5916;5916];
     data.emissions_peak = emissions_p(region);
     
     % TOU/CPP pricing information
     % these first values are special to GC since it spans 5 regions
+    %   TODO: Unsure about R6 at this point, so numbers are "made-up"
     reg_TOU_prices = [0.06801189,0.13602378;
                       0.07036911,0.14073821;
                       0.05168987,0.10337974;
                       0.05682642,0.11365284;
-                      0.05790918,0.11581836];
+                      0.05790918,0.11581836;
+                      0.15000000,0.30000000];
     reg_CPP_prices = [0.06263140,0.12526279,0.62631396;
                       0.06309993,0.12619986,0.63099932;
                       0.04677589,0.09355179,0.46775893;
                       0.05122360,0.10244719,0.51223597;
-                      0.05320724,0.10641447,0.53207237];
+                      0.05320724,0.10641447,0.53207237;
+                      0.05000000,0.15000000,0.30000000];
     reg_TOU_hours = [12,12,6;
                      16,8,6;
                      15,9,6;
                      14,10,6;
-                     16,8,6];
+                     16,8,6;
+                     12,12,6];
     reg_TOU_stats = [0.10201783,0.03400643;
                      0.09965752,0.03468750;
                      0.07428654,0.02564036;
                      0.08285892,0.02831370;
-                     0.08201163,0.02854555];
+                     0.08201163,0.02854555;
+                     0.10000000,0.05000000];
     reg_CPP_stats = [0.09843910,0.03400643;
                      0.09431946,0.03468750;
                      0.07081883,0.02564036;
                      0.07853818,0.02831370;
-                     0.07953222,0.02854555];             
+                     0.07953222,0.02854555;
+                     0.10000000,0.05000000];             
     data.TOU_prices = reg_TOU_prices(region,:); % 1st, 2nd tier price
     data.CPP_prices = reg_CPP_prices(region,:); % 1st, 2nd, and CPP tier prices
     data.TOU_hours = reg_TOU_hours(region,:); % hours at each tier (first 2 need to sum to 24)
@@ -70,7 +77,8 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     data.CPP_flag = {['CPP_days_R' num2str(region) '.player']}; % player that specifies which day is a CPP day (critical_day)
 
     %Thermal override for commercial feeders - 1, 3, 4, and 5 at 10% still
-    comm_Thermal_override=[10; 18; 10; 10; 10];
+    %  TODO: Region 6 is currently made-up
+    comm_Thermal_override=[10; 18; 10; 10; 10; 10];
     data.thermal_override = comm_Thermal_override(region);
     % 0 residential, 0 commercial, 3 industrial, 0 agricultural
 elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)

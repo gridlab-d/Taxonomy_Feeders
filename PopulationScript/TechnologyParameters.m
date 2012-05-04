@@ -544,8 +544,9 @@ if (use_flags.use_billing == 1) %FLAT RATE
     data.comm_monthly_fee = 25;
     % Average rate by region from, merged using Viraj spreadsheet
     % EIA: http://www.eia.doe.gov/electricity/epm/table5_6_b.html
-    data.flat_price = [0.1243,0.1294,0.1012,0.1064,0.1064]; % $ / kWh
-    data.comm_flat_price = [0.1142,0.1112,0.0843,0.0923,0.0923];
+    %  Region 6 is HECO 2010 rates for Oahu
+    data.flat_price = [0.1243,0.1294,0.1012,0.1064,0.1064,0.2547]; % $ / kWh
+    data.comm_flat_price = [0.1142,0.1112,0.0843,0.0923,0.0923,0.2227];
 elseif(use_flags.use_billing == 2) %TIERED RATE
     data.monthly_fee = 10; % $
     data.flat_price = 0.1; % $ / kWh - first tier price
@@ -554,7 +555,7 @@ elseif(use_flags.use_billing == 2) %TIERED RATE
 elseif(use_flags.use_billing == 3) %RTP/TOU RATE - market must be activated
     data.monthly_fee = 10; % $
     data.comm_monthly_fee = 25;
-    data.flat_price = [0.1243,0.1294,0.1012,0.1064,0.1064]; % $ / kWh
+    data.flat_price = [0.1243,0.1294,0.1012,0.1064,0.1064,0.2547]; % $ / kWh
     if (use_flags.use_market == 0)
         disp('Error: Must use markets when applying use_billing == 3');
     end

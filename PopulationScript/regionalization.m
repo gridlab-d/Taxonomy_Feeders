@@ -6,6 +6,7 @@ function [data] = regionalization(region)
 % 3 - Southwest - hot/arid
 % 4 - Southeast/Central - hot/cold
 % 5 - Southeast coastal - hot/humid
+% 6 - Hawaii - sub-tropical (not part of original taxonomy)
 
 %% Weather data
 % {region}
@@ -14,15 +15,18 @@ weather{2} = 'IL-Chicago';
 weather{3} = 'AZ-Phoenix';
 weather{4} = 'TN-Nashville';
 weather{5} = 'FL-Miami';
+weather{6} = 'HI-Honolulu';
 
 %% Timezone data
 timezone{1} = 'PST+8PDT';
 timezone{2} = 'CST+6CDT';
-timezone{3} = 'MST+7MDT'; % Do we want to be this accurate?
+timezone{3} = 'MST+7MDT';
 timezone{4} = 'CST+6CDT';
 timezone{5} = 'EST+5EDT';
+timezone{6} = 'HST10'; % TODO: This might not be right
 
 %% Regional building data
+% TODO: Region 6 is unknown right now
 % thermal_percentage integrity percentages
 %   {region}(level,sf/apart/mh)
 %   single family homes
@@ -47,8 +51,11 @@ thermal_percentage{4} = [   0.0526,0.0337,0.0806,0.0827,0.1081,0.1249,0.2539;
 thermal_percentage{5} = [   0.0526,0.0337,0.0806,0.0827,0.1081,0.1249,0.2539;
                             0.0217,0.1091,0.0502,0.0000,0.0000,0.0000,0.0000;
                             0.0000,0.0491,0.0333,0.0000,0.0000,0.0000,0.0000];
+thermal_percentage{6} = [   0.0526,0.0337,0.0806,0.0827,0.1081,0.1249,0.2539;
+                            0.0217,0.1091,0.0502,0.0000,0.0000,0.0000,0.0000;
+                            0.0000,0.0491,0.0333,0.0000,0.0000,0.0000,0.0000];
                         
-for jjj=1:5
+for jjj=1:6
     check_total = sum(sum(thermal_percentage{jjj}));
     if ( abs(check_total - 1) > 0.001 )
         error(['Error in total thermal percentage{',num2str(jjj),'} - Sum does not equal 100%.']);
@@ -74,15 +81,18 @@ thermal_properties{3,1} =  [   0,    0,    0, 0, 0, 0, 0,   0,   0,   0,   0];
 thermal_properties{3,2} =  [13.4,  9.2, 11.7, 1, 1, 1, 1, 2.2, .75, 2.8, 1.9];
 thermal_properties{3,3} =  [24.1, 11.7, 18.1, 2, 2, 1, 2,   3, .75, 3.5, 2.2];
 
-%   Average floor areas for each type and region
+% Average floor areas for each type and region
+% TODO: Region 6 is unknown right now
 floor_area{1} = [2209,820,1054];
 floor_area{2} = [2951,798,1035];
 floor_area{3} = [2370,764,1093];
 floor_area{4} = [2655,901,1069];
 floor_area{5} = [2655,901,1069];
+floor_area{6} = [2655,901,1069];
 
 % Percentage of one-story homes
-one_story = [.6887;.5210;.7745;.7043;.7043];
+% TODO: Region 6 is unknown right now
+one_story = [.6887;.5210;.7745;.7043;.7043;.7043];
 
 % Average heating and cooling setpoints
 %  by thermal integrity type {1=SF, 2=apt, 3=mh}
@@ -131,38 +141,51 @@ heating_setpoint{3} = [ 0.129,0.88,63,59;
                         0.177,0.88,79,74];
                     
 % Breakdown of gas vs. heat pump vs. resistance - by region
-perc_gas = [0.7051;0.8927;0.6723;0.4425;0.4425];
-perc_pump = [0.0321;0.0177;0.0559;0.1983;0.1983];
+% TODO: Region 6 is unknown right now
+perc_gas = [0.7051;0.8927;0.6723;0.4425;0.4425;0.4425];
+perc_pump = [0.0321;0.0177;0.0559;0.1983;0.1983;0.1983];
 perc_res = 1 - perc_pump - perc_gas;
 
 % of AC 
-perc_AC = [0.4348;0.7528;0.5259;0.9673;0.9673];
+% TODO: Region 6 is unknown right now
+perc_AC = [0.4348;0.7528;0.5259;0.9673;0.9673;0.9673];
 
 % Over sizing factor of the AC units
-over_sizing_factor = [0.1;0.2;0.2;0.3;0.3];
+% TODO: Region 6 is unknown right now
+over_sizing_factor = [0.1;0.2;0.2;0.3;0.3;0.3];
 
 % pool pumps
-perc_poolpumps = [0.0904;0.0591;0.0818;0.0657;0.0657];
+% TODO: Region 6 is unknown right now
+perc_poolpumps = [0.0904;0.0591;0.0818;0.0657;0.0657;0.0657];
 
 % water heaters
 % Breakdown by fuel vs. electric
-wh_electric = [0.7455;0.7485;0.6520;0.3572;0.3572];
+% TODO: Region 6 is unknown right now
+wh_electric = [0.7455;0.7485;0.6520;0.3572;0.3572;0.3572];
 
 % size of units - [<30, 31-49, >50] - by region
+% TODO: Region 6 is unknown right now
 wh_size = [ 0.0000,0.3333,0.6667;
             0.1459,0.5836,0.2706;
             0.2072,0.5135,0.2793;
+            0.2259,0.5267,0.2475;
             0.2259,0.5267,0.2475;
             0.2259,0.5267,0.2475];
 
 % emission dispatch order
 % Nuc Hydro Solar BioMass Wind Coal NG GeoTherm Petro
+% TODO: Region 6 is unknown right now
 dispatch_order = [1,5,2,3,4,7,6,8,9;
                   1,7,2,3,4,5,6,8,9;
                   1,7,2,3,4,5,6,8,9;
                   1,7,2,3,4,5,6,8,9;
+                  1,7,2,3,4,6,5,8,9;
                   1,7,2,3,4,6,5,8,9];
-              
+
+% TODO: Region 6 is unknown right now
+data.ts_penetration = 10; %0-100, percent of buildings utilizing thermal storage - for all regions
+data.solar_penetration = [0.03;0.01;0.04;0.05;0.06;0.06]; % 1-5 % for different regions
+
 data.thermal_properties = thermal_properties;
 data.thermal_percentages = thermal_percentage{region};
 data.weather = weather{region};
@@ -184,10 +207,6 @@ data.no_water_sch = 6;
 data.one_story = one_story;
 data.over_sizing_factor = over_sizing_factor(region);
 data.dispatch_order = dispatch_order(region,:);
-
-data.ts_penetration = 10; %0-100, percent of buildings utilizing thermal storage - for all regions
-data.solar_penetration = [0.03;0.01;0.04;0.05;0.06]; % 1-5 % for different regions
-
 
 end
 
