@@ -5815,13 +5815,13 @@ object switch:1719 {
      status CLOSED; 
 } 
 
-object switch:1720 { 
-     name R5-12-47-1_switch_8; 
-     phases CN; 
-     from R5-12-47-1_node_128; 
-     to R5-12-47-1_node_118; 
-     status CLOSED; 
-} 
+// object switch:1720 { 
+     // name R5-12-47-1_switch_8; 
+     // phases CN; 
+     // from R5-12-47-1_node_128; 
+     // to R5-12-47-1_node_118; 
+     // status CLOSED; 
+// } 
 
 object switch:1721 { 
      name R5-12-47-1_switch_9; 

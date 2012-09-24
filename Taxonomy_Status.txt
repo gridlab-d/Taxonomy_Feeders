@@ -17,3 +17,8 @@ This Document is meant to describe the current status of the Taxonomy Feeders.
 
 2/15/2011: Changed all triplex lines from 1/0 to 4/0.  This is a more accruate representation for service drops.
            1/0 is suggested for 120A drops while 4/0 is recommended for 200A drops.
+		   
+9/24/2012: Removed switch named R4-12-47-1_switch_2 and flipped the from/to orientation of underground line, 
+		   R4-12-47-1_ul_2, to remove a loop in R4-12.47-1.glm. The switch named R5-12-47-1_switch_8 was removed 
+		   from R5-12.47.glm to remove a loop as well. These changes were made due to a unseen flaw, now caught, when
+		   using the forward basksweep powerflow solution method.

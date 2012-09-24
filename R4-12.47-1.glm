@@ -10946,13 +10946,13 @@ object switch:3874 {
      status CLOSED; 
 } 
 
-object switch:3875 { 
-     name R4-12-47-1_switch_2; 
-     phases CN; 
-     from R4-12-47-1_node_61; 
-     to R4-12-47-1_node_53; 
-     status CLOSED; 
-} 
+// object switch:3875 { 
+     // name R4-12-47-1_switch_2; 
+     // phases CN; 
+     // from R4-12-47-1_node_61; 
+     // to R4-12-47-1_node_53; 
+     // status CLOSED; 
+// } 
 
 object switch:3876 { 
      name R4-12-47-1_switch_3; 
@@ -34617,8 +34617,8 @@ object underground_line:3353 {
 object underground_line:3358 { 
      name R4-12-47-1_ul_2; 
      phases CN; 
-     from R4-12-47-1_node_53; 
-     to R4-12-47-1_node_68; 
+     to R4-12-47-1_node_53; 
+     from R4-12-47-1_node_68; 
      length 920.000; 
      configuration line_configuration:36; 
 } 
