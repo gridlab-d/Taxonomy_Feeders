@@ -4,7 +4,8 @@ clc;
 % Set technology to test
 TechnologyToTest=4;
     % 0 - Base
-    % 1 - CVR
+    % 1 - CVR for Energy Reduction
+    % 101 - CVR for Peak Reduction
     % 2 - Automation
     % 3 - FDIR
     % 4 - TOU/CPP w/ tech
@@ -135,8 +136,11 @@ for tax_ind=1:no_of_tax
 
     % Initialize pseudo-random numbers
     [s1,s2,s3,s4,s5,s6] = RandStream.create('mrg32k3a','NumStreams',6);
-    RandStream.setDefaultStream(s1);
-
+    if ( verLessThan('matlab','8.1') )
+        RandStream.setDefaultStream(s1);
+    else
+        RandStream.setGlobalStream(s1);
+    end
     % Split up the configurations and feeder information into 2 different
     % arrays
     for i=1:a
@@ -869,7 +873,15 @@ for tax_ind=1:no_of_tax
        fprintf(write_file,'//Volt-Var object \n');
        fprintf(write_file,'object volt_var_control {\n');
        fprintf(write_file,'        name volt_var_control; \n');
-       fprintf(write_file,'        control_method ACTIVE; \n');
+       if (TechnologyToTest == 101)
+            fprintf(write_file,'        control_method STANDBY; \n');
+            fprintf(write_file,'        object player {\n');
+            fprintf(write_file,'             property contol_method;\n');
+            fprintf(write_file,'             file %s;\n',taxonomy_data.peak_vvo_player);
+            fprintf(write_file,'        };\n');
+       else
+            fprintf(write_file,'        control_method ACTIVE; \n');
+       end
        fprintf(write_file,'        capacitor_delay 60.0; \n');
        fprintf(write_file,'        regulator_delay 60.0; \n');
        fprintf(write_file,'        desired_pf 0.99; \n');
@@ -1321,7 +1333,11 @@ for tax_ind=1:no_of_tax
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
     if (use_flags.use_market ~= 0)
-        RandStream.setDefaultStream(s1);
+        if ( verLessThan('matlab','8.1') )
+            RandStream.setDefaultStream(s1);
+        else
+            RandStream.setGlobalStream(s1);
+        end
         if (total_houses ~= 0)
             [aa,junk] = size(phase_S_houses);
 
@@ -1371,7 +1387,11 @@ for tax_ind=1:no_of_tax
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
-    RandStream.setDefaultStream(s2);
+    if ( verLessThan('matlab','8.1') )
+        RandStream.setDefaultStream(s2);
+    else
+        RandStream.setGlobalStream(s2);
+    end
     count_house = 1;
     
     %Store solar information for EOF dump calculations - set accumulators
@@ -2066,7 +2086,11 @@ for tax_ind=1:no_of_tax
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
-    RandStream.setDefaultStream(s3);
+    if ( verLessThan('matlab','8.1') )
+        RandStream.setDefaultStream(s3);
+    else
+        RandStream.setGlobalStream(s3);
+    end
 
     % Phase ABC - convert to "commercial buildings" 
     %  if number of "houses" > 15, then create a large office
@@ -3384,7 +3408,11 @@ for tax_ind=1:no_of_tax
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
-    RandStream.setDefaultStream(s4);
+    if ( verLessThan('matlab','8.1') )
+        RandStream.setDefaultStream(s4);
+    else
+        RandStream.setGlobalStream(s4);
+    end
           
     %Populating solar as percentage of feeder peak load
     
@@ -3752,7 +3780,11 @@ for tax_ind=1:no_of_tax
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
-    RandStream.setDefaultStream(s5);
+    if ( verLessThan('matlab','8.1') )
+        RandStream.setDefaultStream(s5);
+    else
+        RandStream.setGlobalStream(s5);
+    end
 
     if (use_flags.use_ts~=0)
         
@@ -3953,7 +3985,11 @@ for tax_ind=1:no_of_tax
     % Initialize pseudo-random numbers - put this before each technology where 
     % random numbers are needed, so they are not effected by other changes
     % (s1-s6)
-    RandStream.setDefaultStream(s6);
+    if ( verLessThan('matlab','8.1') )
+        RandStream.setDefaultStream(s6);
+    else
+        RandStream.setGlobalStream(s6);
+    end
 
     
     % if you want to create and emissions object - THIS WILL BE REMOVED AND

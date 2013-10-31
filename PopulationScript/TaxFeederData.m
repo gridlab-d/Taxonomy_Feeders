@@ -23,6 +23,7 @@ if (strcmp(file_to_extract,'GC-12.47-1.glm')~=0)
     data.EOL_points={'GC-12-47-1_node_7','ABC',1};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.regulators={'GC-12-47-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_r' num2str(region) '_vvo.player']};
     
     % Capacitor outtage information for each feeder
     % Name of capacitor , player file name
@@ -91,6 +92,7 @@ elseif (strcmp(file_to_extract,'R1-12.47-1.glm')~=0)
                      'R1-12-47-1_node_302','C',1};
     data.capacitor_outtage={'R1-12-47-1_cap_1','R1-12-47-1_cap_1_outtage.player';'R1-12-47-1_cap_2','R1-12-47-1_cap_2_outtage.player';'R1-12-47-1_cap_3','R1-12-47-1_cap_3_outtage.player'};
     data.regulators={'R1-12-47-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 7319; %Peak in kVa base .85 pf of 29 (For emissions)
     
@@ -114,6 +116,7 @@ elseif (strcmp(file_to_extract,'R1-12.47-2.glm')~=0)
                      'R1-12-47-2_node_248','C',1};
     data.capacitor_outtage={'R1-12-47-2_cap_1','R1-12-47-2_cap_1_outtage.player' };
     data.regulators={'R1-12-47-2_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 2670;
     
@@ -136,6 +139,7 @@ elseif (strcmp(file_to_extract,'R1-12.47-3.glm')~=0)
                      'R1-12-47-3_node_38','B',1};
     data.capacitor_outtage={};
     data.regulators={'R1-12-47-3_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 1240;
     
@@ -157,6 +161,7 @@ elseif (strcmp(file_to_extract,'R1-12.47-4.glm')~=0)
     data.EOL_points={'R1-12-47-4_node_300','ABC',1};
     data.capacitor_outtage={'R1-12-47-4_cap_1','R1-12-47-4_cap_1_outtage.player'};
     data.regulators={'R1-12-47-4_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 5117;
     
@@ -181,6 +186,7 @@ elseif (strcmp(file_to_extract,'R1-25.00-1.glm')~=0)
                      'R1-25-00-1_node_206','C',2}; %6 Measurements because of voltage regulator
     data.capacitor_outtage={'R1-25-00-1_cap_1','R1-25-00-1_cap_1_outtage.player'};
     data.regulators={'R1-25-00-1_reg_1';'R1-25-00-1_reg_2'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {14136;12000;16000;120;120};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 2339;
     
@@ -203,6 +209,7 @@ elseif (strcmp(file_to_extract,'R2-12.47-1.glm')~=0)
                      'R2-12-47-1_node_17','BC',1};
     data.capacitor_outtage={'R2-12-47-1_cap_1','R2-12-47-1_cap_1_outtage.player'};
     data.regulators={'R2-12-47-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 6374;
     
@@ -227,6 +234,7 @@ elseif (strcmp(file_to_extract,'R2-12.47-2.glm')~=0)
                      'R2-12-47-2_node_242','C',2}; %6 Measurements because of voltage regulator
     data.capacitor_outtage={'R2-12-47-2_cap_1','R2-12-47-2_cap_1_outtage.player';'R2-12-47-2_cap_2','R2-12-47-2_cap_2_outtage.player';'R2-12-47-2_cap_3','R2-12-47-2_cap_3_outtage.player';'R2-12-47-2_cap_4','R2-12-47-2_cap_4_outtage.player'};
     data.regulators={'R2-12-47-2_reg_1';'R2-12-47-2_reg_2'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 5889;
     
@@ -250,6 +258,7 @@ elseif (strcmp(file_to_extract,'R2-12.47-3.glm')~=0)
                      'R2-12-47-3_node_813','C',1};
     data.capacitor_outtage={'R2-12-47-3_cap_1','R2-12-47-3_cap_1_outtage.player'};
     data.regulators={'R2-12-47-3_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 3424;
     
@@ -273,6 +282,7 @@ elseif (strcmp(file_to_extract,'R2-25.00-1.glm')~=0)
                      'R2-25-00-1_node_211','C',1};
     data.capacitor_outtage={'R2-25-00-1_cap_1','R2-25-00-1_cap_1_outtage.player';'R2-25-00-1_cap_2','R2-25-00-1_cap_2_outtage.player';'R2-25-00-1_cap_3','R2-25-00-1_cap_3_outtage.player';'R2-25-00-1_cap_4','R2-25-00-1_cap_4_outtage.player';'R2-25-00-1_cap_5','R2-25-00-1_cap_5_outtage.player'};
     data.regulators={'R2-25-00-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {14136;12000;16000;120;120};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 17164;
     
@@ -294,6 +304,7 @@ elseif (strcmp(file_to_extract,'R2-35.00-1.glm')~=0)
     data.EOL_points={'R2-35-00-1_node_1030','ABC',1};
     data.capacitor_outtage={'R2-35-00-1_cap_1','R2-35-00-1_cap_1_outtage.player';'R2-35-00-1_cap_2','R2-35-00-1_cap_2_outtage.player';'R2-35-00-1_cap_3','R2-35-00-1_cap_3_outtage.player';'R2-35-00-1_cap_4','R2-35-00-1_cap_4_outtage.player';'R2-35-00-1_cap_5','R2-35-00-1_cap_5_outtage.player';'R2-35-00-1_cap_6','R2-35-00-1_cap_6_outtage.player';'R2-35-00-1_cap_7','R2-35-00-1_cap_7_outtage.player';'R2-35-00-1_cap_8','R2-35-00-1_cap_8_outtage.player';'R2-35-00-1_cap_9','R2-35-00-1_cap_9_outtage.player';'R2-35-00-1_cap_10','R2-35-00-1_cap_10_outtage.player';'R2-35-00-1_cap_11','R2-35-00-1_cap_11_outtage.player';'R2-35-00-1_cap_12','R2-35-00-1_cap_12_outtage.player';'R2-35-00-1_cap_13','R2-35-00-1_cap_13_outtage.player'};
     data.regulators={'R2-35-00-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {19526;15000;25000;166;166};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12800;
     
@@ -315,6 +326,7 @@ elseif (strcmp(file_to_extract,'R3-12.47-1.glm')~=0)
     data.EOL_points={'R3-12-47-1_node_358','ABC',1};
     data.capacitor_outtage={'R3-12-47-1_cap_1','R3-12-47-1_cap_1_outtage.player'};
     data.regulators={'R3-12-47-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 9387;
     
@@ -335,6 +347,7 @@ elseif (strcmp(file_to_extract,'R3-12.47-2.glm')~=0)
     data.avg_commercial = 30000;
     data.EOL_points={'R3-12-47-2_node_36','ABC',1};
     data.regulators={'R3-12-47-2_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.capacitor_outtage={};
     data.emissions_peak = 4412;
@@ -362,6 +375,7 @@ elseif (strcmp(file_to_extract,'R3-12.47-3.glm')~=0)
                      'R3-12-47-3_node_206','C',2};
     data.capacitor_outtage={'R3-12-47-3_cap_1','R3-12-47-3_cap_1_outtage.player';'R3-12-47-3_cap_2','R3-12-47-3_cap_2_outtage.player'};
     data.regulators={'R3-12-47-3_reg_1';'R3-12-47-3_reg_2'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 8594;
     
@@ -385,6 +399,7 @@ elseif (strcmp(file_to_extract,'R4-12.47-1.glm')~=0)
                      'R4-12-47-1_node_198','BC',1};
     data.capacitor_outtage={'R4-12-47-1_cap_1','R4-12-47-1_cap_1_outtage.player';'R4-12-47-1_cap_2','R4-12-47-1_cap_2_outtage.player';'R4-12-47-1_cap_3','R4-12-47-1_cap_3_outtage.player';'R4-12-47-1_cap_4','R4-12-47-1_cap_4_outtage.player'};
     data.regulators={'R4-12-47-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 4769;
     
@@ -409,6 +424,7 @@ elseif (strcmp(file_to_extract,'R4-12.47-2.glm')~=0)
                      'R4-12-47-2_node_256','C',1};
     data.capacitor_outtage={};
     data.regulators={'R4-12-47-2_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 2316;
     
@@ -432,6 +448,7 @@ elseif (strcmp(file_to_extract,'R4-25.00-1.glm')~=0)
                      'R4-25-00-1_node_168','C',1};
     data.capacitor_outtage={};
     data.regulators={'R4-25-00-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {14136;12000;16000;120;120};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 962;
     
@@ -454,6 +471,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-1.glm')~=0)
     data.EOL_points={'R5-12-47-1_node_1','ABC',1};
     data.capacitor_outtage={'R5-12-47-1_cap_1','R5-12-47-1_cap_1_outtage.player';'R5-12-47-1_cap_2','R5-12-47-1_cap_2_outtage.player';'R5-12-47-1_cap_3','R5-12-47-1_cap_3_outtage.player'};
     data.regulators={'R5-12-47-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 9734;
     
@@ -478,6 +496,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-2.glm')~=0)
                      'R5-12-47-2_node_293','C',1};
     data.capacitor_outtage={'R5-12-47-2_cap_1','R5-12-47-2_cap_1_outtage.player'};
     data.regulators={'R5-12-47-2_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 5071;
     
@@ -506,6 +525,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-3.glm')~=0)
                      'R5-12-47-3_node_749','ABC',4}; %18 Measurements because of voltage regulator
     data.capacitor_outtage={'R5-12-47-3_cap_1','R5-12-47-3_cap_1_outtage.player';'R5-12-47-3_cap_2','R5-12-47-3_cap_2_outtage.player';'R5-12-47-3_cap_3','R5-12-47-3_cap_3_outtage.player';'R5-12-47-3_cap_4','R5-12-47-3_cap_4_outtage.player';'R5-12-47-3_cap_5','R5-12-47-3_cap_5_outtage.player';'R5-12-47-3_cap_6','R5-12-47-3_cap_6_outtage.player';'R5-12-47-3_cap_7','R5-12-47-3_cap_7_outtage.player';'R5-12-47-3_cap_8','R5-12-47-3_cap_8_outtage.player';'R5-12-47-3_cap_9','R5-12-47-3_cap_9_outtage.player';'R5-12-47-3_cap_10','R5-12-47-3_cap_10_outtage.player';'R5-12-47-3_cap_11','R5-12-47-3_cap_11_outtage.player';'R5-12-47-3_cap_12','R5-12-47-3_cap_12_outtage.player';'R5-12-47-3_cap_13','R5-12-47-3_cap_13_outtage.player'};
     data.regulators={'R5-12-47-3_reg_1';'R5-12-47-3_reg_2';'R5-12-47-3_reg_3';'R5-12-47-3_reg_4'}; % The regulators are not coordinated because of their operation on parallel branches.
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7835;5000;10000;65;65};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 10734;
     
@@ -528,6 +548,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-4.glm')~=0)
     data.EOL_points={'R5-12-47-4_node_555','ABC',1};
     data.capacitor_outtage={'R5-12-47-4_cap_1','R5-12-47-4_cap_1_outtage.player';'R5-12-47-4_cap_2','R5-12-47-4_cap_2_outtage.player';'R5-12-47-4_cap_3','R5-12-47-4_cap_3_outtage.player'};
     data.regulators={'R5-12-47-4_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 7636;
     
@@ -552,6 +573,7 @@ elseif (strcmp(file_to_extract,'R5-12.47-5.glm')~=0)
                      'R5-12-47-5_node_559','C',1};
     data.capacitor_outtage={'R5-12-47-5_cap_1','R5-12-47-5_cap_1_outtage.player';'R5-12-47-5_cap_2','R5-12-47-5_cap_2_outtage.player';'R5-12-47-5_cap_3','R5-12-47-5_cap_3_outtage.player'};
     data.regulators={'R5-12-47-5_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {7080;5000;9000;60;60};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 9369;
     
@@ -576,6 +598,7 @@ elseif (strcmp(file_to_extract,'R5-25.00-1.glm')~=0)
                      'R5-25-00-1_node_785','C',1};
     data.capacitor_outtage={'R5-25-00-1_cap_1','R5-25-00-1_cap_1_outtage.player';'R5-25-00-1_cap_2','R5-25-00-1_cap_2_outtage.player';'R5-25-00-1_cap_3','R5-25-00-1_cap_3_outtage.player';'R5-25-00-1_cap_4','R5-25-00-1_cap_4_outtage.player'};
     data.regulators={'R5-25-00-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {13000;10000;16000;110;110};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12691;
     
@@ -599,6 +622,7 @@ elseif (strcmp(file_to_extract,'R5-35.00-1.glm')~=0)
                      'R5-35-00-1_node_85','C',1};
     data.capacitor_outtage={'R5-35-00-1_cap_1','R5-35-00-1_cap_1_outtage.player'};
     data.regulators={'R5-35-00-1_reg_1'};
+    data.peak_vvo_player = {[strrep(file_to_extract,'.glm','') '_vvo.player']};
     data.voltage_regulation = {19526;15000;25000;166;166};% desired;min;max;high deadband;low deadband
     data.emissions_peak = 12989;
     
