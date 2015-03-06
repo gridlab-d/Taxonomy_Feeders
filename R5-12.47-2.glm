@@ -2,9 +2,10 @@
 // 12.47 kV feeder 
 //********************************************* 
 clock{ 
+     timezone EST+8EDT; 
      timestamp '2000-01-01 0:00:00'; 
      stoptime '2000-01-01 1:00:00'; 
-     timezone EST+8EDT; 
+
 } 
 
 #set profiler=1 
@@ -638,7 +639,7 @@ object load:368 {
      constant_power_A 25651.9067+13683.3008j; 
      constant_power_B 24631.8987+13026.7417j; 
      constant_power_C 25222.3979+13340.455j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -652,7 +653,7 @@ object load:369 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -666,7 +667,7 @@ object load:370 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -680,7 +681,7 @@ object load:371 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -694,7 +695,7 @@ object load:372 {
      constant_power_A 25651.9067+13683.3008j; 
      constant_power_B 24631.8987+13026.7417j; 
      constant_power_C 25222.3979+13340.455j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -708,7 +709,7 @@ object load:373 {
      constant_power_A 42753.1778+22805.5014j; 
      constant_power_B 41053.1645+21711.2362j; 
      constant_power_C 42037.3299+22234.0917j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -722,7 +723,7 @@ object load:374 {
      constant_power_A 42753.1778+22805.5014j; 
      constant_power_B 41053.1645+21711.2362j; 
      constant_power_C 42037.3299+22234.0917j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -736,7 +737,7 @@ object load:375 {
      constant_power_A 128259.5335+68416.5041j; 
      constant_power_B 123159.4936+65133.7086j; 
      constant_power_C 126111.9897+66702.2751j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -750,7 +751,7 @@ object load:376 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -764,7 +765,7 @@ object load:377 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -778,7 +779,7 @@ object load:378 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -792,7 +793,7 @@ object load:379 {
      constant_power_A 85506.3557+45611.0028j; 
      constant_power_B 82106.3291+43422.4724j; 
      constant_power_C 84074.6598+44468.1834j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -806,7 +807,7 @@ object load:380 {
      constant_power_A 25651.9067+13683.3008j; 
      constant_power_B 24631.8987+13026.7417j; 
      constant_power_C 25222.3979+13340.455j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -816,7 +817,7 @@ object load:381 {
      phases AN; 
      voltage_A 7200+0.0j; 
      constant_power_A 6412.9767+3420.8252j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -830,7 +831,7 @@ object load:382 {
      constant_power_A 213765.8892+114027.5069j; 
      constant_power_B 205265.8226+108556.181j; 
      constant_power_C 210186.6495+111170.4584j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -844,7 +845,7 @@ object load:383 {
      constant_power_A 213765.8892+114027.5069j; 
      constant_power_B 205265.8226+108556.181j; 
      constant_power_C 210186.6495+111170.4584j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -858,7 +859,7 @@ object load:384 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -872,7 +873,7 @@ object load:385 {
      constant_power_A 6412.9767+3420.8252j; 
      constant_power_B 6157.9747+3256.6854j; 
      constant_power_C 6305.5995+3335.1138j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -882,7 +883,7 @@ object load:386 {
      phases AN; 
      voltage_A 7200+0.0j; 
      constant_power_A 25651.9067+13683.3008j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -892,7 +893,7 @@ object load:387 {
      phases AN; 
      voltage_A 7200+0.0j; 
      constant_power_A 6412.9767+3420.8252j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -906,7 +907,7 @@ object load:388 {
      constant_power_A 6412.9767+3420.8252j; 
      constant_power_B 6157.9747+3256.6854j; 
      constant_power_C 6305.5995+3335.1138j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -918,7 +919,7 @@ object load:389 {
      voltage_B -3600-6235j; 
      constant_power_A 0+0j; 
      constant_power_B 12315.9494+6513.3709j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -932,7 +933,7 @@ object load:390 {
      constant_power_A 0+0j; 
      constant_power_B 6157.9747+3256.6854j; 
      constant_power_C 0+0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -942,7 +943,7 @@ object load:391 {
      phases AN; 
      voltage_A 7200+0.0j; 
      constant_power_A 12825.9534+6841.6504j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -956,7 +957,7 @@ object load:392 {
      constant_power_A 9619.465+5131.2378j; 
      constant_power_B 0+0j; 
      constant_power_C 9458.3992+5002.6706j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -970,7 +971,7 @@ object load:393 {
      constant_power_A 5985.4449+3192.7702j; 
      constant_power_B 5747.443+3039.5731j; 
      constant_power_C 5885.2262+3112.7728j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -982,7 +983,7 @@ object load:394 {
      voltage_C -3600+6235j; 
      constant_power_A 9619.465+5131.2378j; 
      constant_power_C 9458.3992+5002.6706j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -996,7 +997,7 @@ object load:395 {
      constant_power_A 19238.93+10262.4756j; 
      constant_power_B 18473.924+9770.0563j; 
      constant_power_C 0+0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1010,7 +1011,7 @@ object load:396 {
      constant_power_A 6412.9767+3420.8252j; 
      constant_power_B 6157.9747+3256.6854j; 
      constant_power_C 6305.5995+3335.1138j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1024,7 +1025,7 @@ object load:397 {
      constant_power_A 25651.9067+13683.3008j; 
      constant_power_B 24631.8987+13026.7417j; 
      constant_power_C 25222.3979+13340.455j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1038,7 +1039,7 @@ object load:398 {
      constant_power_A 0+0j; 
      constant_power_B 0+0j; 
      constant_power_C 6305.5995+3335.1138j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1050,7 +1051,7 @@ object load:399 {
      voltage_B -3600-6235j; 
      constant_power_A 2565.1907+1368.3301j; 
      constant_power_B 2463.1899+1302.6742j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1064,7 +1065,7 @@ object load:400 {
      constant_power_A 0+0j; 
      constant_power_B 0+0j; 
      constant_power_C 3783.3597+2001.0683j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1078,7 +1079,7 @@ object load:401 {
      constant_power_A 6412.9767+3420.8252j; 
      constant_power_B 6157.9747+3256.6854j; 
      constant_power_C 6305.5995+3335.1138j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1092,7 +1093,7 @@ object load:402 {
      constant_power_A 0+0j; 
      constant_power_B 0+0j; 
      constant_power_C 6305.5995+3335.1138j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1106,7 +1107,7 @@ object load:403 {
      constant_power_A 6412.9767+3420.8252j; 
      constant_power_B 0+0j; 
      constant_power_C 0+0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1116,7 +1117,7 @@ object load:404 {
      phases BN; 
      voltage_B -3600-6235j; 
      constant_power_B 12315.9494+6513.3709j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1130,7 +1131,7 @@ object load:405 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1144,7 +1145,7 @@ object load:406 {
      constant_power_A 0+0j; 
      constant_power_B 9236.962+4885.0281j; 
      constant_power_C 9458.3992+5002.6706j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1158,7 +1159,7 @@ object load:407 {
      constant_power_A 8550.6356+4561.1003j; 
      constant_power_B 8210.6329+4342.2472j; 
      constant_power_C 8407.466+4446.8183j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1170,7 +1171,7 @@ object load:408 {
      voltage_B -3600-6235j; 
      constant_power_A 0+0j; 
      constant_power_B 12315.9494+6513.3709j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1182,7 +1183,7 @@ object load:409 {
      voltage_B -3600-6235j; 
      constant_power_A 0+0j; 
      constant_power_B 6157.9747+3256.6854j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1196,7 +1197,7 @@ object load:410 {
      constant_power_A 5130.3813+2736.6602j; 
      constant_power_B 0+0j; 
      constant_power_C 5044.4796+2668.091j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1208,7 +1209,7 @@ object load:411 {
      voltage_B -3600-6235j; 
      constant_power_A 9619.465+5131.2378j; 
      constant_power_B 9236.962+4885.0281j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1220,7 +1221,7 @@ object load:412 {
      voltage_B -3600-6235j; 
      constant_power_A 0+0j; 
      constant_power_B 12315.9494+6513.3709j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1234,7 +1235,7 @@ object load:413 {
      constant_power_A 12825.9534+6841.6504j; 
      constant_power_B 12315.9494+6513.3709j; 
      constant_power_C 12611.199+6670.2275j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      load_class C; 
 } 
 
@@ -1244,7 +1245,7 @@ object meter:828 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:829 { 
@@ -1253,7 +1254,7 @@ object meter:829 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:830 { 
@@ -1262,7 +1263,7 @@ object meter:830 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:831 { 
@@ -1271,7 +1272,7 @@ object meter:831 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:832 { 
@@ -1280,7 +1281,7 @@ object meter:832 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:833 { 
@@ -1289,7 +1290,7 @@ object meter:833 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:834 { 
@@ -1298,7 +1299,7 @@ object meter:834 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:835 { 
@@ -1307,7 +1308,7 @@ object meter:835 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:836 { 
@@ -1316,7 +1317,7 @@ object meter:836 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:837 { 
@@ -1325,7 +1326,7 @@ object meter:837 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:838 { 
@@ -1334,7 +1335,7 @@ object meter:838 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:839 { 
@@ -1343,7 +1344,7 @@ object meter:839 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:840 { 
@@ -1352,14 +1353,14 @@ object meter:840 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:841 { 
      name R5-12-47-2_meter_14; 
      phases AN; 
      voltage_A 7200+0.0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:842 { 
@@ -1368,7 +1369,7 @@ object meter:842 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:843 { 
@@ -1377,7 +1378,7 @@ object meter:843 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:844 { 
@@ -1386,7 +1387,7 @@ object meter:844 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:845 { 
@@ -1395,21 +1396,21 @@ object meter:845 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:846 { 
      name R5-12-47-2_meter_19; 
      phases AN; 
      voltage_A 7200+0.0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:847 { 
      name R5-12-47-2_meter_20; 
      phases AN; 
      voltage_A 7200+0.0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:848 { 
@@ -1418,7 +1419,7 @@ object meter:848 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:849 { 
@@ -1426,7 +1427,7 @@ object meter:849 {
      phases ABN; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:850 { 
@@ -1435,14 +1436,14 @@ object meter:850 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:851 { 
      name R5-12-47-2_meter_24; 
      phases AN; 
      voltage_A 7200+0.0j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:852 { 
@@ -1451,7 +1452,7 @@ object meter:852 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:853 { 
@@ -1460,7 +1461,7 @@ object meter:853 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:854 { 
@@ -1468,7 +1469,7 @@ object meter:854 {
      phases ACN; 
      voltage_A 7200+0.0j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:855 { 
@@ -1477,7 +1478,7 @@ object meter:855 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:856 { 
@@ -1486,7 +1487,7 @@ object meter:856 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:857 { 
@@ -1495,7 +1496,7 @@ object meter:857 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:858 { 
@@ -1504,7 +1505,7 @@ object meter:858 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:859 { 
@@ -1512,7 +1513,7 @@ object meter:859 {
      phases ABN; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:860 { 
@@ -1521,7 +1522,7 @@ object meter:860 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:861 { 
@@ -1530,7 +1531,7 @@ object meter:861 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:862 { 
@@ -1539,7 +1540,7 @@ object meter:862 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:863 { 
@@ -1548,14 +1549,14 @@ object meter:863 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:864 { 
      name R5-12-47-2_meter_37; 
      phases BN; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:865 { 
@@ -1564,7 +1565,7 @@ object meter:865 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:866 { 
@@ -1573,7 +1574,7 @@ object meter:866 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:867 { 
@@ -1582,7 +1583,7 @@ object meter:867 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:868 { 
@@ -1590,7 +1591,7 @@ object meter:868 {
      phases ABN; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:869 { 
@@ -1598,7 +1599,7 @@ object meter:869 {
      phases ABN; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:870 { 
@@ -1607,7 +1608,7 @@ object meter:870 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:871 { 
@@ -1615,7 +1616,7 @@ object meter:871 {
      phases ABN; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:872 { 
@@ -1623,7 +1624,7 @@ object meter:872 {
      phases ABN; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 object meter:873 { 
@@ -1632,14 +1633,14 @@ object meter:873 {
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
 } 
 
 // Meter at feeder 
 object meter:1561 { 
      name R5-12-47-2_meter_47; 
      phases ABCN; 
-     nominal_voltage 7200; 
+     nominal_voltage 480; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 
