@@ -1,0 +1,97 @@
+//*********************************************
+// Capacitor Objects
+//*********************************************
+object capacitor {
+	name N_1100006171_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1100006171;
+	phases_connected ABC;
+	control VOLT;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 200000;
+	capacitor_B 200000;
+	capacitor_C 200000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1100005371_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1100005371;
+	phases_connected ABC;
+	control VOLT;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000;
+	capacitor_B 300000;
+	capacitor_C 300000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1100038973_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1100038973;
+	phases_connected ABC;
+	control VOLT;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 400000;
+	capacitor_B 400000;
+	capacitor_C 400000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1100006702_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1100006702;
+	phases_connected ABC;
+	control VOLT;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000;
+	capacitor_B 300000;
+	capacitor_C 300000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object multi_recorder {
+	property N_1100006171_Cap:switchA,N_1100006171_Cap:switchB,N_1100006171_Cap:switchC,N_1100005371_Cap:switchA,N_1100005371_Cap:switchB,N_1100005371_Cap:switchC,N_1100038973_Cap:switchA,N_1100038973_Cap:switchB,N_1100038973_Cap:switchC,N_1100006702_Cap:switchA,N_1100006702_Cap:switchB,N_1100006702_Cap:switchC;
+	file "equip_log.csv";
+	interval 60;
+	limit 2880;
+};
+
+//*********************************************
+// Regulator Objects
+//*********************************************

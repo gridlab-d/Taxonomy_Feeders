@@ -1,0 +1,169 @@
+//*********************************************
+// Capacitor Objects
+//*********************************************
+object capacitor {
+	name N_1200020464_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1200020464;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 900000;
+	capacitor_B 900000;
+	capacitor_C 900000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1200017344_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1200017344;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 400000;
+	capacitor_B 400000;
+	capacitor_C 400000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1200052553_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1200052553;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000;
+	capacitor_B 300000;
+	capacitor_C 300000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1200017246_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1200017246;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000;
+	capacitor_B 300000;
+	capacitor_C 300000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_1200018846_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_1200018846;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000;
+	capacitor_B 300000;
+	capacitor_C 300000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+
+object multi_recorder {
+	property N_1200020464_Cap:switchA,N_1200020464_Cap:switchB,N_1200020464_Cap:switchC,N_1200017344_Cap:switchA,N_1200017344_Cap:switchB,N_1200017344_Cap:switchC,N_1200052553_Cap:switchA,N_1200052553_Cap:switchB,N_1200052553_Cap:switchC,N_1200017246_Cap:switchA,N_1200017246_Cap:switchB,N_1200017246_Cap:switchC,N_1200018846_Cap:switchA,N_1200018846_Cap:switchB,N_1200018846_Cap:switchC;
+	file "VVO_log1.csv";
+	interval 60;
+	limit 2880;
+};
+
+object multi_recorder {
+	property Reg_1200060104:tap_A,Reg_1200060104:tap_B,Reg_1200060104:tap_C,Reg_1200060104:tap_A_change_count,Reg_1200060104:tap_B_change_count,Reg_1200060104:tap_C_change_count,Reg_1200055001-1-1:tap_A,Reg_1200055001-1-1:tap_B,Reg_1200055001-1-1:tap_C,Reg_1200055001-1-1:tap_A_change_count,Reg_1200055001-1-1:tap_B_change_count,Reg_1200055001-1-1:tap_C_change_count;
+	file "VVO_log2.csv";
+	interval 60;
+	limit 2880;
+};
+
+//*********************************************
+// Regulator Objects
+//*********************************************
+
+object regulator_configuration {
+	name Config_Reg;
+	connect_type 1;
+	band_center 7274.613;
+	band_width 60.0;
+	time_delay 30.0;
+	raise_taps 16;
+	lower_taps 16;
+	current_transducer_ratio 700;
+	power_transducer_ratio 20;
+	//compensator_r_setting_A 0.0;
+	//compensator_r_setting_B 0.0;
+	//compensator_r_setting_C 0.0;
+	//compensator_x_setting_A 0.0;
+	//compensator_x_setting_B 0.0;
+	//compensator_x_setting_C 0.0;
+	CT_phase A;
+	PT_phase A;
+	regulation 0.10;
+	Control MANUAL;	//OUTPUT_VOLTAGE
+	control_level BANK; //INDIVIDUAL;
+	Type A;
+	tap_pos_A 0;
+	tap_pos_B 0;
+	tap_pos_C 0;
+}
+  
+object regulator {
+	name Reg_1200060104;
+	phases ABC;
+	from N_1200046529;
+	to N_1200046529_1;
+	configuration Config_Reg;
+}
+
+object regulator {
+	name Reg_1200055001-1-1;
+	phases ABC;
+	from N_-11961043_4616151_12-1;
+	to N_-11961043_4616151_12-1_1;
+	configuration Config_Reg;
+}

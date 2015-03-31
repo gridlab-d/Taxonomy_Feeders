@@ -1,0 +1,1826 @@
+//*********************************************
+// Include the modules
+//*********************************************
+
+module climate;
+module generators;
+
+//*********************************************
+// Climate
+//*********************************************
+
+object climate {
+    tmyfile "CA-San_francisco.tmy2";
+}
+
+//object csv_reader {
+//    name my_csv_reader;
+//    filename climate_csv.csv;
+//}
+
+//object climate {
+//    tmyfile climate_csv.csv;
+//    reader my_csv_reader;
+//}
+
+//*********************************************
+// Transformer config Objects
+//*********************************************
+object transformer_configuration {
+	name Xfrm_config_PV_L_134298_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_134298_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_134298_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_118423_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_118423_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_118423_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_56467_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_70244_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_70244_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_70244_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_63471_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_63471_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_63471_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_6576_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_77872_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_77872_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_77872_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_49997_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_81929_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_81929_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_81929_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_9572_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_9572_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_9572_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_140526_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_140526_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_140526_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_32352_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_32352_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_32352_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_15256_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_77105_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_77105_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_77105_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_137242_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_117776_A;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_117776_C;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+object transformer_configuration {
+	name Xfrm_config_PV_L_117776_B;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 10000;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+//*********************************************
+// Transformer Objects
+//*********************************************
+object transformer {
+	name Xfrm_L_134298_C;
+	phases CS;
+	from N_800041282;
+	to N_L_134298_sec_C;
+	configuration Xfrm_config_PV_L_134298_C;
+}
+
+object transformer {
+	name Xfrm_L_134298_B;
+	phases BS;
+	from N_800041282;
+	to N_L_134298_sec_B;
+	configuration Xfrm_config_PV_L_134298_B;
+}
+
+object transformer {
+	name Xfrm_L_134298_A;
+	phases AS;
+	from N_800041282;
+	to N_L_134298_sec_A;
+	configuration Xfrm_config_PV_L_134298_A;
+}
+
+object transformer {
+	name Xfrm_L_118423_A;
+	phases AS;
+	from N_800053805;
+	to N_L_118423_sec_A;
+	configuration Xfrm_config_PV_L_118423_A;
+}
+
+object transformer {
+	name Xfrm_L_118423_C;
+	phases CS;
+	from N_800053805;
+	to N_L_118423_sec_C;
+	configuration Xfrm_config_PV_L_118423_C;
+}
+
+object transformer {
+	name Xfrm_L_118423_B;
+	phases BS;
+	from N_800053805;
+	to N_L_118423_sec_B;
+	configuration Xfrm_config_PV_L_118423_B;
+}
+
+object transformer {
+	name Xfrm_L_56467_C;
+	phases CS;
+	from N_800044231;
+	to N_L_56467_sec_C;
+	configuration Xfrm_config_PV_L_56467_C;
+}
+
+object transformer {
+	name Xfrm_L_70244_B;
+	phases BS;
+	from N_800042674;
+	to N_L_70244_sec_B;
+	configuration Xfrm_config_PV_L_70244_B;
+}
+
+object transformer {
+	name Xfrm_L_70244_C;
+	phases CS;
+	from N_800042674;
+	to N_L_70244_sec_C;
+	configuration Xfrm_config_PV_L_70244_C;
+}
+
+object transformer {
+	name Xfrm_L_70244_A;
+	phases AS;
+	from N_800042674;
+	to N_L_70244_sec_A;
+	configuration Xfrm_config_PV_L_70244_A;
+}
+
+object transformer {
+	name Xfrm_L_63471_A;
+	phases AS;
+	from N_800044232;
+	to N_L_63471_sec_A;
+	configuration Xfrm_config_PV_L_63471_A;
+}
+
+object transformer {
+	name Xfrm_L_63471_B;
+	phases BS;
+	from N_800044232;
+	to N_L_63471_sec_B;
+	configuration Xfrm_config_PV_L_63471_B;
+}
+
+object transformer {
+	name Xfrm_L_63471_C;
+	phases CS;
+	from N_800044232;
+	to N_L_63471_sec_C;
+	configuration Xfrm_config_PV_L_63471_C;
+}
+
+object transformer {
+	name Xfrm_L_6576_A;
+	phases AS;
+	from N_800028289;
+	to N_L_6576_sec_A;
+	configuration Xfrm_config_PV_L_6576_A;
+}
+
+object transformer {
+	name Xfrm_L_77872_B;
+	phases BS;
+	from N_800010293;
+	to N_L_77872_sec_B;
+	configuration Xfrm_config_PV_L_77872_B;
+}
+
+object transformer {
+	name Xfrm_L_77872_C;
+	phases CS;
+	from N_800010293;
+	to N_L_77872_sec_C;
+	configuration Xfrm_config_PV_L_77872_C;
+}
+
+object transformer {
+	name Xfrm_L_77872_A;
+	phases AS;
+	from N_800010293;
+	to N_L_77872_sec_A;
+	configuration Xfrm_config_PV_L_77872_A;
+}
+
+object transformer {
+	name Xfrm_L_49997_B;
+	phases BS;
+	from N_800047075;
+	to N_L_49997_sec_B;
+	configuration Xfrm_config_PV_L_49997_B;
+}
+
+object transformer {
+	name Xfrm_L_81929_B;
+	phases BS;
+	from N_800010293;
+	to N_L_81929_sec_B;
+	configuration Xfrm_config_PV_L_81929_B;
+}
+
+object transformer {
+	name Xfrm_L_81929_C;
+	phases CS;
+	from N_800010293;
+	to N_L_81929_sec_C;
+	configuration Xfrm_config_PV_L_81929_C;
+}
+
+object transformer {
+	name Xfrm_L_81929_A;
+	phases AS;
+	from N_800010293;
+	to N_L_81929_sec_A;
+	configuration Xfrm_config_PV_L_81929_A;
+}
+
+object transformer {
+	name Xfrm_L_9572_A;
+	phases AS;
+	from N_800042675;
+	to N_L_9572_sec_A;
+	configuration Xfrm_config_PV_L_9572_A;
+}
+
+object transformer {
+	name Xfrm_L_9572_C;
+	phases CS;
+	from N_800042675;
+	to N_L_9572_sec_C;
+	configuration Xfrm_config_PV_L_9572_C;
+}
+
+object transformer {
+	name Xfrm_L_9572_B;
+	phases BS;
+	from N_800042675;
+	to N_L_9572_sec_B;
+	configuration Xfrm_config_PV_L_9572_B;
+}
+
+object transformer {
+	name Xfrm_L_140526_A;
+	phases AS;
+	from N_800047537;
+	to N_L_140526_sec_A;
+	configuration Xfrm_config_PV_L_140526_A;
+}
+
+object transformer {
+	name Xfrm_L_140526_B;
+	phases BS;
+	from N_800047537;
+	to N_L_140526_sec_B;
+	configuration Xfrm_config_PV_L_140526_B;
+}
+
+object transformer {
+	name Xfrm_L_140526_C;
+	phases CS;
+	from N_800047537;
+	to N_L_140526_sec_C;
+	configuration Xfrm_config_PV_L_140526_C;
+}
+
+object transformer {
+	name Xfrm_L_32352_A;
+	phases AS;
+	from N_800042674;
+	to N_L_32352_sec_A;
+	configuration Xfrm_config_PV_L_32352_A;
+}
+
+object transformer {
+	name Xfrm_L_32352_B;
+	phases BS;
+	from N_800042674;
+	to N_L_32352_sec_B;
+	configuration Xfrm_config_PV_L_32352_B;
+}
+
+object transformer {
+	name Xfrm_L_32352_C;
+	phases CS;
+	from N_800042674;
+	to N_L_32352_sec_C;
+	configuration Xfrm_config_PV_L_32352_C;
+}
+
+object transformer {
+	name Xfrm_L_15256_A;
+	phases AS;
+	from N_800013396;
+	to N_L_15256_sec_A;
+	configuration Xfrm_config_PV_L_15256_A;
+}
+
+object transformer {
+	name Xfrm_L_77105_A;
+	phases AS;
+	from N_800003836;
+	to N_L_77105_sec_A;
+	configuration Xfrm_config_PV_L_77105_A;
+}
+
+object transformer {
+	name Xfrm_L_77105_C;
+	phases CS;
+	from N_800003836;
+	to N_L_77105_sec_C;
+	configuration Xfrm_config_PV_L_77105_C;
+}
+
+object transformer {
+	name Xfrm_L_77105_B;
+	phases BS;
+	from N_800003836;
+	to N_L_77105_sec_B;
+	configuration Xfrm_config_PV_L_77105_B;
+}
+
+object transformer {
+	name Xfrm_L_137242_C;
+	phases CS;
+	from N_800044231;
+	to N_L_137242_sec_C;
+	configuration Xfrm_config_PV_L_137242_C;
+}
+
+object transformer {
+	name Xfrm_L_117776_A;
+	phases AS;
+	from N_800010293;
+	to N_L_117776_sec_A;
+	configuration Xfrm_config_PV_L_117776_A;
+}
+
+object transformer {
+	name Xfrm_L_117776_C;
+	phases CS;
+	from N_800010293;
+	to N_L_117776_sec_C;
+	configuration Xfrm_config_PV_L_117776_C;
+}
+
+object transformer {
+	name Xfrm_L_117776_B;
+	phases BS;
+	from N_800010293;
+	to N_L_117776_sec_B;
+	configuration Xfrm_config_PV_L_117776_B;
+}
+
+//*********************************************
+// Triplex meter Objects
+//*********************************************
+object triplex_meter {
+	name N_L_134298_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_134298_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_134298_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_118423_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_118423_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_118423_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_56467_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_70244_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_70244_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_70244_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_63471_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_63471_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_63471_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_6576_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_77872_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_77872_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_77872_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_49997_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_81929_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_81929_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_81929_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_9572_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_9572_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_9572_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_140526_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_140526_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_140526_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_32352_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_32352_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_32352_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_15256_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_77105_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_77105_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_77105_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_137242_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_117776_sec_A;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_117776_sec_C;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N_L_117776_sec_B;
+	phases BS;
+	nominal_voltage 120;
+}
+
+//*********************************************
+// Inverter Objects
+//*********************************************
+object inverter {
+	name inverter_L_134298_C;
+	parent N_L_134298_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_134298_B;
+	parent N_L_134298_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_134298_A;
+	parent N_L_134298_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_118423_A;
+	parent N_L_118423_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_118423_C;
+	parent N_L_118423_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_118423_B;
+	parent N_L_118423_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_56467_C;
+	parent N_L_56467_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_70244_B;
+	parent N_L_70244_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_70244_C;
+	parent N_L_70244_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_70244_A;
+	parent N_L_70244_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_63471_A;
+	parent N_L_63471_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_63471_B;
+	parent N_L_63471_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_63471_C;
+	parent N_L_63471_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_6576_A;
+	parent N_L_6576_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_77872_B;
+	parent N_L_77872_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_77872_C;
+	parent N_L_77872_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_77872_A;
+	parent N_L_77872_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_49997_B;
+	parent N_L_49997_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_81929_B;
+	parent N_L_81929_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_81929_C;
+	parent N_L_81929_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_81929_A;
+	parent N_L_81929_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_9572_A;
+	parent N_L_9572_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_9572_C;
+	parent N_L_9572_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_9572_B;
+	parent N_L_9572_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_140526_A;
+	parent N_L_140526_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_140526_B;
+	parent N_L_140526_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_140526_C;
+	parent N_L_140526_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_32352_A;
+	parent N_L_32352_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_32352_B;
+	parent N_L_32352_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_32352_C;
+	parent N_L_32352_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_15256_A;
+	parent N_L_15256_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_77105_A;
+	parent N_L_77105_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_77105_C;
+	parent N_L_77105_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_77105_B;
+	parent N_L_77105_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_137242_C;
+	parent N_L_137242_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_117776_A;
+	parent N_L_117776_sec_A;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_117776_C;
+	parent N_L_117776_sec_C;
+	phases CS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_L_117776_B;
+	parent N_L_117776_sec_B;
+	phases BS;
+	generator_mode CONSTANT_PF;
+	generator_status OFFLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 30000.0;
+	inverter_efficiency 0.9;
+}
+
+//*********************************************
+// Solar Objects
+//*********************************************
+object solar {
+	name solar_L_134298_C;
+	parent inverter_L_134298_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_134298_B;
+	parent inverter_L_134298_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_134298_A;
+	parent inverter_L_134298_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_118423_A;
+	parent inverter_L_118423_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_118423_C;
+	parent inverter_L_118423_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_118423_B;
+	parent inverter_L_118423_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_56467_C;
+	parent inverter_L_56467_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_70244_B;
+	parent inverter_L_70244_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_70244_C;
+	parent inverter_L_70244_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_70244_A;
+	parent inverter_L_70244_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_63471_A;
+	parent inverter_L_63471_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_63471_B;
+	parent inverter_L_63471_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_63471_C;
+	parent inverter_L_63471_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_6576_A;
+	parent inverter_L_6576_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_77872_B;
+	parent inverter_L_77872_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_77872_C;
+	parent inverter_L_77872_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_77872_A;
+	parent inverter_L_77872_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_49997_B;
+	parent inverter_L_49997_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_81929_B;
+	parent inverter_L_81929_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_81929_C;
+	parent inverter_L_81929_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_81929_A;
+	parent inverter_L_81929_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_9572_A;
+	parent inverter_L_9572_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_9572_C;
+	parent inverter_L_9572_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_9572_B;
+	parent inverter_L_9572_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_140526_A;
+	parent inverter_L_140526_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_140526_B;
+	parent inverter_L_140526_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_140526_C;
+	parent inverter_L_140526_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_32352_A;
+	parent inverter_L_32352_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_32352_B;
+	parent inverter_L_32352_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_32352_C;
+	parent inverter_L_32352_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_15256_A;
+	parent inverter_L_15256_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_77105_A;
+	parent inverter_L_77105_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_77105_C;
+	parent inverter_L_77105_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_77105_B;
+	parent inverter_L_77105_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_137242_C;
+	parent inverter_L_137242_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_117776_A;
+	parent inverter_L_117776_A;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_117776_C;
+	parent inverter_L_117776_C;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+
+object solar {
+	name solar_L_117776_B;
+	parent inverter_L_117776_B;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status OFFLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 5000;
+}
+

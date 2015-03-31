@@ -1,0 +1,878 @@
+#include "load_schedule_PP.glm"
+
+object load {
+	name N_800003816;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A_real load_shape_A*8048.06666667;
+	constant_power_B_real load_shape_B*8048.06666667;
+	constant_power_C_real load_shape_C*8048.06666667;
+	constant_power_A_reac load_shape_A*2645.27159075;
+	constant_power_B_reac load_shape_B*2645.27159075;
+	constant_power_C_reac load_shape_C*2645.27159075;
+}
+
+object load {
+	name N_800003814;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*4037.919;
+	constant_power_B load_shape_B*4037.919;
+	constant_power_C load_shape_C*4037.919;
+	constant_power_A load_shape_A*1327.1997933;
+	constant_power_B load_shape_B*1327.1997933;
+	constant_power_C load_shape_C*1327.1997933;
+}
+
+object load {
+	name N_800041282;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*7917.54233333;
+	constant_power_B load_shape_B*7917.54233333;
+	constant_power_C load_shape_C*7917.54233333;
+	constant_power_A load_shape_A*2602.37031705;
+	constant_power_B load_shape_B*2602.37031705;
+	constant_power_C load_shape_C*2602.37031705;
+}
+
+object load {
+	name N_800047076;
+	phases B;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*13196.83;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*4337.58825975;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800003810;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*35583.119;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*11695.605628;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800047075;
+	phases B;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*19803.576;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*6509.1206569;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800054753;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*6255.494;
+	constant_power_B load_shape_B*6255.494;
+	constant_power_C load_shape_C*6255.494;
+	constant_power_A load_shape_A*3876.80699041;
+	constant_power_B load_shape_B*3876.80699041;
+	constant_power_C load_shape_C*3876.80699041;
+}
+
+object load {
+	name N_800003851;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*12871.908;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*4230.79156292;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800034662;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*20670.034;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*6793.91162931;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800003833;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*15254.669;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*5013.96723006;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800003815;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*3774.093;
+	constant_power_B load_shape_B*3774.093;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*1240.48438057;
+	constant_power_B load_shape_B*1240.48438057;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800033634;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*5736.121;
+	constant_power_B load_shape_B*5736.121;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*2536.46247952;
+	constant_power_B load_shape_B*2536.46247952;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800026137;
+	phases B;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*36974.451;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*12152.9143414;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800026145;
+	phases B;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*25060.646;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*8237.03600571;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800003828;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*27035.172;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*8886.03131718;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800042659;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*7334.34933333;
+	constant_power_B load_shape_B*7334.34933333;
+	constant_power_C load_shape_C*7334.34933333;
+	constant_power_A load_shape_A*2487.47320777;
+	constant_power_B load_shape_B*2487.47320777;
+	constant_power_C load_shape_C*2487.47320777;
+}
+
+object load {
+	name N_800044234;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*7759.247;
+	constant_power_B load_shape_B*7759.247;
+	constant_power_C load_shape_C*7759.247;
+	constant_power_A load_shape_A*2550.34115706;
+	constant_power_B load_shape_B*2550.34115706;
+	constant_power_C load_shape_C*2550.34115706;
+}
+
+object load {
+	name N_800018863;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*26000.0;
+	constant_power_B load_shape_B*26000.0;
+	constant_power_C load_shape_C*26000.0;
+	constant_power_A load_shape_A*16113.3527985;
+	constant_power_B load_shape_B*16113.3527985;
+	constant_power_C load_shape_C*16113.3527985;
+}
+
+object load {
+	name N_800042675;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*2160.592;
+	constant_power_B load_shape_B*2160.592;
+	constant_power_C load_shape_C*2160.592;
+	constant_power_A load_shape_A*710.152248177;
+	constant_power_B load_shape_B*710.152248177;
+	constant_power_C load_shape_C*710.152248177;
+}
+
+object load {
+	name N_800042674;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*12024.889;
+	constant_power_B load_shape_B*12024.889;
+	constant_power_C load_shape_C*12024.889;
+	constant_power_A load_shape_A*3952.38988084;
+	constant_power_B load_shape_B*3952.38988084;
+	constant_power_C load_shape_C*3952.38988084;
+}
+
+object load {
+	name N_800042677;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*7703.705;
+	constant_power_B load_shape_B*7703.705;
+	constant_power_C load_shape_C*7703.705;
+	constant_power_A load_shape_A*2532.08538449;
+	constant_power_B load_shape_B*2532.08538449;
+	constant_power_C load_shape_C*2532.08538449;
+}
+
+object load {
+	name N_800042676;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*3471.38833333;
+	constant_power_B load_shape_B*3471.38833333;
+	constant_power_C load_shape_C*3471.38833333;
+	constant_power_A load_shape_A*1140.99016807;
+	constant_power_B load_shape_B*1140.99016807;
+	constant_power_C load_shape_C*1140.99016807;
+}
+
+object load {
+	name N_800047537;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*6895.56566667;
+	constant_power_B load_shape_B*6895.56566667;
+	constant_power_C load_shape_C*6895.56566667;
+	constant_power_A load_shape_A*2266.46283085;
+	constant_power_B load_shape_B*2266.46283085;
+	constant_power_C load_shape_C*2266.46283085;
+}
+
+object load {
+	name N_800042673;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*5165.42566667;
+	constant_power_B load_shape_B*5165.42566667;
+	constant_power_C load_shape_C*5165.42566667;
+	constant_power_A load_shape_A*1761.64950278;
+	constant_power_B load_shape_B*1761.64950278;
+	constant_power_C load_shape_C*1761.64950278;
+}
+
+object load {
+	name N_800042672;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*7975.86166667;
+	constant_power_B load_shape_B*7975.86166667;
+	constant_power_C load_shape_C*7975.86166667;
+	constant_power_A load_shape_A*2621.53895494;
+	constant_power_B load_shape_B*2621.53895494;
+	constant_power_C load_shape_C*2621.53895494;
+}
+
+object load {
+	name N_800109225;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*19861.895;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*6528.28918523;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800010252;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*4865.49766667;
+	constant_power_B load_shape_B*4865.49766667;
+	constant_power_C load_shape_C*4865.49766667;
+	constant_power_A load_shape_A*2004.98153452;
+	constant_power_B load_shape_B*2004.98153452;
+	constant_power_C load_shape_C*2004.98153452;
+}
+
+object load {
+	name N_800052747;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*18000.0;
+	constant_power_B load_shape_B*18000.0;
+	constant_power_C load_shape_C*18000.0;
+	constant_power_A load_shape_A*11155.3980913;
+	constant_power_B load_shape_B*11155.3980913;
+	constant_power_C load_shape_C*11155.3980913;
+}
+
+object load {
+	name N_800010259;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*3771.31666667;
+	constant_power_B load_shape_B*3771.31666667;
+	constant_power_C load_shape_C*3771.31666667;
+	constant_power_A load_shape_A*1313.12780991;
+	constant_power_B load_shape_B*1313.12780991;
+	constant_power_C load_shape_C*1313.12780991;
+}
+
+object load {
+	name N_800003831;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*13813.348;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*4758.47071098;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800111512;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*6392.90866667;
+	constant_power_B load_shape_B*6392.90866667;
+	constant_power_C load_shape_C*6392.90866667;
+	constant_power_A load_shape_A*2101.24746459;
+	constant_power_B load_shape_B*2101.24746459;
+	constant_power_C load_shape_C*2101.24746459;
+}
+
+object load {
+	name N_800053805;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*5706.96233333;
+	constant_power_B load_shape_B*5706.96233333;
+	constant_power_C load_shape_C*5706.96233333;
+	constant_power_A load_shape_A*1875.78780782;
+	constant_power_B load_shape_B*1875.78780782;
+	constant_power_C load_shape_C*1875.78780782;
+}
+
+object load {
+	name N_800003803;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*8139.711;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*2675.39362645;
+	constant_power_B load_shape_B*+0;
+	constant_power_C load_shape_C*+0;
+}
+
+object load {
+	name N_800026555;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*9147.80233333;
+	constant_power_B load_shape_B*9147.80233333;
+	constant_power_C load_shape_C*9147.80233333;
+	constant_power_A load_shape_A*3006.73722428;
+	constant_power_B load_shape_B*3006.73722428;
+	constant_power_C load_shape_C*3006.73722428;
+}
+
+object load {
+	name N_800013464;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*29634.548;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*9740.40489176;
+}
+
+object load {
+	name N_800003829;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*16281.104;
+	constant_power_B load_shape_B*16281.104;
+	constant_power_C load_shape_C*0.0;
+	constant_power_A load_shape_A*9864.60448341;
+	constant_power_B load_shape_B*9864.60448341;
+	constant_power_C load_shape_C*0.0;
+}
+
+object load {
+	name N_800010293;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*9575.47733333;
+	constant_power_B load_shape_B*9575.47733333;
+	constant_power_C load_shape_C*9575.47733333;
+	constant_power_A load_shape_A*3147.30719897;
+	constant_power_B load_shape_B*3147.30719897;
+	constant_power_C load_shape_C*3147.30719897;
+}
+
+object load {
+	name N_800003808;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*22552.915;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*7412.78468595;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800013465;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*35274.859;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*11594.2854657;
+}
+
+object load {
+	name N_800003839;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*11580.551;
+	constant_power_B load_shape_B*11580.551;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*3806.34304291;
+	constant_power_B load_shape_B*3806.34304291;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800003821;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*14357.167;
+	constant_power_B load_shape_B*14357.167;
+	constant_power_C load_shape_C*0.0;
+	constant_power_A load_shape_A*8251.53192793;
+	constant_power_B load_shape_B*8251.53192793;
+	constant_power_C load_shape_C*0.0;
+}
+
+object load {
+	name N_800003820;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*12942.723;
+	constant_power_B load_shape_B*12942.723;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*8021.17930277;
+	constant_power_B load_shape_B*8021.17930277;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800003845;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*22952.819;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*7544.22677435;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800041281;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*6017.99866667;
+	constant_power_B load_shape_B*6017.99866667;
+	constant_power_C load_shape_C*6017.99866667;
+	constant_power_A load_shape_A*1978.02050672;
+	constant_power_B load_shape_B*1978.02050672;
+	constant_power_C load_shape_C*1978.02050672;
+}
+
+object load {
+	name N_800042661;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*16287.754;
+	constant_power_B load_shape_B*16287.754;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*5353.52584886;
+	constant_power_B load_shape_B*5353.52584886;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800110102;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0.0;
+	constant_power_B load_shape_B*0.0;
+	constant_power_C load_shape_C*0.0;
+	constant_power_A load_shape_A*0.0;
+	constant_power_B load_shape_B*0.0;
+	constant_power_C load_shape_C*0.0;
+}
+
+object load {
+	name N_800045760;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*12496.998;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*4107.56460505;
+}
+
+object load {
+	name N_800003842;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*17531.8996667;
+	constant_power_B load_shape_B*17531.8996667;
+	constant_power_C load_shape_C*17531.8996667;
+	constant_power_A load_shape_A*5819.84655551;
+	constant_power_B load_shape_B*5819.84655551;
+	constant_power_C load_shape_C*5819.84655551;
+}
+
+object load {
+	name N_800025566;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*4734.97366667;
+	constant_power_B load_shape_B*4734.97366667;
+	constant_power_C load_shape_C*4734.97366667;
+	constant_power_A load_shape_A*1556.31058267;
+	constant_power_B load_shape_B*1556.31058267;
+	constant_power_C load_shape_C*1556.31058267;
+}
+
+object load {
+	name N_800042666;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*9597.694;
+	constant_power_B load_shape_B*9597.694;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*3154.60946417;
+	constant_power_B load_shape_B*3154.60946417;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800025891;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*9333.33333333;
+	constant_power_B load_shape_B*9333.33333333;
+	constant_power_C load_shape_C*9333.33333333;
+	constant_power_A load_shape_A*5784.28049176;
+	constant_power_B load_shape_B*5784.28049176;
+	constant_power_C load_shape_C*5784.28049176;
+}
+
+object load {
+	name N_800044233;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*1116.39833333;
+	constant_power_B load_shape_B*1116.39833333;
+	constant_power_C load_shape_C*1116.39833333;
+	constant_power_A load_shape_A*366.942387215;
+	constant_power_B load_shape_B*366.942387215;
+	constant_power_C load_shape_C*366.942387215;
+}
+
+object load {
+	name N_800044232;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*3476.94266667;
+	constant_power_B load_shape_B*3476.94266667;
+	constant_power_C load_shape_C*3476.94266667;
+	constant_power_A load_shape_A*1142.81578915;
+	constant_power_B load_shape_B*1142.81578915;
+	constant_power_C load_shape_C*1142.81578915;
+}
+
+object load {
+	name N_800044231;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*6365.138;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*2092.11968787;
+}
+
+object load {
+	name N_800044230;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*12030.443;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*3954.21539236;
+}
+
+object load {
+	name N_800042662;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*380.464;
+	constant_power_B load_shape_B*380.464;
+	constant_power_C load_shape_C*380.464;
+	constant_power_A load_shape_A*235.790409966;
+	constant_power_B load_shape_B*235.790409966;
+	constant_power_C load_shape_C*235.790409966;
+}
+
+object load {
+	name N_800042663;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*9403.297;
+	constant_power_B load_shape_B*9403.297;
+	constant_power_C load_shape_C*9403.297;
+	constant_power_A load_shape_A*4993.46775596;
+	constant_power_B load_shape_B*4993.46775596;
+	constant_power_C load_shape_C*4993.46775596;
+}
+
+object load {
+	name N_800042660;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*4632.221;
+	constant_power_B load_shape_B*4632.221;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*1522.53741438;
+	constant_power_B load_shape_B*1522.53741438;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800048902;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*16384.9526667;
+	constant_power_B load_shape_B*16384.9526667;
+	constant_power_C load_shape_C*16384.9526667;
+	constant_power_A load_shape_A*5400.83129885;
+	constant_power_B load_shape_B*5400.83129885;
+	constant_power_C load_shape_C*5400.83129885;
+}
+
+object load {
+	name N_800026141;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*6964.993;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*2289.28249178;
+}
+
+object load {
+	name N_800042667;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*8960.347;
+	constant_power_B load_shape_B*8960.347;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*2945.12363579;
+	constant_power_B load_shape_B*+2945.12363579;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800042664;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*13567.574;
+	constant_power_B load_shape_B*13567.574;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*4459.44591964;
+	constant_power_B load_shape_B*4459.44591964;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800042665;
+	phases AB;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*17208.366;
+	constant_power_B load_shape_B*17208.366;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*5835.56054423;
+	constant_power_B load_shape_B*5835.56054423;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800042668;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*10775.189;
+	constant_power_B load_shape_B*10775.189;
+	constant_power_C load_shape_C*10775.189;
+	constant_power_A load_shape_A*3566.6908271;
+	constant_power_B load_shape_B*3566.6908271;
+	constant_power_C load_shape_C*3566.6908271;
+}
+
+object load {
+	name N_800003794;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*3674.117;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*1207.62385847;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800054496;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0.0;
+	constant_power_B load_shape_B*0.0;
+	constant_power_C load_shape_C*0.0;
+	constant_power_A load_shape_A*0.0;
+	constant_power_B load_shape_B*0.0;
+	constant_power_C load_shape_C*0.0;
+}
+
+object load {
+	name N_800013463;
+	phases C;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*57127.943;
+	constant_power_A load_shape_A*0;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*18777.0468257;
+}
+
+object load {
+	name N_800041280;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*1966.194;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*646.256715498;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800013396;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*26501.967;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*8710.77530887;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800013397;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*18245.617;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*5997.04429708;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+
+object load {
+	name N_800047538;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*2968.73133333;
+	constant_power_B load_shape_B*2968.73133333;
+	constant_power_C load_shape_C*2968.73133333;
+	constant_power_A load_shape_A*975.774801813;
+	constant_power_B load_shape_B*975.774801813;
+	constant_power_C load_shape_C*975.774801813;
+}
+
+object load {
+	name N_800052153;
+	phases ABC;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*4979.35966667;
+	constant_power_B load_shape_B*4979.35966667;
+	constant_power_C load_shape_C*4979.35966667;
+	constant_power_A load_shape_A*1720.70029594;
+	constant_power_B load_shape_B*1720.70029594;
+	constant_power_C load_shape_C*1720.70029594;
+}
+
+object load {
+	name N_800028289;
+	phases A;
+	nominal_voltage 2523.021;
+	constant_power_A load_shape_A*21086.601;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+	constant_power_A load_shape_A*6930.83058095;
+	constant_power_B load_shape_B*0;
+	constant_power_C load_shape_C*0;
+}
+

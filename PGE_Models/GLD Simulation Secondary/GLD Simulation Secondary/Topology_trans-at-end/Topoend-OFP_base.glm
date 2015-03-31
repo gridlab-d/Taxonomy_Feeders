@@ -1,0 +1,1901 @@
+// cooling_setpoint COOLING*1.2;
+// base_power LIGHTS*0.1;
+
+
+// created by: Vaibhav Donde
+// Transformer at one end of the secondary
+// *********************************************
+
+
+// *********************************************
+// Headers
+// *********************************************
+
+#set profiler=1
+#include "House_appliance_schedule.glm";
+//#include "Smart_Inverter_schedule.glm";
+
+
+// *********************************************
+// modules
+// *********************************************
+
+module tape;
+module powerflow{
+	solver_method FBS;
+	default_maximum_voltage_error 1e-9;
+};
+module residential {
+	implicit_enduses NONE;
+};
+
+module climate;
+module generators;
+
+
+// *********************************************
+// clock
+// *********************************************
+
+clock{
+	timezone PST+8PDT;
+	starttime '2000-07-17 00:00:00';	//summer wk
+	stoptime '2000-07-19 00:00:00';		//summer wk
+//	starttime '2000-07-xx 00:00:00';	//summer wkend
+//	stoptime '2000-07-xx 00:00:00';		//summer wkend
+//	starttime '2000-01-xx 00:00:00';	//winter wk
+//	stoptime '2000-01-xx 00:00:00';		//winter wk
+//	starttime '2000-01-xx 00:00:00';	//winter wkend
+//	stoptime '2010-01-xx 00:00:00';		//winter wkend
+}
+
+// *********************************************
+// climate
+// *********************************************
+
+object climate {
+	tmyfile "CA-Sacramento.tmy2";
+}
+
+//object csv_reader {
+//	name my_csv_reader;
+//	filename solar-diff-no-flicker-Davis.csv;
+//}
+
+//object climate {
+//	tmyfile solar-diff-no-flicker-Davis.csv;
+//	reader my_csv_reader;
+//}
+
+
+// *********************************************
+// Conductor objects
+// *********************************************
+
+// 1/O aluminum conductor
+object triplex_line_conductor {
+	name TPX_1o;
+	resistance 0.97;
+	geometric_mean_radius 0.0111;
+}
+
+// *********************************************
+// Line Configuration
+// *********************************************
+
+object triplex_line_configuration {
+	name A_TPX_1o;
+	conductor_1 TPX_1o;
+	conductor_2 TPX_1o;
+	conductor_N TPX_1o;
+	insulation_thickness 0.08 in;
+	diameter 0.368 in;
+}
+
+// *********************************************
+// Node Objects
+// *********************************************
+
+object node {
+	name N1;
+	phases "ABCN";
+	bustype SWING;
+	nominal_voltage 7200;
+}
+
+
+// *********************************************
+// Line objects
+// *********************************************
+
+object triplex_line {
+	name N2_N3;
+	phases AS;
+	length 100ft;
+	from N2;
+	to N3;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N2_N4;
+	phases AS;
+	length 10ft;
+	from N2;
+	to N4;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N2_N5;
+	phases AS;
+	length 150ft;
+	from N2;
+	to N5;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N5_N6;
+	phases AS;
+	length 60ft;
+	from N5;
+	to N6;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N5_N9;
+	phases AS;
+	length 60ft;
+	from N5;
+	to N9;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N6_N7;
+	phases AS;
+	length 10ft;
+	from N6;
+	to N7;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N6_N8;
+	phases AS;
+	length 10ft;
+	from N6;
+	to N8;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N9_N10;
+	phases AS;
+	length 10ft;
+	from N9;
+	to N10;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N9_N11;
+	phases AS;
+	length 10ft;
+	from N9;
+	to N11;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N5_N12;
+	phases AS;
+	length 150ft;
+	from N5;
+	to N12;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N12_N13;
+	phases AS;
+	length 70ft;
+	from N12;
+	to N13;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N12_N14;
+	phases AS;
+	length 70ft;
+	from N12;
+	to N14;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N12_N15;
+	phases AS;
+	length 70ft;
+	from N12;
+	to N15;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N12_N16;
+	phases AS;
+	length 70ft;
+	from N12;
+	to N16;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N3_N3_PV;
+	phases AS;
+	length 10ft;
+	from N3;
+	to N3_PV;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N7_N7_PV;
+	phases AS;
+	length 10ft;
+	from N7;
+	to N7_PV;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N8_N8_PV;
+	phases AS;
+	length 10ft;
+	from N8;
+	to N8_PV;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N11_N11_PV;
+	phases AS;
+	length 10ft;
+	from N11;
+	to N11_PV;
+	configuration A_TPX_1o;
+}
+object triplex_line {
+	name N13_N13_PV;
+	phases AS;
+	length 10ft;
+	from N13;
+	to N13_PV;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N14_N14_PV;
+	phases AS;
+	length 10ft;
+	from N14;
+	to N14_PV;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N15_N15_PV;
+	phases AS;
+	length 10ft;
+	from N15;
+	to N15_PV;
+	configuration A_TPX_1o;
+}
+
+object triplex_line {
+	name N16_N16_PV;
+	phases AS;
+	length 10ft;
+	from N16;
+	to N16_PV;
+	configuration A_TPX_1o;
+}
+
+
+
+// **********************************************
+// Transformer Configuration Parameters objects
+// **********************************************
+
+object transformer_configuration {
+	name xfrm_config_100;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type POLETOP;
+	power_rating 30000;
+	primary_voltage 7200;
+	secondary_voltage 120;
+	resistance 0.09;
+	reactance 1.81;
+}
+
+// **********************************************
+// Transformer objects
+// **********************************************
+
+object transformer {
+	name xfrm_1;
+	phases "AS";
+	from N1;
+	to N2;
+	configuration xfrm_config_100;
+}
+
+// **********************************************
+// Meter objects
+// **********************************************
+
+object triplex_meter {
+	name N2;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N3;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N4;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N5;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N6;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N7;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N8;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N9;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N10;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N11;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N12;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N13;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N14;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N15;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N16;
+	phases AS;
+	nominal_voltage 120;
+}
+
+object triplex_meter {
+	name N3_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N7_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N8_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N11_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N13_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N14_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N15_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+object triplex_meter {
+	name N16_PV;
+	phases AS;
+	nominal_voltage 120;
+	service_status 0;
+}
+
+
+
+// **********************************************
+// House objects
+// **********************************************
+
+object house {
+	name house_N3;
+	parent N3;
+	floor_area 2000;
+	schedule_skew 0;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N3_load;
+		base_power LIGHTS*0.1;
+		schedule_skew 0;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+	object refrigerator {
+		name house_N3_refrigerator;
+		schedule_skew 0;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N3_range;
+		schedule_skew 0;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N3_dishwasher;
+		schedule_skew 0;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N3_dryer;
+		schedule_skew 0;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N3_clotheswasher;
+		schedule_skew 0;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N4;
+	parent N4;
+	floor_area 1800;
+	schedule_skew 722;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N4_load;
+		base_power LIGHTS*0.1;
+		schedule_skew 722;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N4_refrigerator;
+		schedule_skew 722;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N4_range;
+		schedule_skew 722;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N4_dishwasher;
+		schedule_skew 722;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N4_dryer;
+		schedule_skew 722;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N4_clotheswasher;
+		schedule_skew 722;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N7;
+	parent N7;
+	floor_area 1770;
+	schedule_skew -537;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N6_load;
+		base_power LIGHTS*0.1;
+		schedule_skew -537;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N6_refrigerator;
+		schedule_skew -537;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N6_range;
+		schedule_skew -537;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N6_dishwasher;
+		schedule_skew -537;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N6_dryer;
+		schedule_skew -537;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N6_clotheswasher;
+		schedule_skew -537;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N8;
+	parent N8;
+	floor_area 1900;
+	schedule_skew 1532;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N7_load;
+		base_power LIGHTS*0.1;
+		schedule_skew 1532;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N7_refrigerator;
+		schedule_skew 1532;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N7_range;
+		schedule_skew 1532;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N7_dishwasher;
+		schedule_skew 1532;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N7_dryer;
+		schedule_skew 1532;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N7_clotheswasher;
+		schedule_skew 1532;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N10;
+	parent N10;
+	floor_area 2030;
+	schedule_skew 2338;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N9_load;
+		base_power LIGHTS*0.1;
+		schedule_skew 2338;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N9_refrigerator;
+		schedule_skew 2338;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N9_range;
+		schedule_skew 2338;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N9_dishwasher;
+		schedule_skew 2338;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N9_dryer;
+		schedule_skew 2338;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N9_clotheswasher;
+		schedule_skew 2338;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N11;
+	parent N11;
+	floor_area 1950;
+	schedule_skew -111;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N10_load;
+		base_power LIGHTS*0.1;
+		schedule_skew -111;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N10_refrigerator;
+		schedule_skew -111;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N10_range;
+		schedule_skew -111;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N10_dishwasher;
+		schedule_skew -111;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N10_dryer;
+		schedule_skew -111;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N10_clotheswasher;
+		schedule_skew -111;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N13;
+	parent N13;
+	floor_area 1600;
+	schedule_skew 347;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N11_load;
+		base_power LIGHTS*0.1;
+		schedule_skew 347;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N11_refrigerator;
+		schedule_skew 347;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N11_range;
+		schedule_skew 347;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N11_dishwasher;
+		schedule_skew 347;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N11_dryer;
+		schedule_skew 347;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N11_clotheswasher;
+		schedule_skew 347;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N14;
+	parent N14;
+	floor_area 1740;
+	schedule_skew -977;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N12_load;
+		base_power LIGHTS*0.1;
+		schedule_skew -977;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N12_refrigerator;
+		schedule_skew -977;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N12_range;
+		schedule_skew -977;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N12_dishwasher;
+		schedule_skew -977;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N12_dryer;
+		schedule_skew -977;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N12_clotheswasher;
+		schedule_skew -977;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N15;
+	parent N15;
+	floor_area 1960;
+	schedule_skew 339;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N13_load;
+		base_power LIGHTS*0.1;
+		schedule_skew 339;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N13_refrigerator;
+		schedule_skew 339;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N13_range;
+		schedule_skew 339;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N13_dishwasher;
+		schedule_skew 339;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N13_dryer;
+		schedule_skew 339;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N13_clotheswasher;
+		schedule_skew 339;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+object house {
+	name house_N16;
+	parent N16;
+	floor_area 2050;
+	schedule_skew -3523;
+
+	heating_system_type HEAT_PUMP;
+	heating_COP 3.0;
+	heating_setpoint HEATING*1;
+
+	cooling_system_type ELECTRIC;
+	cooling_setpoint COOLING*1.2;
+
+	thermal_integrity_level 6;
+	air_temperature 70;
+	mass_temperature 70;
+	cooling_COP 2.6;
+
+	object ZIPload {
+		name house_N14_load;
+		base_power LIGHTS*0.1;
+		schedule_skew -3523;
+		heatgain_fraction 0.9;
+		power_pf 1.000;
+		current_pf 1.000;
+		impedance_pf 1.000;
+		impedance_fraction 0.300000;
+		current_fraction 0.300000;
+		power_fraction 0.400000;
+	};
+
+
+	object refrigerator {
+		name house_N14_refrigerator;
+		schedule_skew -3523;
+		//door_opening_criterion REFRIGERATOR;
+		daily_door_opening 20;          
+		state COMPRESSSOR_OFF_NORMAL;
+		energy_used 13.5;
+		defrost_criterion DOOR_OPENINGS;
+		delay_defrost_time 600;
+		door_opening_criterion 24;
+	};
+
+	object range {
+		name house_N14_range;
+		schedule_skew -3523;
+		
+		//Oven
+		oven_volume 5;
+		heating_element_capacity 1;
+		oven_setpoint 150;
+		temperature 70;
+		thermostat_deadband 8;
+		location INSIDE;
+		oven_UA 2.9;
+		food_density 5;
+		specificheat_food 1;
+		time_oven_setting 3600;
+		queue_oven 0.85;
+		//demand_oven ;
+		//oven_demand ;
+
+		//Cooktop
+		cooktop_energy_baseline 0.5;
+		cooktop_coil_setting_1 2;
+		cooktop_coil_setting_2 1;
+		cooktop_coil_setting_3 1.7;
+		cooktop_interval_setting_1 240;
+		cooktop_interval_setting_2 900;
+		cooktop_interval_setting_3 120;
+		queue_cooktop 0.99;
+		queue_min 0;
+		queue_max 2;
+		//time_cooktop_setting ;
+		//demand_cooktop ;
+	};
+
+	object dishwasher {
+		name house_N14_dishwasher;
+		schedule_skew -3523;
+		energy_baseline 0.9;
+		Heateddry_option_check TRUE;
+		control_power 10;
+		motor_power 250;
+		dishwasher_coil_power_1 580;
+		dishwasher_coil_power_2 695;
+		dishwasher_coil_power_3 950;
+		queue 1;
+		queue_min 0;
+		queue_max 2;
+		//daily_dishwasher_demand DISHWASHER;
+	};
+
+	object dryer {
+		name house_N14_dryer;
+		schedule_skew -3523;
+		energy_baseline 3;
+		controls_power 10;
+		motor_power 200;
+		dryer_coil_power 5800;
+		queue 0.8;
+		queue_min 0;
+		queue_max 2;
+		//daily_dryer_demand DRYER;
+	};
+
+	object clotheswasher {
+		name house_N14_clotheswasher;
+		schedule_skew -3523;
+		queue 1.7;
+		state STOPPED;
+		queue_min 0;
+		queue_max 2;
+		//demand CLOTHESWASHER;
+	};
+
+}
+
+
+// *********************************************
+// Inverter Object
+// *********************************************
+
+object inverter {
+	name inverter_N3;
+	parent N3_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N7;
+	parent N7_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N8;
+	parent N8_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N11;
+	parent N11_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N13;
+	parent N13_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N14;
+	parent N14_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N15;
+	parent N15_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+object inverter {
+	name inverter_N16;
+	parent N16_PV;
+	phases AS;
+	generator_mode CONSTANT_PF;
+	generator_status ONLINE;
+	inverter_type PWM;
+	power_factor 1.0;
+	rated_power 3000;
+	inverter_efficiency 0.9;
+}
+
+
+
+// *********************************************
+// Solar Object
+// *********************************************
+
+object solar {
+	name solar_N3;
+	parent inverter_N3;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N7;
+	parent inverter_N7;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N8;
+	parent inverter_N8;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N11;
+	parent inverter_N11;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N13;
+	parent inverter_N13;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N14;
+	parent inverter_N14;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N15;
+	parent inverter_N15;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+object solar {
+	name solar_N16;
+	parent inverter_N16;
+	generator_mode SUPPLY_DRIVEN;
+	generator_status ONLINE;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	efficiency 0.2;
+	area 400 sf;
+}
+
+
+
+// *********************************************
+// Multirecorder Object
+// *********************************************
+object multi_recorder {
+	property N2:measured_voltage_1.real,N2:measured_voltage_1.imag,N5:measured_voltage_1.real,N5:measured_voltage_1.imag,N8:measured_voltage_1.real,N8:measured_voltage_1.imag,N12:measured_voltage_1.real,N12:measured_voltage_1.imag,N13:measured_voltage_1.real,N13:measured_voltage_1.imag,N15:measured_voltage_1.real,N15:measured_voltage_1.imag,N16:measured_voltage_1.real,N16:measured_voltage_1.imag;
+	file "Volt_log.csv";
+	interval 60;
+	limit 2880;
+};
+
+object multi_recorder {
+	property N2:measured_real_power,N5:measured_real_power,N12:measured_real_power;
+	file "power_log.csv";
+	interval 60;
+	limit 2880;
+};
+
+
+object multi_recorder {
+	property N8_PV:measured_real_power,N13_PV:measured_real_power,N15_PV:measured_real_power,N16_PV:measured_real_power;
+	file "PV_log.csv";
+	interval 60;
+	limit 2880;
+};
+
+object multi_recorder {
+	property house_N8:total_load,house_N13:total_load,house_N15:total_load,house_N16:total_load,house_N8:air_temperature,house_N13:air_temperature,house_N15:air_temperature,house_N16:air_temperature,house_N8:outdoor_temperature,house_N13:outdoor_temperature,house_N15:outdoor_temperature,house_N16:outdoor_temperature;
+	file "House_log.csv";
+	interval 60;
+	limit 2880;
+};

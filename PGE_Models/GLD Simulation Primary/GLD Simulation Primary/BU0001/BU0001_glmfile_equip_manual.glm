@@ -1,0 +1,58 @@
+// *********************************************
+// Capacitor Object
+// *********************************************
+
+object capacitor {
+	phases ABC;
+	name N_800053500_Cap;
+	pt_phase ABC;	//pt_phase A;
+	parent N_800053500;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 2520.0;
+	voltage_set_low 2280.0;
+	capacitor_A 100000;
+	capacitor_B 100000;
+	capacitor_C 100000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 2400.00;
+}
+
+object capacitor {
+	phases ABC;
+	name N_800003805_Cap;
+	pt_phase ABC;
+	parent N_800003805;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 2520.0;
+	voltage_set_low 2280.0;
+	capacitor_A 100000;
+	capacitor_B 100000;
+	capacitor_C 100000;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 2400.00;
+}
+
+
+object multi_recorder {
+	property N_800053500_Cap:switchA,N_800053500_Cap:switchB,N_800053500_Cap:switchC,N_800003805_Cap:switchA,N_800003805_Cap:switchB,N_800003805_Cap:switchC;
+	file "equip_log.csv";
+	interval 60;
+	limit 2880;
+};
+
+
+// *********************************************
+// Regulator Object
+// *********************************************

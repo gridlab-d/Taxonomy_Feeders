@@ -1,0 +1,3712 @@
+//
+//********************************
+// A demonstration of cyme xml to Gridlab-D input
+// created by: Vaibhav Donde
+//
+
+clock{
+	timestamp '2000-07-17 0:00:00';
+	stoptime '2000-07-18 0:00:00';
+}
+#set profiler=1
+
+
+//********************************
+// modules
+//********************************
+module tape;
+module powerflow{
+	solver_method FBS;
+	default_maximum_voltage_error 1e-9;
+};
+
+
+//*********************************************
+// Conductor Objects
+//*********************************************
+// OHCond_715_AAC_C
+object overhead_line_conductor {
+	name OHCond_715_AAC_C;
+	resistance 0.1324968876;
+	geometric_mean_radius 0.0311920128;
+	diameter 0.972998054;
+}
+
+// OHCond_NONE
+object overhead_line_conductor {
+	name OHCond_NONE;
+	resistance 0.0;
+	geometric_mean_radius 0.0;
+	diameter 0.0;
+}
+
+// OHCond_715_AAC_I
+object overhead_line_conductor {
+	name OHCond_715_AAC_I;
+	resistance 0.1324968876;
+	geometric_mean_radius 0.0311920128;
+	diameter 0.972998054;
+}
+
+// OHCond_1/0_AAC_C
+object overhead_line_conductor {
+	name OHCond_1/0_AAC_C;
+	resistance 0.8820750323;
+	geometric_mean_radius 0.0110971584;
+	diameter 0.367999264;
+}
+
+// OHCond_4/0_CU_C
+object overhead_line_conductor {
+	name OHCond_4/0_CU_C;
+	resistance 0.2807826175;
+	geometric_mean_radius 0.015765976;
+	diameter 0.521998956;
+}
+
+// OHCond_4_CU_C
+object overhead_line_conductor {
+	name OHCond_4_CU_C;
+	resistance 1.4181103321;
+	geometric_mean_radius 0.006998208;
+	diameter 0.231999536;
+}
+
+// OHCond_397_AAC_C
+object overhead_line_conductor {
+	name OHCond_397_AAC_C;
+	resistance 0.2354936969;
+	geometric_mean_radius 0.0227941632;
+	diameter 0.722998554;
+}
+
+// OHCond_1/0_CU_C
+object overhead_line_conductor {
+	name OHCond_1/0_CU_C;
+	resistance 0.5615250025;
+	geometric_mean_radius 0.0111371416;
+	diameter 0.367999264;
+}
+
+// OHCond_4/0_AAC_C
+object overhead_line_conductor {
+	name OHCond_4/0_AAC_C;
+	resistance 0.4406874934;
+	geometric_mean_radius 0.015765976;
+	diameter 0.521998956;
+}
+
+// OHCond_6_CU_I
+object overhead_line_conductor {
+	name OHCond_6_CU_I;
+	resistance 2.2113584416;
+	geometric_mean_radius 0.00525866;
+	diameter 0.161999676;
+}
+
+// OHCond_DEFAULT
+object overhead_line_conductor {
+	name OHCond_DEFAULT;
+	resistance 0.27792611;
+	geometric_mean_radius 0.01667552;
+	diameter 0.52799107;
+}
+
+// OHCond_4/0_CU_I
+object overhead_line_conductor {
+	name OHCond_4/0_CU_I;
+	resistance 0.2807826175;
+	geometric_mean_radius 0.015765976;
+	diameter 0.521998956;
+}
+
+// OHCond_1/0_CU_I
+object overhead_line_conductor {
+	name OHCond_1/0_CU_I;
+	resistance 0.5615250025;
+	geometric_mean_radius 0.0111371416;
+	diameter 0.367999264;
+}
+
+// OHCond_4_ACSR_C
+object overhead_line_conductor {
+	name OHCond_4_ACSR_C;
+	resistance 2.1715395317;
+	geometric_mean_radius 0.0524265688;
+	diameter 0.2499995;
+}
+
+// OHCond_4_CU_I
+object overhead_line_conductor {
+	name OHCond_4_CU_I;
+	resistance 1.4181103321;
+	geometric_mean_radius 0.006998208;
+	diameter 0.231999536;
+}
+
+// OHCond_397_AAC_I
+object overhead_line_conductor {
+	name OHCond_397_AAC_I;
+	resistance 0.2354936969;
+	geometric_mean_radius 0.0227941632;
+	diameter 0.722998554;
+}
+
+// OHCond_2_CU_C
+object overhead_line_conductor {
+	name OHCond_2_CU_C;
+	resistance 0.8920559109;
+	geometric_mean_radius 0.0882773952;
+	diameter 0.291999416;
+}
+
+// OHCond_6_CU_C
+object overhead_line_conductor {
+	name OHCond_6_CU_C;
+	resistance 2.2113584416;
+	geometric_mean_radius 0.00525866;
+	diameter 0.161999676;
+}
+
+// UGCable_700_AL_XLP-CONC-PVC_22KV_3P
+object underground_line_conductor {
+	name UGCable_700_AL_XLP-CONC-PVC_22KV_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_1/0_AL_XLP-CONC-PVC_22KV_3P&N
+object underground_line_conductor {
+	name UGCable_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_250_CU_1C_P&L_5KV_3P&N
+object underground_line_conductor {
+	name UGCable_250_CU_1C_P&L_5KV_3P&N;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_4/0_AL_XLP-CONC-CIC_22KV_3P&N
+object underground_line_conductor {
+	name UGCable_4/0_AL_XLP-CONC-CIC_22KV_3P&N;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_500_CU_EPR-CONC-ENCAP-PE_3P
+object underground_line_conductor {
+	name UGCable_500_CU_EPR-CONC-ENCAP-PE_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_2_AL_XLP-CONC-PVC_22KV_1P
+object underground_line_conductor {
+	name UGCable_2_AL_XLP-CONC-PVC_22KV_1P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_2_AL_PEC_22KV_3P
+object underground_line_conductor {
+	name UGCable_2_AL_PEC_22KV_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_DEFAULT
+object underground_line_conductor {
+	name UGCable_DEFAULT;
+	outer_diameter 4.3307121811;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_1/0_AL_EPR-CONC-ENCAP-PE_3P
+object underground_line_conductor {
+	name UGCable_1/0_AL_EPR-CONC-ENCAP-PE_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_4_CU_1C_P&L_5KV_1P&N
+object underground_line_conductor {
+	name UGCable_4_CU_1C_P&L_5KV_1P&N;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_1/0_AL_EPR-CONC-ENCAP-PE_1P
+object underground_line_conductor {
+	name UGCable_1/0_AL_EPR-CONC-ENCAP-PE_1P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_2_AL_XLP-CONC-PVC_22KV_3P
+object underground_line_conductor {
+	name UGCable_2_AL_XLP-CONC-PVC_22KV_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_4/0_AL_XLP-CONC-PVC_22KV_3P
+object underground_line_conductor {
+	name UGCable_4/0_AL_XLP-CONC-PVC_22KV_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_1000_AL_XLP-CONC-PVC_22KV_3P
+object underground_line_conductor {
+	name UGCable_1000_AL_XLP-CONC-PVC_22KV_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_2_AL_PEC_15KV_3P
+object underground_line_conductor {
+	name UGCable_2_AL_PEC_15KV_3P;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_500_CU_XLP-PVC_15KV_3P&N
+object underground_line_conductor {
+	name UGCable_500_CU_XLP-PVC_15KV_3P&N;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+// UGCable_2_CU_RO&N_5KV_1P&N
+object underground_line_conductor {
+	name UGCable_2_CU_RO&N_5KV_1P&N;
+	outer_diameter 0.669290518897;
+	conductor_gmr 0.01667552;
+	conductor_diameter 0.52799107;
+	conductor_resistance 0.27792611;
+	neutral_gmr 0.01667552;
+	neutral_resistance 0.27792611;
+	neutral_diameter 0.52799107;
+	neutral_strands 2;
+}
+
+//*********************************************
+// Line spacing objects
+//*********************************************
+// OHSpacing_HORIZONTAL_2P_88
+object line_spacing {
+	name OHSpacing_HORIZONTAL_2P_88;
+	distance_AB 7.3332408792;
+	distance_BC 7.3332408792;
+	distance_AC 7.3332408792;
+	distance_AN 9.9998784;
+	distance_BN 9.9998784;
+	distance_CN 9.9998784;
+}
+
+// UGSpacing_1000_AL_XLP-CONC-PVC_22KV_3P
+object line_spacing {
+	name UGSpacing_1000_AL_XLP-CONC-PVC_22KV_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_4/0_AL_XLP-CONC-PVC_22KV_3P
+object line_spacing {
+	name UGSpacing_4/0_AL_XLP-CONC-PVC_22KV_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// OHSpacing_HORIZONTAL_1P_56
+object line_spacing {
+	name OHSpacing_HORIZONTAL_1P_56;
+	distance_AB 4.66660992;
+	distance_BC 4.66660992;
+	distance_AC 4.66660992;
+	distance_AN 6.99991488;
+	distance_BN 6.99991488;
+	distance_CN 6.99991488;
+}
+
+// OHSpacing_HORIZONTAL_1P_52
+object line_spacing {
+	name OHSpacing_HORIZONTAL_1P_52;
+	distance_AB 4.3332773592;
+	distance_BC 4.3332773592;
+	distance_AC 4.3332773592;
+	distance_AN 6.6665888808;
+	distance_BN 6.6665888808;
+	distance_CN 6.6665888808;
+}
+
+// UGSpacing_2_CU_RO&N_5KV_1P&N
+object line_spacing {
+	name UGSpacing_2_CU_RO&N_5KV_1P&N;
+	distance_AB 0.0;
+	distance_BC 0.0;
+	distance_AC 0.0;
+}
+
+// UGSpacing_1/0_AL_EPR-CONC-ENCAP-PE_3P
+object line_spacing {
+	name UGSpacing_1/0_AL_EPR-CONC-ENCAP-PE_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_2_AL_PEC_22KV_3P
+object line_spacing {
+	name UGSpacing_2_AL_PEC_22KV_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_1/0_AL_XLP-CONC-PVC_22KV_3P&N
+object line_spacing {
+	name UGSpacing_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_1/0_AL_EPR-CONC-ENCAP-PE_1P
+object line_spacing {
+	name UGSpacing_1/0_AL_EPR-CONC-ENCAP-PE_1P;
+	distance_AB 0.0;
+	distance_BC 0.0;
+	distance_AC 0.0;
+}
+
+// OHSpacing_HORIZONTAL_3P_88
+object line_spacing {
+	name OHSpacing_HORIZONTAL_3P_88;
+	distance_AB 7.3332408792;
+	distance_BC 7.3332408792;
+	distance_AC 7.3332408792;
+	distance_AN 9.9998784;
+	distance_BN 9.9998784;
+	distance_CN 9.9998784;
+}
+
+// OHSpacing_HORIZONTAL_3P_45
+object line_spacing {
+	name OHSpacing_HORIZONTAL_3P_45;
+	distance_AB 3.7499544;
+	distance_BC 3.7499544;
+	distance_AC 3.7499544;
+	distance_AN 3.7499544;
+	distance_BN 3.7499544;
+	distance_CN 3.7499544;
+}
+
+// UGSpacing_DEFAULT
+object line_spacing {
+	name UGSpacing_DEFAULT;
+	distance_AB 0.0;
+	distance_BC 0.0;
+	distance_AC 0.0;
+}
+
+// UGSpacing_500_CU_EPR-CONC-ENCAP-PE_3P
+object line_spacing {
+	name UGSpacing_500_CU_EPR-CONC-ENCAP-PE_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_4_CU_1C_P&L_5KV_1P&N
+object line_spacing {
+	name UGSpacing_4_CU_1C_P&L_5KV_1P&N;
+	distance_AB 0.0;
+	distance_BC 0.0;
+	distance_AC 0.0;
+}
+
+// OHSpacing_TRIANGULAR_3P_45
+object line_spacing {
+	name OHSpacing_TRIANGULAR_3P_45;
+	distance_AB 3.7499544;
+	distance_BC 3.7499544;
+	distance_AC 3.7499544;
+	distance_AN 4.9999392;
+	distance_BN 4.9999392;
+	distance_CN 4.9999392;
+}
+
+// UGSpacing_2_AL_PEC_15KV_3P
+object line_spacing {
+	name UGSpacing_2_AL_PEC_15KV_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// OHSpacing_HORIZONTAL_3P_39
+object line_spacing {
+	name OHSpacing_HORIZONTAL_3P_39;
+	distance_AB 3.24996048;
+	distance_BC 3.24996048;
+	distance_AC 3.24996048;
+	distance_AN 5.99992704;
+	distance_BN 5.99992704;
+	distance_CN 5.99992704;
+}
+
+// OHSpacing_HORIZONTAL_3P_52
+object line_spacing {
+	name OHSpacing_HORIZONTAL_3P_52;
+	distance_AB 4.3332773592;
+	distance_BC 4.3332773592;
+	distance_AC 4.3332773592;
+	distance_AN 6.6665888808;
+	distance_BN 6.6665888808;
+	distance_CN 6.6665888808;
+}
+
+// UGSpacing_250_CU_1C_P&L_5KV_3P&N
+object line_spacing {
+	name UGSpacing_250_CU_1C_P&L_5KV_3P&N;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_2_AL_XLP-CONC-PVC_22KV_1P
+object line_spacing {
+	name UGSpacing_2_AL_XLP-CONC-PVC_22KV_1P;
+	distance_AB 0.0;
+	distance_BC 0.0;
+	distance_AC 0.0;
+}
+
+// UGSpacing_2_AL_XLP-CONC-PVC_22KV_3P
+object line_spacing {
+	name UGSpacing_2_AL_XLP-CONC-PVC_22KV_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// OHSpacing_HORIZONTAL_1P_45
+object line_spacing {
+	name OHSpacing_HORIZONTAL_1P_45;
+	distance_AB 3.7499544;
+	distance_BC 3.7499544;
+	distance_AC 3.7499544;
+	distance_AN 5.099937984;
+	distance_BN 5.099937984;
+	distance_CN 5.099937984;
+}
+
+// UGSpacing_4/0_AL_XLP-CONC-CIC_22KV_3P&N
+object line_spacing {
+	name UGSpacing_4/0_AL_XLP-CONC-CIC_22KV_3P&N;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// UGSpacing_500_CU_XLP-PVC_15KV_3P&N
+object line_spacing {
+	name UGSpacing_500_CU_XLP-PVC_15KV_3P&N;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+// OHSpacing_HORIZONTAL_1P_88
+object line_spacing {
+	name OHSpacing_HORIZONTAL_1P_88;
+	distance_AB 7.3332408792;
+	distance_BC 7.3332408792;
+	distance_AC 7.3332408792;
+	distance_AN 7.3332408792;
+	distance_BN 7.3332408792;
+	distance_CN 7.3332408792;
+}
+
+// UGSpacing_700_AL_XLP-CONC-PVC_22KV_3P
+object line_spacing {
+	name UGSpacing_700_AL_XLP-CONC-PVC_22KV_3P;
+	distance_AB 0.147636;
+	distance_BC 0.147636;
+	distance_AC 0.295272;
+}
+
+//*********************************************
+// Line Config objects
+//*********************************************
+// L_800046791_LineConfig
+object line_configuration {
+	name L_800046791_LineConfig;
+	conductor_A OHCond_NONE;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_45;
+}
+
+// L_800003393_LineConfig
+object line_configuration {
+	name L_800003393_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003434_LineConfig
+object line_configuration {
+	name L_800003434_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003405_LineConfig
+object line_configuration {
+	name L_800003405_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800046795_LineConfig
+object line_configuration {
+	name L_800046795_LineConfig;
+	conductor_A OHCond_4/0_AAC_C;
+	conductor_B OHCond_4/0_AAC_C;
+	conductor_C OHCond_4/0_AAC_C;
+	conductor_N OHCond_4/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_88;
+}
+
+// L_800060820_LineConfig
+object line_configuration {
+	name L_800060820_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800050040_LineConfig
+object line_configuration {
+	name L_800050040_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800048288_LineConfig
+object line_configuration {
+	name L_800048288_LineConfig;
+	conductor_A OHCond_NONE;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_45;
+}
+
+// L_800003411_LineConfig
+object line_configuration {
+	name L_800003411_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045239_LineConfig
+object line_configuration {
+	name L_800045239_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800045240_LineConfig
+object line_configuration {
+	name L_800045240_LineConfig;
+	conductor_A OHCond_6_CU_I;
+	conductor_B OHCond_6_CU_I;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_I;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800003392_LineConfig
+object line_configuration {
+	name L_800003392_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800033512_LineConfig
+object line_configuration {
+	name L_800033512_LineConfig;
+	conductor_A OHCond_715_AAC_I;
+	conductor_B OHCond_715_AAC_I;
+	conductor_C OHCond_715_AAC_I;
+	conductor_N OHCond_397_AAC_I;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800062336_LineConfig
+object line_configuration {
+	name L_800062336_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003429_LineConfig
+object line_configuration {
+	name L_800003429_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045244_LineConfig
+object line_configuration {
+	name L_800045244_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800046794_LineConfig
+object line_configuration {
+	name L_800046794_LineConfig;
+	conductor_A OHCond_4/0_AAC_C;
+	conductor_B OHCond_4/0_AAC_C;
+	conductor_C OHCond_4/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003413_LineConfig
+object line_configuration {
+	name L_800003413_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003373_LineConfig
+object line_configuration {
+	name L_800003373_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800045243_LineConfig
+object line_configuration {
+	name L_800045243_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_NONE;
+	spacing OHSpacing_HORIZONTAL_3P_39;
+}
+
+// L_800003403_LineConfig
+object line_configuration {
+	name L_800003403_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800003421_LineConfig
+object line_configuration {
+	name L_800003421_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003406_LineConfig
+object line_configuration {
+	name L_800003406_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800046792_LineConfig
+object line_configuration {
+	name L_800046792_LineConfig;
+	conductor_A OHCond_NONE;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_4_CU_I;
+	conductor_N OHCond_6_CU_I;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003427_LineConfig
+object line_configuration {
+	name L_800003427_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800036219_LineConfig
+object line_configuration {
+	name L_800036219_LineConfig;
+	conductor_A OHCond_NONE;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_4_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003428_LineConfig
+object line_configuration {
+	name L_800003428_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_4_ACSR_C;
+	conductor_C OHCond_4_ACSR_C;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800026328_LineConfig
+object line_configuration {
+	name L_800026328_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800007005_LineConfig
+object line_configuration {
+	name L_800007005_LineConfig;
+	conductor_A OHCond_715_AAC_C;
+	conductor_B OHCond_715_AAC_C;
+	conductor_C OHCond_715_AAC_C;
+	conductor_N OHCond_397_AAC_C;
+	spacing OHSpacing_TRIANGULAR_3P_45;
+}
+
+// L_800043868_LineConfig
+object line_configuration {
+	name L_800043868_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003389_LineConfig
+object line_configuration {
+	name L_800003389_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003387_LineConfig
+object line_configuration {
+	name L_800003387_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003422_LineConfig
+object line_configuration {
+	name L_800003422_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003377_LineConfig
+object line_configuration {
+	name L_800003377_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003388_LineConfig
+object line_configuration {
+	name L_800003388_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003378_LineConfig
+object line_configuration {
+	name L_800003378_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003418_LineConfig
+object line_configuration {
+	name L_800003418_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800056706_LineConfig
+object line_configuration {
+	name L_800056706_LineConfig;
+	conductor_A OHCond_715_AAC_C;
+	conductor_B OHCond_715_AAC_C;
+	conductor_C OHCond_715_AAC_C;
+	conductor_N OHCond_397_AAC_C;
+	spacing OHSpacing_TRIANGULAR_3P_45;
+}
+
+// L_800045248_LineConfig
+object line_configuration {
+	name L_800045248_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800026329_LineConfig
+object line_configuration {
+	name L_800026329_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003401_LineConfig
+object line_configuration {
+	name L_800003401_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003419_LineConfig
+object line_configuration {
+	name L_800003419_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800045251_LineConfig
+object line_configuration {
+	name L_800045251_LineConfig;
+	conductor_A OHCond_1/0_CU_C;
+	conductor_B OHCond_1/0_CU_C;
+	conductor_C OHCond_1/0_CU_C;
+	conductor_N OHCond_2_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800028308_LineConfig
+object line_configuration {
+	name L_800028308_LineConfig;
+	conductor_A OHCond_4/0_AAC_C;
+	conductor_B OHCond_4/0_AAC_C;
+	conductor_C OHCond_4/0_AAC_C;
+	conductor_N OHCond_NONE;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800033511_LineConfig
+object line_configuration {
+	name L_800033511_LineConfig;
+	conductor_A OHCond_715_AAC_I;
+	conductor_B OHCond_715_AAC_I;
+	conductor_C OHCond_715_AAC_I;
+	conductor_N OHCond_397_AAC_I;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800009591_LineConfig
+object line_configuration {
+	name L_800009591_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003385_LineConfig
+object line_configuration {
+	name L_800003385_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800056496_LineConfig
+object line_configuration {
+	name L_800056496_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003381_LineConfig
+object line_configuration {
+	name L_800003381_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045245_LineConfig
+object line_configuration {
+	name L_800045245_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800054495_LineConfig
+object line_configuration {
+	name L_800054495_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003432_LineConfig
+object line_configuration {
+	name L_800003432_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003412_LineConfig
+object line_configuration {
+	name L_800003412_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800045246_LineConfig
+object line_configuration {
+	name L_800045246_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800003400_LineConfig
+object line_configuration {
+	name L_800003400_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_39;
+}
+
+// L_800003423_LineConfig
+object line_configuration {
+	name L_800003423_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800028301_LineConfig
+object line_configuration {
+	name L_800028301_LineConfig;
+	conductor_A OHCond_NONE;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_45;
+}
+
+// L_800025897_LineConfig
+object line_configuration {
+	name L_800025897_LineConfig;
+	conductor_A OHCond_NONE;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_45;
+}
+
+// L_800061442_LineConfig
+object line_configuration {
+	name L_800061442_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003409_LineConfig
+object line_configuration {
+	name L_800003409_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003408_LineConfig
+object line_configuration {
+	name L_800003408_LineConfig;
+	conductor_A OHCond_4_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800030067_LineConfig
+object line_configuration {
+	name L_800030067_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045252_LineConfig
+object line_configuration {
+	name L_800045252_LineConfig;
+	conductor_A OHCond_1/0_CU_C;
+	conductor_B OHCond_1/0_CU_C;
+	conductor_C OHCond_1/0_CU_C;
+	conductor_N OHCond_2_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800033503_LineConfig
+object line_configuration {
+	name L_800033503_LineConfig;
+	conductor_A OHCond_715_AAC_I;
+	conductor_B OHCond_715_AAC_I;
+	conductor_C OHCond_715_AAC_I;
+	conductor_N OHCond_397_AAC_I;
+	spacing OHSpacing_TRIANGULAR_3P_45;
+}
+
+// L_800003416_LineConfig
+object line_configuration {
+	name L_800003416_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_NONE;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800003390_LineConfig
+object line_configuration {
+	name L_800003390_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800028309_LineConfig
+object line_configuration {
+	name L_800028309_LineConfig;
+	conductor_A OHCond_4/0_AAC_C;
+	conductor_B OHCond_4/0_AAC_C;
+	conductor_C OHCond_4/0_AAC_C;
+	conductor_N OHCond_4/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_88;
+}
+
+// L_800003398_LineConfig
+object line_configuration {
+	name L_800003398_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_4_ACSR_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800003424_LineConfig
+object line_configuration {
+	name L_800003424_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_52;
+}
+
+// L_800043869_LineConfig
+object line_configuration {
+	name L_800043869_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045253_LineConfig
+object line_configuration {
+	name L_800045253_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003414_LineConfig
+object line_configuration {
+	name L_800003414_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800035305_LineConfig
+object line_configuration {
+	name L_800035305_LineConfig;
+	conductor_A OHCond_6_CU_I;
+	conductor_B OHCond_6_CU_I;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_I;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800009588_LineConfig
+object line_configuration {
+	name L_800009588_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_39;
+}
+
+// L_800045257_LineConfig
+object line_configuration {
+	name L_800045257_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800055640_LineConfig
+object line_configuration {
+	name L_800055640_LineConfig;
+	conductor_A OHCond_4/0_AAC_C;
+	conductor_B OHCond_4/0_AAC_C;
+	conductor_C OHCond_4/0_AAC_C;
+	conductor_N OHCond_4/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_88;
+}
+
+// L_800061662_LineConfig
+object line_configuration {
+	name L_800061662_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045256_LineConfig
+object line_configuration {
+	name L_800045256_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003383_LineConfig
+object line_configuration {
+	name L_800003383_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045254_LineConfig
+object line_configuration {
+	name L_800045254_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045242_LineConfig
+object line_configuration {
+	name L_800045242_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_39;
+}
+
+// L_800003410_LineConfig
+object line_configuration {
+	name L_800003410_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003374_LineConfig
+object line_configuration {
+	name L_800003374_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003384_LineConfig
+object line_configuration {
+	name L_800003384_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800003430_LineConfig
+object line_configuration {
+	name L_800003430_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_4_ACSR_C;
+	conductor_C OHCond_4_ACSR_C;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003426_LineConfig
+object line_configuration {
+	name L_800003426_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_88;
+}
+
+// L_800028310_LineConfig
+object line_configuration {
+	name L_800028310_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_NONE;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_1P_52;
+}
+
+// L_800017884_LineConfig
+object line_configuration {
+	name L_800017884_LineConfig;
+	conductor_A OHCond_1/0_CU_C;
+	conductor_B OHCond_1/0_CU_C;
+	conductor_C OHCond_1/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003425_LineConfig
+object line_configuration {
+	name L_800003425_LineConfig;
+	conductor_A OHCond_1/0_AAC_C;
+	conductor_B OHCond_1/0_AAC_C;
+	conductor_C OHCond_1/0_AAC_C;
+	conductor_N OHCond_1/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_52;
+}
+
+// L_800003399_LineConfig
+object line_configuration {
+	name L_800003399_LineConfig;
+	conductor_A OHCond_4_ACSR_C;
+	conductor_B OHCond_4_ACSR_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_4_ACSR_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800055903_LineConfig
+object line_configuration {
+	name L_800055903_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003386_LineConfig
+object line_configuration {
+	name L_800003386_LineConfig;
+	conductor_A OHCond_4/0_CU_C;
+	conductor_B OHCond_4/0_CU_C;
+	conductor_C OHCond_4/0_CU_C;
+	conductor_N OHCond_1/0_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800003402_LineConfig
+object line_configuration {
+	name L_800003402_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// L_800009587_LineConfig
+object line_configuration {
+	name L_800009587_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_NONE;
+	spacing OHSpacing_HORIZONTAL_3P_39;
+}
+
+// L_800028307_LineConfig
+object line_configuration {
+	name L_800028307_LineConfig;
+	conductor_A OHCond_4/0_AAC_C;
+	conductor_B OHCond_4/0_AAC_C;
+	conductor_C OHCond_4/0_AAC_C;
+	conductor_N OHCond_4/0_AAC_C;
+	spacing OHSpacing_HORIZONTAL_3P_88;
+}
+
+// L_800032919_LineConfig
+object line_configuration {
+	name L_800032919_LineConfig;
+	conductor_A OHCond_715_AAC_I;
+	conductor_B OHCond_715_AAC_I;
+	conductor_C OHCond_715_AAC_I;
+	conductor_N OHCond_397_AAC_I;
+	spacing OHSpacing_HORIZONTAL_3P_39;
+}
+
+// L_800003431_LineConfig
+object line_configuration {
+	name L_800003431_LineConfig;
+	conductor_A OHCond_6_CU_C;
+	conductor_B OHCond_6_CU_C;
+	conductor_C OHCond_6_CU_C;
+	conductor_N OHCond_6_CU_C;
+	spacing OHSpacing_HORIZONTAL_3P_45;
+}
+
+// L_800045241_LineConfig
+object line_configuration {
+	name L_800045241_LineConfig;
+	conductor_A OHCond_6_CU_I;
+	conductor_B OHCond_6_CU_I;
+	conductor_C OHCond_NONE;
+	conductor_N OHCond_6_CU_I;
+	spacing OHSpacing_HORIZONTAL_2P_88;
+}
+
+// UGConfig_700_AL_XLP-CONC-PVC_22KV_3P
+object line_configuration {
+	name UGConfig_700_AL_XLP-CONC-PVC_22KV_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_700_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+// UGConfig_1/0_AL_EPR-CONC-ENCAP-PE_1P
+object line_configuration {
+	name UGConfig_1/0_AL_EPR-CONC-ENCAP-PE_1P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_1/0_AL_EPR-CONC-ENCAP-PE_1P;
+}
+
+// UGConfig_DEFAULT
+object line_configuration {
+	name UGConfig_DEFAULT;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_DEFAULT;
+}
+
+// UGConfig_2_AL_PEC_22KV_3P
+object line_configuration {
+	name UGConfig_2_AL_PEC_22KV_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_2_AL_PEC_22KV_3P;
+}
+
+// UGConfig_4/0_AL_XLP-CONC-PVC_22KV_3P
+object line_configuration {
+	name UGConfig_4/0_AL_XLP-CONC-PVC_22KV_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_4/0_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+// UGConfig_250_CU_1C_P&L_5KV_3P&N
+object line_configuration {
+	name UGConfig_250_CU_1C_P&L_5KV_3P&N;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_250_CU_1C_P&L_5KV_3P&N;
+}
+
+// UGConfig_2_AL_PEC_15KV_3P
+object line_configuration {
+	name UGConfig_2_AL_PEC_15KV_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_2_AL_PEC_15KV_3P;
+}
+
+// UGConfig_2_AL_XLP-CONC-PVC_22KV_3P
+object line_configuration {
+	name UGConfig_2_AL_XLP-CONC-PVC_22KV_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_2_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+// UGConfig_4/0_AL_XLP-CONC-CIC_22KV_3P&N
+object line_configuration {
+	name UGConfig_4/0_AL_XLP-CONC-CIC_22KV_3P&N;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_4/0_AL_XLP-CONC-CIC_22KV_3P&N;
+}
+
+// UGConfig_2_AL_XLP-CONC-PVC_22KV_1P
+object line_configuration {
+	name UGConfig_2_AL_XLP-CONC-PVC_22KV_1P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_2_AL_XLP-CONC-PVC_22KV_1P;
+}
+
+// UGConfig_2_CU_RO&N_5KV_1P&N
+object line_configuration {
+	name UGConfig_2_CU_RO&N_5KV_1P&N;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_2_CU_RO&N_5KV_1P&N;
+}
+
+// UGConfig_1/0_AL_EPR-CONC-ENCAP-PE_3P
+object line_configuration {
+	name UGConfig_1/0_AL_EPR-CONC-ENCAP-PE_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_1/0_AL_EPR-CONC-ENCAP-PE_3P;
+}
+
+// UGConfig_1/0_AL_XLP-CONC-PVC_22KV_3P&N
+object line_configuration {
+	name UGConfig_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+}
+
+// UGConfig_4_CU_1C_P&L_5KV_1P&N
+object line_configuration {
+	name UGConfig_4_CU_1C_P&L_5KV_1P&N;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_4_CU_1C_P&L_5KV_1P&N;
+}
+
+// UGConfig_500_CU_XLP-PVC_15KV_3P&N
+object line_configuration {
+	name UGConfig_500_CU_XLP-PVC_15KV_3P&N;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_500_CU_XLP-PVC_15KV_3P&N;
+}
+
+// UGConfig_500_CU_EPR-CONC-ENCAP-PE_3P
+object line_configuration {
+	name UGConfig_500_CU_EPR-CONC-ENCAP-PE_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_500_CU_EPR-CONC-ENCAP-PE_3P;
+}
+
+// UGConfig_1000_AL_XLP-CONC-PVC_22KV_3P
+object line_configuration {
+	name UGConfig_1000_AL_XLP-CONC-PVC_22KV_3P;
+	conductor_A UGCable_DEFAULT;
+	conductor_B UGCable_DEFAULT;
+	conductor_C UGCable_DEFAULT;
+	conductor_N UGCable_DEFAULT;
+	spacing UGSpacing_1000_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+//*********************************************
+// Node Objects
+//*********************************************
+object node {
+	name N_800055198;
+	nominal_voltage 2523.021;
+	phases AB;
+}
+
+object node {
+	name N_800003834;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003835;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003836;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800055195;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800007616;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800055197;
+	nominal_voltage 2523.021;
+	phases AB;
+}
+
+object node {
+	name N_800024248;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800040136;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_C0685_24050401-SC;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800024241;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800024242;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800024243;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800013459;
+	nominal_voltage 2523.021;
+	phases C;
+}
+
+object node {
+	name N_800013458;
+	nominal_voltage 2523.021;
+	phases C;
+}
+
+object node {
+	name N_800003801;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003802;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003805;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003804;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003807;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032438;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032439;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800007627;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800007621;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800007622;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800055196;
+	nominal_voltage 2523.021;
+	phases AB;
+}
+
+object node {
+	name N_800003832;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800055208;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800052157;
+	nominal_voltage 2523.021;
+	phases B;
+}
+
+object node {
+	name N_800003812;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_C0484_24050401-SC;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032036;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032037;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800110507;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800110505;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800110504;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800110508;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800010253;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800010258;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800028288;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800028286;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800028283;
+	nominal_voltage 2523.021;
+	phases C;
+}
+
+object node {
+	name N_800026146;
+	nominal_voltage 2523.021;
+	phases C;
+}
+
+object node {
+	name N_800026140;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800013460;
+	nominal_voltage 2523.021;
+	phases C;
+}
+
+object node {
+	name N_800013461;
+	nominal_voltage 2523.021;
+	phases C;
+}
+
+object node {
+	name N_800055219;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800111531;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800111530;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800111532;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800111534;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003844;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800054469;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800003846;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003841;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003840;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003843;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003849;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003848;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003790;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003793;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003797;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800013390;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800026556;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003858;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003852;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003850;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800026138;
+	nominal_voltage 2523.021;
+	phases B;
+}
+
+object node {
+	name N_800026139;
+	nominal_voltage 2523.021;
+	phases B;
+}
+
+object node {
+	name N_800053500;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003789;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800007625;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800036819;
+	nominal_voltage 2523.021;
+	phases ABC;
+	bustype SWING;
+}
+
+object node {
+	name N_800003827;
+	nominal_voltage 2523.021;
+	phases A;
+}
+
+object node {
+	name N_800003826;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003825;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003824;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003822;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032040;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800003847;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032440;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800032442;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800055379;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+object node {
+	name N_800052099;
+	nominal_voltage 2523.021;
+	phases ABC;
+}
+
+//*********************************************
+// Load Objects
+//*********************************************
+#include "BU0001_glmfile_loads.glm"
+
+//*********************************************
+// Line Objects
+//*********************************************
+object overhead_line {
+	name L_800003406;
+	phases AB;
+	length 310.00000992 ft;
+	from N_800055196;
+	to N_800042667;
+	configuration L_800003406_LineConfig;
+}
+
+object overhead_line {
+	name L_800003405;
+	phases ABC;
+	length 216.000006912 ft;
+	from N_800040136;
+	to N_800003822;
+	configuration L_800003405_LineConfig;
+}
+
+object overhead_line {
+	name L_800003403;
+	phases AB;
+	length 134.000004288 ft;
+	from N_800042664;
+	to N_800003829;
+	configuration L_800003403_LineConfig;
+}
+
+object overhead_line {
+	name L_800003402;
+	phases AB;
+	length 51.000001632 ft;
+	from N_800042666;
+	to N_800003815;
+	configuration L_800003402_LineConfig;
+}
+
+object overhead_line {
+	name L_800003401;
+	phases ABC;
+	length 159.000005088 ft;
+	from N_800042668;
+	to N_800003816;
+	configuration L_800003401_LineConfig;
+}
+
+object overhead_line {
+	name L_800003400;
+	phases ABC;
+	length 117.000003744 ft;
+	from N_800003816;
+	to N_800003814;
+	configuration L_800003400_LineConfig;
+}
+
+object overhead_line {
+	name L_800050040;
+	phases ABC;
+	length 194.000006208 ft;
+	from N_800003835;
+	to N_800047537;
+	configuration L_800050040_LineConfig;
+}
+
+object overhead_line {
+	name L_800035305;
+	phases AB;
+	length 98.000003136 ft;
+	from N_800042660;
+	to N_800033634;
+	configuration L_800035305_LineConfig;
+}
+
+object overhead_line {
+	name L_800003409;
+	phases ABC;
+	length 294.000009408 ft;
+	from N_800003824;
+	to N_800003825;
+	configuration L_800003409_LineConfig;
+}
+
+object overhead_line {
+	name L_800003408;
+	phases A;
+	length 148.000004736 ft;
+	from N_800003825;
+	to N_800003827;
+	configuration L_800003408_LineConfig;
+}
+
+object overhead_line {
+	name L_800003393;
+	phases A;
+	length 245.00000784 ft;
+	from N_800109225;
+	to N_800003810;
+	configuration L_800003393_LineConfig;
+}
+
+object overhead_line {
+	name L_800003392;
+	phases ABC;
+	length 369.000011808 ft;
+	from N_800003822;
+	to N_800003807;
+	configuration L_800003392_LineConfig;
+}
+
+object overhead_line {
+	name L_800003390;
+	phases ABC;
+	length 175.0000056 ft;
+	from N_800053805;
+	to N_800003805;
+	configuration L_800003390_LineConfig;
+}
+
+object overhead_line {
+	name L_800003399;
+	phases AB;
+	length 163.000005216 ft;
+	from N_800003815;
+	to N_800003821;
+	configuration L_800003399_LineConfig;
+}
+
+object overhead_line {
+	name L_800003398;
+	phases AB;
+	length 180.00000576 ft;
+	from N_800003814;
+	to N_800003820;
+	configuration L_800003398_LineConfig;
+}
+
+object overhead_line {
+	name L_800036219;
+	phases C;
+	length 200.0000064 ft;
+	from N_800044231;
+	to N_800028283;
+	configuration L_800036219_LineConfig;
+}
+
+object overhead_line {
+	name L_800003414;
+	phases A;
+	length 161.000005152 ft;
+	from N_800003831;
+	to N_800003833;
+	configuration L_800003414_LineConfig;
+}
+
+object overhead_line {
+	name L_800003416;
+	phases AB;
+	length 91.000002912 ft;
+	from N_800003834;
+	to N_800003839;
+	configuration L_800003416_LineConfig;
+}
+
+object overhead_line {
+	name L_800003410;
+	phases A;
+	length 277.000008864 ft;
+	from N_800003827;
+	to N_800003828;
+	configuration L_800003410_LineConfig;
+}
+
+object overhead_line {
+	name L_800003411;
+	phases ABC;
+	length 138.000004416 ft;
+	from N_800054496;
+	to N_800003824;
+	configuration L_800003411_LineConfig;
+}
+
+object overhead_line {
+	name L_800003412;
+	phases A;
+	length 134.000004288 ft;
+	from N_800003826;
+	to N_800003831;
+	configuration L_800003412_LineConfig;
+}
+
+object overhead_line {
+	name L_800003413;
+	phases ABC;
+	length 242.000007744 ft;
+	from N_800003832;
+	to N_800003826;
+	configuration L_800003413_LineConfig;
+}
+
+object overhead_line {
+	name L_800003418;
+	phases ABC;
+	length 135.00000432 ft;
+	from N_800110504;
+	to N_800003835;
+	configuration L_800003418_LineConfig;
+}
+
+object overhead_line {
+	name L_800003419;
+	phases ABC;
+	length 164.000005248 ft;
+	from N_800003836;
+	to N_800003840;
+	configuration L_800003419_LineConfig;
+}
+
+object overhead_line {
+	name L_800043869;
+	phases ABC;
+	length 129.000004128 ft;
+	from N_800041282;
+	to N_800041281;
+	configuration L_800043869_LineConfig;
+}
+
+object overhead_line {
+	name L_800043868;
+	phases A;
+	length 158.000005056 ft;
+	from N_800054469;
+	to N_800041280;
+	configuration L_800043868_LineConfig;
+}
+
+object overhead_line {
+	name L_800046794;
+	phases ABC;
+	length 123.000003936 ft;
+	from N_800044232;
+	to N_800044233;
+	configuration L_800046794_LineConfig;
+}
+
+object overhead_line {
+	name L_800046795;
+	phases ABC;
+	length 151.000004832 ft;
+	from N_800028288;
+	to N_800044234;
+	configuration L_800046795_LineConfig;
+}
+
+object overhead_line {
+	name L_800046791;
+	phases C;
+	length 97.000003104 ft;
+	from N_800028283;
+	to N_800044230;
+	configuration L_800046791_LineConfig;
+}
+
+object overhead_line {
+	name L_800046792;
+	phases C;
+	length 375.000012 ft;
+	from N_800028286;
+	to N_800044231;
+	configuration L_800046792_LineConfig;
+}
+
+object overhead_line {
+	name L_800003429;
+	phases ABC;
+	length 25.0000008 ft;
+	from N_800003847;
+	to N_800003848;
+	configuration L_800003429_LineConfig;
+}
+
+object overhead_line {
+	name L_800003381;
+	phases ABC;
+	length 166.000005312 ft;
+	from N_800041281;
+	to N_800003793;
+	configuration L_800003381_LineConfig;
+}
+
+object overhead_line {
+	name L_800003383;
+	phases ABC;
+	length 159.000005088 ft;
+	from N_800003801;
+	to N_800041282;
+	configuration L_800003383_LineConfig;
+}
+
+object overhead_line {
+	name L_800003384;
+	phases A;
+	length 123.000003936 ft;
+	from N_800055208;
+	to N_800003808;
+	configuration L_800003384_LineConfig;
+}
+
+object overhead_line {
+	name L_800003385;
+	phases A;
+	length 94.000003008 ft;
+	from N_800003801;
+	to N_800003803;
+	configuration L_800003385_LineConfig;
+}
+
+object overhead_line {
+	name L_800003386;
+	phases ABC;
+	length 144.000004608 ft;
+	from N_800003802;
+	to N_800003801;
+	configuration L_800003386_LineConfig;
+}
+
+object overhead_line {
+	name L_800003387;
+	phases ABC;
+	length 164.000005248 ft;
+	from N_800003804;
+	to N_800003802;
+	configuration L_800003387_LineConfig;
+}
+
+object overhead_line {
+	name L_800003388;
+	phases ABC;
+	length 144.000004608 ft;
+	from N_800042674;
+	to N_800003804;
+	configuration L_800003388_LineConfig;
+}
+
+object overhead_line {
+	name L_800003389;
+	phases ABC;
+	length 215.00000688 ft;
+	from N_800042675;
+	to N_800003834;
+	configuration L_800003389_LineConfig;
+}
+
+object overhead_line {
+	name L_800003423;
+	phases ABC;
+	length 135.00000432 ft;
+	from N_800111512;
+	to N_800003836;
+	configuration L_800003423_LineConfig;
+}
+
+object overhead_line {
+	name L_800003422;
+	phases ABC;
+	length 314.000010048 ft;
+	from N_800047537;
+	to N_800003842;
+	configuration L_800003422_LineConfig;
+}
+
+object overhead_line {
+	name L_800003425;
+	phases ABC;
+	length 240.00000768 ft;
+	from N_800003841;
+	to N_800003843;
+	configuration L_800003425_LineConfig;
+}
+
+object overhead_line {
+	name L_800003424;
+	phases A;
+	length 36.000001152 ft;
+	from N_800003843;
+	to N_800003844;
+	configuration L_800003424_LineConfig;
+}
+
+object overhead_line {
+	name L_800003427;
+	phases ABC;
+	length 161.000005152 ft;
+	from N_800042677;
+	to N_800003846;
+	configuration L_800003427_LineConfig;
+}
+
+object overhead_line {
+	name L_800003426;
+	phases A;
+	length 308.000009856 ft;
+	from N_800003841;
+	to N_800003845;
+	configuration L_800003426_LineConfig;
+}
+
+object overhead_line {
+	name L_800033503;
+	phases ABC;
+	length 443.000014176 ft;
+	from N_800007622;
+	to N_800032438;
+	configuration L_800033503_LineConfig;
+}
+
+object overhead_line {
+	name L_800032919;
+	phases ABC;
+	length 46.000001472 ft;
+	from N_800032037;
+	to N_800007621;
+	configuration L_800032919_LineConfig;
+}
+
+object overhead_line {
+	name L_800003434;
+	phases ABC;
+	length 108.000003456 ft;
+	from N_800047538;
+	to N_800003852;
+	configuration L_800003434_LineConfig;
+}
+
+object overhead_line {
+	name L_800009588;
+	phases ABC;
+	length 98.000003136 ft;
+	from N_800042662;
+	to N_800010252;
+	configuration L_800009588_LineConfig;
+}
+
+object overhead_line {
+	name L_800028301;
+	phases C;
+	length 155.00000496 ft;
+	from N_800045760;
+	to N_800026146;
+	configuration L_800028301_LineConfig;
+}
+
+object overhead_line {
+	name L_800028307;
+	phases ABC;
+	length 200.0000064 ft;
+	from N_800053500;
+	to N_800028286;
+	configuration L_800028307_LineConfig;
+}
+
+object overhead_line {
+	name L_800028309;
+	phases ABC;
+	length 119.000003808 ft;
+	from N_800028288;
+	to N_800026140;
+	configuration L_800028309_LineConfig;
+}
+
+object overhead_line {
+	name L_800028308;
+	phases ABC;
+	length 21.000000672 ft;
+	from N_800024248;
+	to N_800028288;
+	configuration L_800028308_LineConfig;
+}
+
+object overhead_line {
+	name L_800003432;
+	phases A;
+	length 86.000002752 ft;
+	from N_800003846;
+	to N_800003851;
+	configuration L_800003432_LineConfig;
+}
+
+object overhead_line {
+	name L_800003430;
+	phases ABC;
+	length 36.000001152 ft;
+	from N_800003847;
+	to N_800003849;
+	configuration L_800003430_LineConfig;
+}
+
+object overhead_line {
+	name L_800003431;
+	phases ABC;
+	length 22.000000704 ft;
+	from N_800003846;
+	to N_800003850;
+	configuration L_800003431_LineConfig;
+}
+
+object overhead_line {
+	name L_800056496;
+	phases ABC;
+	length 149.000004768 ft;
+	from N_800003826;
+	to N_800054496;
+	configuration L_800056496_LineConfig;
+}
+
+object overhead_line {
+	name L_800026329;
+	phases ABC;
+	length 256.000008192 ft;
+	from N_800026555;
+	to N_800026556;
+	configuration L_800026329_LineConfig;
+}
+
+object overhead_line {
+	name L_800026328;
+	phases ABC;
+	length 178.000005696 ft;
+	from N_800003850;
+	to N_800026555;
+	configuration L_800026328_LineConfig;
+}
+
+object overhead_line {
+	name L_800009587;
+	phases ABC;
+	length 163.000005216 ft;
+	from N_800042663;
+	to N_800010258;
+	configuration L_800009587_LineConfig;
+}
+
+object overhead_line {
+	name L_800033512;
+	phases ABC;
+	length 138.000004416 ft;
+	from N_800032438;
+	to N_800007625;
+	configuration L_800033512_LineConfig;
+}
+
+object overhead_line {
+	name L_800033511;
+	phases ABC;
+	length 45.00000144 ft;
+	from N_800032438;
+	to N_800032442;
+	configuration L_800033511_LineConfig;
+}
+
+object overhead_line {
+	name L_800028310;
+	phases A;
+	length 158.000005056 ft;
+	from N_800024243;
+	to N_800028289;
+	configuration L_800028310_LineConfig;
+}
+
+object overhead_line {
+	name L_800003428;
+	phases ABC;
+	length 36.000001152 ft;
+	from N_800003842;
+	to N_800003847;
+	configuration L_800003428_LineConfig;
+}
+
+object overhead_line {
+	name L_800045239;
+	phases ABC;
+	length 295.00000944 ft;
+	from N_800010253;
+	to N_800042659;
+	configuration L_800045239_LineConfig;
+}
+
+object overhead_line {
+	name L_800003421;
+	phases ABC;
+	length 190.00000608 ft;
+	from N_800042676;
+	to N_800003841;
+	configuration L_800003421_LineConfig;
+}
+
+object overhead_line {
+	name L_800056706;
+	phases ABC;
+	length 36.000001152 ft;
+	from N_800007621;
+	to N_800054753;
+	configuration L_800056706_LineConfig;
+}
+
+object overhead_line {
+	name L_800009591;
+	phases ABC;
+	length 139.000004448 ft;
+	from N_800042659;
+	to N_800010259;
+	configuration L_800009591_LineConfig;
+}
+
+object overhead_line {
+	name L_800061442;
+	phases ABC;
+	length 195.00000624 ft;
+	from N_800003834;
+	to N_800110102;
+	configuration L_800061442_LineConfig;
+}
+
+object overhead_line {
+	name L_800060820;
+	phases A;
+	length 190.00000608 ft;
+	from N_800055195;
+	to N_800109225;
+	configuration L_800060820_LineConfig;
+}
+
+object overhead_line {
+	name L_800045243;
+	phases ABC;
+	length 208.000006656 ft;
+	from N_800010252;
+	to N_800042663;
+	configuration L_800045243_LineConfig;
+}
+
+object overhead_line {
+	name L_800045242;
+	phases ABC;
+	length 68.000002176 ft;
+	from N_800010253;
+	to N_800042662;
+	configuration L_800045242_LineConfig;
+}
+
+object overhead_line {
+	name L_800045241;
+	phases AB;
+	length 157.000005024 ft;
+	from N_800055198;
+	to N_800042661;
+	configuration L_800045241_LineConfig;
+}
+
+object overhead_line {
+	name L_800045240;
+	phases AB;
+	length 162.000005184 ft;
+	from N_800042661;
+	to N_800042660;
+	configuration L_800045240_LineConfig;
+}
+
+object overhead_line {
+	name L_800045246;
+	phases AB;
+	length 103.000003296 ft;
+	from N_800042667;
+	to N_800042666;
+	configuration L_800045246_LineConfig;
+}
+
+object overhead_line {
+	name L_800045245;
+	phases AB;
+	length 105.00000336 ft;
+	from N_800055197;
+	to N_800042665;
+	configuration L_800045245_LineConfig;
+}
+
+object overhead_line {
+	name L_800045244;
+	phases AB;
+	length 340.00001088 ft;
+	from N_800042665;
+	to N_800042664;
+	configuration L_800045244_LineConfig;
+}
+
+object overhead_line {
+	name L_800045248;
+	phases ABC;
+	length 179.000005728 ft;
+	from N_800055219;
+	to N_800042668;
+	configuration L_800045248_LineConfig;
+}
+
+object overhead_line {
+	name L_800054495;
+	phases ABC;
+	length 90.00000288 ft;
+	from N_800003825;
+	to N_800052153;
+	configuration L_800054495_LineConfig;
+}
+
+object overhead_line {
+	name L_800055903;
+	phases ABC;
+	length 177.000005664 ft;
+	from N_800042673;
+	to N_800053805;
+	configuration L_800055903_LineConfig;
+}
+
+object overhead_line {
+	name L_800045252;
+	phases ABC;
+	length 114.000003648 ft;
+	from N_800003807;
+	to N_800042672;
+	configuration L_800045252_LineConfig;
+}
+
+object overhead_line {
+	name L_800045253;
+	phases ABC;
+	length 121.000003872 ft;
+	from N_800003807;
+	to N_800042673;
+	configuration L_800045253_LineConfig;
+}
+
+object overhead_line {
+	name L_800045254;
+	phases ABC;
+	length 124.000003968 ft;
+	from N_800003805;
+	to N_800042674;
+	configuration L_800045254_LineConfig;
+}
+
+object overhead_line {
+	name L_800045256;
+	phases ABC;
+	length 2015.00006448 ft;
+	from N_800003835;
+	to N_800042676;
+	configuration L_800045256_LineConfig;
+}
+
+object overhead_line {
+	name L_800045257;
+	phases ABC;
+	length 223.000007136 ft;
+	from N_800003841;
+	to N_800042677;
+	configuration L_800045257_LineConfig;
+}
+
+object overhead_line {
+	name L_800025897;
+	phases C;
+	length 160.00000512 ft;
+	from N_800026146;
+	to N_800026141;
+	configuration L_800025897_LineConfig;
+}
+
+object overhead_line {
+	name L_800003378;
+	phases ABC;
+	length 153.000004896 ft;
+	from N_800003793;
+	to N_800003790;
+	configuration L_800003378_LineConfig;
+}
+
+object overhead_line {
+	name L_800003373;
+	phases A;
+	length 268.000008576 ft;
+	from N_800003789;
+	to N_800034662;
+	configuration L_800003373_LineConfig;
+}
+
+object overhead_line {
+	name L_800003374;
+	phases A;
+	length 102.000003264 ft;
+	from N_800041280;
+	to N_800003789;
+	configuration L_800003374_LineConfig;
+}
+
+object overhead_line {
+	name L_800003377;
+	phases A;
+	length 136.000004352 ft;
+	from N_800003790;
+	to N_800003794;
+	configuration L_800003377_LineConfig;
+}
+
+object overhead_line {
+	name L_800061662;
+	phases ABC;
+	length 245.00000784 ft;
+	from N_800003804;
+	to N_800042675;
+	configuration L_800061662_LineConfig;
+}
+
+object overhead_line {
+	name L_800055640;
+	phases ABC;
+	length 151.000004832 ft;
+	from N_800044234;
+	to N_800053500;
+	configuration L_800055640_LineConfig;
+}
+
+object overhead_line {
+	name L_800007005;
+	phases ABC;
+	length 42.000001344 ft;
+	from N_800054753;
+	to N_800007622;
+	configuration L_800007005_LineConfig;
+}
+
+object overhead_line {
+	name L_800062336;
+	phases ABC;
+	length 245.00000784 ft;
+	from N_800003843;
+	to N_800111512;
+	configuration L_800062336_LineConfig;
+}
+
+object overhead_line {
+	name L_800048288;
+	phases C;
+	length 160.00000512 ft;
+	from N_800044230;
+	to N_800045760;
+	configuration L_800048288_LineConfig;
+}
+
+object underground_line {
+	name L_800012744;
+	phases A;
+	length 82.000002624 ft;
+	from N_800003844;
+	to N_800013390;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800012742;
+	phases A;
+	length 361.000011552 ft;
+	from N_800013390;
+	to N_800013396;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800012743;
+	phases A;
+	length 169.000005408 ft;
+	from N_800013390;
+	to N_800013397;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800007007;
+	phases ABC;
+	length 53.000001696 ft;
+	from N_800007622;
+	to N_800007627;
+	configuration UGConfig_2_AL_PEC_22KV_3P;
+}
+
+object underground_line {
+	name L_800025621;
+	phases ABC;
+	length 86.000002752 ft;
+	from N_800010258;
+	to N_800025891;
+	configuration UGConfig_2_AL_PEC_15KV_3P;
+}
+
+object underground_line {
+	name L_800033508;
+	phases ABC;
+	length 340.00001088 ft;
+	from N_800032440;
+	to N_800003812;
+	configuration UGConfig_700_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800054501;
+	phases B;
+	length 690.00002208 ft;
+	from N_800026137;
+	to N_800052157;
+	configuration UGConfig_1/0_AL_EPR-CONC-ENCAP-PE_1P;
+}
+
+object underground_line {
+	name L_800033505;
+	phases ABC;
+	length 282.000009024 ft;
+	from N_800032440;
+	to N_800032439;
+	configuration UGConfig_700_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800033507;
+	phases ABC;
+	length 300.0000096 ft;
+	from N_800032442;
+	to N_800032440;
+	configuration UGConfig_700_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800012809;
+	phases C;
+	length 156.000004992 ft;
+	from N_800013460;
+	to N_800013459;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800012808;
+	phases C;
+	length 212.000006784 ft;
+	from N_800013460;
+	to N_800013458;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800012805;
+	phases C;
+	length 408.000013056 ft;
+	from N_800013458;
+	to N_800013463;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800012807;
+	phases C;
+	length 132.000004224 ft;
+	from N_800013458;
+	to N_800013465;
+	configuration UGConfig_2_CU_RO&N_5KV_1P&N;
+}
+
+object underground_line {
+	name L_800012806;
+	phases C;
+	length 494.000015808 ft;
+	from N_800013459;
+	to N_800013464;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800054992;
+	phases ABC;
+	length 275.0000088 ft;
+	from N_800032036;
+	to N_800052747;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800025894;
+	phases B;
+	length 253.000008096 ft;
+	from N_800026138;
+	to N_800026137;
+	configuration UGConfig_1/0_AL_EPR-CONC-ENCAP-PE_1P;
+}
+
+object underground_line {
+	name L_800025895;
+	phases B;
+	length 330.00001056 ft;
+	from N_800047076;
+	to N_800026138;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_1P;
+}
+
+object underground_line {
+	name L_800025896;
+	phases B;
+	length 450.0000144 ft;
+	from N_800026140;
+	to N_800026139;
+	configuration UGConfig_4_CU_1C_P&L_5KV_1P&N;
+}
+
+object underground_line {
+	name L_800049587;
+	phases B;
+	length 106.000003392 ft;
+	from N_800026139;
+	to N_800047075;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_1P;
+}
+
+object underground_line {
+	name L_800025268;
+	phases ABC;
+	length 106.000003392 ft;
+	from N_800003848;
+	to N_800025566;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800023867;
+	phases ABC;
+	length 463.000014816 ft;
+	from N_800024241;
+	to N_800024242;
+	configuration UGConfig_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+}
+
+object underground_line {
+	name L_800032907;
+	phases ABC;
+	length 1080.00003456 ft;
+	from N_800036819;
+	to N_800007616;
+	configuration UGConfig_1000_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800023865;
+	phases ABC;
+	length 629.000020128 ft;
+	from N_800048902;
+	to N_800024248;
+	configuration UGConfig_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+}
+
+object underground_line {
+	name L_800023864;
+	phases ABC;
+	length 722.000023104 ft;
+	from N_800003840;
+	to N_800024241;
+	configuration UGConfig_2_AL_PEC_15KV_3P;
+}
+
+object underground_line {
+	name L_800049588;
+	phases B;
+	length 418.000013376 ft;
+	from N_800047075;
+	to N_800047076;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_1P;
+}
+
+object underground_line {
+	name L_800009626;
+	phases ABC;
+	length 520.00001664 ft;
+	from N_800003858;
+	to N_800010293;
+	configuration UGConfig_250_CU_1C_P&L_5KV_3P&N;
+}
+
+object underground_line {
+	name L_800003433;
+	phases ABC;
+	length 480.00001536 ft;
+	from N_800003852;
+	to N_800003858;
+	configuration UGConfig_4/0_AL_XLP-CONC-CIC_22KV_3P&N;
+}
+
+object underground_line {
+	name L_800025893;
+	phases B;
+	length 275.0000088 ft;
+	from N_800052157;
+	to N_800026145;
+	configuration UGConfig_2_CU_RO&N_5KV_1P&N;
+}
+
+object underground_line {
+	name L_800023866;
+	phases A;
+	length 40.00000128 ft;
+	from N_800024242;
+	to N_800024243;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_1P;
+}
+
+object underground_line {
+	name L_800051366;
+	phases ABC;
+	length 85.00000272 ft;
+	from N_800024242;
+	to N_800048902;
+	configuration UGConfig_1/0_AL_XLP-CONC-PVC_22KV_3P&N;
+}
+
+object underground_line {
+	name L_800012810;
+	phases C;
+	length 159.000005088 ft;
+	from N_800013461;
+	to N_800013460;
+	configuration UGConfig_DEFAULT;
+}
+
+object underground_line {
+	name L_800032918;
+	phases ABC;
+	length 253.000008096 ft;
+	from N_800032040;
+	to N_800032036;
+	configuration UGConfig_2_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+object underground_line {
+	name L_800032914;
+	phases ABC;
+	length 86.000002752 ft;
+	from N_800007616;
+	to N_800032037;
+	configuration UGConfig_1000_AL_XLP-CONC-PVC_22KV_3P;
+}
+
+//*********************************************
+// Switch Objects
+//*********************************************
+object switch {
+	name S_C0685_24050401_Switch;
+	phases ABC;
+	from N_800003805;
+	to N_C0685_24050401-SC;
+	status CLOSED;
+}
+
+object switch {
+	name L_800050041_Switch;
+	phases ABC;
+	from N_800111532;
+	to N_800047538;
+	status CLOSED;
+}
+
+object switch {
+	name L_800009589_Switch;
+	phases ABC;
+	from N_800055379;
+	to N_800010253;
+	status CLOSED;
+}
+
+object switch {
+	name L_800018086_Switch;
+	phases ABC;
+	from N_800007627;
+	to N_800018863;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057055_Switch;
+	phases AB;
+	from N_800003824;
+	to N_800055197;
+	status CLOSED;
+}
+
+object switch {
+	name L_800062351_Switch;
+	phases ABC;
+	from N_800111532;
+	to N_800111531;
+	status CLOSED;
+}
+
+object switch {
+	name L_800062352_Switch;
+	phases ABC;
+	from N_800111530;
+	to N_800111534;
+	status CLOSED;
+}
+
+object switch {
+	name L_800033504_Switch;
+	phases ABC;
+	from N_800032439;
+	to N_800003832;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057208_Switch;
+	phases ABC;
+	from N_800003832;
+	to N_800055379;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057076_Switch;
+	phases ABC;
+	from N_800003822;
+	to N_800055219;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057066_Switch;
+	phases A;
+	from N_800003802;
+	to N_800055208;
+	status CLOSED;
+}
+
+object switch {
+	name L_800062350_Switch;
+	phases ABC;
+	from N_800003797;
+	to N_800111532;
+	status CLOSED;
+}
+
+object switch {
+	name L_800046793_Switch;
+	phases ABC;
+	from N_800028286;
+	to N_800044232;
+	status CLOSED;
+}
+
+object switch {
+	name L_800061753_Switch;
+	phases ABC;
+	from N_800110508;
+	to N_800110504;
+	status CLOSED;
+}
+
+object switch {
+	name L_800054446_Switch;
+	phases ABC;
+	from N_800003858;
+	to N_800052099;
+	status CLOSED;
+}
+
+object switch {
+	name L_800062348_Switch;
+	phases ABC;
+	from N_800003790;
+	to N_800111530;
+	status CLOSED;
+}
+
+object switch {
+	name L_800061757_Switch;
+	phases ABC;
+	from N_800110507;
+	to N_800110508;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057056_Switch;
+	phases AB;
+	from N_800003826;
+	to N_800055198;
+	status CLOSED;
+}
+
+object switch {
+	name L_800042893_Switch;
+	phases ABC;
+	from N_800052153;
+	to N_800040136;
+	status CLOSED;
+}
+
+object switch {
+	name S_C0484_24050401_Switch;
+	phases ABC;
+	from N_800053500;
+	to N_C0484_24050401-SC;
+	status CLOSED;
+}
+
+object switch {
+	name L_800056478_Switch;
+	phases A;
+	from N_800003790;
+	to N_800054469;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057053_Switch;
+	phases A;
+	from N_800003807;
+	to N_800055195;
+	status CLOSED;
+}
+
+object switch {
+	name L_800032920_Switch;
+	phases ABC;
+	from N_800007621;
+	to N_800032040;
+	status CLOSED;
+}
+
+object switch {
+	name L_800061755_Switch;
+	phases ABC;
+	from N_800110504;
+	to N_800110505;
+	status CLOSED;
+}
+
+object switch {
+	name L_800028302_Switch;
+	phases C;
+	from N_800028283;
+	to N_800013461;
+	status CLOSED;
+}
+
+object switch {
+	name L_800003376_Switch;
+	phases ABC;
+	from N_800111534;
+	to N_800003797;
+	status CLOSED;
+}
+
+object switch {
+	name L_800057054_Switch;
+	phases AB;
+	from N_800003825;
+	to N_800055196;
+	status CLOSED;
+}
+
+object switch {
+	name L_800061756_Switch;
+	phases ABC;
+	from N_800110102;
+	to N_800110507;
+	status CLOSED;
+}
+
+//*********************************************
+// Cap, Reg, PV Objects
+//*********************************************
+
+#include "BU0001_glmfile_equip_manual.glm"
+//#include "BU0001_glmfile_equip_volt.glm"
+#include "BU0001_glmfile_PVend.glm"
+//#include "BU0001_glmfile_PVcenter.glm"
+//#include "BU0001_glmfile_PVdist.glm"
+//#include "BU0001_glmfile_PVend_flicker.glm"
+//#include "BU0001_glmfile_PVend_smartinv.glm"
+
+
+
+//*********************************************
+// Recorder Objects
+//*********************************************
+
+object multi_recorder {
+	property N_800003805:voltage_A.real,N_800003805:voltage_A.imag,N_800003805:voltage_B.real,N_800003805:voltage_B.imag,N_800003805:voltage_C.real,N_800003805:voltage_C.imag,N_800053500:voltage_A.real,N_800053500:voltage_A.imag,N_800053500:voltage_B.real,N_800053500:voltage_B.imag,N_800053500:voltage_C.real,N_800053500:voltage_C.imag;
+	file "Cap_node_log.csv";
+	interval 60;
+	limit 2880;
+};

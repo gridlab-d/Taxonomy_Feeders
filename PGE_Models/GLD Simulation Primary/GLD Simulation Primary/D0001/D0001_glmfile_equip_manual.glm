@@ -1,0 +1,161 @@
+//*********************************************
+// Capacitor Objects
+//*********************************************
+object capacitor {
+	name N_300014120_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300014120;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000.0;
+	capacitor_B 300000.0;
+	capacitor_C 300000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_300010600_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300010600;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 400000.0;
+	capacitor_B 400000.0;
+	capacitor_C 400000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_300239946_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300239946;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 400000.0;
+	capacitor_B 400000.0;
+	capacitor_C 400000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_300012211_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300012211;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 200000.0;
+	capacitor_B 200000.0;
+	capacitor_C 200000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_300015027_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300015027;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 200000.0;
+	capacitor_B 200000.0;
+	capacitor_C 200000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_300028382_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300028382;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 400000.0;
+	capacitor_B 400000.0;
+	capacitor_C 400000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+object capacitor {
+	name N_300006088_Cap;
+	phases ABC;
+	pt_phase ABC;
+	parent N_300006088;
+	phases_connected ABC;
+	control MANUAL;
+	voltage_set_high 7637.000000;
+	voltage_set_low 6910.000000;
+	capacitor_A 300000.0;
+	capacitor_B 300000.0;
+	capacitor_C 300000.0;
+	control_level BANK; //INDIVIDUAL;
+	time_delay 100.0;
+	dwell_time 0.0;
+	switchA OPEN;
+	switchB OPEN;
+	switchC OPEN;
+	nominal_voltage 7274.613;
+}
+
+
+object multi_recorder {
+	property N_300014120_Cap:switchA,N_300014120_Cap:switchB,N_300014120_Cap:switchC,N_300010600_Cap:switchA,N_300010600_Cap:switchB,N_300010600_Cap:switchC,N_300239946_Cap:switchA,N_300239946_Cap:switchB,N_300239946_Cap:switchC,N_300012211_Cap:switchA,N_300012211_Cap:switchB,N_300012211_Cap:switchC,N_300015027_Cap:switchA,N_300015027_Cap:switchB,N_300015027_Cap:switchC,N_300028382_Cap:switchA,N_300028382_Cap:switchB,N_300028382_Cap:switchC,N_300006088_Cap:switchA,N_300006088_Cap:switchB,N_300006088_Cap:switchC;
+	file "VVO_log.csv";
+	interval 60;
+	limit 2880;
+};
+
+//*********************************************
+// Regulator Objects
+//*********************************************
