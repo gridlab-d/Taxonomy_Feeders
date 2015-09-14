@@ -48,6 +48,18 @@ elseif (strcmp(user_name,'Kevin') ~= 0)
     tax_dir = 'C:\Users\d3p313\Desktop\Base_Case\';
     out_dir = 'C:\Users\d3p313\Desktop\Base_Case\Extracted Files\';
     my_reg = 0;
+elseif (strcmp(user_name,'Trevor') ~= 0)
+    LUSolv = 1;
+    %tax_files =   {'R4-25.00-1.glm'}; 
+  tax_files =   {'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';'GC-12.47-1.glm';...
+            'R1-12.47-1.glm';'R1-12.47-2.glm';'R1-12.47-3.glm';'R1-12.47-4.glm';'R1-25.00-1.glm';...
+            'R2-12.47-1.glm';'R2-12.47-2.glm';'R2-12.47-3.glm';'R2-25.00-1.glm';'R2-35.00-1.glm';...
+            'R3-12.47-1.glm';'R3-12.47-2.glm';'R3-12.47-3.glm';'R4-12.47-1.glm';'R4-12.47-2.glm';...
+            'R4-25.00-1.glm';'R5-12.47-1.glm';'R5-12.47-2.glm';'R5-12.47-3.glm';'R5-12.47-4.glm';...
+            'R5-12.47-5.glm';'R5-25.00-1.glm';'R5-35.00-1.glm'};
+    tax_dir = '/Users/hard312/Gridlab-D/Taxonomy_Feeders/';
+    out_dir = '/Users/hard312/Gridlab-D/Taxonomy_Feeders/Taxonomy_Feeder_Testbed/';
+    my_reg = 0;
 else
     error('User configuration "user_name" was not recognized.');
 end

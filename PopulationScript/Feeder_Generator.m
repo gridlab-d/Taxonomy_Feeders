@@ -2,7 +2,7 @@ clear;
 clc;
 
 % Set technology to test
-TechnologyToTest=4;
+TechnologyToTest=1;
     % 0 - Base
     % 1 - CVR for Energy Reduction
     % 101 - CVR for Peak Reduction
@@ -19,13 +19,14 @@ TechnologyToTest=4;
     % 12 - Solar Commercial
     % 13 - Solar Combined
     % 14 - Wind Commercial
+    % 15 - TDH OMF Special - "one of everything"
 
 % Load the user configuration for different files, flags, etc.
-[LUSolverVal,taxonomy_files,taxonomy_directory,output_directory,my_region] = user_configuration('Jason');
+[LUSolverVal,taxonomy_files,taxonomy_directory,output_directory,my_region] = user_configuration('Trevor');
 
 %% Start extraction
 [no_of_tax,junk] = size(taxonomy_files);
-region_count = 0; % for commercial feeders
+region_count = 1; % for commercial feeders
 
 for tax_ind=1:no_of_tax 
     % File to extract   
@@ -81,7 +82,7 @@ for tax_ind=1:no_of_tax
     use_flags.use_vvc = 0; % 0 = NONE, 1 = TRUE
 
     % Customer Billing? - NOT FINISHED
-    use_flags.use_billing = 0; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
+    use_flags.use_billing = 1; %0 = NONE, 1 = FLAT, 2 = TIERED, 3 = RTP (gets price from auction)
 
     % Solar? - FINISHED
     use_flags.use_solar = 0;  % for combined res & comm solar
@@ -1317,6 +1318,8 @@ for tax_ind=1:no_of_tax
             end
         elseif (strcmp(char(glm_final{2}{j}),'}') ~= 0)
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
+        elseif (strcmp(char(glm_final{1}{j}),'}') ~= 0) && (j == 1) %Very special case to clear out line that isn't needed.
+            fprintf(write_file,'        \n');
         else
             fprintf(write_file,'%s %s %s %s %s %s %s %s\n',char(glm_final{1}{j}),char(glm_final{2}{j}),char(glm_final{3}{j}),char(glm_final{4}{j}),char(glm_final{5}{j}),char(glm_final{6}{j}),char(glm_final{7}{j}),char(glm_final{8}{j}));
         end

@@ -430,7 +430,53 @@ elseif data.tech_flag == 14
   
     use_flags.use_wind = 1;  
 
-% elseif data.tech_flag == 15
+% CVR + solar 
+elseif data.tech_flag == 15
+    %These will all be '1' for base case
+    % homes and commercial are need to include thse objects
+    use_flags.use_homes = 1;
+    use_flags.use_commercial = 1;
+
+    % These will include recorders/collectors/dumps
+    use_flags.use_billing = 3;
+    use_flags.use_emissions = 1;
+    use_flags.use_capacitor_outtages = 1;
+    data.measure_losses = 1; 
+    data.dump_bills = 1;
+    data.measure_capacitors = 1;
+    data.measure_regulators = 1;   
+    data.collect_setpoints = 1;    
+    data.measure_EOL_voltage = 1;
+    data.measure_loads = 1;
+    
+    %Technology additions
+    %Adds in CVR
+    use_flags.use_vvc = 1;
+    
+    % adds in the market
+    use_flags.use_market = 2;
+    
+    % adds in customer/technology interactions
+    data.use_tech = 1;
+    
+    %Turn on solar combined (both comm & residential)
+    use_flags.use_solar = 1; 
+    
+    %Decentralized energy storage
+    use_flags.use_batt = 0;
+    
+    
+    %Prints stats at bottom of GLM
+    data.include_stats = 1;
+    
+    % Adds in meter consumption
+    data.meter_consumption = 2;
+    
+    %Set to '1' only for testing
+    data.dump_voltage = 0;   
+    data.measure_market = 1;
+    data.get_IEEE_stats = 0;
+
     
 end
 
