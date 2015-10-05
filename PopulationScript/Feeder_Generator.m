@@ -1063,25 +1063,25 @@ for tax_ind=1:no_of_tax
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        load_A = load_A + sqrt(bb_real^2 + bb_imag^2);
+                        load_A = load_A + abs(bb_real + 1i*bb_imag);
                         no_houses_A = no_houses_A + ceil( sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_power_B') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        load_B = load_B + sqrt(bb_real^2 + bb_imag^2);
+                        load_B = load_B + abs(bb_real + 1i*bb_imag);
                         no_houses_B = no_houses_B + ceil( sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_power_C') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        load_C = load_C + sqrt(bb_real^2 + bb_imag^2);
+                        load_C = load_C + abs(bb_real + 1i*bb_imag);
                         no_houses_C = no_houses_C + ceil( sqrt(bb_real^2 + bb_imag^2) / taxonomy_data.avg_commercial);
                     elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_A') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        S_A = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
+                        S_A = abs(taxonomy_data.nom_volt2^2 / (bb_real * 1i*bb_imag));
 
                         load_A = load_A + S_A;
                         no_houses_A = no_houses_A + ceil(S_A / taxonomy_data.avg_commercial);
@@ -1089,7 +1089,7 @@ for tax_ind=1:no_of_tax
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        S_B = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
+                        S_B = abs(taxonomy_data.nom_volt2^2 / (bb_real * 1i*bb_imag));
 
                         load_B = load_B + S_B;
                         no_houses_B = no_houses_B + ceil(S_B / taxonomy_data.avg_commercial);
@@ -1097,7 +1097,7 @@ for tax_ind=1:no_of_tax
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        S_C = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
+                        S_C = abs(taxonomy_data.nom_volt2^2 / (bb_real * 1i*bb_imag));
 
                         load_C = load_C + S_C;
                         no_houses_C = no_houses_C + ceil(S_C / taxonomy_data.avg_commercial);
@@ -1195,21 +1195,21 @@ for tax_ind=1:no_of_tax
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        S_A = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
+                        S_A = abs(taxonomy_data.nom_volt2^2 / (bb_real * 1i*bb_imag));
 
                         load_A = load_A + S_A;
                     elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_B') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        S_B = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
+                        S_B = abs(taxonomy_data.nom_volt2^2 / (bb_real * 1i*bb_imag));
 
                         load_B = load_B + S_B;
                     elseif (strcmp(char(glm_final{2}{m}),'constant_impedance_C') ~= 0)
                         bb_real = real(str2num(glm_final{3}{m}));
                         bb_imag = imag(str2num(glm_final{3}{m}));
 
-                        S_C = abs(taxonomy_data.nom_volt2^2 / 3 / (bb_real * 1i*bb_imag));
+                        S_C = abs(taxonomy_data.nom_volt2^2 / (bb_real * 1i*bb_imag));
 
                         load_C = load_C + S_C;
                     elseif (strcmp(char(glm_final{2}{m}),'constant_current_A') ~= 0)
