@@ -2,7 +2,7 @@
 // 12.47 kV feeder 
 //********************************************* 
 clock{ 
-     timezone EST+8EDT; 
+     timezone EST+5EDT; 
      timestamp '2000-01-01 0:00:00'; 
      stoptime '2000-01-01 1:00:00'; 
 
@@ -1011,7 +1011,7 @@ object meter:2374 {
 object meter:4239 { 
      name R2-12-47-3_meter_12; 
      phases ABCN; 
-     nominal_voltage 480; 
+     nominal_voltage 7200; 
      voltage_A 7200+0.0j; 
      voltage_B -3600-6235j; 
      voltage_C -3600+6235j; 

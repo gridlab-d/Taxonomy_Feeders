@@ -2,7 +2,7 @@
 // 22.9 kV feeder 
 //********************************************* 
 clock{ 
-     timezone EST+8EDT; 
+     timezone EST+5EDT; 
      timestamp '2000-01-01 0:00:00'; 
      stoptime '2000-01-01 1:00:00'; 
 
@@ -1420,7 +1420,7 @@ object meter:2154 {
 object meter:3919 { 
      name R5-25-00-1_meter_15; 
      phases ABCN; 
-     nominal_voltage 480; 
+     nominal_voltage 13221.32; 
      voltage_A 13221.32+0.0j; 
      voltage_B -6610.66-11450j; 
      voltage_C -6610.66+11450j; 
